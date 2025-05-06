@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Document</title>
+    <title>Profile</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/myboot.css">
-    <link rel="stylesheet" href="../css/myboot.css">
+    <link rel="stylesheet" href="../../css/myboot.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -18,9 +17,232 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-
+    <style>
+        main {
+            margin-top: calc(1.53rem + 2rem);
+        }
+        .message-icon::after {
+            display: none !important;
+            }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <div class="container-fluid p-0 fixed-top">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <a class="navbar-brand link-primary" href="#">Coinit</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 me-3 mb-lg-0">
+                      <li class="nav-item">
+                            <div class="bg-body-main bg-opacity-10 rounded-pill px-3" style="padding-top: 2px; padding-bottom: 2px;">
+                                <div class="row justify-content-between">
+                                    <div class="col-6 p-0">
+                                        <button id="exchange" class="btn btn-light text-center ps-1 fw-semibold fs-9 w-100 border-0 rounded-pill" href="#">Exchange</button>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <button id="dex" class="btn border-0 w-100 fw-semibold rounded-pill fs-9" href="#">DEX +</button>
+                                    </div>
+                                </div>
+                            </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Buy Crypto
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Buy</a></li>
+                          <li><a class="dropdown-item" href="#">Sell</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Fast Buy/Sell</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link fs-8" href="#">Markets</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Spot
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Futures
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link fs-8" href="#">Rewards Hub</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Events
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                        </ul>
+                      </li><li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          More
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">test text</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav nav-justified ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item pe-2 pt-1 position-relative">
+                            <form action="" method="get">
+                                <input type="search" class="bg-secondary bg-opacity-10 rounded-pill border-0 ps-4" style="width: 130px;" placeholder="GORK">
+                                <button type="submit" class="position-absolute start-0 ms-md-1 btn border-0 p-0 ps-1"><i class="fa fa-search fs-8"></i></button>
+                            </form>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle  bg-primary rounded-pill text-white dropdown-toggle fs-8 px-3 py-1 mt-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Deposit
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-start">
+                                <div class="dropdown-item"><a href="#">asadas</a></div>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Wallet
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-start">
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link fs-8" href="#">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link fs-8" href="#"><i class="fas fa-user"></i></a>
+                        </li>
+                        <div class="vr bg-secondary bg-opacity-50"></div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle message-icon fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-message fs-6s"></i><div class="px-1 mt-1 py-0 badge bg-primary position-absolute end-0 top-0"><span class="fs-10">+9</span></div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-start">
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">test text</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative fs-8" href="#"><i class="fas fa-download fs-6s"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative fs-8" href="#"><i class="fas fa-globe fs-6s"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative fs-8" href="#"><i class="far fa-sun fs-6s"></i></a>
+                        </li>
+                        <!-- nav-link -->
+                        <!-- <ul class="nav nav-underline">
+                            <li class="nav-item">
+                              <a class="nav-link active fs-8" aria-current="page" href="#">Active</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link fs-8" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link fs-8" href="#">Link</a>
+                            </li>
+                        </ul> -->
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container pt-2" style="width: 90%;">
+            <div class="row">
+                <div class="col-md-2 bg-info">
+                    <div style="position: fixed;color: rgb(66, 66, 66);" class="">
+                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5 partactive m-1" style="margin-top: -4px;">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 ">profile</div>
+                            </div>
+                        </a>
+                        <a href="../spot/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 ">
+                                    <div>Security</div>
+                                    <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="../dex/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 ">identification</div>
+                            </div>
+                        </a>
+                        <a href="../futures/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 ">
+                                   <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 ">
+                                    <div>Futures</div>
+                                    <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="../fiat/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 ">Fiat</div>
+                            </div>
+                        </a>
+                        <a href="../copy_trade/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2">Copy Trading</div>
+                            </div>
+                        </a>
+                        <a href="../funding_history/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5   m-1">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2">Funding History</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-10 bg-danger">a</div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </html>
