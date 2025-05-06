@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/myboot.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        .form-select{
+            border: 0;
+            box-shadow: none !important;
+            outline: none !important;
+            font-weight: bold;
+        }
+        .rounded-2 {
+            border-radius: 0.75rem !important;
+            overflow: hidden;
+            border-collapse: collapse !important;
+        }
+        #cryptoTable {
+            border-collapse: collapse !important;
+            border-style: hidden !important;
+        }
+        #cryptoTable th,
+        #cryptoTable td {
+            border: none !important;
+            background-image: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class=" discen">
+        <div style="width: 90%;" class="disflex pt-2">
+            <div style="width: 15%;position: relative;" class=" fs-6s p-2 me-3">
+                <div style="position: fixed;color: rgb(66, 66, 66); width: 14.5%;" class="">
+                    <a href="../overviwe/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1" style="margin-top: -4px;">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2 ">Overview</div>
+                        </div>
+                    </a>
+                    <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                    <div class="distart p-3 py-3-5  m-1 ">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2 ">
+                                <div>Spot</div>
+                                <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../dex/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5 partactive m-1 ">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2 ">DEX+</div>
+                        </div>
+                    </a>
+                    <a href="../futures/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1 ">
+                               <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 ">
+                                <div>Futures</div>
+                                <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../fiat/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1 ">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2 ">Fiat</div>
+                        </div>
+                    </a>
+                    <a href="../copy_trade/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1 ">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Copy Trading</div>
+                        </div>
+                    </a>
+                    <a href="../funding_history/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5   m-1">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Funding History</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div style="width: 85%;" class="p-3 pt-2 mt-1 ms-3">
+                <div class="row">
+                    <div class="col-12 bg-white rounded-3 p-4">
+                        <div class="disbet bg-white  rounded-3">
+                            <div>
+                                <div class="my-2">
+                                    <select name="" id="" class="form-select bg-secondary bg-opacity-10 rounded-pill fs-8">
+                                        <option value="all_networks">All Networks</option>
+                                    </select>
+                                </div>
+                                <div class="distart text-muted">
+                                    <a href="#" class="fs-8 mx-1 link-dotted link-secondary link-opacity-75">Estimated Balance</a><i class="fas fa-eye fs-9 text-secondary"></i>
+                                </div>
+                                <div class="distart mt-2">
+                                    <div class="fs-5 fw-bold">6.73</div>
+                                    <div class="fs-7 ml-2 ">USDT</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="disaru">
+                                <div class="btn btn-primary rounded-pill fs-9 mr-1">Receive</div>
+                                <div class="btn btn-outline-secondary rounded-pill fs-9 mr-1">Send</div>
+                                <div class="btn btn-outline-secondary rounded-pill fs-9 mr-1">Funding History</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-3 mt-4 ">
+                        <div class="row">
+                            <div class="col-12 p-3 bg-white rounded-3">
+                                <div class="disbet">
+                                    <div class="col-6 pt-4">
+                                        <div class="row">
+                                            <div class="col-8 text-start ps-3">
+                                                <span class="fw-bold fs-5 ">Assets List</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pt-4">
+                                        <form class="">
+                                            <div class="row justify-content-end">
+                                                <div class="inputbox col-5 rounded-pill" style="position: relative; width: fit-content;">
+                                                    <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill" style="height: 10px;" placeholder="Search for crypto">
+                                                    <div style="position: absolute;left: 20px;top: 50%;transform: translate(-50%,-50%);">
+                                                        <i class="fas fa-search fa-sm" style="color: #85919f;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 p-0 ">
+                                                    <input type="checkbox" class="form-check-input mr-1" name="hide_small_balances" id="">
+                                                    <span class="fw-lighter fs-8 pe-1">Hide small Balances</span>
+                                                    <button class="bg-transparent border-0"><i class="fas fa-info-circle p-0 fs-8 text-secondary"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="disflex" style="width: 100%;">
+                                    <table id="cryptoTable" class="table rounded-2">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th class="text-secondary fs-7">Crypto</th>
+                                                <th class="text-secondary fs-7">Current position</th>
+                                                <th class="text-secondary fs-7">Total PNL</th>
+                                                <th class="text-secondary fs-7">PNL Rate</th>
+                                                <th class="text-secondary fs-7">Total Buy</th>
+                                                <th class="text-secondary fs-7">Total Sell</th>
+                                                <th class="text-secondary fs-7">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <script>
+                                                const cryptoRow = `
+                                                    <tr>
+                                                        <td><img src="../image/dex/solana.webp" style="width: 20px; height: 20px;" alt="solana">SOL</td>
+                                                        <td data-order="0">0 <small class="text-muted">≈ 0 USD</small></td>
+                                                        <td class="text-danger" data-order="-0.12">-0.12%</td>
+                                                        <td class="text-danger">-$12.50</td>
+                                                        <td data-order="-1">--</td>
+                                                        <td>--</td>
+                                                        <td><a href="#" class="btn btn-sm btn-outline-primary border-0 px-3"><i class="fas fa-exchange-alt me-1"></i>Trade</a></td>
+                                                    </tr>`;
+                                                for(let i = 0; i < 6; i++){
+                                                    document.write(cryptoRow);
+                                                };
+                                            </script>
+                                        </tbody>
+                                    </table>
+                                    <script>
+                                       $(document).ready(function() {
+                                            $('#cryptoTable').DataTable({
+                                                "paging": true,
+                                                "searching": true,
+                                                "ordering": true,
+                                                "info": true,
+                                                "order": [[1, 'asc']],
+                                                "language": {
+                                                    "emptyTable": "No open positions",
+                                                    "search": "<i class='fa fa-search'></i>",
+                                                    "zeroRecords": "No matching records found"
+                                                },
+                                                "dom": '<"top"f>rt<"bottom"ip><"clear">',
+                                                "columnDefs": [
+                                                    { 
+                                                        "orderable": false, 
+                                                        "targets": [6],
+                                                        "className": "text-end",
+                                                    },
+                                                    { 
+                                                        "className": "align-middle", 
+                                                        "targets": "_all" 
+                                                    },
+                                                    {
+                                                        "type": "num-fmt",
+                                                        "targets": [1],
+                                                        "render": function(data, type) {
+                                                            if (type === 'sort') {
+                                                                return parseFloat(data.match(/[\d\.]+/)[0]);
+                                                            }
+                                                            return data;
+                                                        }
+                                                    },
+                                                    {
+                                                        "targets": [3],
+                                                        "render": function(data, type) {
+                                                            if (type === 'sort') {
+                                                                return parseFloat(data.replace('%', ''));
+                                                            }
+                                                            return data;
+                                                        }
+                                                    },
+                                                    {
+                                                        "type": "html",
+                                                        "targets": [4,5],
+                                                        "render": function(data, type) {
+                                                            if (type === 'sort') {
+                                                                return data === '--' ? -1 : parseFloat(data.replace(/[^\d\.]/g, ''));
+                                                            }
+                                                            return data;
+                                                        }
+                                                    }
+                                                ],
+                                                "initComplete": function(settings, json) {
+                                                    $('.dataTables_filter input').addClass('form-control form-control-sm');
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

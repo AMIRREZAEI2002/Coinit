@@ -1,0 +1,23 @@
+body{
+    height: 2000px;
+    background-color: #eeeff2;
+}
+
+
+
+
+
+.partactive{
+    background-color: white;
+    color: blue;
+    border-radius: 10px;
+}
+
+.assetsdiv{
+    color: #7e7e7e;
+}
+.assetselect{
+    color: black;
+    border-bottom: 2px solid black;
+    width: 30px;
+}

@@ -1,0 +1,124 @@
+body{
+
+    background-color: #eeeff2;
+}
+
+
+
+
+
+.partactive{
+    background-color: white;
+    color: blue;
+    border-radius: 10px;
+}
+
+
+
+
+.deposit-btn {
+    background-color: #e6f0ff;
+    color: #1976d2;
+    border: none;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+  }
+  .deposit-btn:hover {
+    background-color: #d1e4ff;
+  }
+  .deposit-btn i {
+    font-size: 13px;
+  }
+
+.token-dropdown {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    
+}
+  
+.token-selected {
+    display: flex;
+    align-items: center;
+    background-color: #F5F6FA;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.token-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.token-symbol {
+    font-weight: bold;
+    margin-right: 6px;
+    color: #111;
+}
+
+.token-name {
+    color: #888;
+    flex-grow: 1;
+}
+
+.dropdown-arrow {
+    color: #666;
+    font-size: 12px;
+}
+
+.token-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 4px;
+    z-index: 100;
+}
+
+.token-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.token-option:hover {
+    background-color: #f1f1f1;
+}
+
+
+.conitems{
+    width: 60px;
+    height: 35px;
+}
+.circleactive{
+    width: 35px;
+    height: 35px;
+    background-color: var(--bs-primary);
+    border-radius: 50%;
+    
+}
+
+.lineactive{
+    width: 2px;
+    height: 110px;
+    background-color: var(--bs-primary);;
+}
+.circlenotactive{
+    width: 35px;
+    height: 35px;
+    background-color: var(--bs-gray-500);
+    border-radius: 50%;
+}

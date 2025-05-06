@@ -1,0 +1,290 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter' !important;
+    background-color: #eeeff2 !important;
+}
+/* Flex Helper Classes */
+.discen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.disbet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.disaru {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+.distart {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: start;
+    flex-direction: row;
+}
+.disend {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    text-align: end;
+    flex-direction: row;
+}
+.disevn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+.disflex {
+    display: flex;
+}
+
+
+/* Font Sizes */
+.fs-6s {
+    font-size: 14px;
+}
+.fs-7 {
+    /* 16px */
+    font-size: small; 
+}
+.fs-8{
+    font-size: 12px !important;
+}
+.fs-9{
+    font-size: 10px !important;
+}
+.fs-10{
+    font-size: 8px !important;
+}
+.fs-11{
+    font-size:6px !important;
+}
+.fs-12{
+    font-size:4px !important;
+}
+
+/* Margin Utilities */
+.mr-1 {
+    margin-right: 5px;
+}
+.mr-2 {
+    margin-right: 10px;
+}
+.mr-3 {
+    margin-right: 15px;
+}
+.mr-4 {
+    margin-right: 20px;
+}
+.mr-5 {
+    margin-right: 25px;
+}
+.ml-1 {
+    margin-left: 5px;
+}
+.ml-2 {
+    margin-left: 10px;
+}
+.ml-3 {
+    margin-left: 15px;
+}
+.ml-4 {
+    margin-left: 20px;
+}
+.ml-5 {
+    margin-left: 25px;
+}
+.mb-1 {
+    margin-bottom: 5px;
+}
+.mb-2 {
+    margin-bottom: 10px;
+}
+.mb-3 {
+    margin-bottom: 15px;
+}
+.mb-4 {
+    margin-bottom: 20px;
+}
+.mb-5 {
+    margin-bottom: 25px;
+}
+.vw-100{
+    width: 100vw;
+}
+.vw-75{
+    width: 75vw;
+}
+.vw-50{
+    width: 50vw;
+}
+.vw-25{
+    width: 25vw;
+}
+.vh-100{
+    height: 100vh;
+}
+.vh-75  {
+    height: 75vh;
+}
+.vh-50{
+    height: 50vh;
+}
+.vh-25{
+    height: 25vh;
+}
+/* color */
+.bg-body-main{
+    background-color: #EEEFF3;
+}
+.icon{
+    color: #f4f5f9;
+}
+.btn-submit{
+    background-color: #0057ff !important;
+}
+/* padding */
+.pl-1 {
+    padding-left: 5px;
+}
+.pl-2 {
+    padding-left: 10px;
+}
+.pl-3 {
+    padding-left: 15px;
+}
+.pl-4 {
+    padding-left: 20px;
+}
+.pl-5 {
+    padding-left: 25px;
+}
+
+.pr-1 {
+    padding-right: 5px;
+}
+.pr-2 {
+    padding-right: 10px;
+}
+.pr-3 {
+    padding-right: 15px;
+}
+.pr-4 {
+    padding-right: 20px;
+}
+.pr-5 {
+    padding-right: 25px;
+}
+.py-2-5{
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+}
+/* myinput */
+.inputbox{
+    background-color: #eeeff1;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.myinput{
+    border: 0;
+    outline: 0;
+    background-color: #eeeff1;
+    font-size: small;
+    font-weight:600;
+}
+.pointer{
+    cursor: pointer;
+}
+.onhr{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+.orlogin div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeff2;
+}
+.secpart {
+    border-radius: 30px;
+    background-image:
+        linear-gradient(to bottom, #0C2249 0%, transparent 100%),
+        url("../image/logorsin/new.png");
+    background-repeat: no-repeat;
+    background-position: bottom ;
+    background-size: cover;
+    background-position: center;
+}
+.btn-launchpool {
+    background: linear-gradient(to bottom, #edf0f7, #aebed7); /* گرادیانت روشن */
+    color: #0C2249;                  /* رنگ متن تیره */
+    font-weight: bold;              /* متن بولد */
+    border: none;
+    border-radius: 999px;           /* حالت بیضی */
+    padding: 2px 7px;              /* فاصله داخلی مناسب */
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-launchpool:hover {
+    background: linear-gradient(to bottom, #c1cbdb, #9dadc5);
+}
+
+.btn-airdrop {
+    background: transparent;
+    color: #ffffff;                 /* رنگ متن سفید */
+    font-weight: bold;
+    border: 1.5px solid #ffffff;   /* کادر سفید */
+    border-radius: 999px;
+    padding: 2px 7px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-airdrop:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.partactive{
+    background-color: white;
+    color: blue;
+    border-radius: 10px;
+}
+.link-dotted{
+    text-decoration-style: dotted !important;
+}

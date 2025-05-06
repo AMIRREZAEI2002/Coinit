@@ -1,0 +1,92 @@
+body{
+    background-color: #eeeff2;
+}
+
+
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #ffffff;
+    /* width: 43vw; */
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 492px;
+}
+.icondiv{
+    width: 30px;
+    height: 30px;
+    background-color: #eeeff2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+.onhr{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orlogin div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeff2;
+}
+
+.secpart {
+    border-radius: 30px;
+    background-image:
+        linear-gradient(to bottom, #0C2249 0%, transparent 100%),
+        url("../image/logorsin/new.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom ;
+    background-size: cover;
+    background-position: center;
+}
+.btn-launchpool {
+    background: linear-gradient(to bottom, #edf0f7, #aebed7); /* گرادیانت روشن */
+    color: #0C2249;                  /* رنگ متن تیره */
+    font-weight: bold;              /* متن بولد */
+    border: none;
+    border-radius: 999px;           /* حالت بیضی */
+    padding: 2px 7px;              /* فاصله داخلی مناسب */
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-launchpool:hover {
+    background: linear-gradient(to bottom, #c1cbdb, #9dadc5);
+}
+
+.btn-airdrop {
+    background: transparent;
+    color: #ffffff;                 /* رنگ متن سفید */
+    font-weight: bold;
+    border: 1.5px solid #ffffff;   /* کادر سفید */
+    border-radius: 999px;
+    padding: 2px 7px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-airdrop:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+  
