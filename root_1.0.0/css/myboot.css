@@ -65,6 +65,9 @@ a {
     /* 16px */
     font-size: small; 
 }
+.fs-7s {
+    font-size: 15px; 
+}
 .fs-8{
     font-size: 12px !important;
 }
