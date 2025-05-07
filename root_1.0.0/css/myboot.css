@@ -292,3 +292,6 @@ a {
 .link-dotted{
     text-decoration-style: dotted !important;
 }
+.hide-password{
+    display: none;
+}
