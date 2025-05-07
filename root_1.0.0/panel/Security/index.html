@@ -9,204 +9,356 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="../../css/myboot.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-
+        <style>
+            .levelsecactive { }
+            .levelsec {
+                width: 50px;
+                height: 4px;
+                background-color: blue;
+                margin-right: 3px;
+            }
+        </style>
     </head>
 <body>
     <div class="container pt-2" style="max-width: 95%;height: 2000px;">
         <div class="row">
             <div class="col-md-2" style="position: relative;">
-                <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class=" w-100 mt-0 ">
+                <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class="w-100 mt-0">
                     <a href="../profile/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0 partactive " style="margin-top: -4px;">
+                        <div class="distart p-3 py-3-5 m-1 mt-0 w-100 mt-0 " style="margin-top: -4px;">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 ">Profile</div>
+                            <div class="ml-2">Profile</div>
                         </div>
                     </a>
                     <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  m-1  w-100 mt-0 ">
+                        <div class="distart p-3 py-3-5 m-1 w-100 mt-0 partactive">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 ">Security</div>
+                            <div class="ml-2">Security</div>
                         </div>
                     </a>
                     <a href="../Identification/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  m-1  w-100 mt-0  ">
+                        <div class="distart p-3 py-3-5 m-1 w-100 mt-0">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 ">Identification</div>
+                            <div class="ml-2">Identification</div>
                         </div>
                     </a>
                     <a href="../Refferal/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  m-1  w-100 mt-0 ">
+                        <div class="distart p-3 py-3-5 m-1 w-100 mt-0">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 ">Refferal</div>
+                            <div class="ml-2">Referral</div>
                         </div>
                     </a>
                     <a href="../Trading Fees/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                        <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Trading Fees</div>
                         </div>
                     </a>
                     <a href="../Withdrawl_Addresses/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                        <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2  text-muted fw-bold fs-6s">Withdrawl Addresses/Contacts</div>
+                            <div class="ml-2 text-muted fw-bold fs-6s">Withdrawal Addresses/Contacts</div>
                         </div>
                     </a>
                     <a href="../Sub-Account/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                        <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Sub-Account Management</div>
                         </div>
                     </a>
                     <a href="../Settings/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                        <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Settings</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div  class="col-md-10">
-                <div class="row bg-white rounded-3 p-4">
-                    <div class="col-12 col-md-1  justify-content-center align-items-center d-flex">
-                        <div class="p-4 P-md-0 "><i class="fa-solid fa-user fa-2xl"></i></div>
-                    </div>
-                    <div class="col-12 col-md-10">
-
-                        <div class="row" >
-                            <div class="distart" style="padding: 0;">
-                                <div class="fs-5 fw-bold ">Samoor</div>
-                                <div><i class="fa-solid fa-pen-to-square ml-2"></i></div>
-                                <div class="btn btn-warning btn-sm ml-2 fs-8 ">
-                                    <div class="disbet">
-                                        <div><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
-                                        <div>Not Verfried</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4 ">
-                                    <div class=" text-muted fw-bold fs-6s">Account</div>
-                                    <div class="fs-8 disbet">
-                                        <div>main@gmail.com</div>
-                                        <div><i class="fa-solid fa-eye-slash fa-xs  ml-1" style="margin-top: 10px;"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4 ">
-                                    <div class=" text-muted fw-bold fs-6s">UID</div>
-                                    <div class="fs-8 disbet">
-                                        <div>46754632</div>
-                                        <div><i class="fa-solid fa-eye-slash fa-xs  ml-1" style="margin-top: 10px;"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4">
-                                    <div class=" text-muted fw-bold fs-6s">Sing-up Time</div>
-                                    <div class="fs-8">2023-05-10 19:29:32</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4">
-                                    <div class=" text-muted fw-bold fs-6s disbet">
-                                        <div>Last Login</div>
-                                        <div><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                    </div>
-                                    <div class="fs-8">2023-05-10 19:29:32</div>
-                                </div>
-                            </div>
-                        </div>
-
+            <div class="col-md-10">
+                <div class="row text-start p-4">
+                    <div class="col-md-12">
+                        <h1 class="fs-4">Security</h1>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-9 col-12 bg-white rounded-3 p-4" style="max-height: 200px;">
-                        <div class="row mt-2 ">
-                            <div class="col-md-6 col-6 ">
-                                <div class="distart">
-                                    <div class="fs-6 fw-bold">Total Value</div>
-                                    <div><i class="fa-solid fa-eye fa-xs pl-1 text-muted" style="margin-top: 12px;"></i></div>
+                <div class="row bg-white rounded-3 p-4">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="distart fw-bold">Two-Factory Authentication (2FA)</div>
+                                <div class="distart text-secondary fs-6s mt-1">To protect your account, we remember that you enable at least one 2FA</div>
+                                <div class="distart fs-6s mt-2">
+                                    <div>Security Level: </div>
+                                    <div class="ml-2 text-primary">Medium</div>
+                                    <div class="distart mt-1">
+                                        <div class="levelsec ml-2"></div>
+                                        <div class="levelsec"></div>
+                                        <div class="levelsec"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-6 mt-1 fs-7 text-end text-primary">
-                                Asset Details
-                            </div>
                         </div>
-                        <div class="distart mt-2">
-                            <div class="fs-4 fw-bold">6.73</div>
-                            <div class="ml-1">
-                                <select name="" id="" class="form-select  border-0  fs-7">
-                                    <option value="USDT">USDT</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="distart fs-8 text-muted">
-                            <div class="text-muted" style="z-index: 2;">= 6.73</div>
-                            <div style="margin-left: -10px;">
-                                <select name="" id="" class="form-select border-0    fs-8 text-muted">
-                                    <option value="USDT">USDT</option>
-                                </select>
-                            </div>
-                        </div>
+                        <hr>
+                        <!-- Email Verification -->
                         <div class="row mt-3">
-                            <div class="col-md-2 col-12 p-0 ">
-                                    <button class="btn btn-primary rounded-pill w-100">Deposit</button>
+                            <div class="col-md-6 col-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-envelope"></i></div>
+                                    <div class="ml-2">
+                                        <div class="fw-bold">Email Verification</div>
+                                        <div class="fs-7 text-secondary">Connect your email address to secure login, password recovery, and withdrawal verification.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                <div class="disbet fs-7">
+                                    <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                    <div class="fw-bold">ag**m@gmail.com</div>
+                                </div>
+                                <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Change</button></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Mobile Verification -->
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="ml-2">
+                                        <div class="fw-bold">Mobile Verification</div>
+                                        <div class="fs-7 text-secondary">Link your mobile number to your account to receive verification codes via SMS for confirmations on withdrawal, password change, and security settings.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                <div class="disbet fs-7">
+                                    <div class="mr-1"><i class="fas fa-times-circle text-secondary"></i></div>
+                                    <div class="fw-bold text-secondary">Off</div>
+                                </div>
+                                <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Set Up</button></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Google Authenticator -->
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-shield-alt"></i></div>
+                                    <div class="ml-2">
+                                        <div class="fw-bold">Google Authenticator</div>
+                                        <div class="fs-7 text-secondary">Set up your Google Authenticator to provide an extra layer of security when withdrawing funds or configuring your security settings.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                <div class="disbet fs-7">
+                                    <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                    <div class="fw-bold">On</div>
+                                </div>
+                                <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Remove</button></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-12 m-md-0 mt-2 ps-md-2 ps-0 pe-0">
-                        <div class="bg-white rounded-3 p-2">
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
+                </div>
+                <div class="row bg-white rounded-3 p-4 mt-4">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="distart fs-6 fw-bold">Advanced Security</div>
+                        </div>
+                        <hr>
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-envelope"></i></div>
+                                    <div class="ml-2">
+                                        <div class="fw-bold">Anti-Phishing Code</div>
+                                        <div class="fs-7 text-secondary">Emails sent to you will include the Anti-Phishing code you've set to protect against phishing attacks</div>
                                     </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
                                 </div>
                             </div>
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
-                                    </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
+                            <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                <div class="disbet fs-7">
+                                    <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                    <div class="fw-bold">Defult</div>
                                 </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
+                                <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Change</button></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Login Password -->
+                        <div class="row mt-3">
+                            <div class="col-md-6 col-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="ml-2">
+                                        <div class="fw-bold">Login Password</div>
+                                        <div class="fs-7 text-secondary">Increase your password strength to enhance account security.</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
-                                    </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
+                            <div class="col-md-6 col-12 d-flex justify-content-end align-items-center mt-4 m-md-0">
+                                <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Add</button></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Fund Security Settings -->
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="distart">
+                                    <div><i class="fas fa-shield-alt mr-2"></i></div>
+                                    <div class="fw-bold">Fund Security Settings</div>
                                 </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
+                                <div class="row p-3 px-1">
+                                    <div class="col-md-6 col-12">
+                                        <div class="fw-bold">Fast Withdrawal</div>
+                                        <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                        <div class="disbet fs-7">
+                                            <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                            <div class="fw-bold">Defult</div>
+                                        </div>
+                                        <div class="form-check form-switch fs-5 mb-2">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-3 px-1">
+                                    <div class="col-md-6 col-12">
+                                        <div class="fw-bold">Fast Withdrawal</div>
+                                        <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                        <div class="disbet fs-7">
+                                            <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                            <div class="fw-bold">Defult</div>
+                                        </div>
+                                        <div class="form-check form-switch fs-5 mb-2">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-3 px-1">
+                                    <div class="col-md-6 col-12">
+                                        <div class="fw-bold">Fast Withdrawal</div>
+                                        <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
+                                        <div class="disbet fs-7">
+                                            <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
+                                            <div class="fw-bold">Defult</div>
+                                        </div>
+                                        <div class="form-check form-switch fs-5 mb-2">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="distart">
+                                            <div><i class="fas fa-shield-alt mr-2"></i></div>
+                                            <div class="fw-bold">Fund Security Settings</div>
+                                        </div>
+                                        <div class="distart fs-6s text-secondary mt-1">
+                                            Link third-party account to your MEXC account. Once successful, you can use it for login.
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
+                                                <div style="background-color: #eeeff2;" class="p-2 rounded-1 fs-7 disbet">
+                                                    <div class="disbet">
+                                                        <div class="mr-1">g</div>
+                                                        <div class="fw-bold">Google</div>
+                                                    </div>
+                                                    <div class="text-danger">Unlink</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
+                                                <div style="background-color: #eeeff2;" class="p-2 rounded-1 fs-7 disbet">
+                                                    <div class="disbet">
+                                                        <div class="mr-1">g</div>
+                                                        <div class="fw-bold">Google</div>
+                                                    </div>
+                                                    <div class="text-danger">Unlink</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
+                                                <div style="background-color: #eeeff2;" class="p-2 rounded-1 fs-7 disbet">
+                                                    <div class="disbet">
+                                                        <div class="mr-1">g</div>
+                                                        <div class="fw-bold">Google</div>
+                                                    </div>
+                                                    <div class="text-danger">Unlink</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
+                                                <div style="background-color: #eeeff2;" class="p-2 rounded-1 fs-7 disbet">
+                                                    <div class="disbet">
+                                                        <div class="mr-1">g</div>
+                                                        <div class="fw-bold">Google</div>
+                                                    </div>
+                                                    <div class="text-danger">Unlink</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="row bg-white rounded-3 p-4 mt-4">
+                    <div class="distart fs-6 fw-bold pb-3">
+                        Device and Activity
+                    </div>
+                    <hr>
+                    <div class="row pb-3">
+                        <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">  
+                            <div class="mr-2">s</div>
+                            <div>
+                                <div class="fw-bold ">Account Activities</div>
+                                <div class="fs-6s text-secondary">View login and security activity history.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
+                            <button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">View</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row pb-3">
+                        <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">
+                            <div class="mr-2">s</div>
+                            <div>
+                                <div class="fw-bold ">Device Management</div>
+                                <div class="fs-6s text-secondary">Manage devices that are allowed to access your account.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
+                            <button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Manage</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row ">
+                        <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">
+                            <div class="mr-2">s</div>
+                            <div>
+                                <div class="fw-bold ">Freeze Account</div>
+                                <div class="fs-6s text-secondary">Freeze your account all functions immediately. </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
+                            <button class="btn btn-outline-danger text-danger rounded-pill px-4 fs-8 mr-1">Freeze</button>
                         </div>
                     </div>
                 </div>
 
             </div>
+            
         </div>
     </div>
     <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
+``` 
