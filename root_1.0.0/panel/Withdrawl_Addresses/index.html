@@ -12,7 +12,43 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+        <style>
 
+            .rounded-2 {
+                border-radius: 0.75rem !important;
+                overflow: hidden;
+                border-collapse: collapse !important;
+            }
+            #cryptoTable {
+                border-collapse: collapse !important;
+                border-style: hidden !important;
+            }
+            #cryptoTable th,
+            #cryptoTable td {
+                border: none !important;
+                background-image: none !important;
+            }
+
+            .period-btn {
+                margin: 0 5px;
+                padding: 5px 5px;
+                border-radius: 5px;
+                font-size: 10px;
+                transition: all 0.3s;
+            }
+            .period-btn.active {
+                background-color: #F5F6FA !important;
+                border-color: #F5F6FA !important;
+                color: black !important;
+            }
+        </style>
     </head>
 <body>
     <div class="container pt-2" style="max-width: 95%;height: 2000px;">
@@ -70,139 +106,123 @@
                 </div>
             </div>
             <div  class="col-md-10">
-                <div class="row bg-white rounded-3 p-4">
-                    <div class="col-12 col-md-1  justify-content-center align-items-center d-flex">
-                        <div class="p-4 P-md-0 "><i class="fa-solid fa-user fa-2xl"></i></div>
+                <div class="distart">
+                    <div>s</div>
+                    <div class="fs-5 fw-bold ml-2">Withdrawal Addresses/Contacts</div>
+                </div>
+                <div class="distart fs-7 text-secondary mt-3">
+                    <div class="disbet ">
+                        <div>s</div>
+                        <div class="ml-1">Withdrawal whitelsit has been disable</div>
+                        <div>s</div>
                     </div>
-                    <div class="col-12 col-md-10">
-
-                        <div class="row" >
-                            <div class="distart" style="padding: 0;">
-                                <div class="fs-5 fw-bold ">Samoor</div>
-                                <div><i class="fa-solid fa-pen-to-square ml-2"></i></div>
-                                <div class="btn btn-warning btn-sm ml-2 fs-8 ">
-                                    <div class="disbet">
-                                        <div><i class="fa-solid fa-circle-exclamation mr-1"></i></div>
-                                        <div>Not Verfried</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4 ">
-                                    <div class=" text-muted fw-bold fs-6s">Account</div>
-                                    <div class="fs-8 disbet">
-                                        <div>main@gmail.com</div>
-                                        <div><i class="fa-solid fa-eye-slash fa-xs  ml-1" style="margin-top: 10px;"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4 ">
-                                    <div class=" text-muted fw-bold fs-6s">UID</div>
-                                    <div class="fs-8 disbet">
-                                        <div>46754632</div>
-                                        <div><i class="fa-solid fa-eye-slash fa-xs  ml-1" style="margin-top: 10px;"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4">
-                                    <div class=" text-muted fw-bold fs-6s">Sing-up Time</div>
-                                    <div class="fs-8">2023-05-10 19:29:32</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-6 p-1 p-mt-0">
-                                <div class="d-flex justify-content-start align-items-start flex-column mr-4">
-                                    <div class=" text-muted fw-bold fs-6s disbet">
-                                        <div>Last Login</div>
-                                        <div><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                    </div>
-                                    <div class="fs-8">2023-05-10 19:29:32</div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="disbet ml-2">
+                        <div>s</div>
+                        <div class="ml-1">Withdrawal whitelsit has been disable</div>
+                        <div>s</div>
+                    </div>
+                    <div class="disbet ml-2">
+                        <div></div>
+                        <a class="ml-1 text-decoration-none">Go to Settings</a>
+                        <div></div>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-9 col-12 bg-white rounded-3 p-4" style="max-height: 200px;">
-                        <div class="row mt-2 ">
-                            <div class="col-md-6 col-6 ">
-                                <div class="distart">
-                                    <div class="fs-6 fw-bold">Total Value</div>
-                                    <div><i class="fa-solid fa-eye fa-xs pl-1 text-muted" style="margin-top: 12px;"></i></div>
+                <div class="row bg-white rounded-3 p-4 mt-4">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4 mt-3 m-md-0">
+                                    <div>Crypto</div>
+                                    <select class="form-select mt-2">
+                                        <option selected>انتخاب کنید</option>
+                                        <option value="1">گزینه ۱</option>
+                                        <option value="2">گزینه ۲</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-6 mt-1 fs-7 text-end text-primary">
-                                Asset Details
+                                <div class="col-md-4 mt-3 m-md-0">
+                                    <div>Crypto</div>
+                                    <select class="form-select mt-2">
+                                        <option selected>انتخاب کنید</option>
+                                        <option value="1">گزینه ۱</option>
+                                        <option value="2">گزینه ۲</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mt-3 m-md-0">
+                                    <div>Crypto</div>
+                                    <select class="form-select mt-2">
+                                        <option selected>انتخاب کنید</option>
+                                        <option value="1">گزینه ۱</option>
+                                        <option value="2">گزینه ۲</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="distart mt-2">
-                            <div class="fs-4 fw-bold">6.73</div>
-                            <div class="ml-1">
-                                <select name="" id="" class="form-select  border-0  fs-7">
-                                    <option value="USDT">USDT</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="distart fs-8 text-muted">
-                            <div class="text-muted" style="z-index: 2;">= 6.73</div>
-                            <div style="margin-left: -10px;">
-                                <select name="" id="" class="form-select border-0    fs-8 text-muted">
-                                    <option value="USDT">USDT</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-2 col-12 p-0 ">
-                                    <button class="btn btn-primary rounded-pill w-100">Deposit</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-12 m-md-0 mt-2 ps-md-2 ps-0 pe-0">
-                        <div class="bg-white rounded-3 p-2">
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
-                                    </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
+                        <div class="col-md-4 d-flex align-items-center justify-content-end mt-5 m-md-0">
+                            <div class="discen">
+                                <div class="">
+                                    <button class="btn btn-outline-secondary rounded-pill fs-8">Bulk Adding</button>
                                 </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
-                                    </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                            <div class="p-3 my-2 rounded-1" style="background-color: #eeeff2 ;">
-                                <div class="disbet">
-                                    <div class="disbet my-1">
-                                        <div class="mr-1 text-muted fs-7"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                        <div>Referral</div>
-                                    </div>
-                                    <div class="fs-8 text-muted"><i class="fa-solid fa-chevron-right fa-xs"></i></div>
-                                </div>
-                                <div class="distart fs-8 text-secondary">
-                                    Lorem ipsum dolor sit amet.
+                                <div class="ml-3">
+                                    <button class="btn btn-primary rounded-pill fs-8">Add withdrawal Address</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-between align-items-center fs-6">
+                            <div class="d-flex gap-3">
+                                <button class=" btn btn-outline-primary text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Address Management</button>
+                                <button class=" btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Contact Management</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="cryptoTable" class="table table-striped table-responsive rounded-2 table-hover  w-100 mt-0 mt-3 fs-7">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th class="text-secondary ">crypto</th>
+                                        <th class="text-secondary ">Network</th>
+                                        <th class="text-secondary ">Lable</th>
+                                        <th class="text-secondary">Address</th>
+                                        <th class="text-secondary">Memo/Tag</th>
+                                        <th class="text-secondary">On Whitelisted</th>
+                                        <th class="text-secondary">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <script>
+                                        let futures_crypto = `
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../image/dex/solana.webp" width="24" height="24" class="me-2">
+                                                        <span>SOL/USDT</span>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <div>OP</div>
+                                                    <div class="text-muted">(Optimisim)</div>
+                                                </td>
+                                                <td>ferferi</td>
+                                                <td class="text-warning">0XEOPKEJFEJ9WJFJ0</td>
+                                                <td>--</td>
+                                                <td>No</td>
+                                                <td>
+                                                    <button style="width:70px;height:30px" class="btn btn-outline-secondary rounded-pill fs-9 mr-1">...</button>
+                                                </td>
+                                            </tr>
+                                        `;
+                                        for (let i = 0; i < 5 ; i++){
+                                            document.write(futures_crypto);
+                                        }
+                                    </script>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>

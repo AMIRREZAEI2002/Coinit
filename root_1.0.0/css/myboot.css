@@ -310,3 +310,6 @@ main {
 .user-icon::after {
     display: none !important;
 }
+.bg-mybody{
+    background-color: #eeeff2 !important;
+}
