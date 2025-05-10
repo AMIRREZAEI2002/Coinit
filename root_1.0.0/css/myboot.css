@@ -292,15 +292,21 @@ a {
 .link-dotted{
     text-decoration-style: dotted !important;
 }
-<<<<<<< HEAD
 .shadow-in-1{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 .shadow-out-1{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 9px 0px;
 }
-=======
->>>>>>> c0b1f022e49943fa252ab3e0ec86f5f1c4370a19
 .hide-password{
     display: none;
+}
+main {
+    margin-top: calc(1.53rem + 2rem);
+}
+.message-icon::after {
+    display: none !important;
+}
+.user-icon::after {
+    display: none !important;
 }
