@@ -18,6 +18,72 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        .form-select{
+            border: 0;
+            box-shadow: none !important;
+            outline: none !important;
+            font-weight: bold;
+        }
+        .rounded-2 {
+            border-radius: 0.75rem !important;
+            overflow: hidden;
+            border-collapse: collapse !important;
+        }
+        #cryptoTable {
+            border-collapse: collapse !important;
+            border-style: hidden !important;
+        }
+        #cryptoTable th,
+        #cryptoTable td {
+            border: none !important;
+            background-image: none !important;
+        }
+        .cryptolable{
+            width: 14%;
+        }
+        @media (max-width: 1150px) {
+            #cryptoTable thead {
+                display: none;
+            }
+
+            #cryptoTable,
+            #cryptoTable tbody,
+            #cryptoTable tr,
+            #cryptoTable td {
+                display: block;
+                width: 100%;
+            }
+
+            #cryptoTable tr {
+                margin-bottom: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                padding: 10px;
+            }
+
+            #cryptoTable td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            #cryptoTable td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                font-weight: bold;
+                color: #888;
+                text-align: left;
+                
+            }
+            .cryptolable{
+                width: 100%;
+            }
+            
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -549,7 +615,6 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <script>
                 (function() {
                     const modal = document.getElementById('lang');
@@ -577,17 +642,17 @@
         </div>
     </header>
     <main>
-        <div class="container pt-2" style="max-width: 95%;height: 2000px;">
+        <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
             <div class="row">
                 <div class="col-md-2" style="position: relative;">
                     <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class=" w-100 mt-0 ">
                         <a href="../profile/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0 partactive " style="margin-top: -4px;">
+                            <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0  " style="margin-top: -4px;">
                                 <div><i class="fa-solid fa-wallet"></i></div>
                                 <div class="ml-2 ">Profile</div>
                             </div>
                         </a>
-                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <a href="../Security/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
                             <div class="distart p-3 py-3-5  m-1  w-100 mt-0 ">
                                 <div><i class="fa-solid fa-wallet"></i></div>
                                 <div class="ml-2 ">Security</div>
@@ -599,19 +664,19 @@
                                 <div class="ml-2 ">Identification</div>
                             </div>
                         </a>
-                        <a href="../Refferal/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  m-1  w-100 mt-0 ">
+                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 partactive w-100 mt-0 ">
                                 <div><i class="fa-solid fa-wallet"></i></div>
                                 <div class="ml-2 ">Refferal</div>
                             </div>
                         </a>
-                        <a href="../Trading Fees/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <a href="../Trading_Fees/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
                             <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
                                 <div><i class="fa-solid fa-wallet"></i></div>
                                 <div class="ml-2">Trading Fees</div>
                             </div>
                         </a>
-                        <a href="../Withdrawal_Addresses/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <a href="../Withdrawl_Addresses/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
                             <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
                                 <div><i class="fa-solid fa-wallet"></i></div>
                                 <div class="ml-2  text-muted fw-bold fs-6s">Withdrawal Addresses/Contacts</div>
@@ -631,15 +696,15 @@
                         </a>
                     </div>
                 </div>
-                <div  class="col-md-10">
+                <div  class="col-md-10 mb-5">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-12 p-5 pt-5 bg-white rounded-3">
+                        <div class="col-12 p-xl-5 p-md-4 p-4 pt-5 bg-white rounded-3">
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-12 text-center">
                                     <h1 class="fw-semibold">Hold MX, Save Up to 50% on Fees</h1>
                                     <small class="fs-6 text-body-emphasis">Hold at least 500 MX in Spot account for 24 consecutive hours to qulify</small>
                                 </div>
-                                <div class="col-md-5 me-2 mt-5 col-12 p-3 bg-secondary rounded-4 bg-opacity-10">
+                                <div class="col-xl-5 me-2 mt-xl-5 mt-3 p-md-3 bg-secondary rounded-4 bg-opacity-10">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="row justify-content-between align-items-center">
@@ -660,7 +725,7 @@
                                             <div class="row justify-content-between align-items-center">
                                                 <div class="col-12 col-md-5 bg-secondary bg-opacity-10 rounded-3 p-3">
                                                     <div class="d-flex justify-content-start flex-column align-items-start">    
-                                                        <span class="fs-8 fw-semibold">0.00000000000 %</span>
+                                                        <span class="fs-8 fw-semibold">0.00000000 %</span>
                                                         <span class="text-secondary fs-8">Maker</span>
                                                     </div>
                                                 </div>
@@ -676,15 +741,15 @@
                                             <div class="row justify-content-between align-items-center">
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</h6>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-8"></i></button>
+                                                        <p class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</p>
+                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-9"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount">20%</span>
-                                                        <span class="ms-2" style="display: none;">Off</span>
-                                                        <span class="ms-2" style="display: block;">On</span>
+                                                        <span class="fs-8 no_discount">20%</span>
+                                                        <span class="fs-8 ms-2" style="display: none;">Off</span>
+                                                        <span class="fs-8 ms-2" style="display: block;">On</span>
                                                         <div class="form-check form-switch ">
                                                             <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
                                                           </div>
@@ -696,14 +761,13 @@
                                             <div class="row justify-content-between align-items-center">
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-8 text-secondary mb-0 me-1">Deduct using MX</h6>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-8"></i></button>
+                                                        <p class="fs-8 text-secondary mb-0 me-1">Deduct using MX</p>
+                                                        <button class="btn btn-sm bg-secondary p-1 border-0 text-body-tertiary bg-opacity-10 fs-9">Not Met</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount">20%</span>
-                                                        <a href="#" class="link-primary link-underline-opacity-0">Get 50% Off</a>
+                                                    <div class="d-flex justify-content-end align-items-center">
+                                                        <a href="#" class="link-primary link-underline-opacity-0 fs-9 fw-semibold ms-1">Get 50% Off <i class="fa fa-chevron-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -711,7 +775,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-5 me-2 mt-5 col-12 p-3 bg-secondary rounded-4 bg-opacity-10">
+                                <div class=" col-xl-5 me-2 mt-xl-5 mt-3 col p-md-3 bg-secondary rounded-4 bg-opacity-10">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="row justify-content-between align-items-center">
@@ -748,15 +812,15 @@
                                             <div class="row justify-content-between align-items-center">
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</h6>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-8"></i></button>
+                                                        <p class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</p>
+                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-9"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount">20%</span>
-                                                        <span class="ms-2" style="display: none;">Off</span>
-                                                        <span class="ms-2" style="display: block;">On</span>
+                                                        <span class="fs-8 no_discount">20%</span>
+                                                        <span class="fs-8 ms-2" style="display: none;">Off</span>
+                                                        <span class="fs-8 ms-2" style="display: block;">On</span>
                                                         <div class="form-check form-switch ">
                                                             <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
                                                           </div>
@@ -768,85 +832,199 @@
                                             <div class="row justify-content-between align-items-center">
                                                 <div class="col-6">
                                                     <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-8 text-secondary mb-0 me-1">Deduct using MX</h6>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-8"></i></button>
+                                                        <p class="fs-8 text-secondary mb-0 me-1">Deduct using MX</p>
+                                                        <button class="btn btn-sm bg-secondary p-1 border-0 text-body-tertiary bg-opacity-10 fs-9">Not Met</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount">20%</span>
-                                                        <a href="#" class="link-primary link-underline-opacity-0">Get 50% Off</a>
+                                                    <div class="d-flex justify-content-end align-items-center">
+                                                        <a href="#" class="link-primary link-underline-opacity-0 fs-9 fw-semibold ms-1">Get 50% Off <i class="fa fa-chevron-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <div class="d-flex justify-content-between align-items-center fs-6">
-                                        <div class="d-flex gap-3">
-                                            <button class=" btn btn-outline-primary text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">All</button>
-                                            <button class=" btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Main</button>
-                                            <button class=" btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Innovation</button>
-                                            <button class=" btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Delisted</button>
-                                            <button class=" btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Divodend</button>
+                                    <div class="row justify-content-between align-items-center fs-6">
+                                        <div class="col-12 col-xl-6 mb-3 gap-3">
+                                            <button class="fs-6 fw-bold btn btn-outline-primary text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Spot</button>
+                                            <button class="fs-6 fw-bold btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Future</button>
+                                            <button class="fs-6 fw-bold btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 btn-sm flexcolumnstart"><span class="fs-7">Deposite/Withrawald</span></button>
+                                        </div>
+                                        
+                                        <div class="col-12 col-xl-6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="input-group">
+                                                        <button class="btn border-0 z-3"><i class="fa fa-search "></i></button>
+                                                        <input type="text" class="form-control z-2 rounded-pill w-100 position-absolute ps-5 fs-8 bg-secondary bg-opacity-10" placeholder="Search for your language and currency">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="disflex" style="width: 100%;">
+                                    <div class="table-responsive mt-2">
+                                        <div class="d-flex gap-3 mb-3 mt-4  ">
+                                            <button class="fs-8 btn bg-secondary bg-opacity-10">All</button>
+                                            <button class="fs-8 btn text-body-tertiary btn-sm">0 Fee</button>
+                                            <button class="fs-8 btn text-body-tertiary btn-sm"><span class="fs-7">20$ Mx Discount</span></button>
+                                            <button class="fs-8 btn text-body-tertiary btn-sm"><span class="fs-7">50% off for Mx Holder</span></button>
+                                        </div>
+                                        <table id="cryptoTable" class="table table-striped rounded-2 table-hover w-100">
+                                            <thead class="table-secondary table-responsive">
+                                                <tr>
+                                                    <th class="text-secondary me-5">Trading Pair</th>
+                                                    <th class="text-secondary">Maker</th>
+                                                    <th class="text-secondary">Taker</th>
+                                                    <th class="text-secondary text-center text-xl-center text-md-end">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script>
+                                                    let futures_crypto = `
+                                                        <tr>
+                                                            <td data-label="crypto" class="cryptolable" >
+                                                                <div class="no-st-sm-end " >
+                                                                    <div class="no-st-sm-end">
+                                                                        <img src="../../image/dex/solana.webp" width="24" height="24" class="me-2 ">
+                                                                        <span class=" " >SOL/USDT</span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td data-label="Taker" >0.000000%</td>
+                                                            <td data-label="Maker" >0.000000%</td>
+                                                            <td data-label="Action">
+                                                                <div class="d-flex justify-content-xl-center justify-content-md-end justify-content-end align-items-center">
+                                                                    <button style="width:80px;height:30px" class="btn btn-sm btn-outline-secondary rounded-pill m-1">Trade</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    `;
+                                                    for (let i = 0; i < 5 ; i++){
+                                                        document.write(futures_crypto);
+                                                    }
+                                                </script>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     
-                                    <table id="cryptoTable" class="table table-striped rounded-2 table-hover  w-100 mt-0 mt-3 fs-7">
-                                        <thead class="table-secondary">
-                                            <tr>
-                                                <th class="text-secondary">crypto</th>
-                                                <th class="text-secondary">Total</th>
-                                                <th class="text-secondary">Available Balance</th>
-                                                <th class="text-secondary">Frozen Balance</th>
-                                                <th class="text-secondary">USDT Valuation</th>
-                                                <th class="text-secondary">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <script>
-                                                let futures_crypto = `
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <img src="../image/dex/solana.webp" width="24" height="24" class="me-2">
-                                                                <span>SOL/USDT</span>
-                                                            </div>
-                                                        </td>
-                                                        <td>$78,940.00</td>
-                                                        <td>$45,000.00</td>
-                                                        <td class="text-warning">$0.00 ➔</td>
-                                                        <td>$27,400.00</td>
-                                                        <td>
-                                                            <button style="width:70px;height:30px" class=" btn btn-sm m-1 btn-primary">Earn</button>
-                                                            <button style="width:70px;height:30px" class=" btn btn-sm m-1 btn-primary">Deposit</button>
-                                                            <button style="width:70px;height:30px" class=" btn btn-sm m-1 btn-primary">Convent</button>
-                                                            <button style="width:70px;height:30px" class=" btn btn-sm m-1 btn-outline-secondary">Trade</button>
-                                                        </td>
-                                                    </tr>
-                                                `;
-                                                for (let i = 0; i < 5 ; i++){
-                                                    document.write(futures_crypto);
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#cryptoTable').DataTable({
+                                                language: {
+                                                    search: "Search all columns:",
+                                                    paginate: {
+                                                        previous: "Previous",
+                                                        next: "Next"
+                                                    }
+                                                },
+                                                dom: '<"top"lBf>rt<"bottom"ip><"clear">', 
+                                                responsive: none,
+                                                columnDefs: [
+                                                    { 
+                                                        targets: 0, 
+                                                        orderable: true
+                                                    },
+                                                    { 
+                                                        targets: [2,3], 
+                                                        type: 'num'
+                                                    },
+                                                    { 
+                                                        targets: 4, 
+                                                        orderable: true
+                                                    }
+                                                ],
+                                                paging: true,
+                                                pageLength: 10,
+                                                searching: false,
+                                                ordering: true,
+                                                info: true,
+                                                autoWidth: false,
+                                                initComplete: function() {
+                                                    this.api().columns().every(function() {
+                                                        let column = this;
+                                                        let header = $(column.header());
+                                                        header.append('<input type="text" placeholder="Search '+header.text()+'" />')
+                                                            .on('keyup change', function() {
+                                                                column.search(this.value).draw();
+                                                            });
+                                                    });
                                                 }
-                                            </script>
-                                        </tbody>
-                                    </table>
+                                            });
+                                        });
+                                    </script>
+                                <div class="col-12 mt-3">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button class="rounded-circle me-1 fs-9 btn bg-secondary bg-opacity-10">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn btn-primary bg-opacity-10">
+                                            1
+                                        </button>
+                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
+                                            2
+                                        </button>
+                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
+                                            3
+                                        </button>
+                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
+                                            4
+                                        </button>
+                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
+                                            5
+                                        </button>
+                                        <span class="me-1 rounded-circle">...</span>
+                                        <button class="rounded-circle me-1 py-2 px-2 fs-9 btn border bg-opacity-10">
+                                            315
+                                        </button>
+                                        <button class="rounded-circle me-1 fs-9 btn bg-secondary bg-opacity-10">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 bg-white p-5 rounded-3 mt-3">
+                            <div class="row">
+                                <h2>Understanding MEXC Fees</h3>
+                                <div class="section mt-5">
+                                    <h5>Maker Order</h5>
+                                    <p class="text-secondary fs-7 mb-0">An order placed at a specified goal that enters the order book instead of matching immediately.</p>
+                                    <p class="text-secondary fs-7">Example: Current fees ask 14 to 1020. A buy order placed at 90 USD1 enters the order book until matched. When filled, maker fees apply.</p>
+                                </div>
+                                
+                                <div class="section">
+                                    <h6>Taker Order</h6>
+                                    <p class="fs-7 text-secondary mb-0">An order that matches immediately with existing orders on the book.</p>
+                                    <p class="fs-7 text-secondary">Example: Current fees ask 14 to 1020. A buy order placed at 100 USD1 matches immediately. When filled, taker fees apply.</p>
+                                </div>
+                                
+                                <div class="section">
+                                    <h6>MX Holdings</h5>
+                                    <ol>
+                                        <li class="fs-7 text-secondary">Hold ≥ $50 MX in Spot or ≥ 1M MX to enjoy 95% discount in spot and Futures trading fees. Benefits for the main account and sub-account are independent and cannot be shared.</li>
+                                        <li class="fs-7 text-secondary">Holdings will be verified through three monthly random snapshots. The lowest quantity from these snapshots will determine whether daily requirements have been met.</li>
+                                        <li class="fs-7 text-secondary">Once the required quantity has been maintained for the specified number of days, benefits will automatically activate at 16:00 UTC the following day. Please note there may be slight delays in data processing.</li>
+                                        <li class="fs-7 text-secondary">MX holdings fee discount in your Spot account cannot be used in conjunction with MX deduction. Priority is given to the MX Spot holding discount.</li>
+                                        <li class="fs-7 text-secondary">Some trading pairs are excluded from MX fee deductions. For details, please refer to the fee rate page.</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="section">
+                                    <h6>MX Deduction</h6>
+                                    <ol>
+                                        <li class="fs-7 text-secondary"><strong>Spot Fee Deduction:</strong> Once enabled, MX tokens will be prioritized for fee deductions on Spot trades, granting a 20% discount. The discount becomes invalid once MX tokens are depleted.</li>
+                                        <li class="fs-7 text-secondary"><strong>Futures Fee Deduction:</strong> Once enabled, users must transfer MX tokens to their Futures wallet. MX will then be prioritized for fee deductions on Futures trades, granting a 20% discount. The discount becomes invalid once MX tokens are depleted.</li>
+                                        <li class="fs-7 text-secondary"><strong>Discount & Deduction Policy:</strong> The MX holder discount and MX deduction cannot be combined. Users will automatically receive the higher of the two discount rates.</li>
+                                        <li class="fs-7 text-secondary">Some trading pairs are excluded from MX fee deductions. For details, please refer to the fee schedule.</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-=======
-            <div  class="col-md-10">
-                <div class="distart fs-2 px-4 py-2 fw-bold">Hold MX, Save Up to 50% on Fess</div>
-                <div class="distart fs-6 px-4 text-muted">Hold at least 500 MX in Spot account for 24 consecutive hours to qualify</div>
-
-                <div class="row bg-white ps-5 rounded-3 mt-5">s</div>
->>>>>>> 0baa4816ac2aebdf76388fccb6f8416ac05388a1
             </div>
         </div>
     </main>
@@ -854,7 +1032,25 @@
         <div class="container-fluid bg-white p-5">
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-4 col-md-2 mt-3" style="min-height: 498px;">
+                    <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3">
+                        <div class="d-flex  flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
+                            <div class="mb-3 mb-md-0 mb-lg-0">
+                                <h3>Download App</h3>
+                                <span class="text-secondary fs-7">you can download with scan QR code</span>
+                                <span class="text-secondary fs-7">or use Google Play and App store</span>
+                            </div>
+                            <div class=" d-flex align-items-center flex-column flex-md-row flex-lg-row">
+                                <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                                </a>
+                                <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                                </a>
+                                <a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 col-xl-2 col-md-5 mt-3" style="min-height: 498px;">
                         <div class="row justify-content-between h-100">
                             <span class="h5 fw-bold">Comunity</span>
                             <ul class="list-group list-group-horizontal">
@@ -879,11 +1075,11 @@
                                 <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
                                 <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
                             </ul>
-                            <ul class="list-group mb-2 mt-auto">
+                            <!-- <ul class="list-group mb-2 mt-auto">
                                 <li class="list-group h5 fw-bold">Donload App</li>
                                 <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a></li>
                                 <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Scan to Download App</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="col-5 col-md-2 mt-3">
