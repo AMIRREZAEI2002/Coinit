@@ -11,9 +11,7 @@
         <link rel="stylesheet" href="../css/myboot.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -94,6 +92,7 @@
                 }
             }
         </style>
+
     </head>
 <body>
     <div class="container pt-2" style="max-width: 95%;">
@@ -161,7 +160,7 @@
                                 <div class="distart mt-2">
                                     <div class="fs-4 fw-bold">6.73</div>
                                     <div class="ml-1">
-                                        <select name="" id="" class="form-select border-0 fs-7">
+                                        <select name="" id="" class="form-select border-0 fs-6 fw-bold text-muted">
                                             <option value="USDT">USDT</option>
                                         </select>
                                     </div>
@@ -320,6 +319,15 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+            $('.another-select').select2();
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
