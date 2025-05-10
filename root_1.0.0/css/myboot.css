@@ -57,6 +57,63 @@ a {
 }
 
 
+.norssmend{
+    display: flex;
+    justify-content: start !important;
+    align-items: center !important;
+}
+.no-end-sm-st{
+    display: flex;
+    justify-content: end !important;
+    align-items: center !important;
+}
+
+
+@media (max-width:1200px){
+    .headerbnt{
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .felxcolmnstart{
+        flex-direction: column;
+        justify-content: start !important;
+        align-items: start !important;
+    }
+    .felxcolmnend{
+        flex-direction: column;
+        justify-content: end !important;
+        align-items: end !important;
+    }
+    .felxcolmncenter{
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .justify-startsm{
+        justify-content: start !important;
+        
+    }
+
+    .no-st-sm-end{
+        display: flex;
+        justify-content: end !important;
+        align-items: center !important;
+    }
+    .no-end-sm-st{
+        display: flex;
+        justify-content: start !important;
+    }
+    .headerbnt{
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+
+
 /* Font Sizes */
 .fs-6s {
     font-size: 14px;
