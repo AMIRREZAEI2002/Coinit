@@ -401,3 +401,18 @@ main {
         justify-content: start !important;
     }
 }
+
+
+
+
+.newhr{
+    color: white;
+}
+
+.sidebar-open {
+    left: -50px !important;
+}
+
+.sidebar-closed {
+    left: -200px !important;
+}
