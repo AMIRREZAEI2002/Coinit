@@ -19,26 +19,83 @@
     <script src="https://cdn.datatables.net/plug-ins/1.13.6/sorting/datetime-moment.js"></script>
         <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
-        .form-select{
-            border: 0;
-            box-shadow: none !important;
-            outline: none !important;
-            font-weight: bold;
-        }
-        .rounded-2 {
-            border-radius: 0.75rem !important;
-            overflow: hidden;
-            border-collapse: collapse !important;
-        }
-        #cryptoTable {
-            border-collapse: collapse !important;
-            border-style: hidden !important;
-        }
-        #cryptoTable th,
-        #cryptoTable td {
-            border: none !important;
-            background-image: none !important;
-        }
+            .form-select{
+                border: 0;
+                box-shadow: none !important;
+                outline: none !important;
+                font-weight: bold;
+            }
+            .rounded-2 {
+                border-radius: 0.75rem !important;
+                overflow: hidden;
+                border-collapse: collapse !important;
+            }
+            #cryptoTable {
+                border-collapse: collapse !important;
+                border-style: hidden !important;
+            }
+            #cryptoTable th,
+            #cryptoTable td {
+                border: none !important;
+                background-image: none !important;
+            }
+            .form-select{
+                border: 0;
+                box-shadow: none !important;
+                outline: none !important;
+                font-weight: bold;
+            }
+            .period-btn {
+                margin: 0 5px;
+                padding: 5px 5px;
+                border-radius: 5px;
+                font-size: 10px;
+                transition: all 0.3s;
+            }
+            .period-btn.active {
+                background-color: #F5F6FA !important;
+                border-color: #F5F6FA !important;
+                color: black !important;
+            }
+            @media (max-width: 1150px) {
+                #cryptoTable thead {
+                    display: none;
+                }
+
+                #cryptoTable, 
+                #cryptoTable tbody, 
+                #cryptoTable tr, 
+                #cryptoTable td {
+                    display: block;
+                    width: 100%;
+                }
+
+                #cryptoTable tr {
+                    margin-bottom: 1rem;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    padding: 10px;
+                }
+
+                #cryptoTable td {
+                    text-align: right;
+                    padding-left: 50%;
+                    position: relative;
+                }
+
+                #cryptoTable td::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 10px;
+                    top: 10px;
+                    font-weight: bold;
+                    color: #888;
+                    text-align: left;
+                }
+                .hideicon{
+                    display: none !important;
+                }
+            }
         body{
             background-color: white !important;
         }
@@ -602,233 +659,204 @@
             </script>
         </div>
     </header>
+
     <main>
-      
-    <div class="container p-3" style="max-width: 95%;margin-bottom: 200px;">
-      <div class="disbet">
-          <div class="disbet">
-              <div><i class="fa-solid fa-arrow-left fa-xs mr-2"></i></div>
-              <div class="fs-5">Deposit</div>
-          </div>
-          <button class="deposit-btn">
-              <i class="fa-solid fa-paper-plane"></i>
-              Deposit Guide
-          </button>
-      </div>
-
-
-
-<div class="mt-2 disflex">
-    <div class=" disflex" style="width: 60%;">
-      <div class="discen mt-2" style="width: 10%;flex-direction: column;justify-content: start;">
-          <div class="circleactive"></div>
-          <div class="lineactive mt-2"></div>
-          <div class="circleactive mt-2"></div>
-          <div class="lineactive mt-2"></div>
-          <div class="circlenotactive mt-2"></div>
-      </div>
-      <div class="" style="width: 90%">
-          <div class="distart pl-2 pt-2 fs-5" style="font-weight: 500;">Select Crypto</div>
-          <div class="token-dropdown">
-              <div class="token-selected">
-                <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                <span class="token-symbol">USDT</span>
-                <span class="token-name">Tether</span>
-                <span class="dropdown-arrow">▼</span>
-              </div>
-              <div class="token-options" style="margin-top: -5px;">
-                <div class="token-option" data-symbol="BTC" data-name="Bitcoin" data-icon="btc-icon.png">
-                  <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                  <span class="token-symbol">BTC</span>
-                  <span class="token-name">Bitcoin</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12 ">
+                    <div class="distart">
+                        <div class="mr-3 circleactive discen"></div>
+                        <div class="fw-bold fs-5">Select Cripto</div>
+                    </div>
+                    <div class="token-dropdown py-3 ml-3 mt-2" style="border-left: 2px solid var(--bs-primary);margin-bottom: 0px;">
+                        <div class="token-selected">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">USDT</span>
+                            <span class="token-name">Tether</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="token-options" style="margin-top: -5px;">
+                            <div class="token-option" data-symbol="BTC" data-name="Bitcoin" data-icon="btc-icon.png">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">BTC</span>
+                            <span class="token-name">Bitcoin</span>
+                            </div>
+                            <div class="token-option" data-symbol="ETH" data-name="Ethereum" data-icon="eth-icon.png">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">ETH</span>
+                            <span class="token-name">Ethereum</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distart pl-1 fs-7 text-muted py-3 ml-3 mb-2" style="border-left: 2px solid var(--bs-primary);margin-top: 0px;padding-top: 0px;">
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                    </div>
+                    <div class="distart">
+                        <div class="mr-3 circleactive discen"></div>
+                        <div class="fw-bold fs-5">Select Network</div>
+                    </div>
+                    <div class="token-dropdown py-3 ml-3 mt-2" style="border-left: 2px solid  var(--bs-gray-500);margin-bottom: 0px;">
+                        <div class="token-selected">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">USDT</span>
+                            <span class="token-name">Tether</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="token-options" style="margin-top: -5px;">
+                            <div class="token-option" data-symbol="BTC" data-name="Bitcoin" data-icon="btc-icon.png">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">BTC</span>
+                            <span class="token-name">Bitcoin</span>
+                            </div>
+                            <div class="token-option" data-symbol="ETH" data-name="Ethereum" data-icon="eth-icon.png">
+                            <i class="fa-solid fa-bitcoin-sign mr-2"></i>
+                            <span class="token-symbol">ETH</span>
+                            <span class="token-name">Ethereum</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="distart pl-1 fs-7 text-muted py-3 ml-3 mb-2" style="border-left: 2px solid  var(--bs-gray-500);margin-top: 0px;padding-top: 0px;">
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                        <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
+                            <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                            <div>ZKL</div>
+                        </div>
+                    </div>
+                    <div class="distart">
+                        <div class="mr-3 circlenotactive discen"></div>
+                        <div class="fw-bold fs-5 text-body-secondary">Select Network</div>
+                    </div>
                 </div>
-                <div class="token-option" data-symbol="ETH" data-name="Ethereum" data-icon="eth-icon.png">
-                  <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                  <span class="token-symbol">ETH</span>
-                  <span class="token-name">Ethereum</span>
+                <div class="col-lg-4 p-2 col-12 mt-2 m-lg-0">
+                    <div class="p-4 border rounded-1">
+                        <div class="distart my-2 fs-5">Tips</div>
+                        <div class="distart my-2 text-muted fs-6s"> . Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequatur incidunt praesentium similique voluptate magni tempore? Distinctio officiis voluptate veritatis molestiae, nesciunt non ipsum quod accusamus. Sapiente officiis autem velit labore cum aliquid</div>
+                        <div class="distart my-2 text-muted fs-6s"> . Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolores ipsa eos rem, sunt tempore sint libero eligendi odio perspiciatis excepturi quam nisi quod facilis atque blanditiis tenetur suscipit fuga? Non sunt exercitationem voluptatum officia eligendi</div>
+                    </div>
+                    
+                    <div class="accordion mt-4" id="faqAccordion">
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            Question 1: How do I use the exchange?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                            Answer: Just log into your account and use the Spot or Futures section to start trading.
+                            </div>
+                        </div>
+                        </div>
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            Question 2: How do I withdraw funds?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                            Answer: Go to your wallet, click the withdraw option, and enter your destination wallet address.
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="disbet border rounded-1 mt-4 p-3">
+                        <div><i class="fa-solid fa-bitcoin-sign"></i></div>
+                        <div class="ml-2">
+                        <div class="fw-bold">Buy Crypto</div>
+                        <div class="disbet">
+                            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, animi.</div>
+                            <div><i class="fa-solid fa-chevron-right ml-2"></i></div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-          </div>
-          <div class="distart pl-1 fs-7 text-muted">
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-          </div>
-          <div class="distart pl-2 pt-2 fs-5 mt-4" style="font-weight: 500;">Network</div>
-          <div class="token-dropdown pe-none" style="opacity: 70%;">
-              <div class="token-selected">
-                <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                <span class="token-symbol">USDT</span>
-                <span class="token-name">Tether</span>
-                <span class="dropdown-arrow">▼</span>
-              </div>
-              <div class="token-options">
-                <div class="token-option" data-symbol="BTC" data-name="Bitcoin" data-icon="btc-icon.png">
-                  <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                  <span class="token-symbol">BTC</span>
-                  <span class="token-name">Bitcoin</span>
-                </div>
-                <div class="token-option" data-symbol="ETH" data-name="Ethereum" data-icon="eth-icon.png">
-                  <i class="fa-solid fa-bitcoin-sign mr-2"></i>
-                  <span class="token-symbol">ETH</span>
-                  <span class="token-name">Ethereum</span>
-                </div>
-              </div>
-          </div>
-          <div class="distart pl-1 fs-7 text-muted pe-none" style="opacity: 70%;">
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-              <div class="border border-secondary rounded-1 border-secondary  disaru ml-2 conitems ">
-                  <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-                  <div>ZKL</div>
-              </div>
-          </div>
-          <div class="distart pl-2 pt-2 fs-5 mt-4 text-muted" style="font-weight: 500;">Desposit Address</div>
-      </div>
-    </div>
-    <div class="" style="width: 40%;">
-      <div class="p-4 border rounded-1">
-        <div class="distart my-2 fs-5">Tips</div>
-        <div class="distart my-2 text-muted fs-6s"> . Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequatur incidunt praesentium similique voluptate magni tempore? Distinctio officiis voluptate veritatis molestiae, nesciunt non ipsum quod accusamus. Sapiente officiis autem velit labore cum aliquid</div>
-        <div class="distart my-2 text-muted fs-6s"> . Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolores ipsa eos rem, sunt tempore sint libero eligendi odio perspiciatis excepturi quam nisi quod facilis atque blanditiis tenetur suscipit fuga? Non sunt exercitationem voluptatum officia eligendi</div>
-      </div>
-      
-      <div class="accordion mt-4" id="faqAccordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-              Question 1: How do I use the exchange?
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Answer: Just log into your account and use the Spot or Futures section to start trading.
             </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-              Question 2: How do I withdraw funds?
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Answer: Go to your wallet, click the withdraw option, and enter your destination wallet address.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="disbet border rounded-1 mt-4 p-3">
-        <div><i class="fa-solid fa-bitcoin-sign"></i></div>
-        <div class="ml-2">
-          <div class="fw-bold">Buy Crypto</div>
-          <div class="disbet">
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, animi.</div>
-            <div><i class="fa-solid fa-chevron-right ml-2"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 
-<div class="col-12 mt-4 p-3 bg-white rounded-3">
-  <div class="row justify-content-between">
-      <div class="col-7 pt-4">
-          <div class="row">
-              <div class="col-8 text-start ">
-                  <span class="fw-bold fs-5">Assets List</span>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-5 col-12 text-start mt-3 ">
-          <form class="mt-1">
-              <div class="row justify-content-between">
-                  <div class="inputbox col-5 rounded-pill" style="position: relative; width: fit-content;">
-                      <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill" style="height: 10px;"  placeholder="Search for crypto">
-                      <div style="position: absolute;left: 20px;top: 50%;transform: translate(-50%,-50%);">
-                          <i class="fas fa-search fa-sm" style="color: #85919f;"></i>
-                      </div>
-                  </div>
-                  <div class="col-5 p-0 align-content-center">
-                      <input type="checkbox" class="form-check-input" name="hide_small_balances" id="">
-                      <span class="fw-lighter fs-6s pe-1">Hide small Balances</span>
-                      <button class="bg-transparent border-0"><i class="fas fa-info-circle p-0 fs-7 text-secondary"></i></button>
-                  </div>
-              </div>
-          </form>
-      </div>
-  </div>
-  <div class="disflex" style="width: 100%;">
-    <table id="cryptoTable" class="table table-striped rounded-2 table-hover mt-3 w-100">
-      <thead class="table-secondary">
-          <tr>
-              <th class="text-secondary">crypto</th>
-              <th class="text-secondary">Network</th>
-              <th class="text-secondary">Time</th>
-              <th class="text-secondary">Status</th>
-              <th class="text-secondary">Amount</th>
-              <th class="text-secondary">TxD</th>
-              <th class="text-secondary">Progress</th>
-          </tr>
-      </thead>
-      <tbody>
-          <script>
-              let futures_crypto = `
-                  <tr>
-                      <td>
-                          <div class="d-flex align-items-center">
-                              <img src="https://img.cryptorank.io/coins/zk_link1671087386197.png" width="24" height="24" class="me-2">
-                              <span>ZKL</span>
-                          </div>
-                      </td>
-                      <td>ZKLINK <small class="text-secondary d-block fs-9">ZKLINK</small></td>
-                      <td>2025-05-01 22:03:12</td>
-                      <td><span class="badge bg-success">Deposit successful</span></td>
-                      <td>75</td>
-                      <td>Oxbgs...47c2<span><button class="btn fs-9 text-secondary p-1"><i class="fas fa-link"></i></button><button class="btn fs-9 text-secondary p-1"><i class="fas fa-copy"></i></button></span></td>
-                      <td>
-                          <div class="d-flex align-items-center gap-1">
-                              <span class="fs-6s">31/12</span>
-                              <div class="progress w-50" style="height: 5px;">
-                                  <div class="progress-bar" role="progressbar" style="width: 80%"></div>
-                              </div>
-                          </div>
-                      </td>
-                  </tr>
-              `;
-              for (let i = 0; i < 5 ; i++){
-                  document.write(futures_crypto);
-              }
-          </script>
-      </tbody>
-  </table>
-  </div>
-</div>  
-</div>
+            <div class="disbet">
+                <div class="fs-5 fw-bold">Recent Deposit</div>
+                <div class="disbet fs-7 text-secondary">
+                    <div>History</div>
+                    <div class="ml-2"><i class="fa fa-chevron-right"></i></div>
+                </div>
+            </div>
+            <div class="table-responsive mt-2">
+                <table id="cryptoTable" class="table rounded-2 table-hover w-100 mt-0 mt-3 fs-7">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th class="text-secondary">Crypto</th>
+                            <th class="text-secondary">Network</th>
+                            <th class="text-secondary">Time</th>
+                            <th class="text-secondary">Status</th>
+                            <th class="text-secondary">Amount</th>
+                            <th class="text-secondary">TxD</th>
+                            <th class="text-secondary">Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script>
+                            let futures_crypto = `
+                                <tr>
+                                    <td data-label="Crypto">
+                                        <div class="no-st-sm-end">
+                                            <img src="../image/dex/solana.webp" width="24" height="24" class="me-2">
+                                            <span>SOL/USDT</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Network">
+                                        <div class="">
+                                            <div>ZKLINK</div>
+                                            <div class="fs-9 text-muted">ZKLINK</div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Time">2025-05-01 22:03:12</td>
+                                    <td data-label="Status"><span class="badge bg-success">Deposit successful</span></td>
+                                    <td data-label="Amount">75</td>
+                                    <td data-label="TxD" >Oxbgs...47c2<span><button class="btn fs-9 text-secondary p-1"><i class="fas fa-link"></i></button><button class="btn fs-9 text-secondary p-1"><i class="fas fa-copy"></i></button></span></td>
+                                    <td data-label="Progress">
+                                        <div class="d-flex align-items-center justify-content-end gap-1">
+                                            <span class="fs-6s">31/12</span>
+                                            <div class="progress w-50" style="height: 5px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `;
+                            for (let i = 0; i < 5; i++) {
+                                document.write(futures_crypto);
+                            }
+                        </script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
     <footer>
       <div class="container-fluid bg-white p-5">
@@ -946,7 +974,7 @@
               </div>
           </div> 
       </div>
-  </footer>
+    </footer>
 
 
 </body>
