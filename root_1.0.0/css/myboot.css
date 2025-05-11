@@ -370,7 +370,7 @@ main {
 .bg-mybody{
     background-color: #eeeff2 !important;
 }
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
     .felxcolmnstart{
         flex-direction: column;
         justify-content: start !important;

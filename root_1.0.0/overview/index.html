@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Profile</title>
+    <title>Document</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../css/myboot.css">
+    <link rel="stylesheet" href="../css/myboot.css">
+    <link rel="stylesheet" href="../css/myboot.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         .form-select{
             border: 0;
@@ -25,62 +20,17 @@
             outline: none !important;
             font-weight: bold;
         }
-        .rounded-2 {
-            border-radius: 0.75rem !important;
-            overflow: hidden;
-            border-collapse: collapse !important;
+        .period-btn {
+            margin: 0 5px;
+            padding: 5px 5px;
+            border-radius: 5px;
+            font-size: 10px;
+            transition: all 0.3s;
         }
-        #cryptoTable {
-            border-collapse: collapse !important;
-            border-style: hidden !important;
-        }
-        #cryptoTable th,
-        #cryptoTable td {
-            border: none !important;
-            background-image: none !important;
-        }
-        .cryptolable{
-            width: 14%;
-        }
-        @media (max-width: 1150px) {
-            #cryptoTable thead {
-                display: none;
-            }
-
-            #cryptoTable,
-            #cryptoTable tbody,
-            #cryptoTable tr,
-            #cryptoTable td {
-                display: block;
-                width: 100%;
-            }
-
-            #cryptoTable tr {
-                margin-bottom: 1rem;
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 10px;
-            }
-
-            #cryptoTable td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-            }
-
-            #cryptoTable td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                font-weight: bold;
-                color: #888;
-                text-align: left;
-                
-            }
-            .cryptolable{
-                width: 100%;
-            }
+        .period-btn.active {
+            background-color: #F5F6FA !important;
+            border-color: #F5F6FA !important;
+            color: black !important;
             
         }
     </style>
@@ -208,17 +158,17 @@
                                 <li>
                                     <div class="d-flex justify-content-between align-items-center px-2 my-2">
                                         <a class="btn btn-primary dropdown-toggle rounded-pill fs-7 px-3 py-1 mt-1 ms-1" href="#" role="button">dropdown</a>
-                                        <a class="btn btn-outline-secondary rounded-pill fs-7 px-3 py-1 mt-1 ms-1" href="#" role="button">Withdraw</a>
+                                        <a class="btn btn-outline-secondary rounded-pill fs-7 px-3 py-1 mt-1 ms-1" href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" role="button">Withdraw</a>
                                     </div>
                                 </li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-wallet fs-7 text-secondary ps-1"></i>OverView</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>Spot</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>DEX +</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-file-invoice fs-7 text-secondary ps-1"></i>Futures</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>Fiat</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-smile fs-7 text-secondary ps-1"></i>Copy Trade</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-file-invoice fs-7 text-secondary ps-1"></i>Funding History</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-eye fs-7 text-secondary ps-1"></i>Event Rewards</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/overview/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-wallet fs-7 text-secondary ps-1"></i>OverView</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/spot/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>Spot</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/dex/index.html"class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>DEX +</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/futures/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-file-invoice fs-7 text-secondary ps-1"></i>Futures</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/fait/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-coins fs-7 text-secondary ps-1"></i>Fiat</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/copy_trade/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-smile fs-7 text-secondary ps-1"></i>Copy Trade</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/funding_history/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-file-invoice fs-7 text-secondary ps-1"></i>Funding History</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/overview/index.html" class="dropdown-item fs-6 link-secondary p-2"><i class="fas pe-2 fa-eye fs-7 text-secondary ps-1"></i>Event Rewards</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -242,30 +192,27 @@
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item p-1 rounded-3">
-<<<<<<< HEAD
                                         <div class="w-100 rounded-3 p-2 d-flex justify-content-between align-items-center px-2 bg-info bg-opacity-10">
-=======
-                                        <div class="w-100 rounded-3 p-3 d-flex justify-content-between align-items-center px-2  bg-opacity-10">
->>>>>>> 1b2f9817b251b5621dc1ba3ca0f12a37068c732d
+                                        <div class="w-100 rounded-3 d-flex justify-content-between align-items-center px-2  bg-opacity-10">
                                             <div class="">
                                                 <!-- <img src="../../image/overview/fdf157fd94cd943e939b2e7935c1240d.webp" class="img img-fluid col-md-2" alt=""> -->
                                                 <i class="fas fa-coins"></i>
-                                                <span class="fs-9">Trade to Earn Up to 80,000$</span>
+                                                <span class="fs-8">Trade to Earn Up to 80,000$</span>
                                             </div>
                                             <i class="fa-solid fa-chevron-right fa-xs ps-3"></i>
                                         </div>
                                     </a>
                                 </li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-user fs-7 text-secondary ps-1"></i>Profile</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-shield-halved fs-7 text-secondary ps-1"></i>Security</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-id-card fs-7 text-secondary ps-1"></i>Identification</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-handshake fs-7 text-secondary ps-1"></i>Referral</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-address-book fs-7 text-secondary ps-1"></i>Withdrawal Addresses/Contacts</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-users-cog fs-7 text-secondary ps-1"></i>Sub-Account Management</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-cog fs-7 text-secondary ps-1"></i>Settings</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-user fs-7 text-secondary ps-1"></i>Profile</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-shield-halved fs-7 text-secondary ps-1"></i>Security</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-id-card fs-7 text-secondary ps-1"></i>Identification</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-handshake fs-7 text-secondary ps-1"></i>Referral</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-address-book fs-7 text-secondary ps-1"></i>Withdrawal Addresses/Contacts</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-users-cog fs-7 text-secondary ps-1"></i>Sub-Account Management</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-cog fs-7 text-secondary ps-1"></i>Settings</a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-exchange-alt fs-7 text-secondary ps-1"></i>Switch Account</a></li>
-                                <li><a href="#" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-sign-out-alt fs-7 text-danger ps-1"></i>Log Out</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-exchange-alt fs-7 text-secondary ps-1"></i>Switch Account</a></li>
+                                <li><a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="dropdown-item fs-6 link-secondary"><i class="fas p-2 fa-sign-out-alt fs-7 text-danger ps-1"></i>Log Out</a></li>
                             </ul>
                         </li>
                         <div class="vr bg-secondary bg-opacity-50"></div>
@@ -648,453 +595,271 @@
     <main>
         <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
             <div class="row">
-                <div class="col-lg-2 d-none d-lg-block" style="position: relative;">
-                    <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class=" w-100 mt-0 ">
-                        <a href="../profile/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0  " style="margin-top: -4px;">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 ">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../Security/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  m-1  w-100 mt-0 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 ">Security</div>
-                            </div>
-                        </a>
-                        <a href="../Identification/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  m-1  w-100 mt-0  ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 ">Identification</div>
-                            </div>
-                        </a>
-                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  m-1 partactive w-100 mt-0 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 ">Refferal</div>
-                            </div>
-                        </a>
-                        <a href="../Trading_Fees/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Trading Fees</div>
-                            </div>
-                        </a>
-                        <a href="../Withdrawl_Addresses/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2  text-muted fw-bold fs-6s">Withdrawal Addresses/Contacts</div>
-                            </div>
-                        </a>
-                        <a href="../Sub-Account/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Sub-Account Management</div>
-                            </div>
-                        </a>
-                        <a href="../Settings/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Settings</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- sidder -->
-                <div id="overlay" class="d-lg-none" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 189; background-color: rgba(0,0,0,0.8);"></div>
-                <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; background-color: white; transition: left 0.4s ease;">
-                    <div style="display: flex; flex-direction: column; align-items: center;margin-left: 50px; color: black;">
+                <div class="col-md-2" style="position: relative;">
+                        <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class="w-100 ">
+                            <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5 partactive m-1 mt-0 w-100" style="margin-top: -4px;">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 ">Overview</div>
+                                </div>
+                            </a>
+                            <a href="../spot/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  m-1 w-100 ">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 ">
+                                        <div>Spot</div>
+                                        <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="../dex/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5  m-1 w-100 ">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 ">DEX+</div>
+                                </div>
+                            </a>
+                            <a href="../futures/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5  m-1 w-100 ">
+                                       <div><i class="fa-solid fa-wallet"></i></div>
+                                        <div class="ml-2 ">
+                                        <div>Futures</div>
+                                        <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="../fiat/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5  m-1 w-100 ">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 ">Fiat</div>
+                                </div>
+                            </a>
+                            <a href="../copy_trade/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5  m-1 w-100 ">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2">Copy Trading</div>
+                                </div>
+                            </a>
+                            <a href="../funding_history/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                                <div class="distart p-3 py-3-5   m-1">
+                                    <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2">Funding History</div>
+                                </div>
+                            </a>
+                        </div>
                         
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="../profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Toggle Button -->
-                    <div id="toggleButton" class="discen rounded-1" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190; background-color: white; color: black; display: flex; justify-content: center; align-items: center;">
-                        <i class="fa-solid fa-caret-right fa-xl" id="toggleIcon"></i>
-                    </div>
                 </div>
-
-                
-                <div  class="col-lg-10 col-12 mb-5">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-12 p-xl-5 p-md-4 p-4 pt-5 bg-white rounded-3">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-12 text-center">
-                                    <h1 class="fw-semibold">Hold MX, Save Up to 50% on Fees</h1>
-                                    <small class="fs-6 text-body-emphasis">Hold at least 500 MX in Spot account for 24 consecutive hours to qulify</small>
-                                </div>
-                                <div class="col-xl-5 me-2 mt-xl-5 mt-3 p-md-3 bg-secondary rounded-4 bg-opacity-10">
-                                    <div class="row p-2">
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-6s mb-0 me-2">Spot Trading Fee</h6>
-                                                        <button class="btn p-0 pt-1 border-0 text-secondary"><i class="fas fa-info-circle"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount fs-8 text-secondary">No Discount</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 p-4">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-12 col-md-5 bg-secondary bg-opacity-10 rounded-3 p-3">
-                                                    <div class="d-flex justify-content-start flex-column align-items-start">    
-                                                        <span class="fs-8 fw-semibold">0.00000000 %</span>
-                                                        <span class="text-secondary fs-8">Maker</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12 bg-secondary bg-opacity-10 mt-md-0 mt-3 rounded-3 p-3">
-                                                    <div class="d-flex justify-content-start flex-column align-items-start">    
-                                                        <span class="fs-8 fw-semibold">0.050%</span>
-                                                        <span class="text-secondary fs-8 ">Taker</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <p class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</p>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-9"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="fs-8 no_discount">20%</span>
-                                                        <span class="fs-8 ms-2" style="display: none;">Off</span>
-                                                        <span class="fs-8 ms-2" style="display: block;">On</span>
-                                                        <div class="form-check form-switch ">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-                                                          </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <p class="fs-8 text-secondary mb-0 me-1">Deduct using MX</p>
-                                                        <button class="btn btn-sm bg-secondary p-1 border-0 text-body-tertiary bg-opacity-10 fs-9">Not Met</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">
-                                                        <a href="#" class="link-primary link-underline-opacity-0 fs-9 fw-semibold ms-1">Get 50% Off <i class="fa fa-chevron-right"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                <div class="col-md-10 ">
+                    <div class="row">
+                        <div class="col-12 bg-white rounded-3 p-4">
+                            
+                            <div class="row bg-white  rounded-3">
+                                <div class="col-md-7 col-12">
+                                    <div class="distart text-muted">
+                                        <a href="#" class="fs-8 mx-1 link-dotted link-secondary link-opacity-75">Estimated Balance</a><i class="fas fa-eye fs-9 text-secondary"></i>
                                     </div>
-                                </div>
-                                <div class=" col-xl-5 me-2 mt-xl-5 mt-3 col p-md-3 bg-secondary rounded-4 bg-opacity-10">
-                                    <div class="row p-2">
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <h6 class="fs-6s mb-0 me-2">Spot Trading Fee</h6>
-                                                        <button class="btn p-0 pt-1 border-0 text-secondary"><i class="fas fa-info-circle"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="no_discount fs-8 text-secondary">No Discount</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 p-4">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-12 col-md-5 bg-secondary bg-opacity-10 rounded-3 p-3">
-                                                    <div class="d-flex justify-content-start flex-column align-items-start">    
-                                                        <span class="fs-8 fw-semibold">0.00010 %</span>
-                                                        <span class="text-secondary fs-8">Maker</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12 bg-secondary bg-opacity-10 mt-md-0 mt-3 rounded-3 p-3">
-                                                    <div class="d-flex justify-content-start flex-column align-items-start">    
-                                                        <span class="fs-8 fw-semibold">0.0030%</span>
-                                                        <span class="text-secondary fs-8 ">Taker</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <p class="fs-8 mb-0 me-1 text-secondary">Deduct using MX</p>
-                                                        <button class="btn p-0 border-0 text-secondary"><i class="fas fa-info-circle fs-9"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">    
-                                                        <span class="fs-8 no_discount">20%</span>
-                                                        <span class="fs-8 ms-2" style="display: none;">Off</span>
-                                                        <span class="fs-8 ms-2" style="display: block;">On</span>
-                                                        <div class="form-check form-switch ">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-                                                          </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row justify-content-between align-items-center">
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-start align-items-center">    
-                                                        <p class="fs-8 text-secondary mb-0 me-1">Deduct using MX</p>
-                                                        <button class="btn btn-sm bg-secondary p-1 border-0 text-body-tertiary bg-opacity-10 fs-9">Not Met</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="d-flex justify-content-end align-items-center">
-                                                        <a href="#" class="link-primary link-underline-opacity-0 fs-9 fw-semibold ms-1">Get 50% Off <i class="fa fa-chevron-right"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="distart mt-2">
+                                        <div class="fs-4 fw-bold">6.73</div>
+                                        <div class="ml-1">
+                                            <select name="" id="" class=" border-0 form-select fs-7">
+                                                <option value="USDT">USDT</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-3">
-                                    <div class="row justify-content-between align-items-center fs-6">
-                                        <div class="col-12 col-xl-6 mb-3 gap-3">
-                                            <button class="fs-6 fw-bold btn btn-outline-primary text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Spot</button>
-                                            <button class="fs-6 fw-bold btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Future</button>
-                                            <button class="fs-6 fw-bold btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 btn-sm flexcolumnstart"><span class="fs-7">Deposite/Withrawald</span></button>
+                                    <div class="distart fs-8 text-muted">
+                                        <div class="text-muted" style="z-index: 2;">= 6.73</div>
+                                        <div style="margin-left: -10px;">
+                                            <select name="" id="" class="form-select border-0  fs-8 text-muted">
+                                                <option value="USDT">USDT</option>
+                                            </select>
                                         </div>
+                                    </div>
+                                    <div class="distart">
+                                        <div class="text-muted fs-7">Today's PNL:</div>
+                                        <div class="fs-7 fw-bold ml-1" >0.00 USD (0.00%)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-12 mt-4 m-md-0 d-flex align-items-center  justify-content-end">
+                                    <div class="flex-column flex-xl-row flex-lg-column flex-md-colmn justify-content-end d-flex   w-100">
+                                        <div class="headerbnt btn btn-primary rounded-pill fs-9 mr-1">Deposit <i class="fas fa-caret-down"></i></div>
+                                        <div class="headerbnt btn btn-outline-secondary rounded-pill fs-9 mr-1">Transfer</div>
+                                        <div class="headerbnt btn btn-outline-secondary rounded-pill fs-9 mr-1">Spot Statement</div>
+                                        <div class="headerbnt btn btn-outline-secondary rounded-pill fs-9 mr-1" style="opacity: 30%;">...</div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-12 mt-4 rounded-3">
+                            <div class="row justify-content-between">
+                                <div class="col-md-7  col-12 bg-white rounded-3 pt-3">
+                                    <div class="row">
+                                        <div class="col-md-8  col-12 text-start ps-3">
+                                            <span class="fw-bold">Equity Trend</span>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <button class="btn period-btn active" data-period="30d">last 30 days</button>
+                                            <button class="btn period-btn" data-period="7d">last 7 days</button>
+                                        </div>
+                                        <div id="chart" class="m-0 mt-3" style="height: 300px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <script>
+                                    function generateMockData(days, initialValue = 3000) {
+                                        let data = [];
+                                        let lastValue = initialValue;
+                                        for(let i = 0; i < days; i++) {
+                                            lastValue = lastValue * (1 + (Math.random() * 0.02 - 0.01));
+                                            data.push(parseFloat(lastValue.toFixed(2)));
+                                        }
+                                        return data;
+                                    }
+                                
+                                    function generateDateLabels(days, shortFormat = false) {
+                                        let labels = [];
+                                        let date = new Date();
+                                        const options = shortFormat ? 
+                                            { month: 'short', day: 'numeric' } : 
+                                            { month: 'short', day: 'numeric', year: '2-digit' };
                                         
-                                        <div class="col-12 col-xl-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="input-group">
-                                                        <button class="btn border-0 z-3"><i class="fa fa-search "></i></button>
-                                                        <input type="text" class="form-control z-2 rounded-pill w-100 position-absolute ps-5 fs-8 bg-secondary bg-opacity-10" placeholder="Search for your language and currency">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="table-responsive mt-2">
-                                        <div class="d-flex gap-3 mb-3 mt-4  ">
-                                            <button class="fs-8 btn bg-secondary bg-opacity-10">All</button>
-                                            <button class="fs-8 btn text-body-tertiary btn-sm">0 Fee</button>
-                                            <button class="fs-8 btn text-body-tertiary btn-sm"><span class="fs-7">20$ Mx Discount</span></button>
-                                            <button class="fs-8 btn text-body-tertiary btn-sm"><span class="fs-7">50% off for Mx Holder</span></button>
-                                        </div>
-                                        <table id="cryptoTable" class="table fs-7 rounded-2 table-hover w-100">
-                                            <thead class="table-secondary table-responsive">
-                                                <tr>
-                                                    <th class="text-secondary me-5">Trading Pair</th>
-                                                    <th class="text-secondary">Maker</th>
-                                                    <th class="text-secondary">Taker</th>
-                                                    <th class="text-secondary text-center text-xl-center text-md-end">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <script>
-                                                    let futures_crypto = `
-                                                        <tr>
-                                                            <td data-label="crypto" class="cryptolable" >
-                                                                <div class="no-st-sm-end " >
-                                                                    <div class="no-st-sm-end">
-                                                                        <img src="../../image/dex/solana.webp" width="24" height="24" class="me-2 ">
-                                                                        <span class=" " >SOL/USDT</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td data-label="Taker" >0.000000%</td>
-                                                            <td data-label="Maker" >0.000000%</td>
-                                                            <td data-label="Action">
-                                                                <div class="d-flex justify-content-xl-center justify-content-md-end justify-content-end align-items-center">
-                                                                    <button style="width:80px;height:30px" class="btn btn-sm btn-outline-secondary rounded-pill m-1">Trade</button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    `;
-                                                    for (let i = 0; i < 5 ; i++){
-                                                        document.write(futures_crypto);
-                                                    }
-                                                </script>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('#cryptoTable').DataTable({
-                                                language: {
-                                                    search: "Search all columns:",
-                                                    paginate: {
-                                                        previous: "Previous",
-                                                        next: "Next"
-                                                    }
-                                                },
-                                                dom: '<"top"lBf>rt<"bottom"ip><"clear">', 
-                                                responsive: none,
-                                                columnDefs: [
-                                                    { 
-                                                        targets: 0, 
-                                                        orderable: true
-                                                    },
-                                                    { 
-                                                        targets: [2,3], 
-                                                        type: 'num'
-                                                    },
-                                                    { 
-                                                        targets: 4, 
-                                                        orderable: true
-                                                    }
-                                                ],
-                                                paging: true,
-                                                pageLength: 10,
-                                                searching: false,
-                                                ordering: true,
-                                                info: true,
-                                                autoWidth: false,
-                                                initComplete: function() {
-                                                    this.api().columns().every(function() {
-                                                        let column = this;
-                                                        let header = $(column.header());
-                                                        header.append('<input type="text" placeholder="Search '+header.text()+'" />')
-                                                            .on('keyup change', function() {
-                                                                column.search(this.value).draw();
-                                                            });
-                                                    });
+                                        for(let i = days-1; i >= 0; i--) {
+                                            let d = new Date(date);
+                                            d.setDate(d.getDate() - i);
+                                            labels.push(d.toLocaleDateString('en-US', options));
+                                        }
+                                        return labels;
+                                    }
+                                
+                                    var options = {
+                                        series: [{
+                                            name: "Price",
+                                            data: generateMockData(30)
+                                        }],
+                                        chart: {
+                                            type: 'line',
+                                            height: 250,
+                                            toolbar: { show: true },
+                                            zoom: { enabled: true },
+                                            animations: { enabled: true }
+                                        },
+                                        xaxis: {
+                                            categories: generateDateLabels(30, true),
+                                            labels: {
+                                                rotate: -45,
+                                                style: { fontSize: '10px' }
+                                            }
+                                        },
+                                        yaxis: {
+                                            labels: {
+                                                formatter: function(value) {
+                                                    return '$' + value.toFixed(0);
+                                                }
+                                            }
+                                        },
+                                        colors: ['#2962ff'],
+                                        stroke: { width: 2, curve: 'smooth' },
+                                        grid: { show: false },
+                                        tooltip: {
+                                            y: { formatter: function(value) { return '$' + value.toFixed(2); } }
+                                        }
+                                    };
+                                
+                                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                                    chart.render();
+                                
+                                    document.querySelectorAll('.period-btn').forEach(btn => {
+                                        btn.addEventListener('click', function() {
+                                            document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                                            this.classList.add('active');
+                                            
+                                            const period = this.dataset.period;
+                                            let days = period === '7d' ? 7 : 30;
+                                            let shortFormat = period === '7d';
+                                            
+                                            chart.updateOptions({
+                                                series: [{ data: generateMockData(days) }],
+                                                xaxis: { 
+                                                    categories: generateDateLabels(days, shortFormat),
+                                                    labels: { rotate: -45 }
                                                 }
                                             });
                                         });
-                                    </script>
-                                <div class="col-12 mt-3">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <button class="rounded-circle me-1 fs-9 btn bg-secondary bg-opacity-10">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </button>
-                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn btn-primary bg-opacity-10">
-                                            1
-                                        </button>
-                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
-                                            2
-                                        </button>
-                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
-                                            3
-                                        </button>
-                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
-                                            4
-                                        </button>
-                                        <button class="rounded-circle me-1 py-1 px-2 fs-9 btn border bg-opacity-10">
-                                            5
-                                        </button>
-                                        <span class="me-1 rounded-circle">...</span>
-                                        <button class="rounded-circle me-1 py-2 px-2 fs-9 btn border bg-opacity-10">
-                                            315
-                                        </button>
-                                        <button class="rounded-circle me-1 fs-9 btn bg-secondary bg-opacity-10">
-                                            <i class="fas fa-chevron-right"></i>
-                                        </button>
+                                    });
+                                </script>
+                                <div class="col-md-5  col-12 mt-md-0 mt-3 p-0">
+                                    <div class="disend ps-0 ps-md-3">
+                                        <div class="col-md-12  col-12 bg-white rounded-3 pt-3">
+                                            <div class="row justify-content-center">
+                                                <div class="col-8 text-start ps-3">
+                                                    <span class="fw-bold">Recent Transitions</span>
+                                                </div>
+                                                <div class="col-3 text-end pe-md-4">
+                                                    <a href="#" class="fs-9 link-underline-opacity-0 link-secondary">View All <i class="">></i></a>
+                                                </div>
+                                                <div class="col-11 mt-2">
+                                                    <div class="alert alert-info rounded-bottom-0 text-start bg-opacity-10 py-2"><span class="text-primary fs-8">Low Withdrawal fees Globally</span><i class="fas fa-info-circle text-primary ps-1 fs-7"></i></div>
+                                                </div>
+                                                <div class="col-11">
+                                                    <div class="row">
+                                                        <script>
+                                                            let deposit = `
+                                                            
+                                                                <div class="col-md-7 col-12 text-start ps-3">
+                                                                <div class=""><i class="fa-regular fa-circle-down px-1"></i><span>Deposit</span></div>
+                                                                <p class="fs-9">2025-05-01 22:34:52</p>
+                                                                </div>
+                                                                <div class="col-md-5 col-12 text-end pe-3">
+                                                                <div class="row">
+                                                                    <span class="fs-8">+75 ZKL</span>
+                                                                    <div class="fs-10 col-12"><i class="fa fa-circle fs-12 text-success pe-1"></i>Deposit<span class="successful fs-8 px-1">successful</span></div>
+                                                                </div>
+                                                                </div>
+                                                            `; 
+                                                            let withdraw = `
+                                                            
+                                                                <div class="col-md-7 col-12 text-start ps-3">
+                                                                <div class=""><i class="fa-regular fa-circle-up px-1"></i><span>Withdraw</span></div>
+                                                                <p class="fs-9">2025-05-01 22:34:52</p>
+                                                                </div>
+                                                                <div class="col-md-5 col-12 text-end">
+                                                                <div class="row">
+                                                                    <span class="fs-9">-0.00113311 ETH</span>
+                                                                    <div class="fs-10"><i class="fa fa-circle text-success fs-12 pe-1"></i>Withdraw<span class="successful fs-8 px-1">successful</span></div>
+                                                                </div>
+                                                                </div>
+                                                            `; 
+                                                            for (let i = 0; i < 3 ;i++){
+                                                                document.write(deposit);
+                                                            }
+                                                            for (let i = 0; i < 2 ;i++){
+                                                                document.write(withdraw);
+                                                            }
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 bg-white p-5 rounded-3 mt-3">
-                            <div class="row">
-                                <h2>Understanding MEXC Fees</h3>
-                                <div class="section mt-5">
-                                    <h5>Maker Order</h5>
-                                    <p class="text-secondary fs-7 mb-0">An order placed at a specified goal that enters the order book instead of matching immediately.</p>
-                                    <p class="text-secondary fs-7">Example: Current fees ask 14 to 1020. A buy order placed at 90 USD1 enters the order book until matched. When filled, maker fees apply.</p>
+                        <div class="col-12 col-xl-12 mt-4  bg-white rounded-3">
+                            <div class="row align-items-center">
+                                <div class="col-10 p-4 pt-2 pb-0 text-start">
+                                    <span class="fs-6s fw-bold text-secondary">New User Perk</span>
+                                    <h5 class="fw-bold">Want to maximize your assets? Trade to earn up to 80,000$</h5>
                                 </div>
-                                
-                                <div class="section">
-                                    <h6>Taker Order</h6>
-                                    <p class="fs-7 text-secondary mb-0">An order that matches immediately with existing orders on the book.</p>
-                                    <p class="fs-7 text-secondary">Example: Current fees ask 14 to 1020. A buy order placed at 100 USD1 matches immediately. When filled, taker fees apply.</p>
-                                </div>
-                                
-                                <div class="section">
-                                    <h6>MX Holdings</h5>
-                                    <ol>
-                                        <li class="fs-7 text-secondary">Hold ≥ $50 MX in Spot or ≥ 1M MX to enjoy 95% discount in spot and Futures trading fees. Benefits for the main account and sub-account are independent and cannot be shared.</li>
-                                        <li class="fs-7 text-secondary">Holdings will be verified through three monthly random snapshots. The lowest quantity from these snapshots will determine whether daily requirements have been met.</li>
-                                        <li class="fs-7 text-secondary">Once the required quantity has been maintained for the specified number of days, benefits will automatically activate at 16:00 UTC the following day. Please note there may be slight delays in data processing.</li>
-                                        <li class="fs-7 text-secondary">MX holdings fee discount in your Spot account cannot be used in conjunction with MX deduction. Priority is given to the MX Spot holding discount.</li>
-                                        <li class="fs-7 text-secondary">Some trading pairs are excluded from MX fee deductions. For details, please refer to the fee rate page.</li>
-                                    </ol>
-                                </div>
-                                
-                                <div class="section">
-                                    <h6>MX Deduction</h6>
-                                    <ol>
-                                        <li class="fs-7 text-secondary"><strong>Spot Fee Deduction:</strong> Once enabled, MX tokens will be prioritized for fee deductions on Spot trades, granting a 20% discount. The discount becomes invalid once MX tokens are depleted.</li>
-                                        <li class="fs-7 text-secondary"><strong>Futures Fee Deduction:</strong> Once enabled, users must transfer MX tokens to their Futures wallet. MX will then be prioritized for fee deductions on Futures trades, granting a 20% discount. The discount becomes invalid once MX tokens are depleted.</li>
-                                        <li class="fs-7 text-secondary"><strong>Discount & Deduction Policy:</strong> The MX holder discount and MX deduction cannot be combined. Users will automatically receive the higher of the two discount rates.</li>
-                                        <li class="fs-7 text-secondary">Some trading pairs are excluded from MX fee deductions. For details, please refer to the fee schedule.</li>
-                                    </ol>
+                                <div class="col-md-2 col-12">
+                                    <div class=" pt-3"><img src="../image/overview/fdf157fd94cd943e939b2e7935c1240d.webp" class="img img-fluid" alt=""></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </main>
+    
     <footer>
         <div class="container-fluid bg-white p-5">
             <div class="container">
@@ -1212,37 +977,8 @@
             </div> 
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
-<script>
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const toggleButton = document.getElementById('toggleButton');
-    const toggleIcon = document.getElementById('toggleIcon');
-
-    toggleButton.addEventListener('click', () => {
-        const isOpen = sidebar.classList.contains('sidebar-open');
-
-        if (isOpen) {
-            sidebar.classList.remove('sidebar-open');
-            sidebar.classList.add('sidebar-closed');
-            overlay.style.display = 'none';
-            toggleIcon.classList.replace('fa-caret-left', 'fa-caret-right');
-        } else {
-            sidebar.classList.remove('sidebar-closed');
-            sidebar.classList.add('sidebar-open');
-            overlay.style.display = 'block';
-            toggleIcon.classList.replace('fa-caret-right', 'fa-caret-left');
-        }
-    });
-
-    overlay.addEventListener('click', () => {
-        sidebar.classList.remove('sidebar-open');
-        sidebar.classList.add('sidebar-closed');
-        overlay.style.display = 'none';
-        toggleIcon.classList.replace('fa-caret-left', 'fa-caret-right');
-    });
-</script>
-
-<script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </html>
