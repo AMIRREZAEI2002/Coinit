@@ -98,26 +98,26 @@
     <header>
         <div class="container-fluid p-0 fixed-top">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
+                <div class="container-fluid ">
                   <a class="navbar-brand link-primary" href="#">Coinit</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 me-3 mb-lg-0">
-                      <li class="nav-item">
-                            <div class="bg-body-main bg-opacity-10 rounded-pill px-3" style="padding-top: 2px; padding-bottom: 2px;">
-                                <div class="row justify-content-between">
-                                    <div class="col-6 p-0">
-                                        <button id="exchange" class="btn btn-light text-center ps-1 fw-semibold fs-9 w-100 border-0 rounded-pill" href="#">Exchange</button>
-                                    </div>
-                                    <div class="col-6 p-0">
-                                        <button id="dex" class="btn border-0 w-100 fw-semibold rounded-pill fs-9" href="#">DEX +</button>
-                                    </div>
+                    <ul class="navbar-nav me-auto mb-2 me-3 mb-lg-0 align-items-center">
+                        <li class="nav-item pt-2">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <div class="slider slider--0"><a class="link-light link-underline-opacity-0" href="#">Exchange</a></div>
+                                <div class="slider slider--1">
+                                    <div></div>
+                                    <div></div>
                                 </div>
-                            </div>
-                      </li>
-                      <li class="nav-item dropdown">
+                                <div class="slider slider--2"></div>
+                                <div class="slider slider--3"><a class="link-light link-underline-opacity-0" href="#">DEX+</a></div>
+                            </label>
+                        </li>
+                      <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Buy Crypto
                         </a>
@@ -153,7 +153,7 @@
                           <li><a class="dropdown-item" href="#">test text</a></li>
                         </ul>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item dn-92-82">
                         <a class="nav-link fs-8" href="#">Rewards Hub</a>
                       </li>
                       <li class="nav-item dropdown">
@@ -166,20 +166,18 @@
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">test text</a></li>
                         </ul>
-                      </li><li class="nav-item dropdown">
+                      </li>
+                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          More
+                            More
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
+                            <li><a class="dropdown-item db-92-82 fs-8" style="display: none;" href="#">Rewards Hub</a></li>
                         </ul>
-                      </li>
+                    </li>
                     </ul>
                     <ul class="navbar-nav nav-justified ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item dn-92-82">
                             <div class="pt-1" style="width: 130px;">
                                 <form action="" method="get" class="input-group">
                                     <button class="btn border-0 z-3 ps-2" style="padding-top: 3px;"><i class="fa fa-search "></i></button>
@@ -187,6 +185,11 @@
                                     <input type="text" class="form-control z-2 rounded-pill w-100 position-absolute bg-secondary bg-opacity-10 fs-8 py-1" style="padding-left: 50px;" placeholder="GROK">    
                                 </form>
                             </div>
+                        </li>
+                        <li class="nav-item db-92-82" style="display: none;">
+                            <button type="button" class="btn p-0 me-2 border-0 mt-1" data-bs-toggle="modal" data-bs-target="#search">
+                                <i class="fa fa-search "></i>
+                            </button>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle  bg-primary rounded-pill text-white dropdown-toggle fs-8 px-3 py-1 mt-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -649,7 +652,37 @@
                     handleTabs();
                 })();
             </script>
+    </div>
+    <div class="modal fade" id="search" tabindex="-1" aria-labelledby="searchLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent">
+                <div class="w-100 d-flex justify-content-end align-items-center">
+                    <button type="button" class="btn-close bg-white rounded-circle p-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-header border-0 mt-1 p-0">
+                    <div class="w-100 position-relative">
+                        <form class="input-group">
+                            <button class="btn position-absolute start-0 top-50 translate-middle-y z-3 ps-3">
+                                <i class="fa-solid fa-magnifying-glass text-secondary"></i>
+                            </button>
+                            <input type="text"class="form-control z-1 rounded-pill ps-5 pe-5 py-2 shadow-lg"placeholder="GROK"style="height: 45px; border: 2px solid #e0e0e0;">
+                            <span class="position-absolute end-0 top-50 translate-middle-y z-3 pe-3">
+                                <i class="fa-solid fa-fire-flame-curved text-primary"></i>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-body bg-white rounded-3 mt-1">
+                    <ul>
+                        <li class="1">سرج های اخیر یا محبوب</li>
+                        <li class="2">سرج های اخیر یا محبوب</li>
+                        <li class="3">سرج های اخیر یا محبوب</li>
+                        <li class="4">سرج های اخیر یا محبوب</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div>
     </header>
     <main>
         <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
