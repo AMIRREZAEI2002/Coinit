@@ -670,7 +670,7 @@
    <main>
     <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
         <div class="row">
-            <div class="col-md-2" style="position: relative;">
+            <div class="col-lg-2  d-none d-lg-block" style="position: relative;">
                 <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class="w-100 ">
                     <a href="../overview/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
                         <div class="distart p-3 py-3-5  m-1 mt-0 w-100" style="margin-top: -4px;">
@@ -722,7 +722,69 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-10 ">
+
+            <!-- sidder -->
+            <div id="overlay" class="d-lg-none" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 189; background-color: rgba(0,0,0,0.8);"></div>
+            <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; background-color: white; transition: left 0.4s ease;">
+                <div style="display: flex; flex-direction: column; align-items: start;margin-left: 50px; color: black;">
+                    
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Profile</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Security</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Identification</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Referral</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Trading Fees</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Withdrawal Addresses/Contacts</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Sub-Account Management</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Settings</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Toggle Button -->
+                <div id="toggleButton" class="discen rounded-1" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190; background-color: white; color: black; display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-caret-right fa-xl" id="toggleIcon"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-10 ">
                 <div class="row">
                     <div class="col-12 bg-white rounded-3 p-4 ">
                         <div class="row bg-white  rounded-3">

@@ -672,331 +672,394 @@
         </div>
     </div>
     </header>
-<main>
-    <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
-        <div class="row">
-            <div class="col-md-2" style="position: relative;">
-                <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class=" w-100 mt-0 ">
-                    <a href="../overview/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0 " style="margin-top: -4px;">
-                            <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 fs-7s">Overview</div>
-                        </div>
-                    </a>
-                    <a href="../spot/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                    <div class="distart p-3 py-3-5  m-1  w-100 mt-0">
-                            <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 fs-7s ">
-                                <div>Spot</div>
-                                <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+    <main>
+        <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
+            <div class="row">
+                <div class="col-lg-2 d-none d-lg-block" style="position: relative;">
+                    <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class=" w-100 mt-0 ">
+                        <a href="../overview/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5 m-1 mt-0  w-100 mt-0 " style="margin-top: -4px;">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 fs-7s">Overview</div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="../dex/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
-                            <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 fs-7s">DEX+</div>
-                        </div>
-                    </a>
-                    <a href="../futures/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100  mt-0 m-1 ">
-                               <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">
-                                <div>Futures</div>
-                                <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                        </a>
+                        <a href="../spot/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                        <div class="distart p-3 py-3-5  m-1  w-100 mt-0">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 fs-7s ">
+                                    <div>Spot</div>
+                                    <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                </div>
                             </div>
+                        </a>
+                        <a href="../dex/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 fs-7s">DEX+</div>
+                            </div>
+                        </a>
+                        <a href="../futures/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  w-100  mt-0 m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                    <div class="ml-2 fs-7s">
+                                    <div>Futures</div>
+                                    <div class="text-muted fs-9">Market 0% / Taker 0.05%</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="../fiat/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2  fs-7s">Fiat</div>
+                            </div>
+                        </a>
+                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5 partactive w-100 mt-0 m-1 ">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 fs-7s">Copy Trading</div>
+                            </div>
+                        </a>
+                        <a href="../funding_history/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
+                            <div class="distart p-3 py-3-5   w-100 mt-0 m-1">
+                                <div><i class="fa-solid fa-wallet"></i></div>
+                                <div class="ml-2 fs-7s">Funding History</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            <!-- sidder -->
+            <div id="overlay" class="d-lg-none" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 189; background-color: rgba(0,0,0,0.8);"></div>
+            <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; background-color: white; transition: left 0.4s ease;">
+                <div style="display: flex; flex-direction: column; align-items: start;margin-left: 50px; color: black;">
+                    
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Profile</div>
                         </div>
                     </a>
-                    <a href="../fiat/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5  w-100 mt-0 m-1 ">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2  fs-7s">Fiat</div>
+                            <div class="ml-2">Security</div>
                         </div>
                     </a>
-                    <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5 partactive w-100 mt-0 m-1 ">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 fs-7s">Copy Trading</div>
+                            <div class="ml-2">Identification</div>
                         </div>
                     </a>
-                    <a href="../funding_history/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                        <div class="distart p-3 py-3-5   w-100 mt-0 m-1">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
-                            <div class="ml-2 fs-7s">Funding History</div>
+                            <div class="ml-2">Referral</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Trading Fees</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Withdrawal Addresses/Contacts</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Sub-Account Management</div>
+                        </div>
+                    </a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                        <div class="distart fs-7">
+                            <div><i class="fa-solid fa-wallet"></i></div>
+                            <div class="ml-2">Settings</div>
                         </div>
                     </a>
                 </div>
+
+                <!-- Toggle Button -->
+                <div id="toggleButton" class="discen rounded-1" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190; background-color: white; color: black; display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-caret-right fa-xl" id="toggleIcon"></i>
+                </div>
             </div>
-            <div class="col-md-10 ">
-                <div class="row">
+
+
+                <div class="col-lg-10 ">
                     <div class="row">
-                        <div class="col-12 bg-white rounded-3 p-4">
-                            <div class="row bg-white  rounded-3">
-                                <div class="col-md-7 col-12">
-                                    <div class="distart text-muted">
-                                        <a href="#" class="fs-8 mx-1 link-dotted link-secondary link-opacity-75">Estimated Balance</a><i class="fas fa-eye fs-9 text-secondary"></i>
-                                    </div>
-                                    <div class="distart mt-2">
-                                        <div class="fs-4 fw-bold">6.73</div>
-                                        <div class="ml-1">
-                                            <select name="" id="" class="form-select fs-7">
-                                                <option value="USDT">USDT</option>
-                                            </select>
+                        <div class="row">
+                            <div class="col-12 bg-white rounded-3 p-4">
+                                <div class="row bg-white  rounded-3">
+                                    <div class="col-md-7 col-12">
+                                        <div class="distart text-muted">
+                                            <a href="#" class="fs-8 mx-1 link-dotted link-secondary link-opacity-75">Estimated Balance</a><i class="fas fa-eye fs-9 text-secondary"></i>
                                         </div>
-                                    </div>
-                                    <div class="distart fs-8 text-muted">
-                                        <div class="text-muted" style="z-index: 2;">= 6.73</div>
-                                        <div style="margin-left: -10px;">
-                                            <select name="" id="" class="form-select fs-8 text-muted">
-                                                <option value="USDT">USDT</option>
-                                            </select>
+                                        <div class="distart mt-2">
+                                            <div class="fs-4 fw-bold">6.73</div>
+                                            <div class="ml-1">
+                                                <select name="" id="" class="form-select fs-7">
+                                                    <option value="USDT">USDT</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 col-12 mt-4 m-md-0 px-2 d-flex align-items-center justify-content-end">
-                                    <div class="flex-column flex-xl-row flex-lg-column flex-md-colmn justify-content-end d-flex   w-100">
-                                        <div class="headerbnt btn btn-primary rounded-pill fs-9 mr-1">Copy Trade</div>
-                                        <div class="headerbnt btn btn-outline-secondary rounded-pill fs-9 mr-1">Funding History</div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4 fs-6s p-3 bg-white rounded-3">
-                            <div class="row justify-content-between">
-                                <div class="row">
-                                    <div class="col-12 col-md-4 ">
-                                        <div class="row">
-                                            <div class="col-12 text-start ps-3">
-                                                <span class="fw-bold fs-5 ">Assets List</span>
+                                        <div class="distart fs-8 text-muted">
+                                            <div class="text-muted" style="z-index: 2;">= 6.73</div>
+                                            <div style="margin-left: -10px;">
+                                                <select name="" id="" class="form-select fs-8 text-muted">
+                                                    <option value="USDT">USDT</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 d-flex  justify-content-xl-end justify-content-lg-start col-lg-12 ">
-                                        <form class="disbet" >
-                                            <div class="no-end-sm-st  felxcolmnstart">
-                                                <div class="inputbox col-5 me-2 mt-2 m-md-0 rounded-pill" style="position: relative; width: fit-content;">
-                                                    <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill" style="height: 10px;width: 60px;" placeholder="Search">
-                                                    <div style="position: absolute;left: 20px;top: 50%;transform: translate(-50%,-50%);">
-                                                        <i class="fas fa-search fa-sm" style="color: #85919f;"></i>
+                                    <div class="col-md-5 col-12 mt-4 m-md-0 px-2 d-flex align-items-center justify-content-end">
+                                        <div class="flex-column flex-xl-row flex-lg-column flex-md-colmn justify-content-end d-flex   w-100">
+                                            <div class="headerbnt btn btn-primary rounded-pill fs-9 mr-1">Copy Trade</div>
+                                            <div class="headerbnt btn btn-outline-secondary rounded-pill fs-9 mr-1">Funding History</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4 fs-6s p-3 bg-white rounded-3">
+                                <div class="row justify-content-between">
+                                    <div class="row">
+                                        <div class="col-12 col-md-4 ">
+                                            <div class="row">
+                                                <div class="col-12 text-start ps-3">
+                                                    <span class="fw-bold fs-5 ">Assets List</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex  justify-content-xl-end justify-content-lg-start col-lg-12 ">
+                                            <form class="disbet" >
+                                                <div class="no-end-sm-st  felxcolmnstart">
+                                                    <div class="inputbox col-5 me-2 mt-2 m-md-0 rounded-pill" style="position: relative; width: fit-content;">
+                                                        <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill" style="height: 10px;width: 60px;" placeholder="Search">
+                                                        <div style="position: absolute;left: 20px;top: 50%;transform: translate(-50%,-50%);">
+                                                            <i class="fas fa-search fa-sm" style="color: #85919f;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="disend  mt-2 m-md-0">
+                                                        <input type="checkbox" class="form-check-input mr-1 ml-2 mb-1" name="hide_small_balances" id="">
+                                                        <span class="fw-lighter fs-7 pe-1">Hide small Balances</span>
+                                                        <button class="bg-transparent border-0"><i class="fas fa-info-circle p-0 fs-7 text-secondary"></i></button>
                                                     </div>
                                                 </div>
-                                                <div class="disend  mt-2 m-md-0">
-                                                    <input type="checkbox" class="form-check-input mr-1 ml-2 mb-1" name="hide_small_balances" id="">
-                                                    <span class="fw-lighter fs-7 pe-1">Hide small Balances</span>
-                                                    <button class="bg-transparent border-0"><i class="fas fa-info-circle p-0 fs-7 text-secondary"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="table-responsive mt-2">
-                                    <table id="cryptoTable" class="table table-striped rounded-2 table-hover w-100">
-                                        <thead class="table-secondary">
-                                            <tr>
-                                                <th class="text-secondary">Strategy Type</th>
-                                                <th class="text-secondary">Current Total Asset(USDT)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <script>
-                                                let futures_crypto = `
-                                                    <tr>
-                                                        <td data-label="crypto" class="" >
-                                                            <div class="no-st-sm-end " >
-                                                                <div class="no-st-sm-end aligen-items-center">
-                                                                    <img src="../image/dex/solana.webp" width="24" height="24" class="me-2 ">
-                                                                    <span class="fs-6" >ZKL</span>
+                                    <div class="table-responsive mt-2">
+                                        <table id="cryptoTable" class="table table-striped rounded-2 table-hover w-100">
+                                            <thead class="table-secondary">
+                                                <tr>
+                                                    <th class="text-secondary">Strategy Type</th>
+                                                    <th class="text-secondary">Current Total Asset(USDT)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <script>
+                                                    let futures_crypto = `
+                                                        <tr>
+                                                            <td data-label="crypto" class="" >
+                                                                <div class="no-st-sm-end " >
+                                                                    <div class="no-st-sm-end aligen-items-center">
+                                                                        <img src="../image/dex/solana.webp" width="24" height="24" class="me-2 ">
+                                                                        <span class="fs-6" >ZKL</span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td data-label="Total" >
-                                                            <div class="">
-                                                                <div class="fs-6">ZKLINK</div>   
-                                                                <div class="fs-6s text-muted">ZKLINK</div> 
-                                                            </div>    
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                `;
-                                                for (let i = 0; i < 5 ; i++){
-                                                    document.write(futures_crypto);
-                                                }
-                                            </script>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#cryptoTable').DataTable({
-                                            language: {
-                                                search: "Search all columns:",
-                                                paginate: {
-                                                    previous: "Previous",
-                                                    next: "Next"
-                                                }
-                                            },
-                                            dom: '<"top"lBf>rt<"bottom"ip><"clear">', 
-                                            responsive: none,
-                                            columnDefs: [
-                                                { 
-                                                    targets: 0, 
-                                                    orderable: true
+                                                            </td>
+                                                            <td data-label="Total" >
+                                                                <div class="">
+                                                                    <div class="fs-6">ZKLINK</div>   
+                                                                    <div class="fs-6s text-muted">ZKLINK</div> 
+                                                                </div>    
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    `;
+                                                    for (let i = 0; i < 5 ; i++){
+                                                        document.write(futures_crypto);
+                                                    }
+                                                </script>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#cryptoTable').DataTable({
+                                                language: {
+                                                    search: "Search all columns:",
+                                                    paginate: {
+                                                        previous: "Previous",
+                                                        next: "Next"
+                                                    }
                                                 },
-                                                { 
-                                                    targets: [2,3], 
-                                                    type: 'num'
-                                                },
-                                                { 
-                                                    targets: 4, 
-                                                    orderable: true
+                                                dom: '<"top"lBf>rt<"bottom"ip><"clear">', 
+                                                responsive: none,
+                                                columnDefs: [
+                                                    { 
+                                                        targets: 0, 
+                                                        orderable: true
+                                                    },
+                                                    { 
+                                                        targets: [2,3], 
+                                                        type: 'num'
+                                                    },
+                                                    { 
+                                                        targets: 4, 
+                                                        orderable: true
+                                                    }
+                                                ],
+                                                paging: true,
+                                                pageLength: 10,
+                                                searching: false,
+                                                ordering: true,
+                                                info: true,
+                                                autoWidth: false,
+                                                initComplete: function() {
+                                                    this.api().columns().every(function() {
+                                                        let column = this;
+                                                        let header = $(column.header());
+                                                        header.append('<input type="text" placeholder="Search '+header.text()+'" />')
+                                                            .on('keyup change', function() {
+                                                                column.search(this.value).draw();
+                                                            });
+                                                    });
                                                 }
-                                            ],
-                                            paging: true,
-                                            pageLength: 10,
-                                            searching: false,
-                                            ordering: true,
-                                            info: true,
-                                            autoWidth: false,
-                                            initComplete: function() {
-                                                this.api().columns().every(function() {
-                                                    let column = this;
-                                                    let header = $(column.header());
-                                                    header.append('<input type="text" placeholder="Search '+header.text()+'" />')
-                                                        .on('keyup change', function() {
-                                                            column.search(this.value).draw();
-                                                        });
-                                                });
-                                            }
+                                            });
                                         });
-                                    });
-                                </script>
+                                    </script>
+                                </div>
                             </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</main>
-<footer>
-    <div class="container-fluid bg-white p-5">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3">
-                    <div class="d-flex  flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
-                        <div class="mb-3 mb-md-0 mb-lg-0">
-                            <h3>Download App</h3>
-                            <span class="text-secondary fs-7">you can download with scan QR code</span>
-                            <span class="text-secondary fs-7">or use Google Play and App store</span>
-                        </div>
-                        <div class=" d-flex align-items-center flex-column flex-md-row flex-lg-row">
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
-                            </a>
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
-                            </a>
-                            <a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a>
+    </main>
+    <footer>
+        <div class="container-fluid bg-white p-5">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3">
+                        <div class="d-flex  flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
+                            <div class="mb-3 mb-md-0 mb-lg-0">
+                                <h3>Download App</h3>
+                                <span class="text-secondary fs-7">you can download with scan QR code</span>
+                                <span class="text-secondary fs-7">or use Google Play and App store</span>
+                            </div>
+                            <div class=" d-flex align-items-center flex-column flex-md-row flex-lg-row">
+                                <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                                </a>
+                                <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                                </a>
+                                <a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-5 col-xl-2 col-md-5 mt-3" style="min-height: 498px;">
-                    <div class="row justify-content-between h-100">
-                        <span class="h5 fw-bold">Comunity</span>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                    <div class="col-5 col-xl-2 col-md-5 mt-3" style="min-height: 498px;">
+                        <div class="row justify-content-between h-100">
+                            <span class="h5 fw-bold">Comunity</span>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                            </ul>
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                                <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                            </ul>
+                            <!-- <ul class="list-group mb-2 mt-auto">
+                                <li class="list-group h5 fw-bold">Donload App</li>
+                                <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a></li>
+                                <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Scan to Download App</a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-5 col-md-2 mt-3">
+                        <ul class="list-group list-group-flush mb-2 text-center">
+                            <li class="list-group h5 fw-bold">About</li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">About</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Asset Security</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">User Agreement</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Privicy Policy</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Risk Disclosure</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Vantures</span></div></a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><span>Why</span><div class="text-primary ps-2">Coinit</div></div></a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Sitemap</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Contact Us</a></li>
                         </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                    </div>
+                    <div class="col-5 col-md-2 mt-3">
+                        <ul class="list-group list-group-flush mb-2 text-center">
+                            <li class="list-group h5 fw-bold">Products</li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Buy Crypto</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Convert</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Spot</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Furtuers</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Demo Trade</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Copy Trade</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Loans</span></div></a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Fees</a></li>
                         </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                    </div>
+                    <div class="col-5 col-md-2 mt-3">
+                        <ul class="list-group list-group-flush mb-2 text-center">
+                            <li class="list-group h5 fw-bold">Support</li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Customer Services</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">VIP Benefits</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Submit and Inquiry</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Improvment Suggestions</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Report Abnormal Funds</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Judicial Assistance</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Verify</span></div></a></li>
                         </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
+                    </div>
+                    <div class="col-5 col-md-2 mt-3">
+                        <ul class="list-group list-group-flush mb-2 text-center">
+                            <li class="list-group h5 fw-bold">Partnerships</li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Listing Application</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P Merchant Application</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Institutional Services</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Affiliate Program</a></li>
+                    </div>
+                    <div class="col-5 col-md-2 mt-3">
+                        <ul class="list-group list-group-flush mb-2 text-center">
+                            <li class="list-group h5 fw-bold">Resources</li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Help Center</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>earn</span></div></a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Blog</span></div></a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Crypto News</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">All Crypto Prices</a></li>
+                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">How to Buy</a></li>
                         </ul>
-                        <!-- <ul class="list-group mb-2 mt-auto">
-                            <li class="list-group h5 fw-bold">Donload App</li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a></li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Scan to Download App</a></li>
-                        </ul> -->
                     </div>
                 </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">About</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">About</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Asset Security</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">User Agreement</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Privicy Policy</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Risk Disclosure</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Vantures</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><span>Why</span><div class="text-primary ps-2">Coinit</div></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Sitemap</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Products</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Buy Crypto</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Convert</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Spot</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Furtuers</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Demo Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Copy Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Loans</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Fees</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Support</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Customer Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">VIP Benefits</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Submit and Inquiry</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Improvment Suggestions</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Report Abnormal Funds</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Judicial Assistance</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Verify</span></div></a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Partnerships</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Listing Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P Merchant Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Institutional Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Affiliate Program</a></li>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Resources</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Help Center</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>earn</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Blog</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Crypto News</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">All Crypto Prices</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">How to Buy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> 
-    </div>
-</footer>
+            </div> 
+        </div>
+    </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
