@@ -305,9 +305,8 @@ a {
         linear-gradient(to bottom, #0C2249 0%, transparent 100%),
         url("../image/logorsin/new.png");
     background-repeat: no-repeat;
-    background-position: bottom ;
     background-size: cover;
-    background-position: center;
+    background-position: bottom center;
 }
 .btn-launchpool {
     background: linear-gradient(to bottom, #edf0f7, #aebed7); /* گرادیانت روشن */
