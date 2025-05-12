@@ -534,3 +534,16 @@ input:checked ~ .slider--3 {
     transform: translatex(0);
     border-right: 1px solid #d2d2d2;
 }
+
+
+
+
+/* part 3 */
+.border-bottom-dashed-secondary {
+    border-bottom: 1px dashed var(--bs-secondary);
+  }
+
+
+.myhr{
+    margin-top: 16px;
+}
