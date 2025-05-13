@@ -192,6 +192,7 @@
                   </div>
               </div>
             </div>
+
             <div class="row px-1 h-100">
                 <div class="col-lg-8 px-0 h-100 ">
                     <div class="row p-2 m-1 bg-white justify-content-center">
@@ -226,13 +227,29 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-2 d-xl-block d-lg-none px-0 h-100">
-                  <div class="row p-2 m-1 bg-white">
-                    s
+                  <div class="row p-2 m-1 bg-white scroll-thin  flex-column" style="max-height: 615px;min-height: 615px; overflow-y: auto;">
+                    <div class=" p-0 ">
+                      <div class="distart p-0 ">
+                        <div class="disbet">
+                          <div onclick="defultsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort"></i></div>
+                          <div onclick="greensortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort-up"></i></div>
+                          <div onclick="redsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort-down"></i></div>
+                        </div>
+                        <div>
+                          <!-- selcet -->
+                        </div>
+                      </div>
+                      
+                      <table class="table table-sm table-borderless align-middle fs-8" id="orderormarketdiv">
+                        
+                      </table>
+                    </div>
                   </div>
                 </div>
-                <div class="col-xl-2 col-lg-4 px-0 h-100">
-                  <div class="row p-0 m-1 bg-white">
+                <div class="col-xl-2 col-lg-4 px-0"  >
+                  <div class="row p-0 m-1 bg-white" >
                     <div class="d-flex bg-secondary bg-opacity-10 p-0">
                       <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
                       <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
@@ -276,9 +293,17 @@
                   </div>
                 </div>
             </div>
+
+            <div class="row px-1 h-100">
+              <div class="col-lg-10 px-0 h-100 ">
+                <div class="row p-2 m-1 bg-white justify-content-center">
+                  s
+                </div>
+              </div>
+            </div>
         </div>
     </main>
 </body>
 <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
-
+<script src="jscod.js"></script>
 </html>
