@@ -51,9 +51,9 @@
 </head>
 <body>
     <main>
-        <div class="container-fluid">
-            <div class="row px-1 align-items-center h-100 bg-danger">
-                <div class="col-lg-10 px-0 h-100">
+        <div class="container" style="max-width: 99%;">
+            <div class="row px-1 align-items-center h-100 ">
+                <div class="col-lg-10 px-0 h-100 ">
                     <div class="row p-2 m-1 align-items-center bg-white ">
                         <div class="col-lg-12 fs-6s">
                           <div class="row align-items-center gx-4 text-nowrap ">
@@ -182,8 +182,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 px-0 h-100">
-                    <div class="row p-1 m-1 h-100 bg-white d-flex align-items-center">
+                <div class="col-lg-2 px-0 h-100 ">
+                  <div class="row p-2 m-1 align-items-center bg-white ">
                         <div class="col-10 fs-8">
                             <div class="fs-8">M-Day</div>
                             <div>Session Available :2 with</div>
@@ -192,43 +192,88 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 p-0 m-0 bg-info">
-                    <div class="row p-0">
-                            <div class="tradingview-widget-container" style="width: 100%; height: 600px;">
-                                <div id="tradingview_chart" style="width: 100%; height: 100%;"></div>
-                                <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
-                                <script>
-                                    new TradingView.widget({
-                                        "container_id": "tradingview_chart",
-                                        "width": "100%",
-                                        "height": "600",
-                                        "symbol": "BYBIT:ZKLUSDT",
-                                        "interval": "D",
-                                        "timezone": "Etc/UTC",
-                                        "theme": "dark",
-                                        "style": "1",
-                                        "locale": "en",
-                                        "toolbar_bg": "#1a1a1a",
-                                        "enable_publishing": true,
-                                        "allow_symbol_change": true,
-                                        "details": true,
-                                        "studies": ["MA@tv-basicstudies"],
-                                        "enabled_features": [
-                                            "drawing_toolbar",
-                                            "use_localstorage_for_settings"
-                                        ],
-                                        "drawing_tools": true,
-                                        "disabled_features": ["volume_force_overlay"],
-                                        "studies": ["MA@tv-basicstudies"]
-                                    });
-                                </script>
-                            </div>
+            <div class="row px-1 ">
+                <div class="col-lg-8 px-0 h-100 ">
+                    <div class="row p-2 m-1 bg-white justify-content-center">
+                        <div class="tradingview-widget-container" style="width: 100%; height: 600px;">
+                            <div id="tradingview_chart" style="width: 100%; height: 100%;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script>
+                                new TradingView.widget({
+                                    "container_id": "tradingview_chart",
+                                    "width": "100%",
+                                    "height": "600",
+                                    "symbol": "BYBIT:ZKLUSDT",
+                                    "interval": "D",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "light",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#1a1a1a",
+                                    "enable_publishing": true,
+                                    "allow_symbol_change": true,
+                                    "details": true,
+                                    "studies": ["MA@tv-basicstudies"],
+                                    "enabled_features": [
+                                        "drawing_toolbar",
+                                        "use_localstorage_for_settings"
+                                    ],
+                                    "drawing_tools": true,
+                                    "disabled_features": ["volume_force_overlay"],
+                                    "studies": ["MA@tv-basicstudies"]
+                                });
+                            </script>
                         </div>
+                    </div>
                 </div>
-                <div class="col-lg-2 bg-secondary">a</div>
-                <div class="col-lg-2 bg-white">
-                    
+                <div class="col-lg-2 px-0 h-100">
+                  <div class="row p-2 m-1 bg-white">
+                    s
+                  </div>
+                </div>
+                <div class="col-lg-2 px-0 h-100">
+                  <div class="row p-2 m-1 bg-white">
+                    <div class="d-flex bg-secondary bg-opacity-10 p-0">
+                      <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
+                      <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
+                      <button class="btn p-1 border-0"><i class="fa fa-paper-plane fs-7s text-secondary"></i></button>
+                  </div>
+                  <div class="d-flex justify-content-center p-0 mt-2 pt-1">
+                      <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 mx-2 rounded-0" style="padding-left: 40px; padding-right: 40px;">Isolated</button>
+                      <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 mx-2 rounded-0" style="padding-left: 49px; padding-right: 49px;">20X</button>
+                  </div>
+                  <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2 position-relative">
+                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
+                      <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
+                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
+                      <div class="d-flex justify-content-end align-items-end w-100 h-100">
+                          <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
+                      </div>
+                      <div class="w-100 bg-secondary bg-opacity-10 position-absolute" style="height: 1px;"></div>
+                  </div>
+                  <form action="" class="p-1" method="post">
+                      <div class="d-flex justify-content-between align-items-end p-0 ps-2 mt-2">
+                        <div class="w-100">
+                            <small class="fs-9 text-secondary">Available</small>
+                            <span class="fs-8">0.0000 USDT</span>
+                            <span class="fs-9"><i class="fa fa-exchange text-primary"></i></span>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-end w-auto h-100">
+                            <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                          <div class="w-100">
+                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="far fa-chevron-down"></i></span>
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                          <div class="w-100">
+                            <input type="text" name="quantity" id="" class="form-control bg-secondary bg-opacity-10 ">
+                          </div>
+                      </div>
+                  </form>
+                  </div>
                 </div>
             </div>
         </div>
