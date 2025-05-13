@@ -44,14 +44,21 @@
         .scroll-thin::-webkit-scrollbar-track {
             background-color: transparent;
         }
-
-
-         
+        .option-item {
+          width: 200px;
+          height: 50px;
+        }
+        .option-item:hover {
+          background-color: #46387c50;
+        }
+        .cursor-pointer {
+          cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <main>
-        <div class="container" style="max-width: 99%;">
+        <div class="container " style="max-width: 99%;">
             <div class="row px-1 align-items-center h-100 ">
                 <div class="col-xl-10 col-lg-12 px-0 h-100 ">
                     <div class="row p-2 m-1 align-items-center bg-white ">
@@ -259,11 +266,14 @@
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">Isolated</button>
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">20X</button>
                   </div>
-                  <div class="d-flex justify-content-start align-items-end p-0 ps-0 mt-2 position-relative">
-                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
-                      <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
-                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
-                      <div class="d-flex justify-content-end align-items-end w-100 h-100">
+                  <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+                      <div class="w-100">
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
+                        <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
+                        
+                      </div>
+                      <div class="d-flex justify-content-end align-items-end w-auto h-100 me-1">
                           <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
                       </div>
                       <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
@@ -279,17 +289,170 @@
                             <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
                         </div>
                       </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                           <div class="w-100">
-                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="far fa-chevron-down"></i></span>
+                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="fa fs-10 fa-chevron-down"></i></span>
                           </div>
                       </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                           <div class="w-100">
-                            <input type="text" name="quantity" id="" class="form-control bg-secondary bg-opacity-10 ">
+                            <input type="text" name="quantity" id="" class="form-control bg-secondary bg-opacity-10 fs-8">
                           </div>
+                      </div>
+                      <div class="d-flex justify-content-start align-items-end h-auto p-0 px-2 mt-2">
+                          <div class="w-100">
+                            <input type="range" class="form-range" min="0" max="5" step="1" id="">
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2">
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Buy</small>
+                            <span class="fs-8">0 USDT</span>
+                        </div>
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Sell</small>
+                            <span class="fs-8">0 USDT</span>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2">
+                        <div class="w-auto">
+                          <small class="fs-9 text-secondary">Max Long</small>
+                          <span class="fs-9">0.0000<span class="fs-10"> USDT</span></span>
+                        </div>
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Max Short</small>
+                            <span class="fs-9">0.0000<span class="fs-10"> USDT</span></span>
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-start align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">MTL</label>
+                        </div>
+                      </div>
+                      <hr class="text-body-tertiary m-0 mt-1">
+                      <div class="d-flex justify-content-between align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">Long TP/SL</label>
+                        </div>
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">Short TP/SL</label>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
+                        <div class="w-75 me-1">
+                          <button class="btn btn-success rounded-pill fs-8 w-100">Open Long</button>
+                        </div>
+                        <div class="w-75 ms-1">
+                          <button class="btn btn-danger rounded-pill fs-8 w-100">Open Short</button>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2 mt-2">
+                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
+                            <small class="fs-9 text-secondary">Margin</small>
+                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
+                        </div>
+                        <div class="w-50 d-flex justify-content-between align-items-center ps-1">
+                            <small class="fs-9 text-secondary">Margin</small>
+                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
+                        </div>
                       </div>
                   </form>
+                  <div class="w-100 p-1 px-2 mt-2 mb-5">
+                    <div class="bg-secondary bg-opacity-25 ps-2 pe-lg-0 py-2 rounded-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
+                          <small class="fs-9 text-">Fee level</small>
+                        </div>
+                        <div class="w-75 d-flex justify-content-end align-items-center pe-2">
+                            <a href="#" class="fs-9 link-light link-underline-opacity-0 bg-secondary px-lg-2 p-md-0 py-0 rounded-3">
+                              <i class="fas fa-gem"></i>
+                              <span class="fs-9">Get 50% Off</span>
+                              <i class="fas fa-chevron-right fs-9"></i>
+                            </a>
+                        </div>
+                      </div>
+                      <div class="w-auto d-flex justify-content-start align-items-center">
+                        <span class="fs-9">Maker <span>0%</span></span>
+                        <i class="fs-10"> / </i>
+                        <span class="fs-9">Taker <span>0.04%</span></span>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row p-0 m-1 bg-white h-100">
+                    <form action="" method="post">
+                      <div class="d-flex justify-content-between align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <span class="fs-8">Wallet</span>
+                        </div>
+                        <div class="w-100 position-relative">
+                          <div class="custom-select-container d-flex justify-content-end align-items-center position-relative w-100">
+                            <button id="wallet_usdtToggle" type="button" class="btn p-1 w-auto border-0">
+                              <input type="hidden" id="wallet_selectedCurrency" name="currency" value="USDT">
+                              <span class="fs-8">USDT</span>
+                              <i class="fas fa-chevron-down fs-10"></i>
+                            </button>
+                            <div id="wallet_usdtOptions" class="position-absolute w-100 bg-white border mt-1 rounded" style="display: none; top: 20px;">
+                            </div>
+                          </div>
+                        
+                          <script>
+                          $(document).ready(function() {
+                            const currencies = [
+                              {name: 'Bitcoin', symbol: 'BTC', icon: 'fa-bitcoin'},
+                              {name: 'Ethereum', symbol: 'ETH', icon: 'fa-coins'},
+                              {name: 'Tether', symbol: 'USDT', icon: 'fa-coins'},
+                              {name: 'Litecoin', symbol: 'LTC', icon: 'fa-coins'},
+                              {name: 'Ripple', symbol: 'XRP', icon: 'fa-coins'},
+                              {name: 'Dogecoin', symbol: 'DOGE', icon: 'fa-coins'}
+                            ];
+                        
+                            const optionsContainer = $('#wallet_usdtOptions');
+                            currencies.forEach(currency => {
+                              const option = $('<div>').addClass('option-item p-3 w-auto d-flex align-items-center cursor-pointer border-bottom');
+                              option.html(`
+                                <i class="fa ${currency.icon} me-2"></i>
+                                <div>
+                                  <span class="d-block">${currency.name}</span>
+                                  <small class="text-muted fs-9">${currency.symbol}</small>
+                                </div>
+                              `);
+                        
+                              option.on('click', () => {
+                                $('#wallet_usdtToggle span').text(currency.symbol);
+                                $('#wallet_selectedCurrency').val(currency.symbol);
+                                optionsContainer.slideUp();
+                              });
+                        
+                              optionsContainer.append(option);
+                            });
+                            $('#wallet_usdtToggle').on('click', function(e) {
+                              e.stopPropagation();
+                              optionsContainer.slideToggle();
+                            });
+                            $(document).on('click', () => optionsContainer.slideUp());
+                          });
+                          </script>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
+                        <div class="w-75 me-1">
+                          <button class="btn btn-secondary bg-opacity-10 rounded-pill py-1 fs-8 w-100">Deposit</button>
+                        </div>
+                        <div class="w-75 ms-1">
+                          <button class="btn btn-primary rounded-pill py-1 fs-8 w-100">Transfer</button>
+                        </div>
+                      </div>
+                      <div class="badge bg-info w-100 d-flex align-items-center p-2 mt-2">
+                        <i class="fas fa-info-circle me-2 flex-shrink-0"></i>
+                        <p class="fs-8 mb-0 text-wrap flex-grow-1">
+                          Transfer funds to the futures wallet and start futures trading now.
+                        </p>
+                      </div>
+                    </form>
                   </div>
                 </div>
             </div>
@@ -303,6 +466,41 @@
             </div>
         </div>
     </main>
+    <footer>
+      <div class="container-fluid fixed-bottom bg-white">
+        <div class="d-flex justify-content-between align-items-center p-0 h-auto">
+          <div class="">
+            <i class="fa fa-signal text-primary fs-9"></i>
+            <span class="text-primary fs-9">Network Normal</span>
+            <span class="text-secondary fs-9">Line 1 <i class="fa fa-chevron-down fs-10"></i></span>
+          </div>
+          <div class="vr mx-1"></div>
+          <button class="btn p-0 border-0 fs-9 me-1"><i class="fa-solid fa-align-left fs-9"></i></button>
+          <button class="btn p-0 border-0 fs-9"><i class="fa fa-fire text-primary fs-9"></i></button>
+          <div class="overflow-x-auto mx-1 d-flex justify-content-start align-items-center">
+            <script>
+              let crypto_nav_bottom = `<div class="crypto_coins_bottom_nav">
+              <span class="text-secondary fs-9">BTCUSDT</span>
+              <span class="text-success fs-9">+0.05%</span>
+            </div>
+            <div class="vr mx-1"></div>`;
+            for (let i = 0; i < 11; i++) {
+              document.write(crypto_nav_bottom);
+              
+            }
+            </script>
+          </div>
+          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Connected <i class="fa fa-chevron-right"></i></a>
+          <button class="btn border-0 p-0 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
+          <div class="vr mx-1"></div>
+          <div class="position-relative">
+            <a href="#" class="link-secondary link-underline-opacity-0 fs-9">Coinit updates</a>
+            <i class="fa fa-circle position-absolute top-0 mt-1 end-0 fs-11 text-danger"></i>
+          </div>
+          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Contact Us</a>
+        </div>
+      </div>
+    </footer>
 </body>
 <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
 <script src="jscod.js"></script>
