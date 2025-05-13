@@ -58,7 +58,7 @@
 </head>
 <body>
     <main>
-        <div class="container" style="max-width: 99%;">
+        <div class="container " style="max-width: 99%;">
             <div class="row px-1 align-items-center h-100 ">
                 <div class="col-xl-10 col-lg-12 px-0 h-100 ">
                     <div class="row p-2 m-1 align-items-center bg-white ">
@@ -441,6 +441,41 @@
             </div>
         </div>
     </main>
+    <footer>
+      <div class="container-fluid fixed-bottom bg-white">
+        <div class="d-flex justify-content-between align-items-center p-0 h-auto">
+          <div class="">
+            <i class="fa fa-signal text-primary fs-9"></i>
+            <span class="text-primary fs-9">Network Normal</span>
+            <span class="text-secondary fs-9">Line 1 <i class="fa fa-chevron-down fs-10"></i></span>
+          </div>
+          <div class="vr mx-1"></div>
+          <button class="btn p-0 border-0 fs-9 me-1"><i class="fa-solid fa-align-left fs-9"></i></button>
+          <button class="btn p-0 border-0 fs-9"><i class="fa fa-fire text-primary fs-9"></i></button>
+          <div class="overflow-x-auto mx-1 d-flex justify-content-start align-items-center">
+            <script>
+              let crypto_nav_bottom = `<div class="crypto_coins_bottom_nav">
+              <span class="text-secondary fs-9">BTCUSDT</span>
+              <span class="text-success fs-9">+0.05%</span>
+            </div>
+            <div class="vr mx-1"></div>`;
+            for (let i = 0; i < 11; i++) {
+              document.write(crypto_nav_bottom);
+              
+            }
+            </script>
+          </div>
+          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Connected <i class="fa fa-chevron-right"></i></a>
+          <button class="btn border-0 p-0 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
+          <div class="vr mx-1"></div>
+          <div class="position-relative">
+            <a href="#" class="link-secondary link-underline-opacity-0 fs-9">Coinit updates</a>
+            <i class="fa fa-circle position-absolute top-0 mt-1 end-0 fs-11 text-danger"></i>
+          </div>
+          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Contact Us</a>
+        </div>
+      </div>
+    </footer>
 </body>
 <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
 
