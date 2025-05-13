@@ -242,11 +242,14 @@
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">Isolated</button>
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">20X</button>
                   </div>
-                  <div class="d-flex justify-content-start align-items-end p-0 ps-0 mt-2 position-relative">
-                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
-                      <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
-                      <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
-                      <div class="d-flex justify-content-end align-items-end w-100 h-100">
+                  <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+                      <div class="w-100">
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
+                        <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
+                        
+                      </div>
+                      <div class="d-flex justify-content-end align-items-end w-auto h-100 me-1">
                           <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
                       </div>
                       <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
@@ -262,17 +265,100 @@
                             <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
                         </div>
                       </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                           <div class="w-100">
-                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="far fa-chevron-down"></i></span>
+                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="fa fs-10 fa-chevron-down"></i></span>
                           </div>
                       </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 ps-2 mt-2">
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                           <div class="w-100">
                             <input type="text" name="quantity" id="" class="form-control bg-secondary bg-opacity-10 ">
                           </div>
                       </div>
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
+                          <div class="w-100">
+                            <input type="range" class="form-range" min="0" max="5" step="1" id="">
+                          </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2 mt-2">
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Buy</small>
+                            <span class="fs-8">0 USDT</span>
+                        </div>
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Sell</small>
+                            <span class="fs-8">0 USDT</span>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <small class="fs-9 text-secondary">Max Long</small>
+                          <span class="fs-9">0.000000</span>
+                          <span class="fs-10">USDT</span>
+                        </div>
+                        <div class="w-auto">
+                            <small class="fs-9 text-secondary">Max Short</small>
+                            <span class="fs-9">0.000000</span>
+                            <span class="fs-10">USDT</span>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-start align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">MTL</label>
+                        </div>
+                      </div>
+                      <hr class="text-body-tertiary">
+                      <div class="d-flex justify-content-between align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">Long TP/SL</label>
+                        </div>
+                        <div class="w-auto">
+                          <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
+                            <label class="fs-8 form-check-label ">Long TP/SL</label>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center p-0 px-2 mt-2">
+                        <div class="w-auto">
+                          <button class="btn btn-success rounded-pill">Open Long</button>
+                        </div>
+                        <div class="w-auto">
+                          <button class="btn btn-danger rounded-pill">Open Short</button>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end p-0 px-2 mt-2">
+                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
+                            <small class="fs-9 text-secondary">Margin</small>
+                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
+                        </div>
+                        <div class="w-50 d-flex justify-content-between align-items-center ps-1">
+                            <small class="fs-9 text-secondary">Margin</small>
+                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
+                        </div>
+                      </div>
                   </form>
+                  <div class="w-100 p-1 px-2 mt-2 mb-5">
+                    <div class="bg-secondary bg-opacity-25 ps-1 pt-2 rounded-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
+                          <small class="fs-9 text-">Fee level</small>
+                        </div>
+                        <div class="w-50 d-flex justify-content-center align-items-center">
+                            <div class="fs-9 text-white bg-secondary px-2 py-0 rounded-3">
+                              <i class="fas fa-gem"></i>
+                              <span class="fs-9">Get 50% Off</span>
+                              <i class="fas fa-chevron-right fs-9"></i>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="w-auto d-flex justify-content-start align-items-center">
+                        <span class="fs-9">Maker <span>0%</span></span>
+                        <i class=" ">/</i>
+                        <span class="fs-9">Taker <span>0.04%</span></span>
+                      </div>
+                    </div>
+                  </div>
                   </div>
                 </div>
             </div>
