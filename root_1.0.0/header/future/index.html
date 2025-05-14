@@ -63,6 +63,42 @@
         .cursor-pointer {
           cursor: pointer;
         }
+        @media (max-width:992px){
+          .buyandsellclass {
+            position: fixed;
+            top: 110%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            display: none !important;
+            width: 100%;
+            max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
+            background-color: #eeeff2;
+            padding: 10px !important;
+            z-index: 999999;
+            padding-bottom: 30px;
+            overflow-y: auto; /* اسکرول داخلی */
+            border-radius: 10px !important;
+            border: 1px solid gray;
+            -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
+            scrollbar-width: none; 
+            
+            
+          }
+          .buyandsellclass::-webkit-scrollbar {
+              display: none;
+          }
+          .buyorsellbuts{
+            display: block;
+            background-color: #eeeff2;
+            padding: 30px;
+            position: fixed;
+            bottom: 0px;
+            border-radius: 10px 10px 0 0 ;
+            border: 1px solid gray;
+            color: white;
+
+          }
+        }
     </style>
 </head>
 <body>
@@ -140,17 +176,59 @@
                           </div>
                           <div class="row d-block d-md-none">
                             <div class="col-12 mt-2 disbet">
-                                <div class="btn btn-primary w-100 discen">
-                                  <div class="me-2">
-                                    <i class="fa-regular fa-star fa-lg"></i>
+                              <div class="w-100 position-relative">
+                                <div class="custom-select-container bg-light border rounded-1 d-flex justify-content-center align-items-center  position-relative w-100" style="z-index: 999;">
+                                  <button id="crypto_usdtToggle" type="button" class="btn p-1 w-auto border-0">
+                                    <input type="hidden" id="crypto_selectedCurrency" name="currency" value="USDT">
+                                    <i class="fa-brands fa-bitcoin fa-xl " aria-hidden="true"></i>
+                                    <span class="fs-5 fw-bold">USDT</span>
+                                    <i class="fas fa-chevron-down fs-10 fw-bold"></i>
+                                  </button>
+                                  <div id="crypto_usdtOptions" class="position-absolute w-100 bg-white border mt-1 rounded" style="display: none; top: 20px;">
                                   </div>
-                                  <div class="me-2">
-                                    <i class="fa-brands fa-bitcoin fa-2xl"></i>
-                                  </div>
-                                  <div class="fw-bold fs-5">BTCUSDT</div>
                                 </div>
+                              
+                                <script>
+                                $(document).ready(function() {
+                                  const currencies = [
+                                    {name: 'Bitcoin', symbol: 'BTC', icon: 'fa-bitcoin'},
+                                    {name: 'Ethereum', symbol: 'ETH', icon: 'fa-coins'},
+                                    {name: 'Tether', symbol: 'USDT', icon: 'fa-coins'},
+                                    {name: 'Litecoin', symbol: 'LTC', icon: 'fa-coins'},
+                                    {name: 'Ripple', symbol: 'XRP', icon: 'fa-coins'},
+                                    {name: 'Dogecoin', symbol: 'DOGE', icon: 'fa-coins'}
+                                  ];
+                              
+                                  const optionsContainer = $('#crypto_usdtOptions');
+                                  currencies.forEach(currency => {
+                                    const option = $('<div>').addClass('option-item p-3 w-auto d-flex align-items-center cursor-pointer border-bottom');
+                                    option.html(`
+                                      <i class="fa ${currency.icon} me-2"></i>
+                                      <div>
+                                        <span class="d-block">${currency.name}</span>
+                                        <small class="text-muted fs-9">${currency.symbol}</small>
+                                      </div>
+                                    `);
+                              
+                                    option.on('click', () => {
+                                      $('#crypto_usdtToggle span').text(currency.symbol);
+                                      $('#crypto_selectedCurrency').val(currency.symbol);
+                                      optionsContainer.slideUp();
+                                    });
+                              
+                                    optionsContainer.append(option);
+                                  });
+                                  $('#crypto_usdtToggle').on('click', function(e) {
+                                    e.stopPropagation();
+                                    optionsContainer.slideToggle();
+                                  });
+                                  $(document).on('click', () => optionsContainer.slideUp());
+                                });
+                                </script>
+                              </div>
                             </div>
-                            <div class="col-12 discen mt-2 fw-bold text-danger fs-1 ">
+                            <!-- selecthere -->
+                            <div class="col-12 discen mt-md-2 mt-3  fw-bold text-danger fs-1 ">
                                 104,144.8
                             </div>
                             <hr class="myhr">
@@ -246,7 +324,7 @@
                 
                 
 
-                <div class="col-xl-2 d-xl-block d-lg-none px-0 h-100" style="position: relative;">
+                <div class="col-xl-2 d-xl-block d-none px-0 h-100" style="position: relative;" >
                   <div class="row p-0 m-1 mb-0  scroll-thin  flex-column bg-white" style="max-height: 615px;min-height: 615px; overflow-y: auto;">
                     <div class="col-12">
                       <div class="row">
@@ -266,7 +344,7 @@
                             <div onclick="redsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-danger"><i class="fa fa-sort-down"></i></div>
                           </div>
                           <div>
-                            <!-- selcet -->
+                            <!-- selcethere -->
                           </div>
                         </div>
                         
@@ -323,18 +401,12 @@
 
                     </div>
                   </div>
-                  <div style="position: absolute;bottom: -5px;left: 50%;transform: translate(-50%,0%);width: 94%;" class=" row p-0 m-1 bg-white" >
-                    <div class="col-6 p-0 m-0  bg-success bg-opacity-50">
-                      <div>s</div>
-                    </div>
-                    <div class="col-6  p-0 m-0 bg-success bg-opacity-50">
-                      <div>s</div>
-                    </div>
+                  <div style="position: absolute;bottom: -1px;left: 0%;transform: translate(0%,0%);width: 90%;" class=" row py-2 m-1 mb-0 bg-white" id="showitemdiv">
                   </div>
                 </div>
 
 
-                <div class="col-xl-2 col-lg-4 px-0"  >
+                <div class="col-xl-2 col-lg-4 d-lg-block d-none col-12 px-0 buyandsellclass" >
                   <div class="row p-0 m-1 bg-white" >
                     <div class="d-flex bg-secondary bg-opacity-10 p-0">
                       <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
@@ -461,7 +533,7 @@
                     </div>
                   </div>
                   </div>
-                  <div class="row p-0 m-1 bg-white h-100">
+                  <div class="row p-0 pb-3 m-1 bg-white">
                     <form action="" method="post">
                       <div class="d-flex justify-content-between align-items-center p-0 px-2 mt-2">
                         <div class="w-auto">
@@ -540,20 +612,22 @@
               <div class="col-lg-10 px-0 h-100 ">
                 <div class="row p-2 m-1 bg-white justify-content-center">
                   <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
-                      <div class="w-100">
-                        <button class="btn fs-8 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
-                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open Order(0)</button>
-                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Position History</button>
-                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Order & Trade History</button>
-                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Capital Flow</button>
-                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Wallet</button>
-                        
+                    <div class="w-100">
+                      <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
+                        <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
+                        <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Open Order(0)</button>
+                        <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Position History</button>
+                        <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Order & Trade History</button>
+                        <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Capital Flow</button>
+                        <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Wallet</button>
+                        <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
+                        <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
+                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
+                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
                       </div>
+                    </div>
                       <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
-                          <input type="checkbox" class="form-check p-0 m-0" name="hide_other_price" id="">
-                          <label for="hide_other_price" class="form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
-                          <button class="btn border-0 p-1 text-secondary"><i class="fa-solid fa-sliders fs-8"></i></button>
-                          <button class="btn border-0 p-1 text-secondary"><i class="fa-solid fa-bars fs-8"></i></button>
+
                       </div>
                       <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
                   </div>
@@ -573,9 +647,26 @@
               </div>
             </div>
         </div>
+
+
+        <div class="buyorsellbuts container-fluid">
+          <div class="row ">
+            <div class="col-6 p-1">
+              <div class="row p-0 m-0">
+                <div class="col-12  bg-danger px-4 py-2 text-w rounded-5 discen fs-6 cursor-pointer">Close</div>
+              </div>
+            </div>
+            <div class="col-6 m-0 p-1">
+              <div class="row p-0 m-0">
+                <div class="col-12  bg-success px-4 py-2 text-w rounded-5 discen fs-6 cursor-pointer">Open</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
     </main>
     <footer>
-      <div class="container-fluid p-0 px-1 fixed-bottom bg-white d-md-block d-sm-none d-lg-block d-none">
+      <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
         <div class="d-flex justify-content-between align-items-center p-0 h-auto">
           <div class="col-auto">
             <i class="fa fa-signal text-primary fs-9"></i>

@@ -545,5 +545,5 @@ input:checked ~ .slider--3 {
 
 
 .myhr{
-    margin-top: 16px;
+    margin-top: 16px !important;
 }

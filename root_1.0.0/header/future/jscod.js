@@ -61,8 +61,10 @@ let whichinterval = "defultbook"
 let orderbookmaindiv = document.getElementById('orderbookmaindiv');
 let Markettrademaindiv = document.getElementById('Markettrademaindiv');
 let wichpage = "orderpage"
-
-
+let colx2orders =document.getElementById('colx2orders');
+let sellarray = [];
+let buyarray = [];
+let showitemdiv = document.getElementById('showitemdiv');
 
 // for defult Order Book page
 function updateOrderTable() {
@@ -74,8 +76,8 @@ function updateOrderTable() {
         let averageofbooks = 0;
         let summofordersbook = 0;
         let countofbooks = bookorders.length;
-        let sellarray = [];
-        let buyarray = [];
+        sellarray = [];
+        buyarray = [];
       
         let last10Orders = bookorders.slice(-50);
       
@@ -152,7 +154,7 @@ function updateOrderTableGREEN() {
         let averageofbooks = 0;
         let summofordersbook = 0;
         let countofbooks = bookorders.length;
-        let buyarray = [];
+        buyarray = [];
       
         let last10Orders = bookorders.slice(-50);
       
@@ -205,7 +207,7 @@ function updateOrderTableRED() {
         let averageofbooks = 0;
         let summofordersbook = 0;
         let countofbooks = bookorders.length;
-        let sellarray = [];
+        sellarray = [];
       
         let last10Orders = bookorders.slice(-50);
       
@@ -443,3 +445,37 @@ function markettradefn(){
 }
 
 
+
+
+// Show item of %
+
+function countitemsarray(){
+  let countsells = 0
+  let countbuy = 0
+  bookorders.forEach(bookorder => {
+    if (bookorder.side === "sell") {
+      countsells++
+    } else {
+      countbuy++
+    }
+  });
+
+
+  showitemdiv.innerHTML = `
+    <div class="m-0" style="padding-right: 0px;width: ${countbuy}%;">
+      <div class="bg-success bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
+        <div>${countbuy}%</div>
+        <div class="bg-white discen fs-8" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
+      </div>
+    </div>
+    <div class="m-0" style="padding-left: 0px;border-left: 3px solid white;width: ${countsells}%;">
+      <div class="bg-danger  bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
+        <div>${countsells}%</div>
+        <div class="bg-white discen fs-8" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
+      </div>
+    </div>
+  
+  `
+}
+
+setInterval(countitemsarray, 1000);
