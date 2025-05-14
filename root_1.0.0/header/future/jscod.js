@@ -412,40 +412,31 @@ $(document).ready(function () {
       $("#limit").addClass("border-bottom-0");
       $("#limit").removeClass("border-bottom");
   });
+  $("#open_desk").click(function(){
+    $("#open_desk").addClass("bg-white  border-top");
+    $("#open_desk").removeClass("text-secondary border-top-0");
+    $("#close_desk").addClass("text-secondary border-top-0");
+    $("#close_desk").removeClass("bg-white  border-top");
+  });
+  $("#close_desk").click(function(){
+    $("#close_desk").addClass("bg-white  border-top");
+    $("#close_desk").removeClass("text-secondary border-top-0");
+    $("#open_desk").addClass("text-secondary border-top-0");
+    $("#open_desk").removeClass("bg-white  border-top");
+  });
+  $("#orderbook").click(function(){
+    $("#orderbook").addClass("bg-white  border-top");
+    $("#orderbook").removeClass("text-secondary border-top-0");
+    $("#markettrade").addClass("text-secondary border-top-0");
+    $("#markettrade").removeClass("bg-white  border-top");
+  });
+  $("#markettrade").click(function(){
+    $("#markettrade").addClass("bg-white  border-top");
+    $("#markettrade").removeClass("text-secondary border-top-0");
+    $("#orderbook").addClass("text-secondary border-top-0");
+    $("#orderbook").removeClass("bg-white  border-top");
+  });
 });
-
-// ***************************************************************************************************
-
-
-
-// MARKET TRADE JS CODES
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// select which page - market or book order
-
 function orderbookpage(){
   orderbookmaindiv.style.display = "block"
   Markettrademaindiv.style.display = "none"
