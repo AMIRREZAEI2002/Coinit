@@ -24,7 +24,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
+        .wallet-balance-wrapper {
+            width: 100%;
+            text-align: center;
+          }
 
+          .wallet-balance-wrapper .btn-group .btn {
+            min-width: 120px;
+          }
         .bluelable{
             background-color: rgb(127, 182, 255);
             color: rgb(5, 85, 177);
@@ -528,12 +535,49 @@
                   </div>
                 </div>
             </div>
+
+            <div class="row px-1 h-100">
+              <div class="col-lg-10 px-0 h-100 ">
+                <div class="row p-2 m-1 bg-white justify-content-center">
+                  <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+                      <div class="w-100">
+                        <button class="btn fs-8 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
+                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open Order(0)</button>
+                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Position History</button>
+                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Order & Trade History</button>
+                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Capital Flow</button>
+                        <button class="btn fs-8 border-primary text-secondary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Wallet</button>
+                        
+                      </div>
+                      <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
+                          <input type="checkbox" class="form-check p-0 m-0" name="hide_other_price" id="">
+                          <label for="hide_other_price" class="form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
+                          <button class="btn border-0 p-1 text-secondary"><i class="fa-solid fa-sliders fs-8"></i></button>
+                          <button class="btn border-0 p-1 text-secondary"><i class="fa-solid fa-bars fs-8"></i></button>
+                      </div>
+                      <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
+                  </div>
+                  <div class="wallet-balance-wrapper d-flex flex-column align-items-center my-4 p-5">
+                    <p class="mb-1">Wallet Balance: <strong>0.0000 USDT</strong></p>
+                    <p class="text-secondary fs-8 mb-3">
+                      Your futures account wallet balance is 0. You can deposit or transfer funds, or try zero-risk demo trading.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 me-2"href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html">Deposit <i class="fa-solid fa-caret-down"></i></a>
+                      <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 me-2" href="#">Transfer</a>
+                      <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 " href="#">Demo Trading</a>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
         </div>
     </main>
     <footer>
-      <div class="container-fluid fixed-bottom bg-white">
+      <div class="container-fluid p-0 px-1 fixed-bottom bg-white d-md-block d-sm-none d-lg-block d-none">
         <div class="d-flex justify-content-between align-items-center p-0 h-auto">
-          <div class="">
+          <div class="col-auto">
             <i class="fa fa-signal text-primary fs-9"></i>
             <span class="text-primary fs-9">Network Normal</span>
             <span class="text-secondary fs-9">Line 1 <i class="fa fa-chevron-down fs-10"></i></span>
@@ -541,27 +585,70 @@
           <div class="vr mx-1"></div>
           <button class="btn p-0 border-0 fs-9 me-1"><i class="fa-solid fa-align-left fs-9"></i></button>
           <button class="btn p-0 border-0 fs-9"><i class="fa fa-fire text-primary fs-9"></i></button>
-          <div class="overflow-x-auto mx-1 d-flex justify-content-start align-items-center">
-            <script>
-              let crypto_nav_bottom = `<div class="crypto_coins_bottom_nav">
-              <span class="text-secondary fs-9">BTCUSDT</span>
-              <span class="text-success fs-9">+0.05%</span>
-            </div>
-            <div class="vr mx-1"></div>`;
-            for (let i = 0; i < 11; i++) {
-              document.write(crypto_nav_bottom);
-              
-            }
-            </script>
+          <div id="marquee" class="overflow-x-hidden w-75 scroll-thin mx-0 px-1 d-flex justify-content-start align-items-center">
+            <!-- بخش اسکرول کردن کریپتو ها -->
           </div>
-          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Connected <i class="fa fa-chevron-right"></i></a>
-          <button class="btn border-0 p-0 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
-          <div class="vr mx-1"></div>
-          <div class="position-relative">
-            <a href="#" class="link-secondary link-underline-opacity-0 fs-9">Coinit updates</a>
+          
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const container = document.getElementById('marquee');
+              const speedPxPerSec = 70;
+              let isPaused = false;
+              let lastTimestamp = null;
+              let scrollPosition = 0;
+          
+              function createNavItem() {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'crypto_coins_bottom_nav col-auto p-0 d-md-block d-lg-block d-none fs-9 d-flex align-items-center';
+                wrapper.innerHTML = `
+                  <span class="text-secondary">BTCUSDT</span>
+                  <span class="text-success ms-1">+0.05%</span>
+                  <div class="vr bg-black text-black mx-1"></div>
+                  
+                `;
+                return wrapper;
+              }
+              const items = [];
+              for (let i = 0; i < 22; i++) {
+                const item = createNavItem();
+                items.push(item);
+                container.appendChild(item);
+              }
+              const viewportWidth = container.clientWidth;
+              while (container.scrollWidth < viewportWidth * 2) {
+                items.forEach(item => {
+                  container.appendChild(item.cloneNode(true));
+                });
+              }
+              function step(timestamp) {
+                if (lastTimestamp === null) lastTimestamp = timestamp;
+                const elapsed = timestamp - lastTimestamp;
+                lastTimestamp = timestamp;
+          
+                if (!isPaused) {
+                  scrollPosition += (speedPxPerSec * elapsed) / 1000;
+                  if (scrollPosition >= container.scrollWidth / 2) {
+                    scrollPosition -= container.scrollWidth / 2;
+                  }
+                  container.scrollLeft = scrollPosition;
+                }
+                requestAnimationFrame(step); 
+              }
+          
+              container.addEventListener('mouseenter', () => { isPaused = true; });
+              container.addEventListener('mouseleave', () => { isPaused = false; });
+          
+              requestAnimationFrame(step);
+            });
+          </script>
+          
+          <a href="#" class="link-secondary link-underline-opacity-0 fs-10 w-auto pt-1 text-nowrap">Connected <i class="fa fa-chevron-right"></i></a>
+          <button class="btn border-0 p-0 ps-1 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
+          <div class="vr mx-1 d-md-none d-sm-none d-lg-block d-none"></div>
+          <div class="position-relative d-md-none d-lg-block d-none">
+            <a href="#" class="link-secondary link-underline-opacity-0 text-nowrap fs-9 ">Coinit updates</a>
             <i class="fa fa-circle position-absolute top-0 mt-1 end-0 fs-11 text-danger"></i>
           </div>
-          <a href="#" class="link-secondary link-underline-opacity-0 fs-9 pt-1">Contact Us</a>
         </div>
       </div>
     </footer>
