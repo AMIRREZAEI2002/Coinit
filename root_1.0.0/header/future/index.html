@@ -299,7 +299,7 @@
                     <div class="row p-2 m-1 bg-white justify-content-center">
                         <div class="tradingview-widget-container" style="width: 100%; height: 600px;">
                             <div id="tradingview_chart" style="width: 100%; height: 100%;"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <!-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script> -->
                             <script>
                                 new TradingView.widget({
                                     "container_id": "tradingview_chart",
@@ -416,8 +416,8 @@
                 <div class="col-xl-2 col-lg-4 d-lg-block d-none col-12 px-0 buyandsellclass" >
                   <div class="row p-0 m-1 bg-white" >
                     <div class="d-flex bg-secondary bg-opacity-10 p-0">
-                      <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
-                      <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
+                      <button id="open_desk" class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
+                      <button id="close_desk" class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
                       <button class="btn p-1 border-0"></button>
                     </div>
                   <div class="d-flex justify-content-center p-0 mt-2 pt-1">
@@ -554,10 +554,10 @@
                     </div>
                     <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                         <div class="w-100">
-                          <div class="number-spinner position-relative">
-                            <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
-                            <button class="fs-9 btn p-0 border-0 m-0 text-secondary position-absolute ps-1" style="top: 14px; right: 10px;">BTC</button>
-                            <button class="btn btn-secondary bg-opacity-10 p-1 fs-8">BBO</button>
+                          <div class="number-spinner position-relative d-flex justify-content-between">
+                            <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
+                            <button class="fs-9 btn p-0 border-0 m-0 text-secondary position-absolute ps-1" style="top: 14px; right: 50px;">Last</button>
+                            <button class="btn w-auto bg-secondary bg-opacity-10 p-1 fs-8 ms-1">BBO</button>
                           </div>
                         </div>
                     </div>
@@ -616,61 +616,45 @@
                       </div>
                       <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                         <div class="w-100">
-                          <div class="number-spinner position-relative">
-                            <button type="button" class="spin-btn spin-up btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; top: 0;"><div class="d-flex justify-content-center align-items-center">▲</div></button>
-                            <div class="fs-8 text-secondary position-absolute ps-1" style="top: 12px;">Price:</div>
-                            <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 ps-5 pe-5" min="0" style="height: 40px;" />
-                            <div class="fs-9 text-secondary position-absolute ps-1" style="top: 14px; right: 20px;">USDT</div>
-                            <button type="button" class="spin-btn spin-down btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; bottom: 3px;"><div class="d-flex justify-content-top align-items-top">▼</div></button>
-                          </div>
-                          <div class="number-spinner position-relative mt-3">
-                            <button type="button" class="spin-btn spin-up btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; top: 0;"><div class="d-flex justify-content-center align-items-center">▲</div></button>
-                            <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Amount:</div>
-                            <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
-                            <div class="fs-9 text-secondary position-absolute ps-1" style="top: 14px; right: 20px;">BTC</div>
-                            <button type="button" class="spin-btn spin-down btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; bottom: 3px;"><div class="d-flex justify-content-top align-items-top">▼</div></button>
-                          </div>
+                          <span class="fs-8">Trigger Price <span>(USDT)</span></span>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-end h-auto p-0 px-2 mt-2">
+                      </div>
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                         <div class="w-100">
-                          <input type="range" class="form-range" min="0" max="5" step="1" id="">
+                          <div class="number-spinner position-relative d-flex justify-content-between">
+                            <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
+                            <button class="fs-9 btn p-0 border-0 m-0 text-secondary position-absolute ps-1" style="top: 14px; right: 8px;">Last <i class="fa fa-caret-down"></i></button>
+                          </div>
                         </div>
+                      </div>
+                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
+                      <div class="w-100">
+                        <span class="fs-8">Price <span>(USDT)</span></span>
+                      </div>
                     </div>
                     <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                       <div class="w-100">
-                        <div class="number-spinner position-relative">
-                          <button type="button" class="spin-btn spin-up btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; top: 0;"><div class="d-flex justify-content-center align-items-center">▲</div></button>
-                          <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Total:</div>
-                          <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
-                          <div class="fs-9 text-secondary position-absolute ps-1" style="top: 14px; right: 20px;">USDT</div>
-                          <button type="button" class="spin-btn spin-down btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; bottom: 3px;"><div class="d-flex justify-content-top align-items-top">▼</div></button>
+                        <div class="number-spinner position-relative d-flex justify-content-between">
+                          <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
+                          <button class="fs-9 btn btn-primary rounded-0 border-0 m-0 position-absolute " style="top: 7px; right: 8px;">Market</button>
                         </div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-start align-items-center p-0 px-2 mt-2">
-                      <div class="w-auto">
-                        <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
-                          <label class="fs-8 form-check-label ">TP</label>
-                        <input type="checkbox" name="" class="form-check-inline p-0 m-0" id="">
-                          <label class="fs-8 form-check-label ">SL</label>
+                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
+                          <div class="w-100">
+                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="fa fs-10 fa-chevron-down"></i></span>
+                          </div>
                       </div>
-                    </div>
+                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
+                          <div class="w-100">
+                            <input type="text" name="quantity" id="" class="form-control border-0 bg-secondary bg-opacity-10 fs-8">
+                          </div>
+                      </div>
                     <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
                       <div class="w-100 me-1">
                         <button class="btn btn-success rounded-pill fs-8 w-100">Buy <span id="token_name">BTC</span></button>
                       </div>
                     </div>
-                      <div class="d-flex justify-content-between align-items-end p-0 px-2 mt-2">
-                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
-                            <small class="fs-9 text-secondary">Margin</small>
-                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
-                        </div>
-                        <div class="w-50 d-flex justify-content-between align-items-center ps-1">
-                            <small class="fs-9 text-secondary">Margin</small>
-                            <span class="fs-8">0<span class="fs-9"> USDT</span></span>
-                        </div>
-                      </div>
                        <div class="w-100 p-1 px-2 mt-2 mb-5">
                     <div class="bg-secondary bg-opacity-25 ps-2 pe-lg-0 py-2 rounded-3 ">
                       <div class="d-flex justify-content-between align-items-center">
