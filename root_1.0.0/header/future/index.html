@@ -28,14 +28,7 @@
             width: 100%;
             text-align: center;
           }
-          input[type=number]::-webkit-outer-spin-button,
-          input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-          input[type=number] {
-            -moz-appearance: textfield;
-          }
+
           .wallet-balance-wrapper .btn-group .btn {
             min-width: 120px;
           }
@@ -416,8 +409,8 @@
                 <div class="col-xl-2 col-lg-4 d-lg-block d-none col-12 px-0 buyandsellclass" >
                   <div class="row p-0 m-1 bg-white" >
                     <div class="d-flex bg-secondary bg-opacity-10 p-0">
-                      <button id="open_desk" class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
-                      <button id="close_desk" class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
+                      <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
+                      <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
                       <button class="btn p-1 border-0"></button>
                     </div>
                   <div class="d-flex justify-content-center p-0 mt-2 pt-1">
@@ -426,9 +419,9 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
                       <div class="w-100">
-                        <button id="limit" class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
-                        <button id="maker" class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
-                        <button id="trigger" class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Limit</button>
+                        <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Maker</button>
+                        <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Trigger</button>
                         
                       </div>
                       <div class="d-flex justify-content-end align-items-end w-auto h-100 me-1">
@@ -436,7 +429,7 @@
                       </div>
                       <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
                   </div>
-                  <form action="" class="p-1" id="maker-box" style="display: none;" method="post">
+                  <form action="" class="p-1" method="post">
                       <div class="d-flex justify-content-between align-items-end p-0 ps-2 mt-2">
                         <div class="w-100">
                             <small class="fs-9 text-secondary">Available</small>
@@ -517,7 +510,8 @@
                             <span class="fs-8">0<span class="fs-9"> USDT</span></span>
                         </div>
                       </div>
-                       <div class="w-100 p-1 px-2 mt-2 mb-5">
+                  </form>
+                  <div class="w-100 p-1 px-2 mt-2 mb-5">
                     <div class="bg-secondary bg-opacity-25 ps-2 pe-lg-0 py-2 rounded-3 ">
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="w-50 d-flex justify-content-between align-items-center pe-1">
@@ -538,145 +532,6 @@
                       </div>
                     </div>
                   </div>
-                  </form>
-                  <form action="" class="p-1" id="limit-box" style="display: block;" method="post">
-                      <div class="d-flex justify-content-between align-items-end p-0 ps-2 mt-2">
-                        <div class="w-100">
-                            <small class="fs-9 text-secondary">Available</small>
-                            <span class="fs-8">0.0000 USDT</span>
-                            <span class="fs-9"><i class="fa fa-exchange text-primary"></i></span>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
-                        <div class="w-100">
-                          <span class="fs-8">Price <span>(USDT)</span></span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
-                        <div class="w-100">
-                          <div class="number-spinner position-relative d-flex justify-content-between">
-                            <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
-                            <button class="fs-9 btn p-0 border-0 m-0 text-secondary position-absolute ps-1" style="top: 14px; right: 50px;">Last</button>
-                            <button class="btn w-auto bg-secondary bg-opacity-10 p-1 fs-8 ms-1">BBO</button>
-                          </div>
-                        </div>
-                    </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
-                        <div class="w-100">
-                          <button class="fs-8 btn p-0 border-0">Quantity <span>(USDT)</span> <i class="fa fs-9 fa-caret-down"></i></button>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
-                        <div class="w-100">
-                          <input type="text" name="quantity" id="" class="form-control bg-secondary bg-opacity-10 fs-8">
-                        </div>
-                    </div>
-                      <div class="d-flex justify-content-start align-items-end h-auto p-0 px-2 mt-2">
-                          <div class="w-100">
-                            <input type="range" class="form-range" min="0" max="5" step="1" id="">
-                          </div>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
-                        <div class="w-100 me-1">
-                          <button class="btn btn-success rounded-pill fs-8 w-100">Buy <span id="token_name">BTC</span></button>
-                        </div>
-                      </div>
-                       <div class="w-100 p-1 px-2 mt-2 mb-5">
-                      <div class="bg-secondary bg-opacity-25 ps-2 pe-lg-0 py-2 rounded-3 ">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="w-50 d-flex justify-content-between align-items-center pe-1">
-                              <small class="fs-9 text-">Fee level</small>
-                            </div>
-                            <div class="w-75 d-flex justify-content-end align-items-center pe-2">
-                                <a href="#" class="fs-9 link-light link-underline-opacity-0 bg-secondary px-lg-2 p-md-0 py-0 rounded-3">
-                                  <i class="fas fa-gem"></i>
-                                  <span class="fs-9">Get 50% Off</span>
-                                  <i class="fas fa-chevron-right fs-9"></i>
-                                </a>
-                            </div>
-                          </div>
-                          <div class="w-auto d-flex justify-content-start align-items-center">
-                            <span class="fs-9">Maker <span>0%</span></span>
-                            <i class="fs-10"> / </i>
-                            <span class="fs-9">Taker <span>0.04%</span></span>
-                          </div>
-                        </div>
-                      </div>
-                  </form>
-                  <form action="" class="p-1" id="trigger-box" style="display: none;" method="post">
-                      <div class="d-flex justify-content-between align-items-end p-0 ps-2 mt-2">
-                        <div class="w-100">
-                            <small class="fs-9 text-secondary">Available</small>
-                            <span class="fs-8">0.0000 USDT</span>
-                            <span class="fs-9"><i class="fa fa-exchange text-primary"></i></span>
-                        </div>
-                        <div class="d-flex justify-content-end align-items-end w-auto h-100">
-                            <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
-                        <div class="w-100">
-                          <span class="fs-8">Trigger Price <span>(USDT)</span></span>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
-                        <div class="w-100">
-                          <div class="number-spinner position-relative d-flex justify-content-between">
-                            <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
-                            <button class="fs-9 btn p-0 border-0 m-0 text-secondary position-absolute ps-1" style="top: 14px; right: 8px;">Last <i class="fa fa-caret-down"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
-                      <div class="w-100">
-                        <span class="fs-8">Price <span>(USDT)</span></span>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
-                      <div class="w-100">
-                        <div class="number-spinner position-relative d-flex justify-content-between">
-                          <input type="number" name="price_token" class="form-control w-100 bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;" />
-                          <button class="fs-9 btn btn-primary rounded-0 border-0 m-0 position-absolute " style="top: 7px; right: 8px;">Market</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
-                          <div class="w-100">
-                            <span class="fs-8">Quantity <span>(USDT)</span> <i class="fa fs-10 fa-chevron-down"></i></span>
-                          </div>
-                      </div>
-                      <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
-                          <div class="w-100">
-                            <input type="text" name="quantity" id="" class="form-control border-0 bg-secondary bg-opacity-10 fs-8">
-                          </div>
-                      </div>
-                    <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
-                      <div class="w-100 me-1">
-                        <button class="btn btn-success rounded-pill fs-8 w-100">Buy <span id="token_name">BTC</span></button>
-                      </div>
-                    </div>
-                       <div class="w-100 p-1 px-2 mt-2 mb-5">
-                    <div class="bg-secondary bg-opacity-25 ps-2 pe-lg-0 py-2 rounded-3 ">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="w-50 d-flex justify-content-between align-items-center pe-1">
-                          <small class="fs-9 text-">Fee level</small>
-                        </div>
-                        <div class="w-75 d-flex justify-content-end align-items-center pe-2">
-                            <a href="#" class="fs-9 link-light link-underline-opacity-0 bg-secondary px-lg-2 p-md-0 py-0 rounded-3">
-                              <i class="fas fa-gem"></i>
-                              <span class="fs-9">Get 50% Off</span>
-                              <i class="fas fa-chevron-right fs-9"></i>
-                            </a>
-                        </div>
-                      </div>
-                      <div class="w-auto d-flex justify-content-start align-items-center">
-                        <span class="fs-9">Maker <span>0%</span></span>
-                        <i class="fs-10"> / </i>
-                        <span class="fs-9">Taker <span>0.04%</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  </form>
                   </div>
                   <div class="row p-0 pb-3 m-1 bg-white">
                     <form action="" method="post">
@@ -753,25 +608,22 @@
                 </div>
             </div>
 
-            <div class="row px-1 h-100  w-100" style="position: absolute;">
-              <div class="col-xl-10 col-lg-8 px-0 h-100 bg-info">
+            <div class="row px-1 h-100">
+              <div class="col-lg-10 px-0 h-100 ">
                 <div class="row p-2 m-1 bg-white justify-content-center">
                   <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
                     <div class="w-100">
-                      <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap justify-content-between align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
+                      <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
                         <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Open Order(0)</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Position History</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Order & Trade History</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Capital Flow</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Wallet</button>
-                        <div class="disend">
-                          <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
-                          <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
-                          <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
-                          <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
-                        </div>
-
+                        <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
+                        <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
+                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
+                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
                       </div>
                     </div>
                       <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
@@ -797,7 +649,7 @@
         </div>
 
 
-        <div class="buyorsellbuts container-fluid" style="display: none;">
+        <div class="buyorsellbuts container-fluid " style="display: none;">
           <div class="row ">
             <div class="col-6 p-1">
               <div class="row p-0 m-0">
@@ -810,6 +662,7 @@
               </div>
             </div>
           </div>
+
         </div>
     </main>
     <footer>
