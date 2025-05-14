@@ -95,7 +95,7 @@
               display: none;
           }
           .buyorsellbuts{
-            display: block;
+            display: block !important;
             background-color: #eeeff2;
             padding: 30px;
             position: fixed;
@@ -769,22 +769,25 @@
                 </div>
             </div>
 
-            <div class="row px-1 h-100">
-              <div class="col-lg-10 px-0 h-100 ">
+            <div class="row px-1 h-100  w-100" style="position: absolute;">
+              <div class="col-xl-10 col-lg-8 px-0 h-100 bg-info">
                 <div class="row p-2 m-1 bg-white justify-content-center">
                   <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
                     <div class="w-100">
-                      <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
+                      <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap justify-content-between align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
                         <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Open Order(0)</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Position History</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Order & Trade History</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Capital Flow</button>
                         <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Wallet</button>
-                        <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
-                        <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
-                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
-                        <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
+                        <div class="disend">
+                          <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
+                          <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
+                          <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
+                          <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
+                        </div>
+
                       </div>
                     </div>
                       <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
@@ -810,7 +813,7 @@
         </div>
 
 
-        <div class="buyorsellbuts container-fluid">
+        <div class="buyorsellbuts container-fluid" style="display: none;">
           <div class="row ">
             <div class="col-6 p-1">
               <div class="row p-0 m-0">
@@ -823,7 +826,6 @@
               </div>
             </div>
           </div>
-
         </div>
     </main>
     <footer>
