@@ -362,6 +362,57 @@ function redsortbook(wichpage){
         setInterval(updateOrderTableRED, 1000);
     }
 }
+document.querySelectorAll('.spin-up').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    const wrapper = this.closest('.number-spinner');
+    const input = wrapper.querySelector('input[type=number]');
+    input.stepUp();
+    input.dispatchEvent(new Event('input'));
+  });
+});
+document.querySelectorAll('.spin-down').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    const wrapper = this.closest('.number-spinner');
+    const input = wrapper.querySelector('input[type=number]');
+    input.stepDown();
+    input.dispatchEvent(new Event('input'));
+  });
+});
+$(document).ready(function () {
+  $("#limit").click(function(){
+      $("#limit-box").show();
+      $("#maker-box").hide();
+      $("#trigger-box").hide();
+      $("#limit").addClass("border-bottom");
+      $("#limit").removeClass("border-bottom-0");
+      $("#maker").addClass("border-bottom-0");
+      $("#maker").removeClass("border-bottom");
+      $("#trigger").addClass("border-bottom-0");
+      $("#trigger").removeClass("border-bottom");
+  });
+  $("#maker").click(function(){
+      $("#maker-box").show();
+      $("#limit-box").hide();
+      $("#trigger-box").hide();
+      $("#maker").addClass("border-bottom");
+      $("#maker").removeClass("border-bottom-0");
+      $("#limit").addClass("border-bottom-0");
+      $("#limit").removeClass("border-bottom");
+      $("#trigger").addClass("border-bottom-0");
+      $("#trigger").removeClass("border-bottom");
+  });
+  $("#trigger").click(function(){
+      $("#trigger-box").show();
+      $("#maker-box").hide();
+      $("#limit-box").hide();
+      $("#trigger").addClass("border-bottom");
+      $("#trigger").removeClass("border-bottom-0");
+      $("#maker").addClass("border-bottom-0");
+      $("#maker").removeClass("border-bottom");
+      $("#limit").addClass("border-bottom-0");
+      $("#limit").removeClass("border-bottom");
+  });
+});
 
 // ***************************************************************************************************
 
