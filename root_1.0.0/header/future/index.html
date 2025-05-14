@@ -19,6 +19,8 @@
     <link href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
@@ -203,8 +205,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 d-xl-block d-lg-none px-0 " style="height: 100%;">
-                  <div class="row p-2 m-1 align-items-center bg-white ">
+                <div class="col-xl-2 d-xl-block d-lg-none d-none px-0 " style="height: 100%;">
+                  <div class="row p-2 m-1 align-items-center bg-white " style="min-height: 56.5px;max-height: 60.76px;">
                     <div class="col-10 fs-8">
                       <div class="fs-8">M-Day</div>
                       <div>Session Available :2 with</div>
@@ -248,34 +250,104 @@
                         </div>
                     </div>
                 </div>
+                
+                
 
-                <div class="col-xl-2 d-xl-block d-lg-none px-0 h-100">
-                  <div class="row p-2 m-1 bg-white scroll-thin  flex-column" style="max-height: 615px;min-height: 615px; overflow-y: auto;">
-                    <div class=" p-0 ">
-                      <div class="distart p-0 ">
-                        <div class="disbet">
-                          <div onclick="defultsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort"></i></div>
-                          <div onclick="greensortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort-up"></i></div>
-                          <div onclick="redsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort-down"></i></div>
-                        </div>
-                        <div>
-                          <!-- selcet -->
+                <div class="col-xl-2 d-xl-block d-lg-none px-0 h-100" style="position: relative;">
+                  <div class="row p-0 m-1 mb-0  scroll-thin  flex-column bg-white" style="max-height: 615px;min-height: 615px; overflow-y: auto;">
+                    <div class="col-12">
+                      <div class="row">
+                        
+                      </div>
+                      <div class="row">
+                        <div class="d-flex bg-secondary bg-opacity-10 p-0">
+                          <button onclick="orderbookpage()" class="btn fs-8 w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Order Book</button>
+                          <button onclick="markettradepage()" class="btn fs-8 w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Market Trade</button>
                         </div>
                       </div>
-                      
-                      <table class="table table-sm table-borderless align-middle fs-8" id="orderormarketdiv">
+                      <div class="p-0 mt-3" id="orderbookmaindiv">
+                        <div class="distart p-0 ">
+                          <div class="disbet">
+                            <div onclick="defultsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-primary"><i class="fa fa-sort"></i></div>
+                            <div onclick="greensortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-success"><i class="fa fa-sort-up"></i></div>
+                            <div onclick="redsortbook('orderpage')" style="width: 23px;height: 23px;" class="fs-9 discen mx-1 p-1 btn btn-small btn-danger"><i class="fa fa-sort-down"></i></div>
+                          </div>
+                          <div>
+                            <!-- selcet -->
+                          </div>
+                        </div>
                         
-                      </table>
+                        <table class="table table-sm table-borderless align-middle fs-8" id="orderormarketdiv" >
+                          <thead class="text-secondary">
+                              <tr class="fs-9 ">
+                                    <th class="text-secondary">Price (USDT)</th>
+                                    <th class="text-secondary">Quantity (USDT)</th>
+                                    <th class="text-secondary">Total (USDT)</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody class="fs-9 text-center" id="tbodysell">
+                                <!-- Sell Orders -->
+                            </tbody>
+                    
+                            <tbody>
+                                <!-- Mid Price separator -->
+                                <tr class="text-center text-dark fw-bold">
+                                    <td colspan="3" id="midnumber">
+                                    <div class="text-danger fs-6 distart">
+                                        <div>104,144.8</div>
+                                        <div><i class="fa-solid fa-down-long ml-2 fs-6s"></i></div>
+                                        <div class="text-secondary fs-9 ml-2">104,146.9</div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                    
+                            <tbody class="fs-9 text-center" id="tbodybuy">                        
+                                <!-- Buy Orders -->
+                            </tbody>
+                        </table>
+                      </div>
+
+
+                      <div class="p-0 mt-3" id="Markettrademaindiv" style="display: none;">
+                        
+                        <table class="table table-sm table-borderless align-middle fs-8" id="orderormarketdiv">
+                          <thead class="text-secondary">
+                              <tr class="fs-9 ">
+                                    <th class="text-secondary">Price (USDT)</th>
+                                    <th class="text-secondary">Amount (BTC)</th>
+                                    <th class="text-secondary">Time</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody class="fs-9 text-center" id="markettbody">
+                                <!-- Sell Orders -->
+                            </tbody>
+                        </table>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <div style="position: absolute;bottom: -5px;left: 50%;transform: translate(-50%,0%);width: 94%;" class=" row p-0 m-1 bg-white" >
+                    <div class="col-6 p-0 m-0  bg-success bg-opacity-50">
+                      <div>s</div>
+                    </div>
+                    <div class="col-6  p-0 m-0 bg-success bg-opacity-50">
+                      <div>s</div>
                     </div>
                   </div>
                 </div>
+
+
                 <div class="col-xl-2 col-lg-4 px-0"  >
                   <div class="row p-0 m-1 bg-white" >
                     <div class="d-flex bg-secondary bg-opacity-10 p-0">
                       <button class="btn w-50 bg-white  border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Open</button>
                       <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2">Close</button>
-                      <button class="btn p-1 border-0"><i class="fa fa-paper-plane fs-7s text-secondary"></i></button>
-                  </div>
+                      <button class="btn p-1 border-0"></button>
+                    </div>
                   <div class="d-flex justify-content-center p-0 mt-2 pt-1">
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">Isolated</button>
                       <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold  py-1 w-75 mx-2 rounded-0">20X</button>
