@@ -596,3 +596,17 @@ function toggleSidebar() {
   const el = document.getElementById('coinlistdiv');
   el.classList.toggle('active');
 }
+
+
+
+
+
+
+
+
+
+
+function toggleSidebar() {
+  const el = document.getElementById('coinlistdiv');
+  el.classList.toggle('active');
+}

@@ -830,7 +830,7 @@
            <div class="col-lg-12 fs-6s">
            <div class="row align-items-center gx-4 text-nowrap">
              <!-- ثابت - آیکن و نام نماد -->
-             <div class="col-md-auto col-6 d-flex align-items-center d-md-block d-none" style="border-right: 1px solid gray;">
+             <div onclick="toggleSidebar()" class="col-md-auto col-6 d-flex align-items-center d-md-block d-none" style="border-right: 1px solid gray;">
              <div class="d-flex align-items-center">
                <div class="me-2">
                <i class="fa-regular fa-star fa-lg">
@@ -1608,6 +1608,221 @@
      </div>
     </div>
    </div>
+
+   <div class="siderofcoins d-md-block d-none" id="coinlistdiv">
+    <div class="container-fluid bg-white rounded-1" style="height: 100%;">
+      <div class="row">
+        <div class="col-12 mt-2">
+          <div class="input-group">
+              <button class="btn border-0 z-3"><i class="fa fa-search "></i></button>
+              <input type="text" class="form-control z-2 rounded-1 w-100 position-absolute ps-5 fs-8 bg-secondary bg-opacity-10" placeholder="Search for your language and currency">
+          </div>
+      </div>
+      </div>
+      <div class="row ">
+        <div class="col overflow-auto px-2 scroll-thin " style="white-space: nowrap;">
+          <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+            <div class="w-100 ">
+              <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
+                <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">USDT</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">USDC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">ETH</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">TUSD</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">USDC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">ETH</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">TUSD</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col overflow-auto px-2 scroll-thin" style="white-space: nowrap;">
+          <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+            <div class="w-100 ">
+              <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch ">
+                <button class="btn btn-sm btn-light mx-1 mb-2">All</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Main</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Innovation</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Trump</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">New Trading</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <table class="table table-sm table-borderless align-middle fs-8">
+          <thead class="text-secondary sticky-top bg-white">
+            <tr class="fs-7 text-muted text-start">
+              <th  style="width: 33.33%;" ><button class="btn btn-sm m-0 p-0 fs-8">Pair <i class="fa fa-sort"></i></button></th>
+              <th  style="width: 33.33%;" ><button class="btn btn-sm m-0 p-0 fs-8">Price <i class="fa fa-sort"></i></button></th>
+              <th  style="width: 33.33%;"><button class="btn btn-sm m-0 p-0 fs-8">Change <i class="fa fa-sort"></i></button></th>
+            </tr>
+          </thead>
+        </table>
+      
+        <div class="overflow-auto scroll-thin" style="min-height: 200px;max-height: 270px;">
+          <table class="table table-sm table-borderless align-middle fs-8">
+            <tbody>
+              <tr>
+                <td style="width: 33.33%;" class="crypto  ">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="width: 33.33%;" > 0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td style="width: 33.33%;" class="change-down "> 
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
   </main>
   <footer>
