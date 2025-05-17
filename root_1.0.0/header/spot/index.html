@@ -537,15 +537,15 @@
             <div class="px-2">
               <div class="d-flex justify-content-start align-items-center p-2  fs-5 fw-bold my-1">Spot</div>
               <div class="d-flex justify-content-center p-0 mt-2 pt-1">
-                <div class="w-100 d-flex justify-content-between align-items-center rounded-pill px-1 m-1" style="background-color: #eeeff2;">
-                  <div class="col-6 ">
+                <div class="w-100 d-flex justify-content-between align-items-center rounded-pill px-1 py-0 m-1" style="background-color: #eeeff2;">
+                  <div class="col-6 p-0">
                     <div class="row justify-content-center align-items-center p-0 m-1">
-                      <div class="col-12 m-1 p-1 text-white bg-success discen rounded-pill cursor-pointer">Buy</div>
+                      <div id="buy_btn_spot" class="col-12 m-0 p-0 text-white bg-success discen rounded-pill cursor-pointer">Buy</div>
                     </div>
                   </div>
-                  <div class="col-6 ">
+                  <div class="col-6 p-0">
                     <div class="row justify-content-center align-items-center m-1">
-                      <div class="col-12 m-1 p-1  discen rounded-pill cursor-pointer">Sell</div>
+                      <div id="sell_btn_spot" class="col-12 m-0 p-0 discen rounded-pill cursor-pointer">Sell</div>
                     </div>
                   </div>
                 </div>
@@ -553,8 +553,8 @@
               <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
                 <div class="w-100">
                   <button class="btn fs-9 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0" id="limit">Limit</button>
-                  <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0" id="maker">Maker</button>
-                  <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0" id="trigger">Stop-Limit</button>
+                  <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0" id="maker">Market</button>
+                  <button class="btn fs-9 border-primary border-bottom-0 border-top-0 border-end-0 border-start-0 fw-semibold rounded-0" id="trigger">Stop-Limit <i class="fa fa-caret-down"></i></button>
                 </div>
                 <div class="d-flex justify-content-end align-items-end w-auto h-100 me-1">
                   <button class="btn fs-9 border-0 fw-semibold rounded-0"><i class="fa fa-info"></i></button>
@@ -565,7 +565,7 @@
             <!-- محتوای فرم‌ها -->
             <div class="scroll-thin flex-grow-1" style="overflow-y: auto;">
               <!-- فرم Maker -->
-              <form action="" class="p-1" id="maker" style="display: none;" method="post">
+              <form action="" class="p-1" id="maker-box" style="display: none;" method="post">
                 <div class="d-flex justify-content-between align-items-end p-0 ps-2 mt-2">
                   <div class="w-100">
                       <small class="fs-9 text-secondary">Available</small>

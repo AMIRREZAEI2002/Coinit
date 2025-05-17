@@ -412,6 +412,14 @@ $(document).ready(function () {
       $("#limit").addClass("border-bottom-0");
       $("#limit").removeClass("border-bottom");
   });
+  $("#buy_btn_spot").click(function(){
+    $("#buy_btn_spot").addClass("text-white bg-success");
+    $("#sell_btn_spot").removeClass("text-white bg-danger");
+  });
+  $("#sell_btn_spot").click(function(){
+    $("#sell_btn_spot").addClass("text-white bg-danger");
+    $("#buy_btn_spot").removeClass("text-white bg-success");
+  });
   $("#open_desk").click(function(){
     $("#open_desk").addClass("bg-white  border-top");
     $("#open_desk").removeClass("text-secondary border-top-0");
