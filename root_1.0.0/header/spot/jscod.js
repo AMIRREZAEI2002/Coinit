@@ -425,57 +425,17 @@ $(document).ready(function () {
     $("#open_desk").removeClass("bg-white  border-top");
   });
   $("#orderbook").click(function(){
-    $('#changesortdivbtns').show();
     $("#orderbook").addClass("bg-white  border-top");
     $("#orderbook").removeClass("text-secondary border-top-0");
     $("#markettrade").addClass("text-secondary border-top-0");
     $("#markettrade").removeClass("bg-white  border-top");
   });
   $("#markettrade").click(function(){
-    $('#changesortdivbtns').hide();
     $("#markettrade").addClass("bg-white  border-top");
     $("#markettrade").removeClass("text-secondary border-top-0");
     $("#orderbook").addClass("text-secondary border-top-0");
     $("#orderbook").removeClass("bg-white  border-top");
   });
-  $("#markettrade").click(function(){
-    $('#changesortdivbtns').hide();
-    $("#markettrade").addClass("bg-white  border-top");
-    $("#markettrade").removeClass("text-secondary border-top-0");
-    $("#orderbook").addClass("text-secondary border-top-0");
-    $("#orderbook").removeClass("bg-white  border-top");
-  });
-  $("#FHVT_btn").click(function(){
-    $("#FHVT_box").slideToggle();
-  });
-  $("#24_funding").click(function() {
-    if ($(this).is(":checked")) {
-      $('#funding_box').show();
-    } else {
-      $('#funding_box').hide();
-    }
-  });
-  $("#24_high_low").click(function() {
-    if ($(this).is(":checked")) {
-      $('#high_low_box').show();
-    } else {
-      $('#high_low_box').hide();
-    }
-  });
-  $("#24_vloume").click(function() {
-    if ($(this).is(":checked")) {
-      $('#volume_box').show();
-    } else {
-      $('#volume_box').hide();
-    }
-  });
-  $("#24_turnover").click(function() {
-    if ($(this).is(":checked")) {
-      $('#turnover_box').show();
-    } else {
-      $('#turnover_box').hide();
-    }
-  });  
 });
 function orderbookpage(){
   orderbookmaindiv.style.display = "block"
@@ -563,37 +523,6 @@ function countitemsarray(){
 }
 
 setInterval(countitemsarray, 1000);
-<<<<<<< HEAD
-let currentLeverage = 20;
-
-function updateDisplay() {
-  document.getElementById("leverageDisplay").innerText = currentLeverage + "X";
-  document.getElementById("leverageSlider").value = currentLeverage;
-}
-
-function changeLeverage(delta) {
-  if (currentLeverage + delta >= 1 && currentLeverage + delta <= 500) {
-    currentLeverage += delta;
-    updateDisplay();
-  }
-}
-
-function setLeverage(value) {
-  currentLeverage = value;
-  updateDisplay();
-}
-
-document.getElementById("leverageSlider").addEventListener("input", function(e) {
-  currentLeverage = parseInt(e.target.value);
-  updateDisplay();
-});
-
-function closeModal() {
-  document.querySelector(".modal").style.display = "none";
-}
-
-updateDisplay();
-=======
 
 
 
@@ -653,4 +582,3 @@ function toggleSidebar() {
   const el = document.getElementById('coinlistdiv');
   el.classList.toggle('active');
 }
->>>>>>> 9a33deeff7fb07a3208efe2dafc369e7f628dff7
