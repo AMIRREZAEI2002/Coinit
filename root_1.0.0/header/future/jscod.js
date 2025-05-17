@@ -445,8 +445,21 @@ $(document).ready(function () {
     $("#orderbook").addClass("text-secondary border-top-0");
     $("#orderbook").removeClass("bg-white  border-top");
   });
+  $("#20x_btn").click(function(){
+    $('#20x_box').show();
+  });
+  $("#iso_btn").click(function(){
+    $('#iso_box').show();
+  });
   $("#FHVT_btn").click(function(){
     $("#FHVT_box").slideToggle();
+  });
+  $("#isloe").click(function() {
+    if ($(this).is(":checked")) {
+      $('#funding_box').show();
+    } else {
+      $('#funding_box').hide();
+    }
   });
   $("#24_funding").click(function() {
     if ($(this).is(":checked")) {
@@ -563,41 +576,8 @@ function countitemsarray(){
 }
 
 setInterval(countitemsarray, 1000);
-let currentLeverage = 20;
 
-function updateDisplay() {
-  document.getElementById("leverageDisplay").innerText = currentLeverage + "X";
-  document.getElementById("leverageSlider").value = currentLeverage;
-}
-
-function changeLeverage(delta) {
-  if (currentLeverage + delta >= 1 && currentLeverage + delta <= 500) {
-    currentLeverage += delta;
-    updateDisplay();
-  }
-}
-
-function setLeverage(value) {
-  currentLeverage = value;
-  updateDisplay();
-}
-
-document.getElementById("leverageSlider").addEventListener("input", function(e) {
-  currentLeverage = parseInt(e.target.value);
-  updateDisplay();
-});
-
-function closeModal() {
-  document.querySelector(".modal").style.display = "none";
-}
-
-updateDisplay();
-function toggleSidebar() {
-  const el = document.getElementById('coinlistdiv');
-  el.classList.toggle('active');
-}
-
-
+   
 
 
 
