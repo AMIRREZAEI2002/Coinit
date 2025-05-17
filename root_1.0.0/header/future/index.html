@@ -30,93 +30,116 @@
   </title>
   <style>
    .wallet-balance-wrapper {
-                width: 100%;
-                text-align: center;
-              }
-              input[type=number]::-webkit-outer-spin-button,
-              input[type=number]::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-              }
-              input[type=number] {
-                -moz-appearance: textfield;
-              }
-              .wallet-balance-wrapper .btn-group .btn {
-                min-width: 120px;
-              }
-            .bluelable{
-                background-color: rgb(127, 182, 255);
-                color: rgb(5, 85, 177);
-            }
-            /* اسکرول‌بار نازک برای فایرفاکس */
-            .scroll-thin {
-                scrollbar-width: thin; /* مقدار thin اسکرول‌بار رو باریک‌تر می‌کنه */
-                scrollbar-color: #888 transparent; /* رنگ thumb و track */
-            }
-    
-            /* اسکرول‌بار نازک برای Chrome, Edge, Safari */
-            .scroll-thin::-webkit-scrollbar {
-                height: 6px;
-            }
-            .scroll-thin::-webkit-scrollbar-thumb {
-                background-color: #888;
-                border-radius: 10px;
-            }
-            .scroll-thin::-webkit-scrollbar-track {
-                background-color: transparent;
-            }
-            .option-item {
-              width: 200px;
-              height: 50px;
-            }
-            .option-item:hover {
-              background-color: #46387c50;
-            }
-            .cursor-pointer {
-              cursor: pointer;
-            }
-            @media (max-width:992px){
-              .buyandsellclass {
-                position: fixed;
-                top: 110%;
-                left: 50%;
-                transform: translate(-50%, -100%);
-                display: none !important;
-                width: 100%;
-                max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
-                background-color: #eeeff2;
-                padding: 10px !important;
-                z-index: 999999;
-                padding-bottom: 30px;
-                overflow-y: auto; /* اسکرول داخلی */
-                border-radius: 10px !important;
-                border: 1px solid gray;
-                -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
-                scrollbar-width: none; 
-                
-                
-              }
-              .buyandsellclass::-webkit-scrollbar {
-                  display: none;
-              }
-              .buyorsellbuts{
-                display: block !important;
-                background-color: #eeeff2;
-                padding: 30px;
-                position: fixed;
-                bottom: 0px;
-                border-radius: 10px 10px 0 0 ;
-                border: 1px solid gray;
-                color: white;
-    
-              }
-              .nomargin{
-                margin: 0px;
-              }
-            }
+      width: 100%;
+      text-align: center;
+    }
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .wallet-balance-wrapper .btn-group .btn {
+      min-width: 120px;
+    }
+  .bluelable{
+      background-color: rgb(127, 182, 255);
+      color: rgb(5, 85, 177);
+  }
+  /* اسکرول‌بار نازک برای فایرفاکس */
+  .scroll-thin {
+      scrollbar-width: thin; /* مقدار thin اسکرول‌بار رو باریک‌تر می‌کنه */
+      scrollbar-color: #888 transparent; /* رنگ thumb و track */
+  }
+
+  /* اسکرول‌بار نازک برای Chrome, Edge, Safari */
+  .scroll-thin::-webkit-scrollbar {
+      height: 6px;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 10px;
+  }
+  .scroll-thin::-webkit-scrollbar-track {
+      background-color: transparent;
+  }
+  .option-item {
+    width: 200px;
+    height: 50px;
+  }
+  .option-item:hover {
+    background-color: #46387c50;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  @media (max-width:992px){
+    .buyandsellclass {
+      position: fixed;
+      top: 110%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      display: none !important;
+      width: 100%;
+      max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
+      background-color: #eeeff2;
+      padding: 10px !important;
+      z-index: 999999;
+      padding-bottom: 30px;
+      overflow-y: auto; /* اسکرول داخلی */
+      border-radius: 10px !important;
+      border: 1px solid gray;
+      -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
+      scrollbar-width: none; 
+      
+      
+    }
+    .buyandsellclass::-webkit-scrollbar {
+        display: none;
+    }
+    .buyorsellbuts{
+      display: block !important;
+      background-color: #eeeff2;
+      padding: 30px;
+      position: fixed;
+      bottom: 0px;
+      border-radius: 10px 10px 0 0 ;
+      border: 1px solid gray;
+      color: white;
+
+    }
+    .nomargin{
+      margin: 0px;
+    }
+  }
+
+  .siderofcoins {
+    position: absolute;
+    background-color: #eeeff2;
+    z-index: 9000000;
+    top: 15%;
+    left: -500px; /* مخفی خارج از صفحه */
+    padding: 10px;
+    max-width: 500px;
+    min-width: 200px;
+    max-height: 800px;
+    transition: left 0.5s ease;
+  }
+
+  .siderofcoins.active {
+    left: 0; /* نمایش داخل صفحه */
+  }
+
+
+
+      
   </style>
  </head>
  <body>
+
+
   <div class="container pe-0 me-0" style="max-width: 99%;max-height: 100vh;min-height: 100vh">
    <div class="row justify-content-center px-1 m-0 d-flex w-100  align-items-stretch">
     <div class="col-xl-9 col-lg-8 p-1  ">
@@ -126,7 +149,7 @@
           <div class="col-lg-12 fs-6s">
           <div class="row align-items-center gx-4 text-nowrap">
             <!-- ثابت - آیکن و نام نماد -->
-            <div class="col-md-auto col-6 d-flex align-items-center d-md-block d-none" style="border-right: 1px solid gray;">
+            <div onclick="toggleSidebar()" class="col-md-auto col-6 d-flex align-items-center d-md-block d-none" style="border-right: 1px solid gray;">
             <div class="d-flex align-items-center">
               <div class="me-2">
               <i class="fa-regular fa-star fa-lg">
@@ -229,7 +252,7 @@
             <div class="col-12 mt-2 disbet">
             <div class="w-100 position-relative">
               <div class="custom-select-container bg-light border rounded-1 d-flex justify-content-center align-items-center position-relative w-100" style="z-index: 999;">
-              <button class="btn p-1 w-auto border-0" id="crypto_usdtToggle" type="button">
+              <button  class="btn p-1 w-auto border-0" id="crypto_usdtToggle" type="button">
                 <input id="crypto_selectedCurrency" name="currency" type="hidden" value="USDT"/>
                 <i aria-hidden="true" class="fa-brands fa-bitcoin fa-xl">
                 </i>
@@ -406,7 +429,7 @@
             </div>
         
             <!-- Scrollable Table Section -->
-            <div class="flex-grow-1 overflow-auto mt-2 scroll-thin" id="orderbookmaindiv">
+            <div class="flex-grow-1 overflow-auto mt-2 p-1 scroll-thin" id="orderbookmaindiv">
               <table class="table table-sm table-borderless align-middle fs-8" id="orderormarketdiv">
                 <thead class="text-secondary">
                   <tr class="fs-9">
@@ -896,7 +919,7 @@
                   <button class="btn btn-primary rounded-pill py-1 fs-8 w-100">Transfer</button>
                 </div>
               </div>
-              <div class="badge bg-info w-100 d-flex align-items-center p-2 mt-2">
+              <div class="badge  w-100 d-flex align-items-center p-2 mt-2">
                 <i class="fas fa-info-circle me-2 flex-shrink-0"></i>
                 <p class="fs-8 mb-0 text-wrap flex-grow-1">
                   Transfer funds to the futures wallet and start futures trading now.
@@ -909,6 +932,222 @@
     </div>
    </div>
   </div>
+  <div class="siderofcoins d-md-block d-none" id="coinlistdiv">
+    <div class="container-fluid bg-white rounded-1" style="height: 100%;">
+      <div class="row">
+        <div class="col-12 mt-2">
+          <div class="input-group">
+              <button class="btn border-0 z-3"><i class="fa fa-search "></i></button>
+              <input type="text" class="form-control z-2 rounded-1 w-100 position-absolute ps-5 fs-8 bg-secondary bg-opacity-10" placeholder="Search for your language and currency">
+          </div>
+      </div>
+      </div>
+      <div class="row ">
+        <div class="col overflow-auto px-2 scroll-thin " style="white-space: nowrap;">
+          <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+            <div class="w-100 ">
+              <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
+                <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">USDT</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">USDC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">ETH</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">TUSD</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">USDC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">ETH</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">TUSD</button>
+                <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">BTC</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col overflow-auto px-2 scroll-thin" style="white-space: nowrap;">
+          <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+            <div class="w-100 ">
+              <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch ">
+                <button class="btn btn-sm btn-light mx-1 mb-2">All</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Main</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Innovation</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">Trump</button>
+                <button class="btn btn-sm btn-light mx-1 mb-2">New Trading</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <table class="table table-sm table-borderless align-middle fs-8">
+          <thead class="text-secondary sticky-top bg-white">
+            <tr class="fs-7 text-muted text-start">
+              <th  style="width: 33.33%;" ><button class="btn btn-sm m-0 p-0 fs-8">Pair <i class="fa fa-sort"></i></button></th>
+              <th  style="width: 33.33%;" ><button class="btn btn-sm m-0 p-0 fs-8">Price <i class="fa fa-sort"></i></button></th>
+              <th  style="width: 33.33%;"><button class="btn btn-sm m-0 p-0 fs-8">Change <i class="fa fa-sort"></i></button></th>
+            </tr>
+          </thead>
+        </table>
+      
+        <div class="overflow-auto scroll-thin" style="min-height: 200px;max-height: 270px;">
+          <table class="table table-sm table-borderless align-middle fs-8">
+            <tbody>
+              <tr>
+                <td style="width: 33.33%;" class="crypto  ">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="width: 33.33%;" > 0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td style="width: 33.33%;" class="change-down "> 
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="crypto">
+                  <div class="distart">
+                    <div class="mr-2"><i class="fa-brands fa-bitcoin fa-2xl" aria-hidden="true"></i></div>
+                    <div>
+                      <div>MX/USDT</div>
+                      <div class="text-muted">MX Token</div>
+                    </div>
+                  </div>
+                </td>
+                <td>0.024131<br><small class="text-muted">$2,482.57</small></td>
+                <td class="change-down">
+                  <div class="distart">
+                    <div>
+                      <div>0.26%</div>
+                      <div class="text-muted">24.08M</div>
+                    </div>
+                    <div><i class="fas fa-star fa-xl ml-2 fs-8" aria-hidden="true"></i></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
  </body>
  <script crossorigin="anonymous" src="https://kit.fontawesome.com/d2bb21f4a1.js">
  </script>
