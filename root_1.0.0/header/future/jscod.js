@@ -461,7 +461,9 @@ function markettradepage(){
 
 // MARKET TRADE JS CODS
 function markettradefn(){
+  let changesortdivbtns = document.getElementById('changesortdivbtns');
   let markettbody = document.getElementById('markettbody');
+
   bookorders = bookorders.slice(-50);
   let colortext
   // پاک کردن قبلی‌ها
@@ -505,13 +507,13 @@ function countitemsarray(){
 
   showitemdiv.innerHTML = `
     <div class="m-0" style="padding-right: 0px;width: ${countbuy}%;">
-      <div class="bg-success bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
+      <div class="bg-success p-1 bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countbuy}%</div>
         <div class="bg-white discen fs-8" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
       </div>
     </div>
     <div class="m-0" style="padding-left: 0px;border-left: 3px solid white;width: ${countsells}%;">
-      <div class="bg-danger  bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
+      <div class="bg-danger p-1  bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countsells}%</div>
         <div class="bg-white discen fs-8" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
       </div>
