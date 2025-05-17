@@ -3,10 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
+.body {
     font-family: 'Inter' !important;
     background-color: #eeeff2 !important;
-    /* height: 2000px !important; */
 }
 /* Flex Helper Classes */
 .discen {
@@ -546,4 +545,43 @@ input:checked ~ .slider--3 {
 
 .myhr{
     margin-top: 16px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* dark mood */
+
+.bg-night{
+    background-color: #12141A !important;
+}
+.body-night {
+    font-family: 'Inter' !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+.text-muted-night{
+    color: #ffffff !important;
+}
+.text-secondary-night{
+    color: #ffffff !important;
+}
+.text-white-night{
+    color: #ffffff !important;
 }

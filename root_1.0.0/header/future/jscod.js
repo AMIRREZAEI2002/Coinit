@@ -590,3 +590,68 @@ function toggleSidebar() {
   const el = document.getElementById('coinlistdiv');
   el.classList.toggle('active');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// darkmood
+
+// darkmood
+
+const classMap = {
+  "bg-white": "bg-night",
+  "text-dark": "text-light",
+  "body": "body-night",
+  "text-muted": "text-muted-night",
+  "text-secondary": "text-secondary-night"
+};
+
+// دکمه‌ها: تغییر رنگ متن بر اساس حالت تم
+function updateButtonTextColor(toDark) {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.classList.remove(toDark ? 'text-dark' : 'text-white-night');
+    btn.classList.add(toDark ? 'text-white-night' : 'text-dark');
+  });
+}
+
+// سوئیچ کردن کلاس‌ها به حالت دارک یا لایت
+function switchThemeClasses(toDark) {
+  for (const [light, dark] of Object.entries(classMap)) {
+    document.querySelectorAll(`.${toDark ? light : dark}`).forEach(el => {
+      el.classList.remove(toDark ? light : dark);
+      el.classList.add(toDark ? dark : light);
+    });
+  }
+
+  updateButtonTextColor(toDark);
+}
+
+// وضعیت اولیه تم از localStorage
+let isDark = localStorage.getItem("theme") === "dark";
+
+// تغییر تم و ذخیره وضعیت جدید
+function toggleTheme() {
+  isDark = !isDark;
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  switchThemeClasses(isDark);
+}
+
+// اجرای اولیه هنگام بارگذاری صفحه
+window.addEventListener("DOMContentLoaded", () => {
+  if (isDark) {
+    switchThemeClasses(true);
+  }
+});
