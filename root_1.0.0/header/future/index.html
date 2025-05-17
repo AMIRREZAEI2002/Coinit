@@ -29,74 +29,52 @@
    Document
   </title>
   <style>
-    .modal_ave {
+     .modal_ave {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      width: 400px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 24px;
+      width: 420px;
       position: relative;
-    }
-    .modal_ave h2 {
-      margin: 0 0 20px 0;
-      font-size: 18px;
-    }
-    .leverage-display {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .leverage-display button {
-      font-size: 20px;
-      width: 30px;
-      height: 30px;
-      border: none;
-      background: #eee;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .leverage-value {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .preset-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .preset-buttons button {
-      flex: 1;
-      margin: 0 2px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 5px;
-      cursor: pointer;
-    }
-    .slider-container {
-      margin: 10px 0;
-    }
-    .slider {
-      width: 100%;
-    }
-    .login-btn {
-      display: block;
-      background: #0066ff;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 10px;
-      text-align: center;
-      font-size: 16px;
-      cursor: not-allowed;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 12px;
+      right: 16px;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 20px;
+    }
+    .leverage-display button {
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: #eee;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .preset-buttons button {
+      background: #f8f9fa;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .slider-container input[type="range"] {
+      width: 100%;
+      max-width: 350px;
+      margin: auto;
+      display: block;
+    }
+    .login-btn {
+      background-color: #0066ff;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 50px;
+      cursor: not-allowed;
+      margin-top: 16px;
     }
    .wallet-balance-wrapper {
       width: 100%;
@@ -794,33 +772,118 @@
   </div>
   </header>
   <main>
-    <div class="position-fixed z-3 top-0 bg-black bg-opacity-75 d-none" style="width: 100vw; height: 100vh;">
-       <div class="d-flex justify-content-center align-items-center w-100 h-100">
-         <div class="modal_ave">
-           <div class="close-btn" onclick="closeModal()">×</div>
-           <h2>Leverage</h2>
-           <div class="leverage-display">
-             <button onclick="changeLeverage(-1)">−</button>
-             <span class="leverage-value" id="leverageDisplay">20X</span>
-             <button onclick="changeLeverage(1)">+</button>
-           </div>
-       
-           <div class="preset-buttons mt-5">
-             <button onclick="setLeverage(10)">10x</button>
-             <button onclick="setLeverage(20)">20x</button>
-             <button onclick="setLeverage(50)">50x</button>
-             <button onclick="setLeverage(100)">100x</button>
-             <button onclick="setLeverage(200)">200x</button>
-           </div>
-       
-           <div class="slider-container">
-             <input type="range" min="1" max="500" value="20" class="slider" id="leverageSlider">
-           </div>
-       
-           <button class="login-btn" disabled>Change after login</button>
-         </div>
-       </div>
+    <div class="position-fixed z-3 top-0 start-0 bg-dark bg-opacity-75 w-100 h-100" id="20x_box" style="display: none;">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="modal_ave text-center">
+          <div class="close-btn" onclick="closeModal()">×</div>
+          <h5 class="mb-4">Leverage</h5>
+  
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <button class="btn btn-outline-dark" onclick="changeLeverage(-1)">−</button>
+            <span class="fw-bold fs-5" id="leverageDisplay">20X</span>
+            <button class="btn btn-outline-dark" onclick="changeLeverage(1)">+</button>
+          </div>
+  
+          <div class="preset-buttons d-flex justify-content-between gap-2 mb-4">
+            <button class="btn btn-light flex-fill" onclick="setLeverage(10)">10x</button>
+            <button class="btn btn-light flex-fill" onclick="setLeverage(20)">20x</button>
+            <button class="btn btn-light flex-fill" onclick="setLeverage(50)">50x</button>
+            <button class="btn btn-light flex-fill" onclick="setLeverage(100)">100x</button>
+            <button class="btn btn-light flex-fill" onclick="setLeverage(200)">200x</button>
+          </div>
+  
+          <div class="slider-container mb-3">
+            <input type="range" min="1" max="500" value="20" class="form-range" id="leverageSlider">
+          </div>
+  
+          <button class="btn btn-primary w-100">Change after login</button>
+        </div>
+      </div>
     </div>
+    <div class="position-fixed z-3 top-0 start-0 bg-dark bg-opacity-75 w-100 h-100" id="iso_box" style="display: none;">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="modal_ave text-center bg-white p-4 rounded shadow" style="width: 320px;">
+          <div class="close-btn position-absolute top-0 end-0 m-3 fs-4" style="cursor: pointer;" onclick="closeIsolatedModal()">×</div>
+          <h5 class="mb-3">Isolated Margin</h5>
+          <p class="text-muted small mb-4">در حالت ایزولیتد، مارجین هر پوزیشن به‌صورت جداگانه در نظر گرفته می‌شود و ریسک انتقال ندارد.</p>
+    
+          <div class="mb-3">
+            <label for="isoAmount" class="form-label">مقدار مارجین (USDT)</label>
+            <input type="number" id="isoAmount" class="form-control" placeholder="مثلاً 100" min="1">
+          </div>
+    
+          <button class="btn btn-primary w-100" onclick="confirmIsolated()">Enable after login</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // ======= Leverage Logic =======
+      let currentLeverage = 20;
+    
+      function updateDisplay() {
+        document.getElementById("leverageDisplay").innerText = currentLeverage + "X";
+        document.getElementById("leverageSlider").value = currentLeverage;
+      }
+    
+      function changeLeverage(delta) {
+        const newValue = currentLeverage + delta;
+        if (newValue >= 1 && newValue <= 500) {
+          currentLeverage = newValue;
+          updateDisplay();
+        }
+      }
+    
+      function setLeverage(value) {
+        currentLeverage = value;
+        updateDisplay();
+      }
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.getElementById("leverageSlider");
+        if (slider) {
+          slider.addEventListener("input", function (e) {
+            currentLeverage = parseInt(e.target.value);
+            updateDisplay();
+          });
+        }
+    
+        // مقدار اولیه
+        updateDisplay();
+      });
+    
+      function closeModal() {
+        document.querySelectorAll(".position-fixed").forEach(modal => {
+          modal.style.display = "none";
+        });
+      }
+    
+      // ======= Isolated Modal Logic =======
+      function openIsolatedModal() {
+        document.getElementById('iso_box').style.display = 'block';
+      }
+    
+      function closeIsolatedModal() {
+        document.getElementById('iso_box').style.display = 'none';
+      }
+    
+      function confirmIsolated() {
+        const input = document.getElementById("isoAmount");
+        const amount = parseFloat(input.value);
+    
+        if (!amount || amount <= 0) {
+          alert("لطفاً یک مقدار معتبر وارد کنید.");
+          input.focus();
+          return;
+        }
+    
+        // درخواست به سرور یا لاگ مقدار واردشده
+        console.log("Isolated margin set to:", amount);
+    
+        // بستن مودال
+        closeIsolatedModal();
+      }
+    </script>
+    
   <div class="container pe-0 me-0" style="max-width: 99%;max-height: 100vh;min-height: 100vh">
     <div class="row justify-content-center px-1 m-0 d-flex w-100  align-items-stretch">
      <div class="col-xl-9 col-lg-8 p-1  ">
@@ -1266,8 +1329,8 @@
                  
                </div>
                <div class="d-flex justify-content-center p-0 mt-2 pt-1">
-                 <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold py-1 w-75 mx-2 rounded-0">Isolated</button>
-                 <button class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold py-1 w-75 mx-2 rounded-0">20X</button>
+                 <button id="iso_btn" class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold py-1 w-75 mx-2 rounded-0">Isolated</button>
+                 <button id="20x_btn" class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold py-1 w-75 mx-2 rounded-0">20X</button>
                </div>
                <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
                  <div class="w-100">
