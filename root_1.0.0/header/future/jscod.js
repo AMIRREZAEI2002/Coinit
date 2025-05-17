@@ -563,7 +563,6 @@ function countitemsarray(){
 }
 
 setInterval(countitemsarray, 1000);
-<<<<<<< HEAD
 let currentLeverage = 20;
 
 function updateDisplay() {
@@ -593,64 +592,7 @@ function closeModal() {
 }
 
 updateDisplay();
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function toggleSidebar() {
   const el = document.getElementById('coinlistdiv');
   el.classList.toggle('active');
 }
->>>>>>> 9a33deeff7fb07a3208efe2dafc369e7f628dff7
