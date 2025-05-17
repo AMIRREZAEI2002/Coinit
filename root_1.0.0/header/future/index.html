@@ -802,14 +802,23 @@
     </div>
     <div class="position-fixed z-3 top-0 start-0 bg-dark bg-opacity-75 w-100 h-100" id="iso_box" style="display: none;">
       <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="modal_ave text-center bg-white p-4 rounded shadow" style="width: 320px;">
+        <div class="modal_ave text-center bg-white p-4 rounded shadow" style="width: 400px;">
           <div class="close-btn position-absolute top-0 end-0 m-3 fs-4" style="cursor: pointer;" onclick="closeIsolatedModal()">×</div>
-          <h5 class="mb-3">Isolated Margin</h5>
-          <p class="text-muted small mb-4">در حالت ایزولیتد، مارجین هر پوزیشن به‌صورت جداگانه در نظر گرفته می‌شود و ریسک انتقال ندارد.</p>
-    
-          <div class="mb-3">
-            <label for="isoAmount" class="form-label">مقدار مارجین (USDT)</label>
-            <input type="number" id="isoAmount" class="form-control" placeholder="مثلاً 100" min="1">
+          <h5 class="mb-3">Margin Mode</h5>
+          <hr class="text-secondary my-3">
+          <div id="iso_margin_box" class="d-flex justify-content-start align-items-start flex-column bg-primary border border-primary border-2 bg-opacity-25 cursor-pointer my-3 p-3 rounded-3">
+            <div class="text-start">
+              <input type="radio" name="margin_mode" value="isolated" id="isolated_check" checked>
+              <label for="isolated_check">Isolated</label>
+            </div>
+            <p class="text-muted fs-9 text-start mb-4">In isolated margin mode, a certain amount of margin will be added to the position. If the margin falls below the maintenance level, liquidation will take place. Meanwhile, you can choose to add or reduce the margin for the position</p>
+          </div>
+          <div id="cross_margin_box" class="d-flex justify-content-start align-items-start flex-column bg-secondary bg-opacity-25 cursor-pointer my-3 p-3 rounded-3">
+            <div class="text-start">
+              <input type="radio" name="margin_mode" value="cross" id="Cross_check">
+              <label for="Cross_check">Cross</label>
+            </div>
+            <p class="text-muted fs-9 text-start mb-4">In cross margin mode, margin will be shared across all positions. In the event of liquidation, traders might lose all the margin and positions settled using this asset.</p>
           </div>
     
           <button class="btn btn-primary w-100" onclick="confirmIsolated()">Enable after login</button>
@@ -817,7 +826,6 @@
       </div>
     </div>
     <script>
-      // ======= Leverage Logic =======
       let currentLeverage = 20;
     
       function updateDisplay() {
@@ -846,8 +854,6 @@
             updateDisplay();
           });
         }
-    
-        // مقدار اولیه
         updateDisplay();
       });
     
@@ -856,8 +862,6 @@
           modal.style.display = "none";
         });
       }
-    
-      // ======= Isolated Modal Logic =======
       function openIsolatedModal() {
         document.getElementById('iso_box').style.display = 'block';
       }
@@ -875,11 +879,7 @@
           input.focus();
           return;
         }
-    
-        // درخواست به سرور یا لاگ مقدار واردشده
         console.log("Isolated margin set to:", amount);
-    
-        // بستن مودال
         closeIsolatedModal();
       }
     </script>
@@ -1326,7 +1326,7 @@
                <div class="d-flex bg-secondary bg-opacity-10 p-0">
                  <button class="btn w-50 bg-white border-top border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2" id="open_desk">Open</button>
                  <button class="btn w-50 text-secondary border-top-0 border-bottom-0 border-start-0 border-end-0 rounded-0 border-primary border-2" id="close_desk">Close</button>
-                 
+                 <button class="btn p-1 text-secondary border-0"><i class="fas fa-book"></i></button>
                </div>
                <div class="d-flex justify-content-center p-0 mt-2 pt-1">
                  <button id="iso_btn" class="btn bg-secondary bg-opacity-10 fs-9 fw-semibold py-1 w-75 mx-2 rounded-0">Isolated</button>

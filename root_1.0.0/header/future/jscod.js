@@ -445,6 +445,16 @@ $(document).ready(function () {
     $("#orderbook").addClass("text-secondary border-top-0");
     $("#orderbook").removeClass("bg-white  border-top");
   });
+  $("#iso_margin_box").click(function () {
+    $('#isolated_check').prop("checked", true);
+    $("#iso_margin_box").addClass("bg-primary border border-primary border-2").removeClass("bg-secondary");
+    $("#cross_margin_box").addClass("bg-secondary").removeClass("bg-primary border border-primary border-2");
+  });
+  $("#cross_margin_box").click(function () {
+    $('#Cross_check').prop("checked", true);
+    $("#cross_margin_box").addClass("bg-primary border border-primary border-2").removeClass("bg-secondary");
+    $("#iso_margin_box").addClass("bg-secondary").removeClass("bg-primary border border-primary border-2");
+  });
   $("#20x_btn").click(function(){
     $('#20x_box').show();
   });
