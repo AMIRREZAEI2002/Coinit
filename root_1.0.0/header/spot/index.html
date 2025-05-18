@@ -1397,9 +1397,12 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                        <label class="fs-8 form-check-label ">SL</label>
                    </div>
                  </div>
-                 <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
-                   <div class="w-100 me-1">
-                     <button class="btn btn-success rounded-pill fs-8 w-100">Buy <span id="token_name">BTC</span></button>
+                 <div class="d-flex justify-content-between flex-column align-items-center p-0 ps-2 pe-1 mt-2">
+                   <div class="w-100">
+                     <button id="limit_buy_btn" class="btn btn-success rounded-pill fs-8 w-100">Buy <span id="token_name">BTC</span></button>
+                   </div>
+                   <div class="w-100">
+                     <button id="limit_sell_btn" class="btn btn-danger rounded-pill fs-8 w-100" style="display: none;">Sell <span id="token_name">BTC</span></button>
                    </div>
                  </div>
                   <div class="w-100 p-1 px-2 mt-2 mb-5">

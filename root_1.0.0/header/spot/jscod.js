@@ -420,6 +420,8 @@ $(document).ready(function () {
     $($ranges).addClass("form-range-success");
     $("#market_buy_btn").show();
     $("#market_sell_btn").hide();
+    $("#limit_buy_btn").show();
+    $("#limit_sell_btn").hide();
   });
   $("#sell_btn_spot").click(function(){
     $("#sell_btn_spot").addClass("text-white bg-danger");
@@ -429,6 +431,8 @@ $(document).ready(function () {
     $($ranges).addClass("form-range-danger");
     $("#market_sell_btn").show();
     $("#market_buy_btn").hide();
+    $("#limit_sell_btn").show();
+    $("#limit_buy_btn").hide();
   });
   $("#open_desk").click(function(){
     $("#open_desk").addClass("bg-white  border-top");
