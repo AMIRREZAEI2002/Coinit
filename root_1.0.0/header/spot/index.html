@@ -44,185 +44,247 @@
     .wallet-balance-wrapper .btn-group .btn {
       min-width: 120px;
     }
-  .bluelable{
-      background-color: rgb(127, 182, 255);
-      color: rgb(5, 85, 177);
-  }
-  /* اسکرول‌بار نازک برای فایرفاکس */
-  .scroll-thin {
-      scrollbar-width: thin; /* مقدار thin اسکرول‌بار رو باریک‌تر می‌کنه */
-      scrollbar-color: #888 transparent; /* رنگ thumb و track */
-  }
+    .bluelable{
+        background-color: rgb(127, 182, 255);
+        color: rgb(5, 85, 177);
+    }
+    /* اسکرول‌بار نازک برای فایرفاکس */
+    .scroll-thin {
+        scrollbar-width: thin; /* مقدار thin اسکرول‌بار رو باریک‌تر می‌کنه */
+        scrollbar-color: #888 transparent; /* رنگ thumb و track */
+    }
 
-  /* اسکرول‌بار نازک برای Chrome, Edge, Safari */
-  .scroll-thin::-webkit-scrollbar {
-      height: 6px;
-  }
-  .scroll-thin::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 10px;
-  }
-  .scroll-thin::-webkit-scrollbar-track {
-      background-color: transparent;
-  }
-  .option-item {
-    width: 200px;
-    height: 50px;
-  }
-  .option-item:hover {
-    background-color: #46387c50;
-  }
-  .cursor-pointer {
-    cursor: pointer;
-  }
-  @media (max-width:992px){
-    .buyandsellclass {
-      position: fixed;
-      top: 110%;
-      left: 50%;
-      transform: translate(-50%, -100%);
-      display: none !important;
-      width: 100%;
-      max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
+    /* اسکرول‌بار نازک برای Chrome, Edge, Safari */
+    .scroll-thin::-webkit-scrollbar {
+        height: 6px;
+    }
+    .scroll-thin::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+    }
+    .scroll-thin::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    .option-item {
+      width: 200px;
+      height: 50px;
+    }
+    .option-item:hover {
+      background-color: #46387c50;
+    }
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    @media (max-width:992px){
+      .buyandsellclass {
+        position: fixed;
+        top: 110%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        display: none !important;
+        width: 100%;
+        max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
+        background-color: #eeeff2;
+        padding: 10px !important;
+        z-index: 999999;
+        padding-bottom: 30px;
+        overflow-y: auto; /* اسکرول داخلی */
+        border-radius: 10px !important;
+        border: 1px solid gray;
+        -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
+        scrollbar-width: none; 
+        
+        
+      }
+      .buyandsellclass::-webkit-scrollbar {
+          display: none;
+      }
+      .buyorsellbuts{
+        display: block !important;
+        background-color: #eeeff2;
+        padding: 30px;
+        position: fixed;
+        bottom: 0px;
+        border-radius: 10px 10px 0 0 ;
+        border: 1px solid gray;
+        color: white;
+
+      }
+      .nomargin{
+        margin: 0px;
+      }
+    }
+
+    .siderofcoins {
+      position: absolute;
       background-color: #eeeff2;
-      padding: 10px !important;
-      z-index: 999999;
-      padding-bottom: 30px;
-      overflow-y: auto; /* اسکرول داخلی */
-      border-radius: 10px !important;
-      border: 1px solid gray;
-      -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
-      scrollbar-width: none; 
-      
-      
+      z-index: 9000000;
+      top: 15%;
+      left: -500px;
+      padding: 10px;
+      max-width: 500px;
+      min-width: 200px;
+      max-height: 800px;
+      transition: left 0.5s ease;
     }
-    .buyandsellclass::-webkit-scrollbar {
-        display: none;
+    .siderofcoins.active {
+      left: 0;
     }
-    .buyorsellbuts{
-      display: block !important;
-      background-color: #eeeff2;
-      padding: 30px;
-      position: fixed;
-      bottom: 0px;
-      border-radius: 10px 10px 0 0 ;
-      border: 1px solid gray;
-      color: white;
-
+          /* قرمزشون */
+    input[type="range"].form-range-danger {
+      --thumb-size: 16px;
+      --track-height: 6px;
+      --color-track: #f5f5f5;
+      --color-fill: red;  
     }
-    .nomargin{
-      margin: 0px;
+    input[type="range"].form-range-danger:focus {
+      outline: none !important;
     }
-  }
+    input[type="range"].form-range-danger:focus::-webkit-slider-thumb {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    input[type="range"].form-range-danger::-moz-range-thumb {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    input[type="range"].form-range-danger::-webkit-slider-runnable-track {
+      height: var(--track-height);
+      background: var(--color-track);
+      border-radius: 3px;
+      border: none;
+    }
+    input[type="range"].form-range-danger::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: var(--thumb-size);
+      height: var(--thumb-size);
+      background: var(--color-fill);
+      border-radius: 50%;
+      border: none;
+      margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+      cursor: pointer;
+    }
+    input[type="range"].form-range-danger::-webkit-slider-runnable-track {
+      background: linear-gradient(
+        to right,
+        var(--color-fill) 0%,
+        var(--color-fill) calc((100% / (5 - 0)) * var(--_value, 0)),
+        var(--color-track) calc((100% / (5 - 0)) * var(--_value, 0)),
+        var(--color-track) 100%
+      );
+    }
 
-  .siderofcoins {
-    position: absolute;
-    background-color: #eeeff2;
-    z-index: 9000000;
-    top: 15%;
-    left: -500px;
-    padding: 10px;
-    max-width: 500px;
-    min-width: 200px;
-    max-height: 800px;
-    transition: left 0.5s ease;
-  }
+    /* سبز حالت های رنج */
+    input[type="range"].form-range-success {
+      --thumb-size: 16px;
+      --track-height: 6px;
+      --color-track: #f5f5f5;
+      --color-fill: rgba(25, 135, 84,1);  
+    }
+    input[type="range"].form-range-success:focus {
+      outline: none !important;
+    }
+    input[type="range"].form-range-success:focus::-webkit-slider-thumb {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    input[type="range"].form-range-success::-moz-range-thumb {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    input[type="range"].form-range-success::-webkit-slider-runnable-track {
+      height: var(--track-height);
+      background: var(--color-track);
+      border-radius: 3px;
+      border: none;
+    }
+    input[type="range"].form-range-success::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: var(--thumb-size);
+      height: var(--thumb-size);
+      background: var(--color-fill);
+      border-radius: 50%;
+      border: none;
+      margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+      cursor: pointer;
+    }
+    input[type="range"].form-range-success::-webkit-slider-runnable-track {
+      background: linear-gradient(
+        to right,
+        var(--color-fill) 0%,
+        var(--color-fill) calc((100% / (5 - 0)) * var(--_value, 0)),
+        var(--color-track) calc((100% / (5 - 0)) * var(--_value, 0)),
+        var(--color-track) 100%
+      );
+    }
+    .rounded-2 {
+        border-radius: 0.75rem !important;
+        overflow: hidden;
+        border-collapse: collapse !important;
+    }
+    #cryptoTable {
+        border-collapse: collapse !important;
+        border-style: hidden !important;
+    }
+    #cryptoTable th,
+    #cryptoTable td {
+        border: none !important;
+        background-image: none !important;
+    }
+    .form-select{
+        border: 0;
+        box-shadow: none !important;
+        outline: none !important;
+        font-weight: bold;
+    }
+    .period-btn {
+        margin: 0 5px;
+        padding: 5px 5px;
+        border-radius: 5px;
+        font-size: 10px;
+        transition: all 0.3s;
+    }
+    .period-btn.active {
+        background-color: #F5F6FA !important;
+        border-color: #F5F6FA !important;
+        color: black !important;
+    }
+    @media (max-width: 1150px) {
+        #cryptoTable thead {
+            display: none;
+        }
 
-  .siderofcoins.active {
-    left: 0;
-  }
+        #cryptoTable, 
+        #cryptoTable tbody, 
+        #cryptoTable tr, 
+        #cryptoTable td {
+            display: block;
+            width: 100%;
+        }
 
-        /* قرمزشون */
-input[type="range"].form-range-danger {
-  --thumb-size: 16px;
-  --track-height: 6px;
-  --color-track: #f5f5f5;
-  --color-fill: red;  
-}
-input[type="range"].form-range-danger:focus {
-  outline: none !important;
-}
-input[type="range"].form-range-danger:focus::-webkit-slider-thumb {
-  box-shadow: none !important;
-  outline: none !important;
-}
-input[type="range"].form-range-danger::-moz-range-thumb {
-  box-shadow: none !important;
-  outline: none !important;
-}
-input[type="range"].form-range-danger::-webkit-slider-runnable-track {
-  height: var(--track-height);
-  background: var(--color-track);
-  border-radius: 3px;
-  border: none;
-}
-input[type="range"].form-range-danger::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: var(--thumb-size);
-  height: var(--thumb-size);
-  background: var(--color-fill);
-  border-radius: 50%;
-  border: none;
-  margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
-  cursor: pointer;
-}
-input[type="range"].form-range-danger::-webkit-slider-runnable-track {
-  background: linear-gradient(
-    to right,
-    var(--color-fill) 0%,
-    var(--color-fill) calc((100% / (5 - 0)) * var(--_value, 0)),
-    var(--color-track) calc((100% / (5 - 0)) * var(--_value, 0)),
-    var(--color-track) 100%
-  );
-}
+        #cryptoTable tr {
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+        }
 
-/* سبز حالت های رنج */
-input[type="range"].form-range-success {
-  --thumb-size: 16px;
-  --track-height: 6px;
-  --color-track: #f5f5f5;
-  --color-fill: rgba(25, 135, 84,1);  
-}
-input[type="range"].form-range-success:focus {
-  outline: none !important;
-}
-input[type="range"].form-range-success:focus::-webkit-slider-thumb {
-  box-shadow: none !important;
-  outline: none !important;
-}
-input[type="range"].form-range-success::-moz-range-thumb {
-  box-shadow: none !important;
-  outline: none !important;
-}
-input[type="range"].form-range-success::-webkit-slider-runnable-track {
-  height: var(--track-height);
-  background: var(--color-track);
-  border-radius: 3px;
-  border: none;
-}
-input[type="range"].form-range-success::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: var(--thumb-size);
-  height: var(--thumb-size);
-  background: var(--color-fill);
-  border-radius: 50%;
-  border: none;
-  margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
-  cursor: pointer;
-}
-input[type="range"].form-range-success::-webkit-slider-runnable-track {
-  background: linear-gradient(
-    to right,
-    var(--color-fill) 0%,
-    var(--color-fill) calc((100% / (5 - 0)) * var(--_value, 0)),
-    var(--color-track) calc((100% / (5 - 0)) * var(--_value, 0)),
-    var(--color-track) 100%
-  );
-}
+        #cryptoTable td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
 
-
-
-      
+        #cryptoTable td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-weight: bold;
+            color: #888;
+            text-align: left;
+        }
+    }
   </style>
  </head>
  <body class="body"> 
@@ -807,7 +869,7 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
 </div>
 </header>
 <main>
-  <div class="container pe-0 me-0" style="max-width: 99%;max-height: 100vh;min-height: 100vh">
+  <div class="container px ps-1-0 me-0" style="max-width: 99%;max-height: 100vh;min-height: 100vh">
     <div class="row justify-content-center px-1 m-0 d-flex w-100  align-items-stretch">
      <div class="col-xl-9 col-lg-8 p-1  ">
        <div class="row px-1 h-100 nomargin">
@@ -1158,36 +1220,80 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
          </div>
          <div class="col-md-12 mt-2 px-0">
            <div class="row p-2 m-1 bg-white justify-content-center">
-             <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
-               <div class="w-100">
-                 <div class="overflow-x-auto overflow-y-hidden d-flex flex-nowrap align-items-end mb-2 text-nowrap gap-2 px-2 scroll-thin scroll-touch">
-                   <button class="btn fs-8 mb-2 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(0)</span></button>
-                   <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Open Order(0)</button>
-                   <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Position History</button>
-                   <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Order & Trade History</button>
-                   <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Capital Flow</button>
-                   <button class="btn fs-8 mb-2 border-primary text-secondary border-0 border-bottom border-primary fw-semibold rounded-0">Wallet</button>
-                   <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
-                   <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
-                   <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
-                   <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
-                 </div>
+            <div class="d-flex justify-content-between align-items-end p-0 ps-0 mt-2 position-relative">
+              <div class="w-100 d-flex justify-content-between">
+               <div class="overflow-x-auto overflow-y-hidden py-0 d-flex flex-nowrap align-items-end m-0 text-nowrap px-2 scroll-thin scroll-touch">
+                 <button class="btn fs-8 mb-0 border-primary border-bottom border-top-0 border-end-0 border-start-0 fw-semibold rounded-0">Open position<span>(5)</span></button>
+                 <button class="btn fs-8 mb-0 border-primary text-secondary border-0 border-bottom-0 border-primary fw-semibold rounded-0">Open Order(0)</button>
+                 <button class="btn fs-8 mb-0 border-primary text-secondary border-0 border-bottom-0 border-primary fw-semibold rounded-0">Position History</button>
+                 <button class="btn fs-8 mb-0 border-primary text-secondary border-0 border-bottom-0 border-primary fw-semibold rounded-0">Order & Trade History</button>
+                 <button class="btn fs-8 mb-0 border-primary text-secondary border-0 border-bottom-0 border-primary fw-semibold rounded-0">Capital Flow</button>
+                 <button class="btn fs-8 mb-0 border-primary text-secondary border-0 border-bottom-0 border-primary fw-semibold rounded-0">Wallet</button>
                </div>
-                 <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
- 
-                 </div>
-                 <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
-             </div>
-             <div class="wallet-balance-wrapper d-flex flex-column align-items-center my-4 p-5">
-               <p class="mb-1">Wallet Balance: <strong>0.0000 USDT</strong></p>
-               <p class="text-secondary fs-8 mb-3">
-                 Your futures account wallet balance is 0. You can deposit or transfer funds, or try zero-risk demo trading.
-               </p>
-               <div class="d-flex justify-content-between align-items-center">
-                 <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 me-2"href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html">Deposit <i class="fa-solid fa-caret-down"></i></a>
-                 <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 me-2" href="#">Transfer</a>
-                 <a class="nav-link bg-secondary bg-opacity-10 rounded-pill text-black fs-8 px-3 py-1 mt-1 " href="#">Demo Trading</a>
+               <div class="d-flex justify-content-center align-items-center">
+                 <input type="checkbox" class="form-check p-0 m-0 mb-2 " name="hide_other_price" id="">
+                 <label for="hide_other_price" class=" mb-2 form-check-label px-2 text-nowrap fs-8">Hide Other Pairs</label>
+                 <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-sliders fs-8"></i></button>
+                 <button class="btn border-0 p-1 text-secondary mb-2 "><i class="fa-solid fa-bars fs-8"></i></button>
                </div>
+              </div>
+               <div class="d-flex justify-content-end align-items-center w-auto h-100 me-1">
+               </div>
+               <div class="bg-secondary bg-opacity-10 position-absolute" style="height: 1px;width: 100%;"></div>
+            </div>
+             <div class="wallet-balance-wrapper d-flex flex-column align-items-center my-0 p-0">
+              <div class="table-responsive w-100">
+                <table id="cryptoTable" class="table rounded-2 table-hover w-100 mt-0 mt-3 fs-7">
+                    <thead class="border-bottom">
+                        <tr>
+                            <th class="text-secondary">Trading Pair<i class="fa fa-star ps-1 fs-9"></i></th>
+                            <th class="text-secondary">Time<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-secondary">Type<i class="fa fa-caret-down ps-1"></i></th>
+                            <th class="text-secondary">Side<i class="fa fa-caret-down ps-1"></i></th>
+                            <th class="text-secondary">Price<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-secondary">Quantity<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-secondary">Order Amount<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-secondary">TP/SL</th>
+                            <th class="text-secondary">Filed<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-secondary">Trigger Conditions<i class="fa fa-sort ps-1"></i></th>
+                            <th class="text-primary">Cancel All<i class="fa fa-caret-down ps-1"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script>
+                            let futures_crypto = `
+                                <tr>
+                                    <td data-label="Trading Pair">
+                                        <div class="no-st-sm-end">
+                                            <img src="../../image/dex/solana.webp" width="24" height="24" class="me-2">
+                                            <span>SOL/USDT</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Time">05-12 01:37:25</td>
+                                    <td data-label="Type">Limit</td>
+                                    <td data-label="Side" class="text-success">Buy</td>
+                                    <td data-label="Price">$5,000.00</td>
+                                    <td data-label="Quantity">1.00</td>
+                                    <td data-label="Order Amount">1 USDT</td>
+                                    <td data-label="TP/SL">--</td>
+                                    <td data-label="Filed">0.00%</td>
+                                    <td data-label="Trigger Conditions">--</td>
+                                    <td data-label="Cancel All">
+                                      <div class="">
+                                        <button class="btn p-0"><i class="fa fa-pen fs-8 text-secondary"></i></button> 
+                                        <div class="vr"></div>
+                                        <button class="btn p-0"><i class="fa fa-trash fs-8 text-secondary"></i></button> 
+                                      </div>  
+                                    </td>
+                                </tr>
+                            `;
+                            for (let i = 0; i < 5; i++) {
+                                document.write(futures_crypto);
+                            }
+                        </script>
+                    </tbody>
+                </table>
+            </div>
              </div>
            </div>
          </div>
@@ -1257,11 +1363,11 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                  <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-3">
                    <div class="w-100">
                      <div class="number-spinner position-relative">
-                       <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                       <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                        <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Total:</div>
                        <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
                        <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
-                       <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                       <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                      </div>
                    </div>
                  </div>
@@ -1358,18 +1464,18 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                  <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-2">
                      <div class="w-100">
                        <div class="number-spinner position-relative mt-3">
-                         <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                         <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                          <div class="fs-8 text-secondary position-absolute ps-1" style="top: 12px;">Price:</div>
                          <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 ps-5 pe-5" min="0" style="height: 40px;" />
                          <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
-                         <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                         <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                        </div>
                        <div class="number-spinner position-relative mt-3">
-                         <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                         <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                          <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Amount:</div>
                          <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
                          <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">BTC</div>
-                         <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                         <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                        </div>
                      </div>
                  </div>
@@ -1381,11 +1487,11 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                  <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                    <div class="w-100">
                      <div class="number-spinner position-relative">
-                       <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                       <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                        <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Total:</div>
                        <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
                        <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
-                       <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                       <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                      </div>
                    </div>
                  </div>
@@ -1441,25 +1547,25 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                  <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                    <div class="w-100">
                      <div class="number-spinner position-relative mt-3">
-                       <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                       <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                        <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Trigger price</div>
                        <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 82px;" />
                        <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
-                       <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                       <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                      </div>
                      <div class="number-spinner position-relative mt-3">
-                       <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                       <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                        <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">price</div>
                        <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 38px;" />
                        <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
-                       <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                       <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                      </div>
                      <div class="number-spinner position-relative mt-3">
-                       <button type="button" class="spin-btn spin-up btn text-secondary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-3 fa fa-caret-up"></i></button>
+                       <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                        <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Amount</div>
                        <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
                        <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">BTC</div>
-                       <button type="button" class="spin-btn spin-down btn text-secondary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-3 fa fa-caret-down"></i></button>
+                       <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                      </div>
                    </div>
                  </div>
@@ -1471,11 +1577,11 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                <div class="d-flex justify-content-start align-items-end p-0 px-2 mt-1">
                  <div class="w-100">
                    <div class="number-spinner position-relative">
-                     <button type="button" class="spin-btn spin-up btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; top: 1px;"><div class="d-flex justify-content-center align-items-center">▲</div></button>
+                    <button type="button" class="spin-btn spin-up btn text-body-tertiary p-1 pt-2 border-0 position-absolute me-1 end-0 border-bottom border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; top: 1px;"><i class="fs-5 fa fa-caret-up"></i></button>
                      <div class="fs-8 text-secondary position-absolute ps-1" style="top: 11px;">Total:</div>
                      <input type="number" name="price_token" class="form-control bg-secondary bg-opacity-10 border-0 fs-8 pe-5" min="0" style="height: 40px;padding-left: 55px;" />
-                     <div class="fs-9 text-secondary position-absolute ps-1" style="top: 14px; right: 25px;">USDT</div>
-                     <button type="button" class="spin-btn spin-down btn text-secondary p-0 border-0 position-absolute me-1 end-0" style="height: 19px; bottom: 3px;"><div class="d-flex justify-content-top align-items-top">▼</div></button>
+                     <div class="fs-9 text-secondary position-absolute ps-1" style="top: 12px; right: 34px;">USDT</div>
+                     <button type="button" class="spin-btn spin-down btn text-body-tertiary p-1  border-0 position-absolute me-1 end-0 border-start d-flex justify-content-center align-items-center rounded-0" style="height: 19px; bottom: 2px;"><i class="fs-5 fa fa-caret-down"></i></button>
                    </div>
                  </div>
                </div>
@@ -1487,7 +1593,7 @@ input[type="range"].form-range-success::-webkit-slider-runnable-track {
                      <label class="fs-8 form-check-label ">SL</label>
                  </div>
                </div> -->
-               <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-2">
+               <div class="d-flex justify-content-between align-items-center p-0 ps-2 pe-1 mt-3">
                  <div class="w-100 me-1">
                    <button class="btn btn-warning rounded-pill fs-8 w-100">Stop-Limit <span id="token_name">BTC</span></button>
                  </div>
