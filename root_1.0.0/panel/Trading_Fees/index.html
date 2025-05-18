@@ -56,10 +56,7 @@
                           Spot
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="http://127.0.0.1:5500/root_1.0.0/header/spot/index.html">Go to spot</a></li>
                         </ul>
                       </li>
                       <li class="nav-item dropdown">
@@ -67,10 +64,7 @@
                           Futures
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">test text</a></li>
+                          <li><a class="dropdown-item" href="http://127.0.0.1:5500/root_1.0.0/header/future/index.html">Go to future</a></li>
                         </ul>
                       </li>
                       <li class="nav-item dn-92-82">
@@ -111,7 +105,7 @@
                                 <i class="fa fa-search "></i>
                             </button>
                         </li>
-<li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link bg-primary rounded-pill text-white fs-8 px-3 py-1 mt-1" href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html">
                                 Deposit
                             </a>
@@ -293,7 +287,7 @@
                                 const handleTabs = () => {
                                 const navLinks = document.querySelectorAll('.nav-underline .select_message');
                                 if (!navLinks.length) return;
-
+    
                                 navLinks.forEach(link => {
                                     link.addEventListener('click', function(e) {
                                     e.preventDefault();
@@ -320,7 +314,7 @@
                                 <i class="fas fa-globe fs-8"></i>
                             </button>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" onclick="toggleTheme()">
                             <a class="nav-link position-relative fs-8" href="#"><i class="far fa-sun fs-6s"></i></a>
                         </li>
                         <!-- nav-link -->

@@ -415,10 +415,20 @@ $(document).ready(function () {
   $("#buy_btn_spot").click(function(){
     $("#buy_btn_spot").addClass("text-white bg-success");
     $("#sell_btn_spot").removeClass("text-white bg-danger");
+    let $ranges = $('input[type="range"]');
+    $($ranges).removeClass("form-range-danger");
+    $($ranges).addClass("form-range-success");
+    $("#market_buy_btn").show();
+    $("#market_sell_btn").hide();
   });
   $("#sell_btn_spot").click(function(){
     $("#sell_btn_spot").addClass("text-white bg-danger");
     $("#buy_btn_spot").removeClass("text-white bg-success");
+    let $ranges = $('input[type="range"]');
+    $($ranges).removeClass("form-range-success");
+    $($ranges).addClass("form-range-danger");
+    $("#market_sell_btn").show();
+    $("#market_buy_btn").hide();
   });
   $("#open_desk").click(function(){
     $("#open_desk").addClass("bg-white  border-top");
