@@ -447,12 +447,14 @@ $(document).ready(function () {
     $("#open_desk").removeClass("bg-white  border-top");
   });
   $("#orderbook").click(function(){
+    $(".order_book_page_sort").show()
     $("#orderbook").addClass("bg-white  border-top");
     $("#orderbook").removeClass("text-secondary border-top-0");
     $("#markettrade").addClass("text-secondary border-top-0");
     $("#markettrade").removeClass("bg-white  border-top");
   });
   $("#markettrade").click(function(){
+    $(".order_book_page_sort").hide()
     $("#markettrade").addClass("bg-white  border-top");
     $("#markettrade").removeClass("text-secondary border-top-0");
     $("#orderbook").addClass("text-secondary border-top-0");
