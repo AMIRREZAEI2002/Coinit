@@ -116,7 +116,7 @@ function updateOrderTable() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: red; width: ${Progress_Percentage}% ; top: 50% ; right: 0px;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodysell.appendChild(newtr);
@@ -134,7 +134,7 @@ function updateOrderTable() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: green;width: ${Progress_Percentage}%;top: 50%;right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodybuy.appendChild(newtr);
@@ -189,7 +189,7 @@ function updateOrderTableGREEN() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: green;width: ${Progress_Percentage}%; top: 50%; right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodybuy.appendChild(newtr);
@@ -241,7 +241,7 @@ function updateOrderTableRED() {
               <td>${bookorder['total']}</td>
               <td style="position: absolute;background-color: red;width: ${Progress_Percentage}%;top: 50%;right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
             `;
-            newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+            newtr.classList.add("bg-opacity-10");
             newtr.style.position = "relative";
         
             tbodysell.appendChild(newtr);
@@ -273,7 +273,7 @@ function defultsortbook(wichpage){
             <!-- Mid Price separator -->
             <tr class="text-center text-dark fw-bold">
                 <td colspan="3" id="midnumber">
-                <div class="text-danger fs-6 distart">
+                <div class="fs-6 distart">
                     <div>104,144.8</div>
                     <div><i class="fa-solid fa-down-long ml-2 fs-6s"></i></div>
                     <div class="text-secondary fs-9 ml-2">104,146.9</div>
@@ -306,9 +306,9 @@ function greensortbook(wichpage){
     
             <tbody>
             <!-- Mid Price separator -->
-            <tr class="text-center text-dark fw-bold">
+            <tr class="text-center  fw-bold">
                 <td colspan="3" id="midnumber">
-                <div class="text-danger fs-6 distart">
+                <div class=" fs-6 distart">
                     <div>104,144.8</div>
                     <div><i class="fa-solid fa-down-long ml-2 fs-6s"></i></div>
                     <div class="text-secondary fs-9 ml-2">104,146.9</div>
@@ -543,7 +543,7 @@ function markettradefn(){
       <td>${bookorder['amount']}</td>
       <td>${bookorder['time']}</td>
     `;
-    newtr2.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+    newtr2.classList.add("bg-opacity-10");
     newtr2.style.position = "relative";
 
     markettbody.appendChild(newtr2);
@@ -625,7 +625,11 @@ const classMap = {
   "text-dark": "text-light",
   "body": "body-night",
   "text-muted": "text-muted-night",
-  "text-secondary": "text-secondary-night"
+  "text-secondary": "text-secondary-night",
+  "btn-light" : "btn-light-night",
+  "modal_ave": "modal_ave-night",
+  "bg-secondary": "bg-secondary-night",
+  "table": "table-night",
 };
 
 // دکمه‌ها: تغییر رنگ متن بر اساس حالت تم
