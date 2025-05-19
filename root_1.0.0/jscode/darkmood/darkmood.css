@@ -39,3 +39,26 @@
     background-color: #12141A !important;
     color: #ffffff !important;
 }
+
+[data-bs-theme="dark"] .list-group-item {
+    background-color: transparent !important;
+
+}
+
+[data-bs-theme="dark"] .table{
+    --bs-table-bg : transparent !important;
+}
+
+
+[data-bs-theme="dark"] .partactive{
+    background-color: #12141A !important;
+    color: white;
+    border-radius: 10px;
+}
+
+
+[data-bs-theme="dark"] .table-secondary {
+    background-color: #343a40 !important;
+    color: black;
+    --bs-table-bg : transparent
+}

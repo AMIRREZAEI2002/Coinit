@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="../jscode/darkmood/darkmood.css">
+    <script src="../jscode/darkmood/darkmood.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.13.6/sorting/datetime-moment.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -725,52 +727,52 @@
 
             <!-- sidder -->
             <div id="overlay" class="d-lg-none" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 189; background-color: rgba(0,0,0,0.8);"></div>
-            <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; background-color: white; transition: left 0.4s ease;">
+            <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed bg-white text-black" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; transition: left 0.4s ease;">
                 <div style="display: flex; flex-direction: column; align-items: start;margin-left: 50px; color: black;">
                     
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Profile</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Security</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Identification</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Referral</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Trading Fees</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Withdrawal Addresses/Contacts</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Sub-Account Management</div>
                         </div>
                     </a>
-                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="py-3 px-2" style="text-decoration: none; color: black;">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="py-3 px-2" style="text-decoration: none;">
                         <div class="distart fs-7">
                             <div><i class="fa-solid fa-wallet"></i></div>
                             <div class="ml-2">Settings</div>
@@ -779,7 +781,7 @@
                 </div>
 
                 <!-- Toggle Button -->
-                <div id="toggleButton" class="discen rounded-1" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190; background-color: white; color: black; display: flex; justify-content: center; align-items: center;">
+                <div id="toggleButton" class="discen rounded-1 bg-white text-black" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190;display: flex; justify-content: center; align-items: center;">
                     <i class="fa-solid fa-caret-right fa-xl" id="toggleIcon"></i>
                 </div>
             </div>
@@ -796,7 +798,7 @@
                                     <div class="distart mt-2">
                                         <div class="fs-4 fw-bold">6.73</div>
                                         <div class="ml-1">
-                                            <select name="" id="" class="form-select fs-7">
+                                            <select name="" id="" class="bg-transparent form-select fs-7">
                                                 <option value="USDT">USDT</option>
                                             </select>
                                         </div>
@@ -804,7 +806,7 @@
                                     <div class="distart fs-8 text-muted">
                                         <div class="text-muted" style="z-index: 2;">= 6.73</div>
                                         <div style="margin-left: -10px;">
-                                            <select name="" id="" class="form-select fs-8 text-muted">
+                                            <select name="" id="" class="bg-transparent form-select fs-8 text-muted">
                                                 <option value="USDT">USDT</option>
                                             </select>
                                         </div>
@@ -833,8 +835,8 @@
                                     <div class="col-12 d-flex  justify-content-xl-end justify-content-lg-start col-lg-12 ">
                                         <form class="disbet" >
                                             <div class="no-end-sm-st  felxcolmnstart">
-                                                <div class="inputbox col-5 me-2 mt-2 m-md-0 rounded-pill" style="position: relative; width: fit-content;">
-                                                    <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill" style="height: 10px;width: 60px;" placeholder="Search">
+                                                <div class="inputbox col-5 me-2 mt-2 m-xl-0 rounded-pill bg-secondary bg-opacity-10" style="position: relative; width: fit-content;">
+                                                    <input type="text" name="phone" class="ml-4 py-2 pl-2 myinput rounded-pill text-black bg-transparent" style="height: 10px;width: 60px;" placeholder="Search">
                                                     <div style="position: absolute;left: 20px;top: 50%;transform: translate(-50%,-50%);">
                                                         <i class="fas fa-search fa-sm" style="color: #85919f;"></i>
                                                     </div>

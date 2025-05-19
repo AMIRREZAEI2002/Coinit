@@ -452,19 +452,26 @@ $(document).ready(function () {
     $("#open_desk").addClass("text-secondary border-top-0");
     $("#open_desk").removeClass("bg-white  border-top");
   });
+  let isDark = localStorage.getItem("theme") === "dark";
+  let bgiswhat
+  if(!isDark){
+    bgiswhat = "bg-white"
+  }else{
+    bgiswhat = "bg-night"
+  }
   $("#orderbook").click(function(){
     $(".order_book_page_sort").show()
-    $("#orderbook").addClass("bg-white  border-top");
+    $("#orderbook").addClass(bgiswhat , "border-top");
     $("#orderbook").removeClass("text-secondary border-top-0");
     $("#markettrade").addClass("text-secondary border-top-0");
-    $("#markettrade").removeClass("bg-white  border-top");
+    $("#markettrade").removeClass(bgiswhat , "border-top");
   });
   $("#markettrade").click(function(){
     $(".order_book_page_sort").hide()
-    $("#markettrade").addClass("bg-white  border-top");
+    $("#markettrade").addClass(bgiswhat , "border-top");
     $("#markettrade").removeClass("text-secondary border-top-0");
     $("#orderbook").addClass("text-secondary border-top-0");
-    $("#orderbook").removeClass("bg-white  border-top");
+    $("#orderbook").removeClass(bgiswhat , "border-top");
   });
 });
 function orderbookpage(){
@@ -539,13 +546,13 @@ function countitemsarray(){
     <div class="m-0" style="padding-right: 0px;width: ${countbuy}%;">
       <div class="bg-success p-1 bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countbuy}%</div>
-        <div class="bg-white discen fs-8" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
+        <div class="bg-white text-black discen fs-8 text-black" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
       </div>
     </div>
     <div class="m-0" style="padding-left: 0px;border-left: 3px solid white;width: ${countsells}%;">
       <div class="bg-danger p-1  bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countsells}%</div>
-        <div class="bg-white discen fs-8" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
+        <div class="bg-white discen text-black fs-8 text-black" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
       </div>
     </div>
   
