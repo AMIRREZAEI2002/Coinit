@@ -116,7 +116,7 @@ function updateOrderTable() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: red; width: ${Progress_Percentage}% ; top: 50% ; right: 0px;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodysell.appendChild(newtr);
@@ -134,7 +134,7 @@ function updateOrderTable() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: green;width: ${Progress_Percentage}%;top: 50%;right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodybuy.appendChild(newtr);
@@ -189,7 +189,7 @@ function updateOrderTableGREEN() {
             <td>${bookorder['total']}</td>
             <td style="position: absolute;background-color: green;width: ${Progress_Percentage}%; top: 50%; right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
           `;
-          newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+          newtr.classList.add("bg-opacity-10");
           newtr.style.position = "relative";
       
           tbodybuy.appendChild(newtr);
@@ -229,22 +229,23 @@ function updateOrderTableRED() {
         
         sellarray = sellarray.sort((a, b) => b.total - a.total);
 
+
         sellarray.forEach((bookorder) => {
-            let Progress_Percentage = ((bookorder['total'] * 50) / averageofbooks);
-            if (Progress_Percentage > 100) Progress_Percentage = 100;
-            Progress_Percentage = Math.round(Progress_Percentage);
-        
-            let newtr = document.createElement("tr");
-            newtr.innerHTML = `
-              <td>${bookorder['price']}</td>
-              <td>${bookorder['quantity']}</td>
-              <td>${bookorder['total']}</td>
-              <td style="position: absolute;background-color: red;width: ${Progress_Percentage}%;top: 50%;right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
-            `;
-            newtr.classList.add("text-danger", "bg-danger", "bg-opacity-10");
-            newtr.style.position = "relative";
-        
-            tbodysell.appendChild(newtr);
+          let Progress_Percentage = ((bookorder['total'] * 50) / averageofbooks);
+          if (Progress_Percentage > 100) Progress_Percentage = 100;
+          Progress_Percentage = Math.round(Progress_Percentage);
+      
+          let newtr = document.createElement("tr");
+          newtr.innerHTML = `
+            <td>${bookorder['price']}</td>
+            <td>${bookorder['quantity']}</td>
+            <td>${bookorder['total']}</td>
+            <td style="position: absolute;background-color: red;width: ${Progress_Percentage}%;top: 50%;right: 0%;transform: translate(0%,-50%);opacity: 20%;height:100%"></td>
+          `;
+          newtr.classList.add("bg-opacity-10");
+          newtr.style.position = "relative";
+      
+          tbodysell.appendChild(newtr);
         });
     }
 }
@@ -378,6 +379,11 @@ document.querySelectorAll('.spin-down').forEach(function(btn) {
     input.dispatchEvent(new Event('input'));
   });
 });
+
+
+
+
+
 $(document).ready(function () {
   $("#limit").click(function(){
       $("#limit-box").show();
@@ -502,7 +508,7 @@ function markettradefn(){
       <td>${bookorder['amount']}</td>
       <td>${bookorder['time']}</td>
     `;
-    newtr2.classList.add("text-danger", "bg-danger", "bg-opacity-10");
+    newtr2.classList.add("bg-opacity-10");
     newtr2.style.position = "relative";
 
     markettbody.appendChild(newtr2);

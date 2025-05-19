@@ -567,6 +567,12 @@ function countitemsarray(){
     }
   });
 
+  if(countbuy + countsells != 100){
+    console.log(bookorders)
+    countbuy = countbuy*2
+    countsells = countsells*2
+  }
+
 
   showitemdiv.innerHTML = `
     <div class="m-0" style="padding-right: 0px;width: ${countbuy}%;">
@@ -626,13 +632,15 @@ const classMap = {
   "body": "body-night",
   "text-muted": "text-muted-night",
   "text-secondary": "text-secondary-night",
-  "btn-light" : "btn-light-night",
+  "btn-light": "btn-light-night",
   "modal_ave": "modal_ave-night",
   "bg-secondary": "bg-secondary-night",
   "table": "table-night",
+  "text-black": "text-light",
+  "link-dark": "link-light",
 };
 
-// دکمه‌ها: تغییر رنگ متن بر اساس حالت تم
+// تغییر رنگ متن دکمه‌ها
 function updateButtonTextColor(toDark) {
   const buttons = document.querySelectorAll('button');
   buttons.forEach(btn => {
@@ -641,7 +649,7 @@ function updateButtonTextColor(toDark) {
   });
 }
 
-// سوئیچ کردن کلاس‌ها به حالت دارک یا لایت
+// سوییچ کردن کلاس‌ها به حالت دارک یا لایت
 function switchThemeClasses(toDark) {
   for (const [light, dark] of Object.entries(classMap)) {
     document.querySelectorAll(`.${toDark ? light : dark}`).forEach(el => {
@@ -656,16 +664,24 @@ function switchThemeClasses(toDark) {
 // وضعیت اولیه تم از localStorage
 let isDark = localStorage.getItem("theme") === "dark";
 
-// تغییر تم و ذخیره وضعیت جدید
+// تابع سوییچ تم
 function toggleTheme() {
   isDark = !isDark;
   localStorage.setItem("theme", isDark ? "dark" : "light");
   switchThemeClasses(isDark);
+
+  // ست یا حذف کردن data-bs-theme روی تگ html
+  if (isDark) {
+    document.documentElement.setAttribute("data-bs-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-bs-theme");
+  }
 }
 
-// اجرای اولیه هنگام بارگذاری صفحه
+// اعمال حالت دارک موقع لود صفحه
 window.addEventListener("DOMContentLoaded", () => {
   if (isDark) {
     switchThemeClasses(true);
+    document.documentElement.setAttribute("data-bs-theme", "dark");
   }
 });
