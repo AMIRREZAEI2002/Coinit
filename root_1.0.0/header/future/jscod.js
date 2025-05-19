@@ -379,6 +379,13 @@ document.querySelectorAll('.spin-down').forEach(function(btn) {
   });
 });
 $(document).ready(function () {
+  isDark = localStorage.getItem("theme") === "dark";
+  let bgiswhat
+  if(!isDark){
+    bgiswhat = "bg-white"
+  }else{
+    bgiswhat = "bg-night"
+  }
   $("#limit").click(function(){
       $("#limit-box").show();
       $("#maker-box").hide();
@@ -413,37 +420,31 @@ $(document).ready(function () {
       $("#limit").removeClass("border-bottom");
   });
   $("#open_desk").click(function(){
-    $("#open_desk").addClass("bg-white  border-top");
+    $("#open_desk").addClass(bgiswhat , "border-top");
     $("#open_desk").removeClass("text-secondary border-top-0");
     $("#close_desk").addClass("text-secondary border-top-0");
-    $("#close_desk").removeClass("bg-white  border-top");
+    $("#close_desk").removeClass(bgiswhat , "border-top");
   });
   $("#close_desk").click(function(){
-    $("#close_desk").addClass("bg-white  border-top");
+    $("#close_desk").addClass(bgiswhat , "border-top");
     $("#close_desk").removeClass("text-secondary border-top-0");
     $("#open_desk").addClass("text-secondary border-top-0");
-    $("#open_desk").removeClass("bg-white  border-top");
+    $("#open_desk").removeClass(bgiswhat , "border-top");
   });
+
   $("#orderbook").click(function(){
-    $('#changesortdivbtns').show();
-    $("#orderbook").addClass("bg-white  border-top");
+    $(".order_book_page_sort").show()
+    $("#orderbook").addClass(bgiswhat , "border-top");
     $("#orderbook").removeClass("text-secondary border-top-0");
     $("#markettrade").addClass("text-secondary border-top-0");
-    $("#markettrade").removeClass("bg-white  border-top");
+    $("#markettrade").removeClass(bgiswhat , "border-top");
   });
   $("#markettrade").click(function(){
-    $('#changesortdivbtns').hide();
-    $("#markettrade").addClass("bg-white  border-top");
+    $(".order_book_page_sort").hide()
+    $("#markettrade").addClass(bgiswhat , "border-top");
     $("#markettrade").removeClass("text-secondary border-top-0");
     $("#orderbook").addClass("text-secondary border-top-0");
-    $("#orderbook").removeClass("bg-white  border-top");
-  });
-  $("#markettrade").click(function(){
-    $('#changesortdivbtns').hide();
-    $("#markettrade").addClass("bg-white  border-top");
-    $("#markettrade").removeClass("text-secondary border-top-0");
-    $("#orderbook").addClass("text-secondary border-top-0");
-    $("#orderbook").removeClass("bg-white  border-top");
+    $("#orderbook").removeClass(bgiswhat , "border-top");
   });
   $("#iso_margin_box").click(function () {
     $('#isolated_check').prop("checked", true);
@@ -578,13 +579,13 @@ function countitemsarray(){
     <div class="m-0" style="padding-right: 0px;width: ${countbuy}%;">
       <div class="bg-success p-1 bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countbuy}%</div>
-        <div class="bg-white discen fs-8" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
+        <div class="bg-white discen fs-8 text-black" style="position: absolute;right: 15px; height: 14px;width: 14px;">S</div>
       </div>
     </div>
     <div class="m-0" style="padding-left: 0px;border-left: 3px solid white;width: ${countsells}%;">
       <div class="bg-danger p-1  bg-opacity-50 d-flex justify-content-center align-items-center fs-7">
         <div>${countsells}%</div>
-        <div class="bg-white discen fs-8" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
+        <div class="bg-white discen fs-8 text-black" style="position: absolute;left: 15px; height: 14px;width: 14px;">B</div>
       </div>
     </div>
   
@@ -616,72 +617,3 @@ function toggleSidebar() {
 
 
 
-
-
-
-
-
-
-// darkmood
-
-// darkmood
-
-const classMap = {
-  "bg-white": "bg-night",
-  "text-dark": "text-light",
-  "body": "body-night",
-  "text-muted": "text-muted-night",
-  "text-secondary": "text-secondary-night",
-  "btn-light": "btn-light-night",
-  "modal_ave": "modal_ave-night",
-  "bg-secondary": "bg-secondary-night",
-  "table": "table-night",
-  "text-black": "text-light",
-  "link-dark": "link-light",
-};
-
-// تغییر رنگ متن دکمه‌ها
-function updateButtonTextColor(toDark) {
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(btn => {
-    btn.classList.remove(toDark ? 'text-dark' : 'text-white-night');
-    btn.classList.add(toDark ? 'text-white-night' : 'text-dark');
-  });
-}
-
-// سوییچ کردن کلاس‌ها به حالت دارک یا لایت
-function switchThemeClasses(toDark) {
-  for (const [light, dark] of Object.entries(classMap)) {
-    document.querySelectorAll(`.${toDark ? light : dark}`).forEach(el => {
-      el.classList.remove(toDark ? light : dark);
-      el.classList.add(toDark ? dark : light);
-    });
-  }
-
-  updateButtonTextColor(toDark);
-}
-
-// وضعیت اولیه تم از localStorage
-let isDark = localStorage.getItem("theme") === "dark";
-
-// تابع سوییچ تم
-function toggleTheme() {
-  isDark = !isDark;
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-  switchThemeClasses(isDark);
-
-  // ست یا حذف کردن data-bs-theme روی تگ html
-  if (isDark) {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  } else {
-    document.documentElement.removeAttribute("data-bs-theme");
-  }
-}
-
-// اعمال حالت دارک موقع لود صفحه
-window.addEventListener("DOMContentLoaded", () => {
-  if (isDark) {
-    switchThemeClasses(true);
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
-});

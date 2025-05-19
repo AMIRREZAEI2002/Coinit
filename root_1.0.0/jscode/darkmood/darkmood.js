@@ -2,6 +2,8 @@
 
 const classMap = {
     "bg-white": "bg-night",
+    "bg-light": "bg-night",
+    "bg-mybody": "bg-secondary-night",
     "text-dark": "text-light",
     "body": "body-night",
     "text-muted": "text-muted-night",
@@ -9,9 +11,9 @@ const classMap = {
     "btn-light": "btn-light-night",
     "modal_ave": "modal_ave-night",
     "bg-secondary": "bg-secondary-night",
-    "table": "table-night",
     "text-black": "text-light",
     "link-dark": "link-light",
+    
 };
   
 // تغییر رنگ متن دکمه‌ها
@@ -41,6 +43,7 @@ let isDark = localStorage.getItem("theme") === "dark";
 // تابع سوییچ تم
 function toggleTheme() {
 isDark = !isDark;
+
 localStorage.setItem("theme", isDark ? "dark" : "light");
 switchThemeClasses(isDark);
 
@@ -59,3 +62,4 @@ if (isDark) {
     document.documentElement.setAttribute("data-bs-theme", "dark");
 }
 });
+
