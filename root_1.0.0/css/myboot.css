@@ -566,22 +566,3 @@ input:checked ~ .slider--3 {
 
 
 
-/* dark mood */
-
-.bg-night{
-    background-color: #12141A !important;
-}
-.body-night {
-    font-family: 'Inter' !important;
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-.text-muted-night{
-    color: #ffffff !important;
-}
-.text-secondary-night{
-    color: #ffffff !important;
-}
-.text-white-night{
-    color: #ffffff !important;
-}
