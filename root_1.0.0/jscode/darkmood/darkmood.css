@@ -104,3 +104,8 @@
     background-color: #e57373 !important;
   }
   
+  
+  [data-bs-theme="dark"] .support-hero {
+    background-color: #12141A !important;
+  }
+  

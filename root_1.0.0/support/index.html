@@ -29,114 +29,15 @@
         </script>
         <title>Document</title>
         <style>
-            .gainers-table-container {
-              border-radius: 16px;
-              padding: 20px;
-              width: 100%;
-              margin: 10px auto;
-              background-color: #ffffff;
+            .support-hero {
+              padding: 3rem 1rem;
+              background: #ffffff;
+              border-radius: 0.5rem;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+              margin-bottom: 2rem;
+              text-align: center;
             }
-          
-            .gainers-table-title {
-              font-size: 20px;
-              font-weight: bold;
-              margin-bottom: 16px;
-              color: #000000;
-            }
-          
-            table {
-              width: 100%;
-              border-collapse: separate;
-              border-spacing: 0 12px;
-            }
-          
-            thead {
-              background-color: #e0f4ff;
-              color: #007bff;
-            }
-          
-            thead th {
-              text-align: left;
-              padding: 12px;
-              font-weight: 600;
-              font-size: 14px;
-            }
-          
-            tbody tr {
-              background-color: #ffffff;
-              border-radius: 16px;
-              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            }
-          
-            tbody td {
-              padding: 8px 6px;
-              vertical-align: middle;
-              font-size: 14px;
-              color: #333333;
-            }
-          
-            .crypto-info {
-              display: flex;
-              align-items: center;
-              gap: 10px;
-            }
-          
-            .crypto-info img {
-              width: 28px;
-              height: 28px;
-              border-radius: 50%;
-            }
-          
-            .btn-sm {
-              font-size: 12px;
-              padding: 4px 8px;
-            }
-          
-            @media (max-width: 768px) {
-              .gainers-table-container {
-                padding: 0;
-              }
-          
-              table,
-              thead,
-              tbody,
-              th,
-              td,
-              tr {
-                display: block;
-                width: 100%;
-              }
-          
-              thead {
-                display: none;
-              }
-          
-              tbody tr {
-                margin-bottom: 16px;
-                padding: 12px;
-              }
-          
-              tbody td {
-                position: relative;
-                padding-left: 50%;
-                text-align: right;
-                border: none;
-              }
-          
-              tbody td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-weight: bold;
-                color: #888888;
-                font-size: 13px;
-                white-space: nowrap;
-                text-align: left;
-              }
-            }
-          </style>
+        </style>
 </head>
 <body>  
     <header>
@@ -720,351 +621,234 @@
     </div>
     </header>
     <main>
-        <div class="container-fluid px-lg-5">
-            <div class="row justify-content-center align-content-center px-lg-5">
-                <div class="col-12 p-4 pb-0">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap">
-                        <h4 class="m-0 fw-semibold">Your P2P Advertisements</h6>
-                        <a href="#" class="btn btn-primary fw-semibold">
-                            <i class="fa fa-plus-circle pe-2"></i>Create New Offer
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 p-4 pt-2">
-                    <div class="gainers-table-container bg-secondary bg-opacity-10 rounded-3 p-3 table-responsive-custom">
-                        <h5>My Active Offers <i class="fa fa-chevron-right fs-6"></i></h5>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th class="rounded-start-4">Offer ID</th>
-                              <th>Type</th>
-                              <th>Cryptocurrency</th>
-                              <th>Price (USD)</th>
-                              <th>Payment Method</th>
-                              <th>Limits (USD)</th>
-                              <th>Status</th>
-                              <th class="rounded-end-4">Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td data-label="Offer ID" class="rounded-start-4">#P2P1023</td>
-                              <td data-label="Type">Sell</td>
-                              <td data-label="Cryptocurrency">BTC</td>
-                              <td data-label="Price">$56,200.00</td>
-                              <td data-label="Payment Method">Bank Transfer</td>
-                              <td data-label="Limits">$100–$5,000</td>
-                              <td data-label="Status"><span class="text-success">Active</span></td>
-                              <td data-label="Actions" class="rounded-end-4">
-                                <button class="btn btn-sm btn-warning me-2">Edit</button>
-                                <button class="btn btn-sm btn-danger">Deactivate</button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td data-label="Offer ID" class="rounded-start-4">#P2P1087</td>
-                              <td data-label="Type">Buy</td>
-                              <td data-label="Cryptocurrency">USDT</td>
-                              <td data-label="Price">$1.00</td>
-                              <td data-label="Payment Method">PayPal</td>
-                              <td data-label="Limits">$50–$2,000</td>
-                              <td data-label="Status"><span class="text-success">Active</span></td>
-                              <td data-label="Actions" class="rounded-end-4">
-                                <button class="btn btn-sm btn-warning me-2">Edit</button>
-                                <button class="btn btn-sm btn-danger">Deactivate</button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td data-label="Offer ID" class="rounded-start-4">#P2P1150</td>
-                              <td data-label="Type">Sell</td>
-                              <td data-label="Cryptocurrency">ETH</td>
-                              <td data-label="Price">$3,200.00</td>
-                              <td data-label="Payment Method">Local Cash</td>
-                              <td data-label="Limits">$20–$1,000</td>
-                              <td data-label="Status"><span class="text-danger">Paused</span></td>
-                              <td data-label="Actions" class="rounded-end-4">
-                                <button class="btn btn-sm btn-warning me-2">Edit</button>
-                                <button class="btn btn-sm btn-success">Activate</button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+        <div class="container">
+            <section class="support-hero">
+                <h1 class="display-5 fw-semibold">Coinit Support</h1>
+                <p class="lead">If you have any questions or issues, you'll find your answers here — or feel free to get in touch with us directly.</p>
+              </section>
+              <section class="mb-5">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h2 class="h4 mb-4">Submit a Support Ticket</h2>
+                    <form id="supportForm" novalidate>
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          name="name"
+                          placeholder="e.g., Arthur Morgan"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Please enter a valid name (at least 3 characters).
+                        </div>
                       </div>
-                      
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          placeholder="e.g., Arthur_Morgan@coinit.com"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Please enter a valid email address.
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="subject"
+                          name="subject"
+                          placeholder="Enter ticket subject"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Subject must be at least 5 characters long.
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <label for="message" class="form-label">Details / Message</label>
+                        <textarea
+                          class="form-control"
+                          id="message"
+                          name="message"
+                          rows="5"
+                          placeholder="Type your message here..."
+                          required
+                        ></textarea>
+                        <div class="invalid-feedback">
+                          Message must be at least 10 characters long.
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Send Ticket</button>
+                      <div id="formSuccess" class="alert alert-success mt-3 d-none" role="alert">
+                        Your message has been sent successfully. We will get back to you shortly.
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                
-                <div class="col-12">
-                    <hr>
-                </div>
-                <div class="col-12 p-4">
-                    <h4 class="fw-semibold">P2P Marketplace</h5>
-                    <span class="text-secondary fs-7 ps-1">
-                        Browse and trade with other users directly. Filter offers by cryptocurrency, payment method, and limits.
-                    </span>
-                </div>
-                <!-- فیلترها -->
-                <div class="col-12 p-4">
-                    <div class="row g-3">
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <input type="text" id="searchTrader" class="form-control" placeholder="Search by trader username" />
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <select id="cryptoFilter" class="form-select">
-                                <option selected>Cryptocurrency</option>
-                                <option>BTC</option>
-                                <option>ETH</option>
-                                <option>USDT</option>
-                                <option>BNB</option>
-                                <option>XRP</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <select id="paymentFilter" class="form-select">
-                                <option selected>Payment Method</option>
-                                <option>Bank Transfer</option>
-                                <option>PayPal</option>
-                                <option>Alipay</option>
-                                <option>WeChat Pay</option>
-                                <option>Local Cash</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <select id="sortFilter" class="form-select">
-                                <option selected>Sort By</option>
-                                <option>Price: Low to High</option>
-                                <option>Price: High to Low</option>
-                                <option>Limit: Low to High</option>
-                                <option>Limit: High to Low</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-start">
-                            <button id="applyFiltersBtn" class="btn btn-primary fw-semibold w-100">
-                                <i class="fa fa-filter pe-2"></i>Apply Filters
-                            </button>
-                        </div>
+              </section>
+              <section class="mb-5">
+                <h2 class="h4 mb-4">Frequently Asked Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading1">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse1"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse1"
+                      >
+                        How can I recover my account?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse1"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading1"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        To recover your account, go to the login page and click “Forgot Password.” Enter your registered email, and you’ll receive a reset link shortly.
+                      </div>
                     </div>
-                </div>
-
-                <div class="col-12 p-4">
-                    <div class="row justify-content-start align-items-start">
-                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
-                            <div class="table-responsive-custom">
-                                <table class="table table-borderless table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th class="rounded-start-4">Offer ID</th>
-                                      <th>Type</th>
-                                      <th>Cryptocurrency</th>
-                                      <th>Price (USD)</th>
-                                      <th>Payment Method</th>
-                                      <th>Limits (USD)</th>
-                                      <th>Trader</th>
-                                      <th class="rounded-end-4">Action</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="offersTable">
-                                    <tr>
-                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1201</td>
-                                      <td data-label="Type">Buy</td>
-                                      <td data-label="Cryptocurrency">BTC</td>
-                                      <td data-label="Price">$56,150.00</td>
-                                      <td data-label="Payment Method">Bank Transfer</td>
-                                      <td data-label="Limits">$200–$10,000</td>
-                                      <td data-label="Trader">
-                                        <div class="d-flex align-items-center">
-                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
-                                          <span class="fw-semibold">CryptoMaster</span>
-                                        </div>
-                                      </td>
-                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
-                                    </tr>
-                                    <tr>
-                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1217</td>
-                                      <td data-label="Type">Sell</td>
-                                      <td data-label="Cryptocurrency">USDT</td>
-                                      <td data-label="Price">$1.00</td>
-                                      <td data-label="Payment Method">PayPal</td>
-                                      <td data-label="Limits">$50–$5,000</td>
-                                      <td data-label="Trader">
-                                        <div class="d-flex align-items-center w-100">
-                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
-                                          <span class="fw-semibold">TetherTrader</span>
-                                        </div>
-                                      </td>
-                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
-                                    </tr>
-                                    <tr>
-                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1255</td>
-                                      <td data-label="Type">Buy</td>
-                                      <td data-label="Cryptocurrency">ETH</td>
-                                      <td data-label="Price">$3,180.00</td>
-                                      <td data-label="Payment Method">WeChat Pay</td>
-                                      <td data-label="Limits">$100–$3,000</td>
-                                      <td data-label="Trader">
-                                        <div class="d-flex align-items-center w-100">
-                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
-                                          <span class="fw-semibold">EtherGuru</span>
-                                        </div>
-                                      </td>
-                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
-                                    </tr>
-                                    <tr>
-                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1302</td>
-                                      <td data-label="Type">Sell</td>
-                                      <td data-label="Cryptocurrency">BNB</td>
-                                      <td data-label="Price">$420.00</td>
-                                      <td data-label="Payment Method">Local Cash</td>
-                                      <td data-label="Limits">$20–$1,500</td>
-                                      <td data-label="Trader">
-                                        <div class="d-flex align-items-center w-100">
-                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
-                                          <span class="fw-semibold">BinancePro</span>
-                                        </div>
-                                      </td>
-                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-secondary" disabled>Unavailable</button></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                            </div>                              
-                            <!-- pagination ثابت (نمونه) -->
-                            <nav aria-label="P2P pagination">
-                                <ul class="pagination justify-content-center mt-4 mb-0">
-                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading2">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse2"
+                      >
+                        How do I check my order status?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse2"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading2"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        After logging in, navigate to “My Orders.” Select the order you want to review, and all details will be displayed there.
+                      </div>
                     </div>
-                </div>
-
-                <!-- JavaScript: فیلتر و مرتب‌سازی -->
-                <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const searchInput = document.getElementById("searchTrader");
-                    const cryptoSelect = document.getElementById("cryptoFilter");
-                    const paymentSelect = document.getElementById("paymentFilter");
-                    const sortSelect = document.getElementById("sortFilter");
-                    const tableBody = document.getElementById("offersTable");
-                    const applyBtn = document.getElementById("applyFiltersBtn");
-
-                    let allRows = Array.from(tableBody.querySelectorAll("tr"));
-
-                    function applyFilters() {
-                        let filtered = allRows.filter(row => {
-                            const trader = row.querySelector("td:nth-child(7) span")?.textContent.toLowerCase() || "";
-                            const crypto = row.children[2]?.textContent.trim();
-                            const payment = row.children[4]?.textContent.trim();
-
-                            return (
-                                (searchInput.value.trim() === "" || trader.includes(searchInput.value.trim().toLowerCase())) &&
-                                (cryptoSelect.value === "Cryptocurrency" || crypto === cryptoSelect.value) &&
-                                (paymentSelect.value === "Payment Method" || payment === paymentSelect.value)
-                            );
-                        });
-
-                        if (sortSelect.value.includes("Price")) {
-                            filtered.sort((a, b) => {
-                                let priceA = parseFloat(a.children[3].textContent.replace(/[^0-9.]/g, ""));
-                                let priceB = parseFloat(b.children[3].textContent.replace(/[^0-9.]/g, ""));
-                                return sortSelect.value === "Price: Low to High" ? priceA - priceB : priceB - priceA;
-                            });
-                        } else if (sortSelect.value.includes("Limit")) {
-                            filtered.sort((a, b) => {
-                                let limitA = parseInt((a.children[5].textContent.split("–")[0] || "").replace(/[^0-9]/g, ""));
-                                let limitB = parseInt((b.children[5].textContent.split("–")[0] || "").replace(/[^0-9]/g, ""));
-                                return sortSelect.value === "Limit: Low to High" ? limitA - limitB : limitB - limitA;
-                            });
-                        }
-
-                        tableBody.innerHTML = "";
-                        filtered.forEach(row => tableBody.appendChild(row));
-                    }
-
-                    applyBtn.addEventListener("click", applyFilters);
-
-                    [searchInput, cryptoSelect, paymentSelect, sortSelect].forEach(el =>
-                        el.addEventListener("input", applyFilters)
-                    );
-                });
-                </script>
-                <div class="col-12 p-4">
-                    <div class="row justify-content-start align-items-start">
-                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
-                            <h4 class="fw-bold mb-3">How P2P Trading Works</h5>
-                            <ul class="fs-6">
-                                <li><strong>1. Choose an Offer:</strong> Browse available buy/sell offers and select one that meets your price and limit criteria.</li>
-                                <li><strong>2. Initiate Trade:</strong> Click “Trade” to open a secure trade window where you can chat with the counterparty.</li>
-                                <li><strong>3. Transfer Funds:</strong> Follow the seller’s payment instructions (e.g., Bank Transfer, PayPal). Confirm payment has been made.</li>
-                                <li><strong>4. Confirm Receipt:</strong> Once the seller confirms receipt of your payment, the cryptocurrency will be released to your P2P wallet.</li>
-                                <li><strong>5. Leave Feedback:</strong> After completing the transaction, rate and review your trading partner to help maintain trust within the community.</li>
-                            </ul>
-                        </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading3">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse3"
+                      >
+                        What should I do if I encounter a technical issue?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse3"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading3"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        You can submit a new ticket with “Technical Issue” as the subject, or use the live chat widget at the bottom of the page for immediate assistance.
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <div class="col-12 p-4">
-                    <div class="row justify-content-start align-items-start">
-                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
-                            <h6 class="fw-bold mb-3">Frequently Asked Questions</h6>
-                            <div class="accordion" id="p2pFaqAccordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faqHeadingOne">
-                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="false" aria-controls="faqCollapseOne">
-                                            Is P2P trading safe?
-                                        </button>
-                                    </h2>
-                                    <div id="faqCollapseOne" class="accordion-collapse collapse" aria-labelledby="faqHeadingOne" data-bs-parent="#p2pFaqAccordion">
-                                        <div class="accordion-body fs-6">
-                                            Yes. All funds are held in escrow by CoinIt Exchange until both parties confirm payment and receipt. Never release cryptocurrency before confirming the fiat payment.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faqHeadingTwo">
-                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
-                                            How do I create a P2P offer?
-                                        </button>
-                                    </h2>
-                                    <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#p2pFaqAccordion">
-                                        <div class="accordion-body fs-6">
-                                            Click “Create New Offer,” choose Buy or Sell, set your price, payment method, and trade limits. After submission, your offer will appear in the marketplace once approved.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faqHeadingThree">
-                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
-                                            What fees apply to P2P trades?
-                                        </button>
-                                    </h2>
-                                    <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#p2pFaqAccordion">
-                                        <div class="accordion-body fs-6">
-                                            CoinIt Exchange charges a small P2P fee based on your trading volume and market conditions. Fees are clearly displayed before you confirm any trade.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 p-4">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-lg-8 col-12 bg-secondary bg-opacity-10 rounded-3 p-4 text-center">
-                            <h6 class="fw-bold mb-3">Need Help?</h6>
-                            <p class="fs-6 mb-3">
-                                If you have questions or encounter issues with P2P trading, our support team is here to help.
-                            </p>
-                            <a href="mailto:#" class="btn btn-outline-primary fw-semibold">
-                                <i class="fa fa-envelope pe-2"></i>Contact Support
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              </section>
+              <section>
+                <h2 class="h4 mb-3">Helpful Resources</h2>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <a href="/docs/getting-started" class="link-primary">Getting Started Guide</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="/docs/faq" class="link-primary">All FAQs</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="/docs/contact" class="link-primary">Contact Technical Support</a>
+                  </li>
+                </ul>
+              </section>
         </div>
-        
     </main>
+    <script>
+    (function () {
+        'use strict'
+        const form = document.getElementById('supportForm');
+
+        form.addEventListener('submit', function (event) {
+        const nameInput = form.querySelector('#name');
+        const emailInput = form.querySelector('#email');
+        const subjectInput = form.querySelector('#subject');
+        const messageInput = form.querySelector('#message');
+
+        let valid = true;
+
+        if (nameInput.value.trim().length < 3) {
+            nameInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            nameInput.classList.remove('is-invalid');
+            nameInput.classList.add('is-valid');
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value.trim())) {
+            emailInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            emailInput.classList.remove('is-invalid');
+            emailInput.classList.add('is-valid');
+        }
+
+        if (subjectInput.value.trim().length < 5) {
+            subjectInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            subjectInput.classList.remove('is-invalid');
+            subjectInput.classList.add('is-valid');
+        }
+
+        if (messageInput.value.trim().length < 10) {
+            messageInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            messageInput.classList.remove('is-invalid');
+            messageInput.classList.add('is-valid');
+        }
+        if (!valid) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            event.preventDefault();
+            document.getElementById('formSuccess').classList.remove('d-none');
+            form.reset();
+            ['is-valid', 'is-invalid'].forEach(cls => {
+            form.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove(cls);
+            });
+            });
+        }
+        }, false);
+    })();
+    </script>
 <footer>
     <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
       <div class="d-flex justify-content-between align-items-center p-0 h-auto">
@@ -1142,9 +926,9 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bg-white p-4 px-lg-5">
-        <div class="ps-lg-3 pe-lg-3 ps-2 pe-2">
-          <div class="row justify-content-between px-lg-5">
+    <div class="container-fluid bg-white p-4">
+        <div class="ps-lg-3 ps-2 pe-2">
+          <div class="row justify-content-between">
             
             <!-- Download App Section -->
             <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
