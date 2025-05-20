@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.box {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: #111;
+  border-radius: 20px;
+  margin: 100px auto;
+}
+
+.dot {
+  position: absolute;
+  width: 9px;
+  height: 7px;
+  background: #00bfff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 4.5px #002fff;
+  animation: moveAround 3s linear infinite;
+}
+
+.dot2 {
+    animation-delay: 0.01s;
+    width: 8px;
+    height: 6px;
+}
+.dot3 {
+    animation-delay: 0.02s;
+    width: 7px;
+    height: 5px;
+}
+.dot4 {
+    animation-delay: 0.03s;
+    width: 6px;
+    height: 4px;
+}
+.dot5 {
+    animation-delay: 0.04s;
+    width: 5px;
+    height: 3px;
+}
+.dot6 {
+    animation-delay: 0.05s;
+    width: 4px;
+    height: 2px;
+}
+.dot7 {
+    animation-delay: 0.06s;
+    width: 3px;
+    height: 2px;
+}
+.dot8 {
+    animation-delay: 0.07s;
+    width: 3px;
+    height: 2px;
+}
+.dot9 {
+    animation-delay: 0.08s;
+    width: 3px;
+    height: 2px;
+}
+.dot10 {
+    animation-delay: 0.09s;
+    width: 3px;
+    height: 2px;
+}
+.dot11 {
+    animation-delay: 0.1s;
+    width: 3px;
+    height: 2px;
+}
+
+@keyframes moveAround {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  25% {
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+  75% {
+    top: 100%;
+    left: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+        <div class="dot dot4"></div>
+        <div class="dot dot5"></div>
+        <div class="dot dot6"></div>
+        <div class="dot dot7"></div>
+        <div class="dot dot8"></div>
+        <div class="dot dot9"></div>
+        <div class="dot dot10"></div>
+        <div class="dot dot11"></div>
+      </div>
+      
+</body>
+</html>
