@@ -62,3 +62,50 @@
     color: black;
     --bs-table-bg : transparent
 }
+[data-bs-theme="dark"] .gainers-table-container {
+    background-color: #1e1e23 !important;
+  }
+  
+  [data-bs-theme="dark"] .gainers-table-title {
+    color: #ffffff;
+  }
+  
+  [data-bs-theme="dark"] thead {
+    background-color: #2a2a33 !important;
+    color: #a1c4fd !important;
+  }
+  
+  [data-bs-theme="dark"] tbody tr {
+    background-color: #1e1e23 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+  }
+  
+  [data-bs-theme="dark"] tbody td {
+    color: #e0e0e0 !important;
+  }
+  
+  [data-bs-theme="dark"] .crypto-info .name {
+    color: #ffffff !important;
+  }
+  
+  [data-bs-theme="dark"] .crypto-info .category {
+    color: #bbbbbb !important;
+  }
+  
+  [data-bs-theme="dark"] .progress-bar-container {
+    background-color: #2a2a33 !important;
+  }
+  
+  [data-bs-theme="dark"] .progress-bar {
+    background-color: #3bb77e !important;
+  }
+  
+  [data-bs-theme="dark"] .progress-bar-loser {
+    background-color: #e57373 !important;
+  }
+  
+  
+  [data-bs-theme="dark"] .support-hero {
+    background-color: #12141A !important;
+  }
+  

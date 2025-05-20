@@ -547,23 +547,54 @@ input:checked ~ .slider--3 {
     margin-top: 16px !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.ic{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+}
+.icon-calender{
+    background-image: url('../image/landing/calender.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-user{
+    background-image: url('../image/landing/user.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-deposit{
+    background-image: url('../image/landing/deposit.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-wallet{
+    background-image: url('../image/landing/wallet.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-future{
+    background-image: url('../image/landing/future.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-key{
+    background-image: url('../image/landing/key.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.icon-spot{
+    background-image: url('../image/landing/spot.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 
 .no-focus:focus {
@@ -571,3 +602,19 @@ input:checked ~ .slider--3 {
     outline: none !important;
     border-color: #ced4da !important; /* رنگ پیش‌فرض مرز */
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

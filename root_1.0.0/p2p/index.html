@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="../css/myboot.css" rel="stylesheet"/>
+        <link href="../jscode/darkmood/darkmood.css" rel="stylesheet"/>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts">
         </script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">
@@ -22,6 +23,7 @@
         </script>
         <script crossorigin="anonymous" src="https://kit.fontawesome.com/d2bb21f4a1.js">
         </script>
+        <script src="../jscode/darkmood/darkmood.js"></script>
         <meta content="strict-origin-when-cross-origin" name="referrer"/>
         <script crossorigin="anonymous" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
         </script>
@@ -29,97 +31,112 @@
         <style>
             .gainers-table-container {
               border-radius: 16px;
-              padding: 0px;
+              padding: 20px;
               width: 100%;
               margin: 10px auto;
+              background-color: #ffffff;
             }
-        
+          
             .gainers-table-title {
               font-size: 20px;
               font-weight: bold;
               margin-bottom: 16px;
+              color: #000000;
             }
-        
+          
             table {
               width: 100%;
               border-collapse: separate;
               border-spacing: 0 12px;
             }
-        
+          
             thead {
               background-color: #e0f4ff;
               color: #007bff;
-              border-radius: 100px;
             }
-        
+          
             thead th {
               text-align: left;
               padding: 12px;
               font-weight: 600;
               font-size: 14px;
             }
-        
+          
             tbody tr {
               background-color: #ffffff;
-              border-radius: 50%;
-              box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+              border-radius: 16px;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             }
-        
+          
             tbody td {
               padding: 8px 6px;
               vertical-align: middle;
               font-size: 14px;
+              color: #333333;
             }
-        
+          
             .crypto-info {
               display: flex;
               align-items: center;
               gap: 10px;
             }
-        
+          
             .crypto-info img {
               width: 28px;
               height: 28px;
               border-radius: 50%;
             }
-        
-            .crypto-info .name {
-              font-weight: 600;
-            }
-        
-            .crypto-info .category {
+          
+            .btn-sm {
               font-size: 12px;
-              color: #888;
+              padding: 4px 8px;
             }
-        
-            .progress-bar-container {
-              background-color: #eefdf0;
-              border-radius: 12px;
-              height: 24px;
-              position: relative;
+          
+            @media (max-width: 768px) {
+              .gainers-table-container {
+                padding: 0;
+              }
+          
+              table,
+              thead,
+              tbody,
+              th,
+              td,
+              tr {
+                display: block;
+                width: 100%;
+              }
+          
+              thead {
+                display: none;
+              }
+          
+              tbody tr {
+                margin-bottom: 16px;
+                padding: 12px;
+              }
+          
+              tbody td {
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+                border: none;
+              }
+          
+              tbody td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-weight: bold;
+                color: #888888;
+                font-size: 13px;
+                white-space: nowrap;
+                text-align: left;
+              }
             }
-        
-            .progress-bar {
-              background-color: #58d26b;
-              height: 100%;
-              border-radius: 12px;
-            }
-            .progress-bar-loser {
-              background-color: #d25858;
-              height: 100%;
-              border-radius: 12px;
-            }
-        
-            .progress-label {
-              position: absolute;
-              left: 8px;
-              top: 50%;
-              transform: translateY(-50%);
-              font-size: 13px;
-              font-weight: bold;
-              color: white;
-            }
-        </style> 
+          </style>
 </head>
 <body>  
     <header>
@@ -703,290 +720,351 @@
     </div>
     </header>
     <main>
-        <div class="container-fluid mb-3">
-            <div class="row justify-content-center align-content-center">
-                <div class="col-12 bg-secondary bg-opacity-10 p-4">
-                    <div class="row justify-content-center align-items-center p-0">
-                        <div class="col-lg-12 col-12">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <p class="m-0 fs-6 fw-semibold me-5">Welcome <span id="user_name" class="text-danger text-nowrap fs-5">Mahdi Mousavi</span></p>
-                                <p class="m-0 fs-6 fw-semibold me-5">Today <span id="user_name" class="text-danger">Sunday, May 18, 2025 4:14PM</span></p>
-                                <p class="m-0 fs-6 fw-semibold me-5">your creadit <span id="user_name" class="text-danger">$412,000.33</span></p>
-                                <a href="#" class="link-dark fw-semibold  link-underline-opacity-0 d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-user-circle pe-2"></i>
-                                    <span class="d-none d-md-none d-sm-none d-lg-block">view My  Profile</span>
-                                </a>
-                            </div>
-                        </div>
+        <div class="container-fluid px-lg-5">
+            <div class="row justify-content-center align-content-center px-lg-5">
+                <div class="col-12 p-4 pb-0">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <h4 class="m-0 fw-semibold">Your P2P Advertisements</h6>
+                        <a href="#" class="btn btn-primary fw-semibold">
+                            <i class="fa fa-plus-circle pe-2"></i>Create New Offer
+                        </a>
                     </div>
                 </div>
-                <div class="col-lg-12 col-12 d-lg-block d-md-none d-sm-none d-none pt-0">
-                    <div class="row justify-content-between align-items-start rounded-3 h-100 p-3 pt-0">
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="#" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="#" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/wallet/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/header/future/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                    </div>
+                <div class="col-12 p-4 pt-2">
+                    <div class="gainers-table-container bg-secondary bg-opacity-10 rounded-3 p-3 table-responsive-custom">
+                        <h5>My Active Offers <i class="fa fa-chevron-right fs-6"></i></h5>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th class="rounded-start-4">Offer ID</th>
+                              <th>Type</th>
+                              <th>Cryptocurrency</th>
+                              <th>Price (USD)</th>
+                              <th>Payment Method</th>
+                              <th>Limits (USD)</th>
+                              <th>Status</th>
+                              <th class="rounded-end-4">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="Offer ID" class="rounded-start-4">#P2P1023</td>
+                              <td data-label="Type">Sell</td>
+                              <td data-label="Cryptocurrency">BTC</td>
+                              <td data-label="Price">$56,200.00</td>
+                              <td data-label="Payment Method">Bank Transfer</td>
+                              <td data-label="Limits">$100–$5,000</td>
+                              <td data-label="Status"><span class="text-success">Active</span></td>
+                              <td data-label="Actions" class="rounded-end-4">
+                                <button class="btn btn-sm btn-warning me-2">Edit</button>
+                                <button class="btn btn-sm btn-danger">Deactivate</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td data-label="Offer ID" class="rounded-start-4">#P2P1087</td>
+                              <td data-label="Type">Buy</td>
+                              <td data-label="Cryptocurrency">USDT</td>
+                              <td data-label="Price">$1.00</td>
+                              <td data-label="Payment Method">PayPal</td>
+                              <td data-label="Limits">$50–$2,000</td>
+                              <td data-label="Status"><span class="text-success">Active</span></td>
+                              <td data-label="Actions" class="rounded-end-4">
+                                <button class="btn btn-sm btn-warning me-2">Edit</button>
+                                <button class="btn btn-sm btn-danger">Deactivate</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td data-label="Offer ID" class="rounded-start-4">#P2P1150</td>
+                              <td data-label="Type">Sell</td>
+                              <td data-label="Cryptocurrency">ETH</td>
+                              <td data-label="Price">$3,200.00</td>
+                              <td data-label="Payment Method">Local Cash</td>
+                              <td data-label="Limits">$20–$1,000</td>
+                              <td data-label="Status"><span class="text-danger">Paused</span></td>
+                              <td data-label="Actions" class="rounded-end-4">
+                                <button class="btn btn-sm btn-warning me-2">Edit</button>
+                                <button class="btn btn-sm btn-success">Activate</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      
                 </div>
-                <div class="col-12 p-4">
-                    <h5 class="m-0">Crypto Market Insights and Analytics</h5>
-                    <span class="text-secondary fs-8 ps-1">Top Cryptocurrencies Price List by Market Capitalization.</span>
-                </div>
+                
                 <div class="col-12">
-                    <div class="row">
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-1 p-4 d-lg-none d-md-block d-sm-block d-sm-block">
-                            <div class="row justify-content-center align-items-center bg-secondary bg-opacity-10 rounded-3 h-100">
-                                <a style="background-color: #CD006D;width: 40%;" href="#" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Quick access</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-key"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="#" class="btn me-0 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>My Profile</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-user"></i></div></div></a>
-                                <a style="background-color: #CD006D;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/index.html" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Return To Spot</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-spot"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html" class="btn text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Deposit</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-deposit"></i></div></div></a>
-                                <a style="background-color: #CD006D;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/wallet/index.html" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Go To wallet</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-wallet"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/future/index.html" class="btn text-white fw-semibold fs-7 rounded-pill mt-2 mb-2"><div class="d-flex justify-content-between align-items-center"><span>Future Trading</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-future"></i></div></div></a>
-                            </div>
+                    <hr>
+                </div>
+                <div class="col-12 p-4">
+                    <h4 class="fw-semibold">P2P Marketplace</h5>
+                    <span class="text-secondary fs-7 ps-1">
+                        Browse and trade with other users directly. Filter offers by cryptocurrency, payment method, and limits.
+                    </span>
+                </div>
+                <!-- فیلترها -->
+                <div class="col-12 p-4">
+                    <div class="row g-3">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <input type="text" id="searchTrader" class="form-control" placeholder="Search by trader username" />
                         </div>
-                        <div class="col-lg-4 col-12 p-lg-4 pe-lg-2 p-3">
-                            <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js">
-                                {
-                                    "symbols": [
-                                        ["BITSTAMP:BTCUSD|1m"],
-                                        ["CRYPTOCAP:USDT|1m"]
-                                    ],
-                                    "chartOnly": false,
-                                    "width": "100%",
-                                    "height": 410,
-                                    "locale": "en",
-                                    "colorTheme": "light",
-                                    "autosize": true,
-                                    "showVolume": false,
-                                    "showMA": false,
-                                    "hideDateRanges": false,
-                                    "hideMarketStatus": false,
-                                    "hideSymbolLogo": false,
-                                    "scalePosition": "right",
-                                    "scaleMode": "Normal",
-                                    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                                    "fontSize": "10",
-                                    "noTimeScale": false,
-                                    "valuesTracking": "1",
-                                    "changeMode": "price-and-percent",
-                                    "chartType": "area",
-                                    "maLineColor": "#2962FF",
-                                    "maLineWidth": 1,
-                                    "maLength": 9,
-                                    "headerFontSize": "medium",
-                                    "lineWidth": 2,
-                                    "lineType": 0,
-                                    "dateRanges": [
-                                        "1d|1",
-                                        "1m|30",
-                                        "3m|60",
-                                        "12m|1D",
-                                        "60m|1W",
-                                        "all|1M"
-                                    ]
-                                }
-                                </script>        
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <select id="cryptoFilter" class="form-select">
+                                <option selected>Cryptocurrency</option>
+                                <option>BTC</option>
+                                <option>ETH</option>
+                                <option>USDT</option>
+                                <option>BNB</option>
+                                <option>XRP</option>
+                            </select>
                         </div>
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 pe-lg-2 p-3">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js">
-                                {
-                                    "interval": "30m",
-                                    "width": "100%",
-                                    "isTransparent": false,
-                                    "height": 410,
-                                    "symbol": "BITSTAMP:BTCUSD",
-                                    "showIntervalTabs": true,
-                                    "displayMode": "single",
-                                    "locale": "en",
-                                    "colorTheme": "light"
-                                }
-                                </script>
-                            </div>       
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <select id="paymentFilter" class="form-select">
+                                <option selected>Payment Method</option>
+                                <option>Bank Transfer</option>
+                                <option>PayPal</option>
+                                <option>Alipay</option>
+                                <option>WeChat Pay</option>
+                                <option>Local Cash</option>
+                            </select>
                         </div>
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 p-3">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                                {
-                                    "feedMode": "all_symbols",
-                                    "symbol": "BITSTAMP:BTCUSD",
-                                    "isTransparent": false,
-                                    "displayMode": "regular",
-                                    "width": "100%",
-                                    "height": "100%",
-                                    "colorTheme": "light",
-                                    "locale": "en"
-                                }
-                                </script>
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <select id="sortFilter" class="form-select">
+                                <option selected>Sort By</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Limit: Low to High</option>
+                                <option>Limit: High to Low</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-start">
+                            <button id="applyFiltersBtn" class="btn btn-primary fw-semibold w-100">
+                                <i class="fa fa-filter pe-2"></i>Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 p-4">
+                    <div class="row justify-content-start align-items-start">
+                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
+                            <div class="table-responsive-custom">
+                                <table class="table table-borderless table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th class="rounded-start-4">Offer ID</th>
+                                      <th>Type</th>
+                                      <th>Cryptocurrency</th>
+                                      <th>Price (USD)</th>
+                                      <th>Payment Method</th>
+                                      <th>Limits (USD)</th>
+                                      <th>Trader</th>
+                                      <th class="rounded-end-4">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="offersTable">
+                                    <tr>
+                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1201</td>
+                                      <td data-label="Type">Buy</td>
+                                      <td data-label="Cryptocurrency">BTC</td>
+                                      <td data-label="Price">$56,150.00</td>
+                                      <td data-label="Payment Method">Bank Transfer</td>
+                                      <td data-label="Limits">$200–$10,000</td>
+                                      <td data-label="Trader">
+                                        <div class="d-flex align-items-center">
+                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
+                                          <span class="fw-semibold">CryptoMaster</span>
+                                        </div>
+                                      </td>
+                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1217</td>
+                                      <td data-label="Type">Sell</td>
+                                      <td data-label="Cryptocurrency">USDT</td>
+                                      <td data-label="Price">$1.00</td>
+                                      <td data-label="Payment Method">PayPal</td>
+                                      <td data-label="Limits">$50–$5,000</td>
+                                      <td data-label="Trader">
+                                        <div class="d-flex align-items-center w-100">
+                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
+                                          <span class="fw-semibold">TetherTrader</span>
+                                        </div>
+                                      </td>
+                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1255</td>
+                                      <td data-label="Type">Buy</td>
+                                      <td data-label="Cryptocurrency">ETH</td>
+                                      <td data-label="Price">$3,180.00</td>
+                                      <td data-label="Payment Method">WeChat Pay</td>
+                                      <td data-label="Limits">$100–$3,000</td>
+                                      <td data-label="Trader">
+                                        <div class="d-flex align-items-center w-100">
+                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
+                                          <span class="fw-semibold">EtherGuru</span>
+                                        </div>
+                                      </td>
+                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-success">Trade</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td data-label="Offer ID" class="rounded-start-4">#P2P1302</td>
+                                      <td data-label="Type">Sell</td>
+                                      <td data-label="Cryptocurrency">BNB</td>
+                                      <td data-label="Price">$420.00</td>
+                                      <td data-label="Payment Method">Local Cash</td>
+                                      <td data-label="Limits">$20–$1,500</td>
+                                      <td data-label="Trader">
+                                        <div class="d-flex align-items-center w-100">
+                                          <img src="../image/logo-brand/google.png" style="width: 30px;height: 30px;" class="rounded-circle me-2" />
+                                          <span class="fw-semibold">BinancePro</span>
+                                        </div>
+                                      </td>
+                                      <td data-label="Action" class="rounded-end-4"><button class="btn btn-sm btn-secondary" disabled>Unavailable</button></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>                              
+                            <!-- pagination ثابت (نمونه) -->
+                            <nav aria-label="P2P pagination">
+                                <ul class="pagination justify-content-center mt-4 mb-0">
+                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JavaScript: فیلتر و مرتب‌سازی -->
+                <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const searchInput = document.getElementById("searchTrader");
+                    const cryptoSelect = document.getElementById("cryptoFilter");
+                    const paymentSelect = document.getElementById("paymentFilter");
+                    const sortSelect = document.getElementById("sortFilter");
+                    const tableBody = document.getElementById("offersTable");
+                    const applyBtn = document.getElementById("applyFiltersBtn");
+
+                    let allRows = Array.from(tableBody.querySelectorAll("tr"));
+
+                    function applyFilters() {
+                        let filtered = allRows.filter(row => {
+                            const trader = row.querySelector("td:nth-child(7) span")?.textContent.toLowerCase() || "";
+                            const crypto = row.children[2]?.textContent.trim();
+                            const payment = row.children[4]?.textContent.trim();
+
+                            return (
+                                (searchInput.value.trim() === "" || trader.includes(searchInput.value.trim().toLowerCase())) &&
+                                (cryptoSelect.value === "Cryptocurrency" || crypto === cryptoSelect.value) &&
+                                (paymentSelect.value === "Payment Method" || payment === paymentSelect.value)
+                            );
+                        });
+
+                        if (sortSelect.value.includes("Price")) {
+                            filtered.sort((a, b) => {
+                                let priceA = parseFloat(a.children[3].textContent.replace(/[^0-9.]/g, ""));
+                                let priceB = parseFloat(b.children[3].textContent.replace(/[^0-9.]/g, ""));
+                                return sortSelect.value === "Price: Low to High" ? priceA - priceB : priceB - priceA;
+                            });
+                        } else if (sortSelect.value.includes("Limit")) {
+                            filtered.sort((a, b) => {
+                                let limitA = parseInt((a.children[5].textContent.split("–")[0] || "").replace(/[^0-9]/g, ""));
+                                let limitB = parseInt((b.children[5].textContent.split("–")[0] || "").replace(/[^0-9]/g, ""));
+                                return sortSelect.value === "Limit: Low to High" ? limitA - limitB : limitB - limitA;
+                            });
+                        }
+
+                        tableBody.innerHTML = "";
+                        filtered.forEach(row => tableBody.appendChild(row));
+                    }
+
+                    applyBtn.addEventListener("click", applyFilters);
+
+                    [searchInput, cryptoSelect, paymentSelect, sortSelect].forEach(el =>
+                        el.addEventListener("input", applyFilters)
+                    );
+                });
+                </script>
+                <div class="col-12 p-4">
+                    <div class="row justify-content-start align-items-start">
+                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
+                            <h4 class="fw-bold mb-3">How P2P Trading Works</h5>
+                            <ul class="fs-6">
+                                <li><strong>1. Choose an Offer:</strong> Browse available buy/sell offers and select one that meets your price and limit criteria.</li>
+                                <li><strong>2. Initiate Trade:</strong> Click “Trade” to open a secure trade window where you can chat with the counterparty.</li>
+                                <li><strong>3. Transfer Funds:</strong> Follow the seller’s payment instructions (e.g., Bank Transfer, PayPal). Confirm payment has been made.</li>
+                                <li><strong>4. Confirm Receipt:</strong> Once the seller confirms receipt of your payment, the cryptocurrency will be released to your P2P wallet.</li>
+                                <li><strong>5. Leave Feedback:</strong> After completing the transaction, rate and review your trading partner to help maintain trust within the community.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 p-4">
+                    <div class="row justify-content-start align-items-start">
+                        <div class="col-12 bg-secondary bg-opacity-10 rounded-3 p-4">
+                            <h6 class="fw-bold mb-3">Frequently Asked Questions</h6>
+                            <div class="accordion" id="p2pFaqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeadingOne">
+                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="false" aria-controls="faqCollapseOne">
+                                            Is P2P trading safe?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseOne" class="accordion-collapse collapse" aria-labelledby="faqHeadingOne" data-bs-parent="#p2pFaqAccordion">
+                                        <div class="accordion-body fs-6">
+                                            Yes. All funds are held in escrow by CoinIt Exchange until both parties confirm payment and receipt. Never release cryptocurrency before confirming the fiat payment.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeadingTwo">
+                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                            How do I create a P2P offer?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#p2pFaqAccordion">
+                                        <div class="accordion-body fs-6">
+                                            Click “Create New Offer,” choose Buy or Sell, set your price, payment method, and trade limits. After submission, your offer will appear in the marketplace once approved.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeadingThree">
+                                        <button class="accordion-button collapsed fs-6" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                            What fees apply to P2P trades?
+                                        </button>
+                                    </h2>
+                                    <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#p2pFaqAccordion">
+                                        <div class="accordion-body fs-6">
+                                            CoinIt Exchange charges a small P2P fee based on your trading volume and market conditions. Fees are clearly displayed before you confirm any trade.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 p-4">
-                    <h5 class="m-0">Quick check</h5>
-                    <span class="text-secondary fs-8 ps-1">Check Top Gainers And Top Losers</span>
-                </div>
-                <div class="col-12 p-4">
-                    <div class="row justify-content-start align-items-center">
-                        <div class="col-lg-6 col-12 pe-lg-2">
-                            <div class="gainers-table-container bg-secondary bg-opacity-10 p-3 rounded-3">
-                                <h5>Top Gainers <i class="fa fa-chevron-right fs-6"></i></h5>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                        <th class="rounded-start-4">Name</th>
-                                        <th>Price</th>
-                                        <th>7D Price Performance</th>
-                                        <th class="rounded-end-4">Market CAP</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Ansem's minutes</div>
-                                                <div class="category">Ansem Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$5.21</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 81.3%;"></div>
-                                            <div class="progress-label">+81.3%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$121.2M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">StartUp</div>
-                                                <div class="category">StartUp Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$35.01</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 63.1%;"></div>
-                                            <div class="progress-label">+63.1%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$105.01M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Yapper</div>
-                                                <div class="category">Blockchain Service</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$21.93</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 73.9%;"></div>
-                                            <div class="progress-label">+73.9%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$85.3M</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>         
-                        </div>
-                        <div class="col-lg-6 col-12 p-lg-2">
-                            <div class="gainers-table-container  bg-secondary bg-opacity-10 rounded-3 p-3" >
-                                <h5>Top Losers <i class="fa fa-chevron-right fs-6"></i></h5>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                        <th class="rounded-start-4">Name</th>
-                                        <th>Price</th>
-                                        <th>7D Price Performance</th>
-                                        <th class="rounded-end-4">Market CAP</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="rounded-start-4">
-                                                <div class="crypto-info">
-                                                <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                                <div>
-                                                    <div class="name">Ansem's minutes</div>
-                                                    <div class="category">Ansem Meme</div>
-                                                </div>
-                                                </div>
-                                            </td>
-                                            <td>$5.21</td>
-                                            <td>
-                                                <div class="progress-bar-container">
-                                                <div class="progress-bar-loser" style="width: 81.3%;"></div>
-                                                <div class="progress-label">+81.3%</div>
-                                                </div>
-                                            </td>
-                                            <td class="rounded-end-4">$121.2M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">StartUp</div>
-                                                <div class="category">StartUp Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$35.01</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar-loser" style="width: 63.1%;"></div>
-                                            <div class="progress-label">+63.1%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$105.01M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Yapper</div>
-                                                <div class="category">Blockchain Service</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$21.93</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar-loser" style="width: 73.9%;"></div>
-                                            <div class="progress-label">+73.9%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$85.3M</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>         
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-8 col-12 bg-secondary bg-opacity-10 rounded-3 p-4 text-center">
+                            <h6 class="fw-bold mb-3">Need Help?</h6>
+                            <p class="fs-6 mb-3">
+                                If you have questions or encounter issues with P2P trading, our support team is here to help.
+                            </p>
+                            <a href="mailto:#" class="btn btn-outline-primary fw-semibold">
+                                <i class="fa fa-envelope pe-2"></i>Contact Support
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </main>
-    
 <footer>
     <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
       <div class="d-flex justify-content-between align-items-center p-0 h-auto">
@@ -1064,121 +1142,120 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bg-white p-4">
-        <div class=" ps-lg-3 ps-2 pe-2">
-            <div class="row justify-content-between">
-                <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3">
-                    <div class="d-flex  flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
-                        <div class="mb-3 mb-md-0 mb-lg-0">
-                            <h3>Download App</h3>
-                            <span class="text-secondary fs-7">you can download with scan QR code</span>
-                            <span class="text-secondary fs-7">or use Google Play and App store</span>
-                        </div>
-                        <div class=" d-flex align-items-center flex-column flex-md-row flex-lg-row">
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
-                            </a>
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
-                            </a>
-                            <a href="#" class="link-dark link-underline-opacity-0"><img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a>
-                        </div>
-                    </div>
+    <div class="container-fluid bg-white p-4 px-lg-5">
+        <div class="ps-lg-3 pe-lg-3 ps-2 pe-2">
+          <div class="row justify-content-between px-lg-5">
+            
+            <!-- Download App Section -->
+            <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                  <h3>Download App</h3>
+                  <div class="text-secondary small">You can download with QR code or use Google Play and App Store</div>
                 </div>
-                <div class="col-5 col-xl-2 col-md-5 mt-3" style="min-height: 498px;">
-                    <div class="row justify-content-between h-100">
-                        <span class="h5 fw-bold">Comunity</span>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <!-- <ul class="list-group mb-2 mt-auto">
-                            <li class="list-group h5 fw-bold">Donload App</li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a></li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Scan to Download App</a></li>
-                        </ul> -->
-                    </div>
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2">
+                    <img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img-fluid" alt="MetaMask">
+                  </a>
                 </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">About</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">About</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Asset Security</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">User Agreement</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Privicy Policy</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Risk Disclosure</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Vantures</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><span>Why</span><div class="text-primary ps-2">Coinit</div></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Sitemap</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Products</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Buy Crypto</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Convert</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Spot</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Furtuers</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Demo Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Copy Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Loans</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Fees</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Support</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Customer Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">VIP Benefits</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Submit and Inquiry</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Improvment Suggestions</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Report Abnormal Funds</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Judicial Assistance</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Verify</span></div></a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Partnerships</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Listing Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P Merchant Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Institutional Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Affiliate Program</a></li>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Resources</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Help Center</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>earn</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Blog</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Crypto News</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">All Crypto Prices</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">How to Buy</a></li>
-                    </ul>
-                </div>
+              </div>
             </div>
-        </div> 
-    </div>
+      
+            <!-- Community Section -->
+            <div class="col-12 col-md-4 col-xl-2 mt-3">
+                <h5 class="fw-bold">Community</h5>
+                <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                </div>
+              </div>
+      
+            <!-- About Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">About</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">About</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Asset Security</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">User Agreement</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Risk Disclosure</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Ventures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Why Coinit</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Sitemap</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
+              </ul>
+            </div>
+      
+            <!-- Products Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Products</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Buy Crypto</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Convert</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Spot</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Futures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Demo Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Copy Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Loans</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
+              </ul>
+            </div>
+      
+            <!-- Support Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Support</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Customer Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">VIP Benefits</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Submit an Inquiry</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Improvement Suggestions</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Report Abnormal Funds</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Judicial Assistance</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
+              </ul>
+            </div>
+      
+            <!-- Partnerships Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Partnerships</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Listing Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P Merchant Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Institutional Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
+              </ul>
+            </div>
+      
+            <!-- Resources Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Resources</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Help Center</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Earn</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Blog</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Crypto News</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">All Crypto Prices</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">How to Buy</a></li>
+              </ul>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
   </footer>
 </body>
 </html>

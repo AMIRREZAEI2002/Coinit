@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
         <link href="../css/myboot.css" rel="stylesheet"/>
+        <link href="../jscode/darkmood/darkmood.css" rel="stylesheet"/>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts">
         </script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">
@@ -22,104 +23,21 @@
         </script>
         <script crossorigin="anonymous" src="https://kit.fontawesome.com/d2bb21f4a1.js">
         </script>
+        <script src="../jscode/darkmood/darkmood.js"></script>
         <meta content="strict-origin-when-cross-origin" name="referrer"/>
         <script crossorigin="anonymous" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
         </script>
         <title>Document</title>
         <style>
-            .gainers-table-container {
-              border-radius: 16px;
-              padding: 0px;
-              width: 100%;
-              margin: 10px auto;
+            .support-hero {
+              padding: 3rem 1rem;
+              background: #ffffff;
+              border-radius: 0.5rem;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+              margin-bottom: 2rem;
+              text-align: center;
             }
-        
-            .gainers-table-title {
-              font-size: 20px;
-              font-weight: bold;
-              margin-bottom: 16px;
-            }
-        
-            table {
-              width: 100%;
-              border-collapse: separate;
-              border-spacing: 0 12px;
-            }
-        
-            thead {
-              background-color: #e0f4ff;
-              color: #007bff;
-              border-radius: 100px;
-            }
-        
-            thead th {
-              text-align: left;
-              padding: 12px;
-              font-weight: 600;
-              font-size: 14px;
-            }
-        
-            tbody tr {
-              background-color: #ffffff;
-              border-radius: 50%;
-              box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            }
-        
-            tbody td {
-              padding: 8px 6px;
-              vertical-align: middle;
-              font-size: 14px;
-            }
-        
-            .crypto-info {
-              display: flex;
-              align-items: center;
-              gap: 10px;
-            }
-        
-            .crypto-info img {
-              width: 28px;
-              height: 28px;
-              border-radius: 50%;
-            }
-        
-            .crypto-info .name {
-              font-weight: 600;
-            }
-        
-            .crypto-info .category {
-              font-size: 12px;
-              color: #888;
-            }
-        
-            .progress-bar-container {
-              background-color: #eefdf0;
-              border-radius: 12px;
-              height: 24px;
-              position: relative;
-            }
-        
-            .progress-bar {
-              background-color: #58d26b;
-              height: 100%;
-              border-radius: 12px;
-            }
-            .progress-bar-loser {
-              background-color: #d25858;
-              height: 100%;
-              border-radius: 12px;
-            }
-        
-            .progress-label {
-              position: absolute;
-              left: 8px;
-              top: 50%;
-              transform: translateY(-50%);
-              font-size: 13px;
-              font-weight: bold;
-              color: white;
-            }
-        </style> 
+        </style>
 </head>
 <body>  
     <header>
@@ -703,290 +621,234 @@
     </div>
     </header>
     <main>
-        <div class="container-fluid mb-3">
-            <div class="row justify-content-center align-content-center">
-                <div class="col-12 bg-secondary bg-opacity-10 p-4">
-                    <div class="row justify-content-center align-items-center p-0">
-                        <div class="col-lg-12 col-12">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <p class="m-0 fs-6 fw-semibold me-5">Welcome <span id="user_name" class="text-danger text-nowrap fs-5">Mahdi Mousavi</span></p>
-                                <p class="m-0 fs-6 fw-semibold me-5">Today <span id="user_name" class="text-danger">Sunday, May 18, 2025 4:14PM</span></p>
-                                <p class="m-0 fs-6 fw-semibold me-5">your creadit <span id="user_name" class="text-danger">$412,000.33</span></p>
-                                <a href="#" class="link-dark fw-semibold  link-underline-opacity-0 d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-user-circle pe-2"></i>
-                                    <span class="d-none d-md-none d-sm-none d-lg-block">view My  Profile</span>
-                                </a>
-                            </div>
+        <div class="container">
+            <section class="support-hero">
+                <h1 class="display-5 fw-semibold">Coinit Support</h1>
+                <p class="lead">If you have any questions or issues, you'll find your answers here — or feel free to get in touch with us directly.</p>
+              </section>
+              <section class="mb-5">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h2 class="h4 mb-4">Submit a Support Ticket</h2>
+                    <form id="supportForm" novalidate>
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          name="name"
+                          placeholder="e.g., Arthur Morgan"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Please enter a valid name (at least 3 characters).
                         </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          placeholder="e.g., Arthur_Morgan@coinit.com"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Please enter a valid email address.
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="subject"
+                          name="subject"
+                          placeholder="Enter ticket subject"
+                          required
+                        >
+                        <div class="invalid-feedback">
+                          Subject must be at least 5 characters long.
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <label for="message" class="form-label">Details / Message</label>
+                        <textarea
+                          class="form-control"
+                          id="message"
+                          name="message"
+                          rows="5"
+                          placeholder="Type your message here..."
+                          required
+                        ></textarea>
+                        <div class="invalid-feedback">
+                          Message must be at least 10 characters long.
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Send Ticket</button>
+                      <div id="formSuccess" class="alert alert-success mt-3 d-none" role="alert">
+                        Your message has been sent successfully. We will get back to you shortly.
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </section>
+              <section class="mb-5">
+                <h2 class="h4 mb-4">Frequently Asked Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading1">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse1"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse1"
+                      >
+                        How can I recover my account?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse1"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading1"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        To recover your account, go to the login page and click “Forgot Password.” Enter your registered email, and you’ll receive a reset link shortly.
+                      </div>
                     </div>
-                </div>
-                <div class="col-lg-12 col-12 d-lg-block d-md-none d-sm-none d-none pt-0">
-                    <div class="row justify-content-between align-items-start rounded-3 h-100 p-3 pt-0">
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="#" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="#" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #CD006D; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/wallet/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
-                        <a style="background-color: #8F004C; height: 250px;width: 16.2%;margin-top: 1px;" href="http://127.0.0.1:5500/root_1.0.0/header/future/index.html" class="btn text-white fw-semibold fs-5"><div class="d-flex flex-column justify-content-between align-items-center"><div class="bg-white rounded-3 px-4 py-3"><i class="ic icon-calender"></i></div><span class="fs-5">user profile</span></div></a>
+                  </div>
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading2">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse2"
+                      >
+                        How do I check my order status?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse2"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading2"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        After logging in, navigate to “My Orders.” Select the order you want to review, and all details will be displayed there.
+                      </div>
                     </div>
-                </div>
-                <div class="col-12 p-4">
-                    <h5 class="m-0">Crypto Market Insights and Analytics</h5>
-                    <span class="text-secondary fs-8 ps-1">Top Cryptocurrencies Price List by Market Capitalization.</span>
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-1 p-4 d-lg-none d-md-block d-sm-block d-sm-block">
-                            <div class="row justify-content-center align-items-center bg-secondary bg-opacity-10 rounded-3 h-100">
-                                <a style="background-color: #CD006D;width: 40%;" href="#" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Quick access</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-key"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="#" class="btn me-0 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>My Profile</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-user"></i></div></div></a>
-                                <a style="background-color: #CD006D;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/index.html" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Return To Spot</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-spot"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/deposit/index.html" class="btn text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Deposit</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-deposit"></i></div></div></a>
-                                <a style="background-color: #CD006D;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/wallet/index.html" class="btn me-3 text-white fw-semibold fs-7 rounded-pill mt-2"><div class="d-flex justify-content-between align-items-center"><span>Go To wallet</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-wallet"></i></div></div></a>
-                                <a style="background-color: #8F004C;width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/future/index.html" class="btn text-white fw-semibold fs-7 rounded-pill mt-2 mb-2"><div class="d-flex justify-content-between align-items-center"><span>Future Trading</span><div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-future"></i></div></div></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-12 p-lg-4 pe-lg-2 p-3">
-                            <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js">
-                                {
-                                    "symbols": [
-                                        ["BITSTAMP:BTCUSD|1m"],
-                                        ["CRYPTOCAP:USDT|1m"]
-                                    ],
-                                    "chartOnly": false,
-                                    "width": "100%",
-                                    "height": 410,
-                                    "locale": "en",
-                                    "colorTheme": "light",
-                                    "autosize": true,
-                                    "showVolume": false,
-                                    "showMA": false,
-                                    "hideDateRanges": false,
-                                    "hideMarketStatus": false,
-                                    "hideSymbolLogo": false,
-                                    "scalePosition": "right",
-                                    "scaleMode": "Normal",
-                                    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                                    "fontSize": "10",
-                                    "noTimeScale": false,
-                                    "valuesTracking": "1",
-                                    "changeMode": "price-and-percent",
-                                    "chartType": "area",
-                                    "maLineColor": "#2962FF",
-                                    "maLineWidth": 1,
-                                    "maLength": 9,
-                                    "headerFontSize": "medium",
-                                    "lineWidth": 2,
-                                    "lineType": 0,
-                                    "dateRanges": [
-                                        "1d|1",
-                                        "1m|30",
-                                        "3m|60",
-                                        "12m|1D",
-                                        "60m|1W",
-                                        "all|1M"
-                                    ]
-                                }
-                                </script>        
-                        </div>
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 pe-lg-2 p-3">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js">
-                                {
-                                    "interval": "30m",
-                                    "width": "100%",
-                                    "isTransparent": false,
-                                    "height": 410,
-                                    "symbol": "BITSTAMP:BTCUSD",
-                                    "showIntervalTabs": true,
-                                    "displayMode": "single",
-                                    "locale": "en",
-                                    "colorTheme": "light"
-                                }
-                                </script>
-                            </div>       
-                        </div>
-                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 p-3">
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                                {
-                                    "feedMode": "all_symbols",
-                                    "symbol": "BITSTAMP:BTCUSD",
-                                    "isTransparent": false,
-                                    "displayMode": "regular",
-                                    "width": "100%",
-                                    "height": "100%",
-                                    "colorTheme": "light",
-                                    "locale": "en"
-                                }
-                                </script>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h3 class="accordion-header" id="faqHeading3">
+                      <button
+                        class="accordion-button faq-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3"
+                        aria-expanded="false"
+                        aria-controls="faqCollapse3"
+                      >
+                        What should I do if I encounter a technical issue?
+                      </button>
+                    </h3>
+                    <div
+                      id="faqCollapse3"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="faqHeading3"
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div class="accordion-body">
+                        You can submit a new ticket with “Technical Issue” as the subject, or use the live chat widget at the bottom of the page for immediate assistance.
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <div class="col-12 p-4">
-                    <h5 class="m-0">Quick check</h5>
-                    <span class="text-secondary fs-8 ps-1">Check Top Gainers And Top Losers</span>
-                </div>
-                <div class="col-12 p-4">
-                    <div class="row justify-content-start align-items-center">
-                        <div class="col-lg-6 col-12 pe-lg-2">
-                            <div class="gainers-table-container bg-secondary bg-opacity-10 p-3 rounded-3">
-                                <h5>Top Gainers <i class="fa fa-chevron-right fs-6"></i></h5>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                        <th class="rounded-start-4">Name</th>
-                                        <th>Price</th>
-                                        <th>7D Price Performance</th>
-                                        <th class="rounded-end-4">Market CAP</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Ansem's minutes</div>
-                                                <div class="category">Ansem Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$5.21</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 81.3%;"></div>
-                                            <div class="progress-label">+81.3%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$121.2M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">StartUp</div>
-                                                <div class="category">StartUp Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$35.01</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 63.1%;"></div>
-                                            <div class="progress-label">+63.1%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$105.01M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Yapper</div>
-                                                <div class="category">Blockchain Service</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$21.93</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar" style="width: 73.9%;"></div>
-                                            <div class="progress-label">+73.9%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$85.3M</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>         
-                        </div>
-                        <div class="col-lg-6 col-12 p-lg-2">
-                            <div class="gainers-table-container  bg-secondary bg-opacity-10 rounded-3 p-3" >
-                                <h5>Top Losers <i class="fa fa-chevron-right fs-6"></i></h5>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                        <th class="rounded-start-4">Name</th>
-                                        <th>Price</th>
-                                        <th>7D Price Performance</th>
-                                        <th class="rounded-end-4">Market CAP</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="rounded-start-4">
-                                                <div class="crypto-info">
-                                                <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                                <div>
-                                                    <div class="name">Ansem's minutes</div>
-                                                    <div class="category">Ansem Meme</div>
-                                                </div>
-                                                </div>
-                                            </td>
-                                            <td>$5.21</td>
-                                            <td>
-                                                <div class="progress-bar-container">
-                                                <div class="progress-bar-loser" style="width: 81.3%;"></div>
-                                                <div class="progress-label">+81.3%</div>
-                                                </div>
-                                            </td>
-                                            <td class="rounded-end-4">$121.2M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">StartUp</div>
-                                                <div class="category">StartUp Meme</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$35.01</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar-loser" style="width: 63.1%;"></div>
-                                            <div class="progress-label">+63.1%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$105.01M</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="rounded-start-4">
-                                            <div class="crypto-info">
-                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
-                                            <div>
-                                                <div class="name">Yapper</div>
-                                                <div class="category">Blockchain Service</div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                        <td>$21.93</td>
-                                        <td>
-                                            <div class="progress-bar-container">
-                                            <div class="progress-bar-loser" style="width: 73.9%;"></div>
-                                            <div class="progress-label">+73.9%</div>
-                                            </div>
-                                        </td>
-                                        <td class="rounded-end-4">$85.3M</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>         
-                        </div>
-                    </div>
-                </div>
-            </div>
+              </section>
+              <section>
+                <h2 class="h4 mb-3">Helpful Resources</h2>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <a href="/docs/getting-started" class="link-primary">Getting Started Guide</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="/docs/faq" class="link-primary">All FAQs</a>
+                  </li>
+                  <li class="mb-2">
+                    <a href="/docs/contact" class="link-primary">Contact Technical Support</a>
+                  </li>
+                </ul>
+              </section>
         </div>
     </main>
-    
+    <script>
+    (function () {
+        'use strict'
+        const form = document.getElementById('supportForm');
+
+        form.addEventListener('submit', function (event) {
+        const nameInput = form.querySelector('#name');
+        const emailInput = form.querySelector('#email');
+        const subjectInput = form.querySelector('#subject');
+        const messageInput = form.querySelector('#message');
+
+        let valid = true;
+
+        if (nameInput.value.trim().length < 3) {
+            nameInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            nameInput.classList.remove('is-invalid');
+            nameInput.classList.add('is-valid');
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value.trim())) {
+            emailInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            emailInput.classList.remove('is-invalid');
+            emailInput.classList.add('is-valid');
+        }
+
+        if (subjectInput.value.trim().length < 5) {
+            subjectInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            subjectInput.classList.remove('is-invalid');
+            subjectInput.classList.add('is-valid');
+        }
+
+        if (messageInput.value.trim().length < 10) {
+            messageInput.classList.add('is-invalid');
+            valid = false;
+        } else {
+            messageInput.classList.remove('is-invalid');
+            messageInput.classList.add('is-valid');
+        }
+        if (!valid) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            event.preventDefault();
+            document.getElementById('formSuccess').classList.remove('d-none');
+            form.reset();
+            ['is-valid', 'is-invalid'].forEach(cls => {
+            form.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove(cls);
+            });
+            });
+        }
+        }, false);
+    })();
+    </script>
 <footer>
     <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
       <div class="d-flex justify-content-between align-items-center p-0 h-auto">
@@ -1065,120 +927,119 @@
       </div>
     </div>
     <div class="container-fluid bg-white p-4">
-        <div class=" ps-lg-3 ps-2 pe-2">
-            <div class="row justify-content-between">
-                <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3">
-                    <div class="d-flex  flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
-                        <div class="mb-3 mb-md-0 mb-lg-0">
-                            <h3>Download App</h3>
-                            <span class="text-secondary fs-7">you can download with scan QR code</span>
-                            <span class="text-secondary fs-7">or use Google Play and App store</span>
-                        </div>
-                        <div class=" d-flex align-items-center flex-column flex-md-row flex-lg-row">
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
-                            </a>
-                            <a href="#" class="mb-3 mb-md-0 mb-lg-0" style="display: inline-block; margin: 0 10px;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
-                            </a>
-                            <a href="#" class="link-dark link-underline-opacity-0"><img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a>
-                        </div>
-                    </div>
+        <div class="ps-lg-3 ps-2 pe-2">
+          <div class="row justify-content-between">
+            
+            <!-- Download App Section -->
+            <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                  <h3>Download App</h3>
+                  <div class="text-secondary small">You can download with QR code or use Google Play and App Store</div>
                 </div>
-                <div class="col-5 col-xl-2 col-md-5 mt-3" style="min-height: 498px;">
-                    <div class="row justify-content-between h-100">
-                        <span class="h5 fw-bold">Comunity</span>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                            <li class="list-group-item border-0 p-2 "><a href="#" class="link-dark link-underline-opacity-0"><img src="../image/dex/solana.webp" class="img" style="width: 20px;height: 20px;" alt=""></a></li>
-                        </ul>
-                        <!-- <ul class="list-group mb-2 mt-auto">
-                            <li class="list-group h5 fw-bold">Donload App</li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img img-fluid" alt=""></a></li>
-                            <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Scan to Download App</a></li>
-                        </ul> -->
-                    </div>
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2">
+                    <img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img-fluid" alt="MetaMask">
+                  </a>
                 </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">About</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">About</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Asset Security</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">User Agreement</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Privicy Policy</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Risk Disclosure</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Vantures</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><span>Why</span><div class="text-primary ps-2">Coinit</div></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Sitemap</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Products</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Buy Crypto</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Convert</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Spot</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Furtuers</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Demo Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Copy Trade</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Loans</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Fees</a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Support</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Customer Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">VIP Benefits</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Submit and Inquiry</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Improvment Suggestions</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Report Abnormal Funds</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Judicial Assistance</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Verify</span></div></a></li>
-                    </ul>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Partnerships</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Listing Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">P2P Merchant Application</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Institutional Services</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Affiliate Program</a></li>
-                </div>
-                <div class="col-5 col-md-2 mt-3">
-                    <ul class="list-group list-group-flush mb-2 text-center">
-                        <li class="list-group h5 fw-bold">Resources</li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Help Center</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>earn</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0"><div class="d-flex justify-content-center"><div class="text-primary pe-2">Coinit</div><span>Blog</span></div></a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">Crypto News</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">All Crypto Prices</a></li>
-                        <li class="list-group-item border-0 fs-8 p-3 px-2"><a href="#" class="link-dark link-underline-opacity-0">How to Buy</a></li>
-                    </ul>
-                </div>
+              </div>
             </div>
-        </div> 
-    </div>
+      
+            <!-- Community Section -->
+            <div class="col-12 col-md-4 col-xl-2 mt-3">
+                <h5 class="fw-bold">Community</h5>
+                <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                </div>
+              </div>
+      
+            <!-- About Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">About</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">About</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Asset Security</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">User Agreement</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Risk Disclosure</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Ventures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Why Coinit</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Sitemap</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
+              </ul>
+            </div>
+      
+            <!-- Products Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Products</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Buy Crypto</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Convert</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Spot</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Futures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Demo Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Copy Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Loans</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
+              </ul>
+            </div>
+      
+            <!-- Support Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Support</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Customer Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">VIP Benefits</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Submit an Inquiry</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Improvement Suggestions</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Report Abnormal Funds</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Judicial Assistance</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
+              </ul>
+            </div>
+      
+            <!-- Partnerships Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Partnerships</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Listing Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P Merchant Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Institutional Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
+              </ul>
+            </div>
+      
+            <!-- Resources Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Resources</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Help Center</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Earn</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Blog</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Crypto News</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">All Crypto Prices</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">How to Buy</a></li>
+              </ul>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
   </footer>
 </body>
 </html>
