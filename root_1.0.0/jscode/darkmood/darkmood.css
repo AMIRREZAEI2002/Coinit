@@ -108,4 +108,45 @@
   [data-bs-theme="dark"] .support-hero {
     background-color: #12141A !important;
   }
-  
+  [data-bs-theme="dark"] .icon-calender{
+    background-image: url('../../image/landing/calender_night.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-user{
+      background-image: url('../../image/landing/user_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-deposit{
+      background-image: url('../../image/landing/deposit_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-wallet{
+      background-image: url('../../image/landing/wallet_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-future{
+      background-image: url('../../image/landing/future_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-key{
+      background-image: url('../../image/landing/key_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
+  [data-bs-theme="dark"] .icon-spot{
+      background-image: url('../../image/landing/spot_night.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+  }
