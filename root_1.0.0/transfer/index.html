@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="keywords" content="">
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+        <link href="../css/myboot.css" rel="stylesheet"/>
+        <link href="../jscode/darkmood/darkmood.css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts">
+        </script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">
+        </script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">
+        </script>
+        <script src="https://cdn.datatables.net/plug-ins/1.13.6/sorting/datetime-moment.js">
+        </script>
+        <link crossorigin="anonymous" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" rel="stylesheet"/>
+        <script crossorigin="anonymous" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://code.jquery.com/jquery-3.7.1.min.js">
+        </script>
+        <script crossorigin="anonymous" src="https://kit.fontawesome.com/d2bb21f4a1.js">
+        </script>
+        <script src="../jscode/darkmood/darkmood.js"></script>
+        <meta content="strict-origin-when-cross-origin" name="referrer"/>
+        <script crossorigin="anonymous" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js">
+        </script>
         <title>Document</title>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="../../css/myboot.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <link rel="stylesheet" href="../../jscode/darkmood/darkmood.css">
-        <script src="../../jscode/darkmood/darkmood.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-        <style>
-            .levelsecactive { }
-            .levelsec {
-                width: 50px;
-                height: 4px;
-                background-color: blue;
-                margin-right: 3px;
-            }
-        </style>
-    </head>
-<body class="body"> 
+</head>
+<body>  
     <header>
         <div class="container-fluid p-0 fixed-top">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -605,506 +611,350 @@
     </div>
     </header>
     <main>
-        <div class="container pt-2" style="max-width: 95%;margin-bottom: 200px;">
-            <div class="row">
-                <div class="col-lg-2 d-none d-lg-block" style="position: relative;">
-                    <div style="position: sticky;color: rgb(66, 66, 66);top: 0;left: 50%;transform: translate(0%,0%);" class="w-100 mt-0">
-                        <a href="../profile/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 mt-0 w-100 mt-0 " style="margin-top: -4px;">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Profile</div>
-                            </div>
-                        </a>
-                        <a href="./index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 w-100 mt-0 partactive">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Security</div>
-                            </div>
-                        </a>
-                        <a href="../Identification/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 w-100 mt-0">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Identification</div>
-                            </div>
-                        </a>
-                        <a href="../Referral/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 m-1 w-100 mt-0">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Referral</div>
-                            </div>
-                        </a>
-                        <a href="../Trading_Fees/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Trading Fees</div>
-                            </div>
-                        </a>
-                        <a href="../Withdrawl_Addresses/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s ">Withdrawal Addresses/Contacts</div>
-                            </div>
-                        </a>
-                        <a href="../Sub-Account/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Sub-Account Management</div>
-                            </div>
-                        </a>
-                        <a href="../Settings/index.html" class="" style="text-decoration: none; color: rgb(66, 66, 66);">
-                            <div class="distart p-3 py-3-5 w-100 mt-0 m-1">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2 fs-7s">Settings</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- sidder -->
-                <div id="overlay" class="d-lg-none" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 189; background-color: rgba(0,0,0,0.8);"></div>
-                <div id="sidebar" class="d-lg-none rounded-3 p-2 sidebar-closed bg-white text-black" style="position: fixed; top: 10%; left: -200px; width: 200px; z-index: 200; transition: left 0.4s ease;">
-                    <div style="display: flex; flex-direction: column; align-items: start;margin-left: 50px; color: black;">
-                        
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Profile</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Security/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Security</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Identification/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Identification</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Referral/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Referral</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Trading Fees</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Withdrawl_Addresses/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Withdrawal Addresses/Contacts</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Sub-Account/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Sub-Account Management</div>
-                            </div>
-                        </a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Panel/Settings/index.html" class="py-3 px-2" style="text-decoration: none;">
-                            <div class="distart fs-7">
-                                <div><i class="fa-solid fa-wallet"></i></div>
-                                <div class="ml-2">Settings</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Toggle Button -->
-                    <div id="toggleButton" class="discen rounded-1 bg-white text-black" style="position: absolute; top: 50%; right: -35px; transform: translateY(-50%); width: 40px; height: 40px; z-index: 190;display: flex; justify-content: center; align-items: center;">
-                        <i class="fa-solid fa-caret-right fa-xl" id="toggleIcon"></i>
-                    </div>
-                </div>
-
-                <div class="col-lg-10">
-                    <div class="row text-start p-4">
-                        <div class="col-md-12">
-                            <h1 class="fs-4">Security</h1>
+        <div class="container ps-0">
+          <div class="d-flex justify-content-between align-items-center overflow-auto " style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
+            <div class="d-flex flex-nowrap">
+                <a href="http://127.0.0.1:5500/root_1.0.0/QuickBy/" class="fs-6 btn btn-outline-secondary border-bottom-0 text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Quick Buy</a>
+                <a href="http://127.0.0.1:5500/root_1.0.0/p2p/" class="fs-6 btn btn-outline-secondary border-bottom-0  rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">P2P</a>
+                <a href="#" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Third-party</a>
+                <a href="http://127.0.0.1:5500/root_1.0.0/transfer/" class="fs-6 btn btn-outline-primary  rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Transfer</a>
+            </div>
+          </div>
+          <div class="position-static bg-black mb-4 bg-opacity-10" style="height: 1px;"></div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-lg-9">
+                    <div id="section-form" class="card shadow-sm rounded mb-5">
+                      <div class="card-header bg-white border-bottom-0 py-3 px-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h3 class="fw-bold mb-0">1. Transfer Form</h3>
+                          <div class="d-flex align-items-center">
+                            <!-- <span class="badge bg-primary me-2">Step 1</span> -->
+                            <i class="bi bi-arrow-right-short fs-5 text-muted"></i>
+                            <!-- <span class="badge bg-secondary ms-2">Review</span> -->
+                          </div>
                         </div>
-                    </div>
-                    <div class="row bg-white rounded-3 p-4">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart fw-bold">Two-Factory Authentication (2FA)</div>
-                                    <div class="distart text-secondary fs-6s mt-1">To protect your account, we remember that you enable at least one 2FA</div>
-                                    <div class="distart fs-6s mt-2">
-                                        <div>Security Level: </div>
-                                        <div class="ml-2 text-primary">Medium</div>
-                                        <div class="distart mt-1">
-                                            <div class="levelsec ml-2"></div>
-                                            <div class="levelsec"></div>
-                                            <div class="levelsec"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <p class="text-muted fs-6 mt-2 mb-0">
+                          Send cryptocurrency securely from one of your wallets. All fields are required except “Note.”  
+                        </p>
+                      </div>
+                  
+                      <div class="card-body py-5 px-4">
+                        <form id="cryptoTransferForm" action="" method="post" class="needs-validation" novalidate>
+                          <div class="form-floating mb-4 position-relative">
+                            <select
+                              id="fromWallet"
+                              class="form-select pe-5"
+                              aria-label="From Wallet"
+                              required
+                            >
+                              <option value="" disabled selected></option>
+                              <option value="wallet1">0xAbC123...9FEd (ETH Wallet)</option>
+                              <option value="wallet2">0xDeF456...4Bcd (BTC Wallet)</option>
+                              <option value="wallet3">0xGhI789...2Xyz (USDT Wallet)</option>
+                            </select>
+                            <label for="fromWallet" class="fw-semibold ps-4">From Wallet</label>
+                            <i
+                              class="bi bi-wallet2 position-absolute text-muted"
+                              style="top: 50%; right: 1rem; transform: translateY(-50%);"
+                            ></i>
+                            <div class="invalid-feedback ps-4">
+                              Please choose a wallet.  
                             </div>
-                            <hr>
-                            <!-- Email Verification -->
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-envelope"></i></div>
-                                        <div class="ml-2">
-                                            <div class="fw-bold">Email Verification</div>
-                                            <div class="fs-7 text-secondary">Connect your email address to secure login, password recovery, and withdrawal verification.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                    <div class="disbet fs-7">
-                                        <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                        <div class="fw-bold">ag**m@gmail.com</div>
-                                    </div>
-                                    <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Change</button></div>
-                                </div>
+                          </div>
+                  
+                          <div class="form-floating mb-4 position-relative">
+                            <input
+                              type="text"
+                              id="toAddress"
+                              class="form-control pe-5"
+                              placeholder="Enter recipient’s wallet address"
+                              pattern="^(0x)?[0-9a-fA-F]{40}$"
+                              required
+                            />
+                            <label for="toAddress" class="fw-semibold ps-4">To Address</label>
+                            <i
+                              class="bi bi-qr-code-scan position-absolute text-muted"
+                              style="top: 50%; right: 1rem; transform: translateY(-50%);"
+                            ></i>
+                            <div class="invalid-feedback ps-4">
+                              Please enter a valid Ethereum address (40 hex characters).  
                             </div>
-                            <hr>
-                            <!-- Mobile Verification -->
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-mobile-alt"></i></div>
-                                        <div class="ml-2">
-                                            <div class="fw-bold">Mobile Verification</div>
-                                            <div class="fs-7 text-secondary">Link your mobile number to your account to receive verification codes via SMS for confirmations on withdrawal, password change, and security settings.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                    <div class="disbet fs-7">
-                                        <div class="mr-1"><i class="fas fa-times-circle text-secondary"></i></div>
-                                        <div class="fw-bold text-secondary">Off</div>
-                                    </div>
-                                    <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Set Up</button></div>
-                                </div>
+                          </div>
+                  
+                          <div class="mb-4">
+                            <label for="amount" class="form-label fw-semibold">Amount</label>
+                            <div class="input-group has-validation position-relative">
+                              <input
+                                type="number"
+                                id="amount"
+                                class="form-control rounded-start pe-4"
+                                placeholder="0.00"
+                                min="0.0001"
+                                step="0.0001"
+                                required
+                              />
+                              <i
+                                class="bi bi-currency-exchange position-absolute text-muted"
+                                style="top: 50%; left: 1rem; transform: translateY(-50%);"
+                              ></i>
+                              <select
+                                id="currency"
+                                class="form-select rounded-end ps-4"
+                                required
+                              >
+                                <option value="" disabled selected>Currency</option>
+                                <option value="ETH"><i class="fa fa-bitcoin"></i> ETH</option>
+                                <option value="BTC">BTC</option>
+                                <option value="USDT">USDT</option>
+                              </select>
+                              <div class="invalid-feedback ps-4">
+                                Please specify amount and crypto type.  
+                              </div>
                             </div>
-                            <hr>
-                            <!-- Google Authenticator -->
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-shield-alt"></i></div>
-                                        <div class="ml-2">
-                                            <div class="fw-bold">Google Authenticator</div>
-                                            <div class="fs-7 text-secondary">Set up your Google Authenticator to provide an extra layer of security when withdrawing funds or configuring your security settings.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                    <div class="disbet fs-7">
-                                        <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                        <div class="fw-bold">On</div>
-                                    </div>
-                                    <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Remove</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bg-white rounded-3 p-4 mt-4">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="distart fs-6 fw-bold">Advanced Security</div>
-                            </div>
-                            <hr>
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-envelope"></i></div>
-                                        <div class="ml-2">
-                                            <div class="fw-bold">Anti-Phishing Code</div>
-                                            <div class="fs-7 text-secondary">Emails sent to you will include the Anti-Phishing code you've set to protect against phishing attacks</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                    <div class="disbet fs-7">
-                                        <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                        <div class="fw-bold">Defult</div>
-                                    </div>
-                                    <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Change</button></div>
-                                </div>
-                            </div>
-                            <hr>
-                            <!-- Login Password -->
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-mobile-alt"></i></div>
-                                        <div class="ml-2">
-                                            <div class="fw-bold">Login Password</div>
-                                            <div class="fs-7 text-secondary">Increase your password strength to enhance account security.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-end align-items-center mt-4 m-md-0">
-                                    <div><button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Add</button></div>
-                                </div>
-                            </div>
-                            <hr>
-                            <!-- Fund Security Settings -->
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div class="distart">
-                                        <div><i class="fas fa-shield-alt mr-2"></i></div>
-                                        <div class="fw-bold">Fund Security Settings</div>
-                                    </div>
-                                    <div class="row p-3 px-1">
-                                        <div class="col-md-6 col-12">
-                                            <div class="fw-bold">Fast Withdrawal</div>
-                                            <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
-                                        </div>
-                                        <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                            <div class="disbet fs-7">
-                                                <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                                <div class="fw-bold">Defult</div>
-                                            </div>
-                                            <div class="form-check form-switch fs-5 mb-2">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row p-3 px-1">
-                                        <div class="col-md-6 col-12">
-                                            <div class="fw-bold">Fast Withdrawal</div>
-                                            <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
-                                        </div>
-                                        <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                            <div class="disbet fs-7">
-                                                <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                                <div class="fw-bold">Defult</div>
-                                            </div>
-                                            <div class="form-check form-switch fs-5 mb-2">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row p-3 px-1">
-                                        <div class="col-md-6 col-12">
-                                            <div class="fw-bold">Fast Withdrawal</div>
-                                            <div class="fs-6s text-secondary">Once enabled, no security verification is required when making small withdrawal to whitelisted addresses/contacts</div>
-                                        </div>
-                                        <div class="col-md-6 col-12 d-flex justify-content-between align-items-center mt-4 m-md-0">
-                                            <div class="disbet fs-7">
-                                                <div class="mr-1"><i class="fas fa-check-circle text-success"></i></div>
-                                                <div class="fw-bold">Defult</div>
-                                            </div>
-                                            <div class="form-check form-switch fs-5 mb-2">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="distart">
-                                                <div><i class="fas fa-shield-alt mr-2"></i></div>
-                                                <div class="fw-bold">Fund Security Settings</div>
-                                            </div>
-                                            <div class="distart fs-6s text-secondary mt-1">
-                                                Link third-party account to your MEXC account. Once successful, you can use it for login.
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
-                                                    <div class="p-2 rounded-1 fs-7 disbet bg-white border">
-                                                        <div class="disbet">
-                                                            <div class="mr-1">g</div>
-                                                            <div class="fw-bold">Google</div>
-                                                        </div>
-                                                        <div class="text-danger">Unlink</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
-                                                    <div class="p-2 rounded-1 fs-7 disbet bg-white border">
-                                                        <div class="disbet">
-                                                            <div class="mr-1">g</div>
-                                                            <div class="fw-bold">Google</div>
-                                                        </div>
-                                                        <div class="text-danger">Unlink</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
-                                                    <div class="p-2 rounded-1 fs-7 disbet bg-white border">
-                                                        <div class="disbet">
-                                                            <div class="mr-1">g</div>
-                                                            <div class="fw-bold">Google</div>
-                                                        </div>
-                                                        <div class="text-danger">Unlink</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-6 p-1 mt-1 m-md-0">
-                                                    <div class="p-2 rounded-1 fs-7 disbet bg-white border">
-                                                        <div class="disbet">
-                                                            <div class="mr-1">g</div>
-                                                            <div class="fw-bold">Google</div>
-                                                        </div>
-                                                        <div class="text-danger">Unlink</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                    <div class="row bg-white rounded-3 p-4 mt-4">
-                        <div class="distart fs-6 fw-bold pb-3">
-                            Device and Activity
-                        </div>
-                        <hr>
-                        <div class="row pb-3">
-                            <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">  
-                                <div class="mr-2">s</div>
-                                <div>
-                                    <div class="fw-bold ">Account Activities</div>
-                                    <div class="fs-6s text-secondary">View login and security activity history.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
-                                <button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">View</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row pb-3">
-                            <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">
-                                <div class="mr-2">s</div>
-                                <div>
-                                    <div class="fw-bold ">Device Management</div>
-                                    <div class="fs-6s text-secondary">Manage devices that are allowed to access your account.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
-                                <button class="btn btn-outline-secondary rounded-pill px-4 fs-8 mr-1">Manage</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row ">
-                            <div class="col-md-8 col-12 d-flex justify-content-start align-items-center">
-                                <div class="mr-2">s</div>
-                                <div>
-                                    <div class="fw-bold ">Freeze Account</div>
-                                    <div class="fs-6s text-secondary">Freeze your account all functions immediately. </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12 mt-2 m-md-0 d-flex justify-content-end align-items-center">
-                                <button class="btn btn-outline-danger text-danger rounded-pill px-4 fs-8 mr-1">Freeze</button>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
+                          </div>
+                          <div class="form-floating mb-5 position-relative">
+                            <textarea
+                              id="note"
+                              class="form-control"
+                              style="height: 70px;"
+                              placeholder="Add a memo or reference"
+                            ></textarea>
+                            <label for="note" class="fw-semibold ps-4">Note (Optional)</label>
+                            <i
+                              class="bi bi-chat-dots position-absolute text-muted"
+                              style="top: 50%; right: 1rem; transform: translateY(-50%);"
+                            ></i>
+                          </div>
                 
+                          <div class="d-flex justify-content-end">
+                            <button type="submit" id="submitBtn" class="btn btn-primary px-5">
+                              <i class="fa fa-send me-2"></i>Review &amp; Send  
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div id="section-guidance" class="card shadow-sm rounded mb-5">
+                      <div class="card-body py-5 px-4">
+                        <h3 class="fw-bold mb-3">2. Guidance &amp; Information</h3>
+                        <ul class="fs-6 text-muted ps-3">
+                          <li class="mb-2">
+                            Ensure the “To Address” matches exactly the recipient’s public key.  
+                            Ethereum addresses must be 40 hexadecimal characters with an optional “0x” prefix.
+                          </li>
+                          <li class="mb-2">
+                            Gas fees or network transaction fees apply automatically based on blockchain congestion.  
+                            Check live network fees (e.g., via EthGasStation) before confirming the transaction.
+                          </li>
+                          <li>
+                            Once a transaction is broadcast to the blockchain, it cannot be reversed.  
+                            Double‑check all details before sending to avoid irreversible mistakes.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div id="section-contact" class="card shadow-sm rounded">
+                      <div class="card-body py-5 px-4">
+                        <h3 class="fw-bold mb-3">3. Support &amp; Contact</h3>
+                        <p class="fs-6 text-muted mb-3">
+                          If you experience any issues with your transfer, contact our 24/7 Support Team.
+                        </p>
+                        <ul class="fs-6 text-muted ps-3">
+                          <li class="mb-2">
+                            Email:  
+                            <a href="mailto:support@arthurmorganexchange.com" class="text-decoration-none">
+                              support@coinit.com
+                            </a>
+                          </li>
+                          <li class="mb-2">
+                            Live Chat: Click the chat icon at the bottom right of the page. :contentReference[oaicite:8]{index=8}
+                          </li>
+                          <li>
+                            Phone: +00000000000
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>                  
             </div>
         </div>
     </main>
-    <footer>
-        <div class="container-fluid bg-white p-4">
-            <div class="ps-lg-3 ps-2 pe-2">
-              <div class="row justify-content-between">
-                <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
-                  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                    <div class="mb-3 mb-md-0">
-                      <h3>Download App</h3>
-                      <div class="text-secondary small">You can download with QR code or use Google Play and App Store</div>
-                    </div>
-                    <<div class="d-flex align-items-center flex-column flex-md-row">
-                      <a href="#" class="mx-2 mb-2 mb-md-0">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
-                      </a>
-                      <a href="#" class="mx-2 mb-2 mb-md-0">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
-                      </a>
-                      <a href="#" class="mx-2">
-                        <img src="../../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img-fluid" alt="MetaMask">
-                      </a>
-                    </div>
-                  </div>
+<footer>
+    <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
+      <div class="d-flex justify-content-between align-items-center p-0 h-auto">
+        <div class="col-auto">
+          <i class="fa fa-signal text-primary fs-9"></i>
+          <span class="text-primary fs-9">Network Normal</span>
+          <span class="text-secondary fs-9">Line 1 <i class="fa fa-chevron-down fs-10"></i></span>
+        </div>
+        <div class="vr mx-1"></div>
+        <button class="btn p-0 border-0 fs-9 me-1"><i class="fa-solid fa-align-left fs-9"></i></button>
+        <button class="btn p-0 border-0 fs-9"><i class="fa fa-fire text-primary fs-9"></i></button>
+        <div id="marquee" class="overflow-x-hidden w-75 scroll-thin mx-0 px-1 d-flex justify-content-start align-items-center">
+          <!-- بخش اسکرول کردن کریپتو ها -->
+        </div>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('marquee');
+            const speedPxPerSec = 70;
+            let isPaused = false;
+            let lastTimestamp = null;
+            let scrollPosition = 0;
+        
+            function createNavItem() {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'crypto_coins_bottom_nav col-auto p-0 d-md-block d-lg-block d-none fs-9 d-flex align-items-center';
+              wrapper.innerHTML = `
+                <span class="text-secondary">BTCUSDT</span>
+                <span class="text-success ms-1">+0.05%</span>
+                <div class="vr bg-black text-black mx-1"></div>
+                
+              `;
+              return wrapper;
+            }
+            const items = [];
+            for (let i = 0; i < 22; i++) {
+              const item = createNavItem();
+              items.push(item);
+              container.appendChild(item);
+            }
+            const viewportWidth = container.clientWidth;
+            while (container.scrollWidth < viewportWidth * 2) {
+              items.forEach(item => {
+                container.appendChild(item.cloneNode(true));
+              });
+            }
+            function step(timestamp) {
+              if (lastTimestamp === null) lastTimestamp = timestamp;
+              const elapsed = timestamp - lastTimestamp;
+              lastTimestamp = timestamp;
+        
+              if (!isPaused) {
+                scrollPosition += (speedPxPerSec * elapsed) / 1000;
+                if (scrollPosition >= container.scrollWidth / 2) {
+                  scrollPosition -= container.scrollWidth / 2;
+                }
+                container.scrollLeft = scrollPosition;
+              }
+              requestAnimationFrame(step); 
+            }
+        
+            container.addEventListener('mouseenter', () => { isPaused = true; });
+            container.addEventListener('mouseleave', () => { isPaused = false; });
+        
+            requestAnimationFrame(step);
+          });
+        </script>
+        
+        <a href="#" class="link-secondary link-underline-opacity-0 fs-10 w-auto pt-1 text-nowrap">Connected <i class="fa fa-chevron-right"></i></a>
+        <button class="btn border-0 p-0 ps-1 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
+        <div class="vr mx-1 d-md-none d-sm-none d-lg-block d-none"></div>
+        <div class="position-relative d-md-none d-lg-block d-none">
+          <a href="#" class="link-secondary link-underline-opacity-0 text-nowrap fs-9 ">Coinit updates</a>
+          <i class="fa fa-circle position-absolute top-0 mt-1 end-0 fs-11 text-danger"></i>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bg-white p-4">
+        <div class="ps-lg-3 ps-2 pe-2">
+          <div class="row justify-content-between">
+            <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                  <h3>Download App</h3>
+                  <div class="text-secondary small">You can download with QR code or use Google Play and App Store</div>
                 </div>
-                <div class="col-12 col-md-4 col-xl-2 mt-3">
-                    <h5 class="fw-bold">Community</h5>
-                    <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                      <a href="#"><img src="../../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
-                    </div>
-                  </div>
-                <div class="col-6 col-md-2 mt-3">
-                  <h5 class="fw-bold text-center">About</h5>
-                  <ul class="list-unstyled text-center">
-                    <li><a href="#" class="text-dark text-decoration-none">About</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Asset Security</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">User Agreement</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Risk Disclosure</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Coinit Ventures</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Why Coinit</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Sitemap</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
-                  </ul>
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2">
+                    <img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img-fluid" alt="MetaMask">
+                  </a>
                 </div>
-                <div class="col-6 col-md-2 mt-3">
-                  <h5 class="fw-bold text-center">Products</h5>
-                  <ul class="list-unstyled text-center">
-                    <li><a href="#" class="text-dark text-decoration-none">Buy Crypto</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">P2P</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Convert</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Spot</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Futures</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Demo Trade</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Copy Trade</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Coinit Loans</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
-                  </ul>
-                </div>
-                <div class="col-6 col-md-2 mt-3">
-                  <h5 class="fw-bold text-center">Support</h5>
-                  <ul class="list-unstyled text-center">
-                    <li><a href="#" class="text-dark text-decoration-none">Customer Services</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">VIP Benefits</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Submit an Inquiry</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Improvement Suggestions</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Report Abnormal Funds</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Judicial Assistance</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
-                  </ul>
-                </div>
-                <div class="col-6 col-md-2 mt-3">
-                  <h5 class="fw-bold text-center">Partnerships</h5>
-                  <ul class="list-unstyled text-center">
-                    <li><a href="#" class="text-dark text-decoration-none">Listing Application</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">P2P Merchant Application</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Institutional Services</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
-                  </ul>
-                </div>
-                <div class="col-6 col-md-2 mt-3">
-                  <h5 class="fw-bold text-center">Resources</h5>
-                  <ul class="list-unstyled text-center">
-                    <li><a href="#" class="text-dark text-decoration-none">Help Center</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Coinit Earn</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Coinit Blog</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Crypto News</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">All Crypto Prices</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">How to Buy</a></li>
-                  </ul>
-                </div>
-          
               </div>
             </div>
+            <div class="col-12 col-md-4 col-xl-2 mt-3">
+                <h5 class="fw-bold">Community</h5>
+                <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                </div>
+              </div>
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">About</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">About</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Asset Security</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">User Agreement</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Risk Disclosure</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Ventures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Why Coinit</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Sitemap</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Products</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Buy Crypto</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Convert</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Spot</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Futures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Demo Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Copy Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Loans</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Support</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Customer Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">VIP Benefits</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Submit an Inquiry</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Improvement Suggestions</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Report Abnormal Funds</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Judicial Assistance</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Partnerships</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Listing Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P Merchant Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Institutional Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Resources</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Help Center</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Earn</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Blog</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Crypto News</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">All Crypto Prices</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">How to Buy</a></li>
+              </ul>
+            </div>
+      
           </div>
-    </footer>
-    <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+        </div>
+      </div>
+  </footer>
 </body>
 </html>
