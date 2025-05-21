@@ -45,13 +45,13 @@
                         <li class="nav-item pt-2">
                             <label class="switch">
                                 <input type="checkbox">
-                                <div class="slider slider--0"><a class="link-light link-underline-opacity-0" href="#">Exchange</a></div>
+                                <div class="slider slider--0"><span class="link-light link-underline-opacity-0">Exchange</span></div>
                                 <div class="slider slider--1">
                                     <div></div>
                                     <div></div>
                                 </div>
                                 <div class="slider slider--2"></div>
-                                <div class="slider slider--3"><a class="link-light link-underline-opacity-0" href="#">DEX+</a></div>
+                                <div class="slider slider--3"><span class="link-light link-underline-opacity-0">DEX+</span></div>
                             </label>
                         </li>
                       <li class="nav-item dropdown ">
@@ -612,7 +612,534 @@
         </div>
     </div>
     </header>
-    
+    <main>
+        <div class="container py-5">
+          <!-- FAQ Section -->
+          <h2 class="mb-4">Frequently Asked Questions</h2>
+          <div class="accordion" id="faqAccordion">
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading1">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse1"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse1"
+                >
+                  How can I recover my account?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse1"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading1"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To recover your account, navigate to the login page and click “Forgot Password.” Enter the email address associated with your account, and you’ll receive a reset link within a few minutes. Follow the link to set a new password.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading2">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse2"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse2"
+                >
+                  How do I check my order status?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse2"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading2"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  After logging in, go to “My Orders” in your account dashboard. You’ll see a list of all your recent orders. Click on any order to view detailed status updates, tracking numbers, and estimated delivery dates.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading3">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse3"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse3"
+                >
+                  What should I do if I encounter a technical issue?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse3"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading3"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  If you experience any technical issues, first try clearing your browser cache or using a different browser. If the problem persists, submit a support ticket with “Technical Issue” as the subject, including screenshots and detailed steps to reproduce the error.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading4">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse4"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse4"
+                >
+                  What payment methods are accepted?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse4"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading4"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Coinit accepts major credit and debit cards (Visa, MasterCard, American Express), as well as PayPal. Depending on your location, you may also have the option to pay via bank transfer or local e-wallet services.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading5">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse5"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse5"
+                >
+                  How do I update my shipping address?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse5"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading5"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To update your shipping address, go to “Account Settings” and select “Address Book.” From there, you can add a new address or edit your existing one. Remember to save your changes before placing a new order.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 6 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading6">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse6"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse6"
+                >
+                  How do I reset my two-factor authentication (2FA)?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse6"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading6"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  If you lose access to your authenticator app, submit a request through our support form with “2FA Reset” in the subject. Provide account details and any backup codes. Our security team will verify your identity before disabling 2FA.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 7 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading7">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse7"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse7"
+                >
+                  What is your refund policy?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse7"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading7"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Refunds are issued within 7 business days for eligible products returned in their original condition. To request a refund, contact support with your order number and reason for return. Digital goods are non-refundable unless defective.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 8 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading8">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse8"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse8"
+                >
+                  How do I track my shipment?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse8"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading8"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Once your order ships, you will receive an email with a tracking number. You can click the tracking link provided or enter the number on the carrier’s website to see real-time updates on your delivery status.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 9 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading9">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse9"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse9"
+                >
+                  How can I change my payment card details?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse9"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading9"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To update payment information, go to “Billing & Payments” in your account settings. Click “Edit” next to your saved card, enter the new details, and click “Save.” Future purchases will use the updated card.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 10 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading10">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse10"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse10"
+                >
+                  What should I do if my order is delayed?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse10"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading10"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  If your order is delayed beyond the estimated delivery date, first check the tracking status. If there’s no update after 3 days, submit a support ticket with your order number, and we’ll investigate with the carrier on your behalf.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 11 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading11">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse11"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse11"
+                >
+                  How do I delete my account?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse11"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading11"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To permanently delete your account, go to “Account Settings” and select “Delete Account.” You will be prompted to confirm your decision. Note that this action is irreversible and you will lose access to all order history and data.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 12 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading12">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse12"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse12"
+                >
+                  Can I change my order after placing it?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse12"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading12"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Orders can be modified within 30 minutes of placement. Contact support immediately with your order number and requested changes. After 30 minutes, orders may be in processing and cannot be guaranteed for modification.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 13 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading13">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse13"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse13"
+                >
+                  What is KYC and how do I complete it?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse13"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading13"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  KYC (Know Your Customer) is a verification process to confirm your identity. To complete it, upload a valid government-issued ID (passport or driver’s license) and a selfie. Our team will review your documents within 24–48 hours.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 14 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading14">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse14"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse14"
+                >
+                  Why was my payment declined?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse14"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading14"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Payment can be declined for several reasons: incorrect card details, insufficient funds, or bank restrictions on online transactions. Verify your information, ensure your card is active for international use, and try again. If it still fails, contact your bank.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 15 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading15">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse15"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse15"
+                >
+                  How do I apply a discount or promo code?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse15"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading15"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Enter your discount or promo code at checkout in the “Promo Code” field and click “Apply.” The total price will update to reflect the discount. Promotions cannot be combined, and each code has its own expiration date and terms.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 16 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading16">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse16"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse16"
+                >
+                  Do you offer international shipping?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse16"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading16"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes, we ship to most countries worldwide. Shipping times and rates vary by destination. During checkout, enter your address to see available shipping options and estimated delivery times for your region.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 17 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading17">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse17"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse17"
+                >
+                  How do I cancel my subscription/service?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse17"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading17"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To cancel, go to “Subscriptions” in your account settings and click “Cancel Subscription.” You’ll continue to have access until the end of your current billing cycle. No partial refunds are provided for unused time.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 18 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading18">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse18"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse18"
+                >
+                  How do I download my invoice or receipt?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse18"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading18"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Login to your account, go to “Orders & Billing,” then click on the relevant order. You’ll see an option to “Download Invoice” or “View Receipt.” Click it to download a PDF copy for your records.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 19 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading19">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse19"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse19"
+                >
+                  How do I change my account email address?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse19"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading19"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  To change your email, go to “Account Settings” and select “Edit Email.” Enter your new email address and current password, then click “Save Changes.” A confirmation link will be sent to the new email—click it to finalize the update.
+                </div>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 20 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading20">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqCollapse20"
+                  aria-expanded="false"
+                  aria-controls="faqCollapse20"
+                >
+                  Is my personal and payment information secure?
+                </button>
+              </h2>
+              <div
+                id="faqCollapse20"
+                class="accordion-collapse collapse"
+                aria-labelledby="faqHeading20"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes. We use industry-standard SSL encryption to protect your data during transmission. Payment information is processed by PCI-compliant gateways and never stored in plain text. Your personal details are kept strictly confidential and only used for order fulfillment.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      
 <footer>
     <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
       <div class="d-flex justify-content-between align-items-center p-0 h-auto">
@@ -693,8 +1220,6 @@
     <div class="container-fluid bg-white p-4">
         <div class="ps-lg-3 ps-2 pe-2">
           <div class="row justify-content-between">
-            
-            <!-- Download App Section -->
             <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
               <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <div class="mb-3 mb-md-0">
@@ -714,8 +1239,6 @@
                 </div>
               </div>
             </div>
-      
-            <!-- Community Section -->
             <div class="col-12 col-md-4 col-xl-2 mt-3">
                 <h5 class="fw-bold">Community</h5>
                 <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
@@ -729,8 +1252,6 @@
                   <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
                 </div>
               </div>
-      
-            <!-- About Section -->
             <div class="col-6 col-md-2 mt-3">
               <h5 class="fw-bold text-center">About</h5>
               <ul class="list-unstyled text-center">
@@ -745,8 +1266,6 @@
                 <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
               </ul>
             </div>
-      
-            <!-- Products Section -->
             <div class="col-6 col-md-2 mt-3">
               <h5 class="fw-bold text-center">Products</h5>
               <ul class="list-unstyled text-center">
@@ -761,8 +1280,6 @@
                 <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
               </ul>
             </div>
-      
-            <!-- Support Section -->
             <div class="col-6 col-md-2 mt-3">
               <h5 class="fw-bold text-center">Support</h5>
               <ul class="list-unstyled text-center">
@@ -775,8 +1292,6 @@
                 <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
               </ul>
             </div>
-      
-            <!-- Partnerships Section -->
             <div class="col-6 col-md-2 mt-3">
               <h5 class="fw-bold text-center">Partnerships</h5>
               <ul class="list-unstyled text-center">
@@ -786,8 +1301,6 @@
                 <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
               </ul>
             </div>
-      
-            <!-- Resources Section -->
             <div class="col-6 col-md-2 mt-3">
               <h5 class="fw-bold text-center">Resources</h5>
               <ul class="list-unstyled text-center">

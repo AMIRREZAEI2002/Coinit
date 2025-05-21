@@ -31,171 +31,22 @@
         <link rel="stylesheet" href="../jscode/darkmood/darkmood.css">
         <script src="../jscode/darkmood/darkmood.js"></script>
         <style>
-                .step-icon {
-      font-size: 24px;
-      color: white;
-      margin-bottom: 10px;
-    }
-    .step-line {
-      border-top: 1px dashed #666;
-      margin: 0 10px;
-      flex-grow: 1;
-      height: 1px;
-      align-self: center;
-    }
-    .step-text {
-      text-align: center;
-      font-size: 14px;
-      margin-top: 5px;
-    }
-           .modal_ave {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            width: 420px;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.15);
-          }
-          .close-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            cursor: pointer;
-            font-size: 20px;
-          }
-          .leverage-display button {
-            font-size: 20px;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: #eee;
-            border-radius: 8px;
-            cursor: pointer;
-          }
-          .preset-buttons button {
-            background: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-          }
-          .slider-container input[type="range"] {
-            width: 100%;
-            max-width: 350px;
-            margin: auto;
-            display: block;
-          }
-          .login-btn {
-            background-color: #0066ff;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 50px;
-            cursor: not-allowed;
-            margin-top: 16px;
-          }
-         .wallet-balance-wrapper {
-            width: 100%;
-            text-align: center;
-          }
-          input[type=number]::-webkit-outer-spin-button,
-          input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-          input[type=number] {
-            -moz-appearance: textfield;
-          }
-          .wallet-balance-wrapper .btn-group .btn {
-            min-width: 120px;
-          }
-        .bluelable{
-            background-color: rgb(127, 182, 255);
-            color: rgb(5, 85, 177);
+            .card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        /* اسکرول‌بار نازک برای فایرفاکس */
-        .scroll-thin {
-            scrollbar-width: thin; /* مقدار thin اسکرول‌بار رو باریک‌تر می‌کنه */
-            scrollbar-color: #888 transparent; /* رنگ thumb و track */
+        
+        .bg-mybody {
+            background-color: #f8f9fa;
         }
-      
-        /* اسکرول‌بار نازک برای Chrome, Edge, Safari */
-        .scroll-thin::-webkit-scrollbar {
-            height: 6px;
+        
+        .rounded-4 {
+            border-radius: 1.5rem;
         }
-        .scroll-thin::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 10px;
-        }
-        .scroll-thin::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-        .option-item {
-          width: 200px;
-          height: 50px;
-        }
-        .option-item:hover {
-          background-color: #46387c50;
-        }
-        .cursor-pointer {
-          cursor: pointer;
-        }
-        @media (max-width:992px){
-          .buyandsellclass {
-            position: fixed;
-            top: 110%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            display: none !important;
-            width: 100%;
-            max-height: 80vh; /* یا هرچقدر خواستی، مثلاً 80 درصد ارتفاع صفحه */
-            background-color: #eeeff2;
-            padding: 10px !important;
-            z-index: 999999;
-            padding-bottom: 30px;
-            overflow-y: auto; /* اسکرول داخلی */
-            border-radius: 10px !important;
-            border: 1px solid gray;
-            -ms-overflow-style: none;  /* برای IE و Edge قدیمی */
-            scrollbar-width: none; 
-            
-            
-          }
-          .buyandsellclass::-webkit-scrollbar {
-              display: none;
-          }
-          .buyorsellbuts{
-            display: block !important;
-            background-color: #eeeff2;
-            padding: 30px;
-            position: fixed;
-            bottom: 0px;
-            border-radius: 10px 10px 0 0 ;
-            border: 1px solid gray;
-            color: white;
-      
-          }
-          .nomargin{
-            margin: 0px;
-          }
-        }
-      
-        .siderofcoins {
-          position: absolute;
-          background-color: #eeeff2;
-          z-index: 9000000;
-          top: 22%;
-          left: -500px; /* مخفی خارج از صفحه */
-          padding: 10px;
-          max-width: 500px;
-          min-width: 200px;
-          max-height: 800px;
-          transition: left 0.5s ease;
-        }
-      
-        .siderofcoins.active {
-          left: 0; /* نمایش داخل صفحه */
+        
+        .input-group:focus-within {
+            box-shadow: 0 0 0 2px rgba(13,110,253,.25);
         }
         </style>
     </head>
@@ -770,10 +621,10 @@
                     </div>
                     <div class="modal-body bg-white rounded-3 mt-1">
                         <ul>
-                            <li class="1">سرج های اخیر یا محبوب</li>
-                            <li class="2">سرج های اخیر یا محبوب</li>
-                            <li class="3">سرج های اخیر یا محبوب</li>
-                            <li class="4">سرج های اخیر یا محبوب</li>
+                            <li class="1">last search</li>
+                            <li class="2">last search</li>
+                            <li class="3">last search</li>
+                            <li class="4">last search</li>
                         </ul>
                     </div>
                 </div>
@@ -781,588 +632,404 @@
         </div>
         </header>
         <main>
-            <div class="container " style="max-width: 85%;">
+            <!-- تب‌های بالایی -->
+            <div class="container" style="max-width: 85%;">
                 <div class="d-flex justify-content-between align-items-center overflow-auto " style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
                     <div class="d-flex flex-nowrap">
-                        <a href="http://127.0.0.1:5500/root_1.0.0/QuickBy/" class="fs-6 btn btn-outline-primary  text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Quick Buy</a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/p2p/" class="fs-6 btn btn-outline-secondary border-bottom-0  rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">P2P</a>
-                        <a href="http://127.0.0.1:5500/root_1.0.0/Third-party/" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Third-party</a>
+                        <a href="http://127.0.0.1:5500/root_1.0.0/QuickBy/" class="fs-6 btn btn-outline-secondary border-bottom-0 text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Quick Buy</a>
+                        <a href="http://127.0.0.1:5500/root_1.0.0/p2p/" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">P2P</a>
+                        <a href="http://127.0.0.1:5500/root_1.0.0/Third-party/" class="fs-6 btn btn-outline-primary  rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Third-party</a>
                         <a href="http://127.0.0.1:5500/root_1.0.0/transfer/" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Transfer</a>
                     </div>
                   </div>
                   <div class="position-static bg-black mb-4 bg-opacity-10" style="height: 1px;"></div>
+    
                 <div class="row">
                     <div class="col-md-6 col-12 order-2 order-md-1 mt-lg-0 mt-5">
-                        <div class="distart fs-1 fw-bold">Buy Crypto Instantly in 3 Easy Steps</div>
-                        <div class="distart fs-6s mt-3 text-secondary">Buy the best cryptocurrencies with credit cards, bank accounts, and more.</div>
-                        <div class="distart fs-6s mt-5 text-secondary">
-                            <div class="m-1 btn bg-mybody" style="width: 30px;height: 30px;"></div>
-                            <div class="m-1 btn bg-mybody" style="width: 30px;height: 30px;"></div>
-                            <div class="m-1 btn bg-mybody" style="width: 30px;height: 30px;"></div>
-                            <div class="m-1 btn bg-mybody" style="width: 30px;height: 30px;"></div>
-                            <div class="m-1 btn bg-mybody" style="width: 30px;height: 30px;"></div>
+                        <h1 class="distart fs-1 fw-bold">Connect with Trusted Partners</h1>
+                        <p class="distart fs-6 mt-3 text-secondary">
+                            Access a wide range of financial services through our verified third-party providers.
+                        </p>
+                        
+                        <div class="mt-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                    <i class="fas fa-shield-alt fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Secure Transactions</h5>
+                                    <p class="text-muted mb-0">256-bit SSL encryption</p>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-success text-white rounded-circle p-2 me-3">
+                                    <i class="fas fa-handshake fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Verified Partners</h5>
+                                    <p class="text-muted mb-0">100+ trusted providers</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+        
                     <div class="col-md-6 col-12 order-1 order-md-2">
-                        <div class="row bg-mybody m-1 rounded-pill py-2">
-                            <div class="col-6 cursor-pointer" id="btntobuyheader">
-                                <div class="d-flex justify-content-center align-items-center rounded-pill py-1 bg-success text-white discen cursor-pointer" onclick="buypart()">
-                                    <span class=" " >Buy</span>
+                        <!-- فیلتر جستجو -->
+                        <div class="bg-mybody p-3 rounded-3 mb-4">
+                            <form action="" method="get">
+                                <div class="input-group">
+                                    <button type="submit" class="input-group-text bg-transparent border-0">
+                                        <i class="fas fa-search text-muted"></i>
+                                    </button>
+                                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Search services...">
                                 </div>
-                            </div>
-                            <div class="col-6 cursor-pointer" id="btntosellheader">
-                                <div class="d-flex justify-content-center align-items-center rounded-pill py-1  text-white"  onclick="sellpart()">
-                                    <i class="fa-solid fa-arrow-down-to-arc text-black"></i>
-                                    <span class="text-black" >Sell</span>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-
-                        <div id="cheangediv" class="d-flex flex-column">
-                            <!-- give -->
-                            <div class="bg-mybody row bg m-1 mt-4 rounded-1 p-3 order-1" id="div1">
-                                <div class="distart fs-8 text-muted" id="monytitle">Spend</div>
-                                <div class="disbet mt-2">
-                                    <div class="fs-3 fw-bold w-100">
-                                        <input type="number" name="howmanyspend" id="howmanyspend" class="form-control fs-3 fw-bold no-focus bg-transparent border-0 outline-0" style="width: 130%;" placeholder="104000.15" oninput="spendfun('spend')">
+                        <div class="row g-3">
+                            <!-- کارت پرداخت بانکی -->
+                            <div class="col-12">
+                                <div class="bg-mybody p-4 rounded-3 position-relative">
+                                    <div class="badge bg-info position-absolute top-0 end-0 m-3">Low Fees</div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://img.icons8.com/?size=100&id=NKa4m1Olsswa&format=png&color=000000" alt="Bank" class="me-3" width="40">
+                                        <div>
+                                            <h5 class="mb-1">Bank Transfers</h5>
+                                            <p class="text-muted mb-0">0.1% transaction fee</p>
+                                        </div>
                                     </div>
-                                    <div class="disbet w-100" style="z-index: 2;">
-                                        <div class="w-100 position-relative">
-                                            <div class="custom-select-container d-flex justify-content-end align-items-center position-relative w-100">
-                                            <button id="wallet_CurrencyToggle" type="button" class="btn p-1 w-auto border-0">
-                                                <input type="hidden" id="wallet_selectedCurrency" name="currency" value="USDT">
-                                                <i class="fas fa-times mr-1" onclick="clearnumbers('spend')"></i>
-                                                <i class="fab fa-bitcoin fa-xl"></i>
-                                                <span class="fs-6">USDT</span>
-                                                <i class="fas fa-chevron-down fs-10"></i>
-                                            </button>
-                                            <div id="wallet_Currency" class="position-absolute w-100 bg-white border mt-1 rounded" style="display: none; top: 20px;">
-                                                <!-- 🔍 سرچ -->
-                                                <div class="p-2 border-bottom">
-                                                <input type="text" id="wallet_currencySearch" class="form-control form-control-sm" placeholder="search">
-                                                </div>
-                                                <!-- ارزها اینجا اضافه می‌شن -->
-                                            </div>
-                                            </div>
-                                        
-                                            <script>
-                                            $(document).ready(function () {
-                                                const currencies = [
-                                                { name: 'USDT', symbol: 'USDT', icon: 'fa-dollar-sign' },
-                                                ];
-                                        
-                                                const optionsContainer = $('#wallet_Currency');
-                                        
-                                                // تابع برای تولید گزینه‌ها بر اساس لیست
-                                                function renderOptions(filteredList) {
-                                                optionsContainer.find('.option-item').remove(); // پاک‌کردن قبلی‌ها
-                                        
-                                                filteredList.forEach(currency => {
-                                                    const option = $('<div>').addClass('option-item p-3 w-auto d-flex align-items-center cursor-pointer border-bottom');
-                                                    option.html(`
-                                                    <i class="fa ${currency.icon} me-2"></i>
-                                                    <div>
-                                                        <span class="d-block">${currency.name}</span>
-                                                        <small class="text-muted fs-9">${currency.symbol}</small>
-                                                    </div>
-                                                    `);
-                                        
-                                                    option.on('click', () => {
-                                                    $('#wallet_CurrencyToggle span').text(currency.symbol);
-                                                    $('#wallet_selectedCurrency').val(currency.symbol);
-                                                    optionsContainer.slideUp();
-                                                    });
-                                        
-                                                    optionsContainer.append(option);
-                                                });
-                                                }
-                                        
-                                                renderOptions(currencies); // بار اول همه رو نشون بده
-                                        
-                                                // فیلتر با input
-                                                $('#wallet_currencySearch').on('input', function () {
-                                                const query = $(this).val().toLowerCase();
-                                                const filtered = currencies.filter(currency =>
-                                                    currency.name.toLowerCase().startsWith(query) ||
-                                                    currency.symbol.toLowerCase().startsWith(query)
-                                                );
-                                                renderOptions(filtered);
-                                                });
-                                        
-                                                // باز کردن dropdown
-                                                $('#wallet_CurrencyToggle').on('click', function (e) {
-                                                e.stopPropagation();
-                                                optionsContainer.slideToggle();
-                                                });
-                                        
-                                                // جلوگیری از بسته‌شدن وقتی روی input کلیک می‌کنی
-                                                $('#wallet_currencySearch').on('click', function (e) {
-                                                e.stopPropagation();
-                                                });
-                                        
-                                                // بستن dropdown با کلیک بیرون
-                                                $(document).on('click', () => optionsContainer.slideUp());
-                                            });
-                                            </script>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="mb-1"><i class="fas fa-clock me-2"></i>Processing Time</p>
+                                            <small class="text-muted">1-3 Business Days</small>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <button class="btn btn-primary px-4">Connect</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- get -->
-                            <div class="row bg-mybody m-1 mt-4 rounded-1 p-3 order-2" id="div2">
-                                <div class="distart fs-8 text-muted distart" id="cointitle">
-                                    <div>Received</div>
-                                    <div><i class="fas fa-info-circle ml-2"></i></div>
-                                </div>
-                                <div class="disbet mt-2">
-                                    <div class="fs-3 fw-bold">
-                                        <input type="number" name="howmanyreceived" id="howmanyreceived" class="form-control fs-3 fw-bold no-focus bg-transparent border-0 outline-0" style="width: 130%;" placeholder="1" oninput="spendfun('resive')">
+        
+                            <!-- کارت کیف پول دیجیتال -->
+                            <div class="col-12">
+                                <div class="bg-mybody p-4 rounded-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://img.icons8.com/?size=100&id=53763&format=png&color=000000" alt="Wallet" class="me-3" width="40">
+                                        <div>
+                                            <h5 class="mb-1">Digital Wallets</h5>
+                                            <p class="text-muted mb-0">Connect your e-wallet</p>
+                                        </div>
                                     </div>
-                                    <div class="disbet w-100">
-                                        <div class="w-100 position-relative" style="z-index: 3;">
-                                            <div class="custom-select-container d-flex justify-content-end align-items-center position-relative w-100">
-                                            <button id="wallet_coinToggle" type="button" class="btn p-1 w-auto border-0">
-                                                <input type="hidden" id="wallet_selectedCoin" name="Coin" value="BTC">
-                                                <i class="fas fa-times mr-1" onclick="clearnumbers('spend')"></i>
-                                                <i class="fab fa-bitcoin fa-xl"></i>
-                                                <span class="fs-6">BTC</span>
-                                                <i class="fas fa-chevron-down fs-10"></i>
-                                            </button>
-                                            <div id="wallet_coinOptions" class="position-absolute w-100 bg-white border mt-1 rounded" style="display: none; top: 20px;">
-                                                <!-- 🔍 سرچ -->
-                                                <div class="p-2 border-bottom">
-                                                <input type="text" id="wallet_coinSearch" class="form-control form-control-sm" placeholder="search">
-                                                </div>
-                                                <!-- ارزها اینجا اضافه می‌شن -->
+                                    <hr>
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <div class="d-flex">
+                                                <img src="https://img.icons8.com/?size=100&id=43841&format=png&color=000000" alt="PayPal" class="me-2" width="30">
+                                                <img src="https://img.icons8.com/?size=100&id=Rngre65EFvhO&format=png&color=000000" alt="Skrill" class="me-2" width="30">
+                                                <img src="https://img.icons8.com/?size=100&id=TTvcaHYa3zkn&format=png&color=000000" alt="Payoneer" width="30">
                                             </div>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <button class="btn btn-outline-secondary">View All</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- کارت خدمات پیشرفته -->
+                            <div class="col-12">
+                                <div class="bg-mybody p-4 rounded-3">
+                                    <h5><i class="fas fa-cubes me-2"></i>Advanced Services</h5>
+                                    <div class="row mt-3 g-2">
+                                        <div class="col-6">
+                                            <div class="p-3 border rounded text-center">
+                                                <i class="fas fa-file-invoice-dollar fa-2x mb-2"></i>
+                                                <p class="mb-0">Tax Services</p>
                                             </div>
-                                        
-                                            <script>
-                                            $(document).ready(function () {
-                                                const currencies = [
-                                                { name: 'Bitcoin', symbol: 'BTC', icon: 'fa-bitcoin' },
-                                                { name: 'Ethereum', symbol: 'ETH', icon: 'fa-coins' },
-                                                { name: 'Litecoin', symbol: 'LTC', icon: 'fa-coins' },
-                                                { name: 'Ripple', symbol: 'XRP', icon: 'fa-coins' },
-                                                { name: 'Dogecoin', symbol: 'DOGE', icon: 'fa-coins' }
-                                                ];
-                                        
-                                                const optionsContainer = $('#wallet_coinOptions');
-                                        
-                                                // تابع برای تولید گزینه‌ها بر اساس لیست
-                                                function renderOptions(filteredList) {
-                                                optionsContainer.find('.option-item').remove(); // پاک‌کردن قبلی‌ها
-                                        
-                                                filteredList.forEach(currency => {
-                                                    const option = $('<div>').addClass('option-item p-3 w-auto d-flex align-items-center cursor-pointer border-bottom');
-                                                    option.html(`
-                                                    <i class="fa ${currency.icon} me-2"></i>
-                                                    <div>
-                                                        <span class="d-block">${currency.name}</span>
-                                                        <small class="text-muted fs-9">${currency.symbol}</small>
-                                                    </div>
-                                                    `);
-                                        
-                                                    option.on('click', () => {
-                                                    $('#wallet_coinToggle span').text(currency.symbol);
-                                                    $('#wallet_selectedCoin').val(currency.symbol);
-                                                    document.getElementById('howmanyreceived').value = ""
-                                                    document.getElementById('howmanyspend').value = ""
-                                                    optionsContainer.slideUp();
-                                                    });
-                                        
-                                                    optionsContainer.append(option);
-                                                });
-                                                }
-                                        
-                                                renderOptions(currencies); // بار اول همه رو نشون بده
-                                        
-                                                // فیلتر با input
-                                                $('#wallet_coinSearch').on('input', function () {
-                                                const query = $(this).val().toLowerCase();
-                                                const filtered = currencies.filter(currency =>
-                                                    currency.name.toLowerCase().startsWith(query) ||
-                                                    currency.symbol.toLowerCase().startsWith(query)
-                                                );
-                                                renderOptions(filtered);
-                                                });
-                                        
-                                                // باز کردن dropdown
-                                                $('#wallet_coinToggle').on('click', function (e) {
-                                                e.stopPropagation();
-                                                optionsContainer.slideToggle();
-                                                });
-                                        
-                                                // جلوگیری از بسته‌شدن وقتی روی input کلیک می‌کنی
-                                                $('#wallet_coinSearch').on('click', function (e) {
-                                                e.stopPropagation();
-                                                });
-                                        
-                                                // بستن dropdown با کلیک بیرون
-                                                $(document).on('click', () => optionsContainer.slideUp());
-                                            });
-                                            </script>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="p-3 border rounded text-center">
+                                                <i class="fas fa-lock fa-2x mb-2"></i>
+                                                <p class="mb-0">Custody</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-                        <div class="row m-1 mt-4"><div class="col-12 distart fs-7 text-muted">Payment Method</div></div>
-                        <!-- buy peyment -->
-                        <div class="row bg-mybody m-1 rounded-1 p-3" style="position: relative;" id="iso_btn_buy" onclick="openchoosepey('iso_box_buy')">
-                            <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Best price</div>
-                            <div class="disbet mt-2">
-                                <div class="distart">
-                                    <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                                    <div>Debit/Credit Card</div>
+                    </div>
+                </div>
+        
+                <!-- بخش اطلاعات امنیتی -->
+                <div class="row mt-5 pt-5">
+                    <div class="col-12">
+                        <div class="bg-primary text-white p-5 rounded-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Security First</h3>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3">
+                                            <i class="fas fa-fingerprint me-2"></i>
+                                            Two-factor authentication
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-shield-alt me-2"></i>
+                                            PCI DSS compliant
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-user-lock me-2"></i>
+                                            Identity verification
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div><i class="fas fa-chevron-down fs-10"></i></div>
-                            </div>
-                        </div>
-                        <!-- sell peyment -->
-                        <div class="row bg-mybody m-1 rounded-1 p-3" style="position: relative;display: none;" id="iso_btn_sell" onclick="openchoosepey('iso_box_sell')">
-                            <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Best price</div>
-                            <div class="disbet mt-2">
-                                <div class="distart">
-                                    <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                                    <div>Debit/Credit Card 2</div>
+                                <div class="col-md-6 text-center">
+                                    <img src="https://img.icons8.com/?size=200&id=wsvP0T9ljWGC&format=png&color=000000" alt="Security" class="img-fluid" width="200">
                                 </div>
-                                <div><i class="fas fa-chevron-down fs-10"></i></div>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3 mx-1 p-0">
-                            <div class="col-12 discen m-0 p-0">
-                                <button class="btn btn-primary w-100 py-3 fs-5 rounded-pill">Buy USDT</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+        
+                <!-- راهنمای استفاده -->
                 <div class="row mt-5 pt-5">
-                    <div class="discen fs-3 mt-5 pt-5">How to buy Cryptocurrencies</div>
-                    <div class="d-flex mt-4 justify-content-center align-items-start text-center flex-wrap text-light">
-    
-                        <!-- Step 1 -->
-                        <div class="d-flex flex-column align-items-center mx-3">
-                          <div class="step-icon">
-                            s
-                          </div>
-                          <div class="step-text">
-                            Select your preferred crypto and choose the amount
-                          </div>
-                        </div>
-                    
-                        <div class="step-line"></div>
-                    
-                        <!-- Step 2 -->
-                        <div class="d-flex flex-column align-items-center mx-3">
-                          <div class="step-icon">
-                            s
-                          </div>
-                          <div class="step-text">
-                            Select your payment method
-                          </div>
-                        </div>
-                    
-                        <div class="step-line"></div>
-                    
-                        <!-- Step 3 -->
-                        <div class="d-flex flex-column align-items-center mx-3">
-                          <div class="step-icon">
-                            s
-                          </div>
-                          <div class="step-text">
-                            Complete your payment and receive your tokens
-                          </div>
-                        </div>
-                    
-                      </div>
-                </div>
-
-                <!-- part -->
-                <div class="row mt-5 pt-5">
-                    <div class="discen fs-3">Different Methods to Buy Crypto on MEXC</div>
-                    <div class="discen mt-4 fs-7 text-secondary" >MEXC provides a variety of payment options to make your crypto-buying experience as seamless as possible. Whether you prefer using traditional payment methods like credit cards or modern options like Apple Pay, MEXC has a solution for you. Our flexible payment system is designed to cater to the needs of every user, allowing you to buy crypto with ease and confidence.</div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- part -->
-                <div class="row mt-5 pt-5">
-                    <div class="discen fs-3">Different Methods to Buy Crypto on MEXC</div>
-                    <div class="discen mt-4 fs-7 text-secondary" >MEXC provides a variety of payment options to make your crypto-buying experience as seamless as possible. Whether you prefer using traditional payment methods like credit cards or modern options like Apple Pay, MEXC has a solution for you. Our flexible payment system is designed to cater to the needs of every user, allowing you to buy crypto with ease and confidence.</div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1 border">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- part -->
-                <div class="row mt-5 pt-5">
-                    <div class="discen fs-3">Different Methods to Buy Crypto on MEXC</div>
-                    <div class="discen mt-4 fs-7 text-secondary" >MEXC provides a variety of payment options to make your crypto-buying experience as seamless as possible. Whether you prefer using traditional payment methods like credit cards or modern options like Apple Pay, MEXC has a solution for you. Our flexible payment system is designed to cater to the needs of every user, allowing you to buy crypto with ease and confidence.</div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="p-3 bg-mybody m-1 rounded-1">
-                            <div class="distart">s</div>
-                            <div class="distart fw-bold fs-5 mt-1">Tittle</div>
-                            <div class="distart mt-1 fs-6s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quis pariatur ab iure? Quisquam, repudiandae.</div>
+                    <div class="col-12">
+                        <h2 class="text-center mb-5">How It Works</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3 text-primary">
+                                            <i class="fas fa-search fa-3x"></i>
+                                        </div>
+                                        <h5>1. Find Service</h5>
+                                        <p class="text-muted">Browse our verified partners and select your preferred service</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3 text-primary">
+                                            <i class="fas fa-link fa-3x"></i>
+                                        </div>
+                                        <h5>2. Connect</h5>
+                                        <p class="text-muted">Securely connect your account with our API-based integration</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3 text-primary">
+                                            <i class="fas fa-check-circle fa-3x"></i>
+                                        </div>
+                                        <h5>3. Confirm</h5>
+                                        <p class="text-muted">Review and confirm transactions in real-time</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            
-            <div class="position-fixed z-3 top-0 start-0 bg-dark bg-opacity-75 w-100 h-100" id="iso_box_buy" style="display: none;">
-                <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="modal_ave text-center bg-white p-4 rounded shadow position-relative">
-                    <div
-                    class="close-btn position-absolute top-0 end-0 m-3 fs-4"
-                    style="cursor: pointer;"
-                    onclick="closeIsolatedModal('iso_box_buy')"
-                    >
-                    ×
-                    </div>
-                    <h5 class="mb-3">Choose Payment Method</h5>
-                    <hr class="text-secondary my-3" />
-                    <div
-                    class="row bg-mybody m-1 rounded-1 p-3 border cursor-pointer Debit border-primary"
-                    style="position: relative;"
-                    onclick="selectedpayment('debt_credit_card', 'iso_box_buy', this)"
-                    >
-                    <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Recommended</div>
-                    <div class="disbet mt-2 d-flex justify-content-between align-items-center">
-                        <div class="distart d-flex align-items-center">
-                        <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                        <div>Debit/Credit Card</div>
-                        </div>
-                        <div><i class="fas fa-chevron-down fs-10"></i></div>
-                    </div>
-                    </div>
-                    <div
-                    class="row bg-mybody m-1 mt-2 rounded-1 p-3 border cursor-pointer Fiat"
-                    style="position: relative;"
-                    onclick="selectedpayment('Fiat Conversion', 'iso_box_buy', this)"
-                    >
-                    <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Best Price</div>
-                    <div class="disbet mt-2 d-flex justify-content-between align-items-center">
-                        <div class="distart d-flex align-items-center">
-                        <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                        <div>Fiat Conversion</div>
-                        </div>
-                        <div>0.9 EUR</div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="position-fixed z-3 top-0 start-0 bg-dark bg-opacity-75 w-100 h-100" id="iso_box_sell" style="display: none;">
-                <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="modal_ave text-center bg-white p-4 rounded shadow position-relative">
-                    <div
-                    class="close-btn position-absolute top-0 end-0 m-3 fs-4"
-                    style="cursor: pointer;"
-                    onclick="closeIsolatedModal('iso_box_sell')"
-                    >
-                    ×
-                    </div>
-                    <h5 class="mb-3">Choose Payment Method sellll</h5>
-                    <hr class="text-secondary my-3" />
-                    <div
-                    class="row bg-mybody m-1 rounded-1 p-3 border cursor-pointer Debit border-primary"
-                    style="position: relative;"
-                    onclick="selectedpayment('debt_credit_card', 'iso_box_sell', this)"
-                    >
-                    <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Recommended</div>
-                    <div class="disbet mt-2 d-flex justify-content-between align-items-center">
-                        <div class="distart d-flex align-items-center">
-                        <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                        <div>Debit/Credit Card</div>
-                        </div>
-                        <div><i class="fas fa-chevron-down fs-10"></i></div>
-                    </div>
-                    </div>
-                    <div
-                    class="row bg-mybody m-1 mt-2 rounded-1 p-3 border cursor-pointer Fiat"
-                    style="position: relative;"
-                    onclick="selectedpayment('Fiat Conversion', 'iso_box_sell', this)"
-                    >
-                    <div class="discen bg-primary fs-8" style="position: absolute;right: 0px;top: 0px;width: 100px;border-radius: 0px 0px 0px 10px;">Best Price</div>
-                    <div class="disbet mt-2 d-flex justify-content-between align-items-center">
-                        <div class="distart d-flex align-items-center">
-                        <div class="mr-2"><i class="fab fa-paypal fs-5"></i></div>
-                        <div>Fiat Conversion</div>
-                        </div>
-                        <div>0.9 EUR</div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-          
-          
-
         </main>
-        <footer> 
-        </footer>
+<footer>
+    <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
+      <div class="d-flex justify-content-between align-items-center p-0 h-auto">
+        <div class="col-auto">
+          <i class="fa fa-signal text-primary fs-9"></i>
+          <span class="text-primary fs-9">Network Normal</span>
+          <span class="text-secondary fs-9">Line 1 <i class="fa fa-chevron-down fs-10"></i></span>
+        </div>
+        <div class="vr mx-1"></div>
+        <button class="btn p-0 border-0 fs-9 me-1"><i class="fa-solid fa-align-left fs-9"></i></button>
+        <button class="btn p-0 border-0 fs-9"><i class="fa fa-fire text-primary fs-9"></i></button>
+        <div id="marquee" class="overflow-x-hidden w-75 scroll-thin mx-0 px-1 d-flex justify-content-start align-items-center">
+          <!-- بخش اسکرول کردن کریپتو ها -->
+        </div>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('marquee');
+            const speedPxPerSec = 70;
+            let isPaused = false;
+            let lastTimestamp = null;
+            let scrollPosition = 0;
+        
+            function createNavItem() {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'crypto_coins_bottom_nav col-auto p-0 d-md-block d-lg-block d-none fs-9 d-flex align-items-center';
+              wrapper.innerHTML = `
+                <span class="text-secondary">BTCUSDT</span>
+                <span class="text-success ms-1">+0.05%</span>
+                <div class="vr bg-black text-black mx-1"></div>
+                
+              `;
+              return wrapper;
+            }
+            const items = [];
+            for (let i = 0; i < 22; i++) {
+              const item = createNavItem();
+              items.push(item);
+              container.appendChild(item);
+            }
+            const viewportWidth = container.clientWidth;
+            while (container.scrollWidth < viewportWidth * 2) {
+              items.forEach(item => {
+                container.appendChild(item.cloneNode(true));
+              });
+            }
+            function step(timestamp) {
+              if (lastTimestamp === null) lastTimestamp = timestamp;
+              const elapsed = timestamp - lastTimestamp;
+              lastTimestamp = timestamp;
+        
+              if (!isPaused) {
+                scrollPosition += (speedPxPerSec * elapsed) / 1000;
+                if (scrollPosition >= container.scrollWidth / 2) {
+                  scrollPosition -= container.scrollWidth / 2;
+                }
+                container.scrollLeft = scrollPosition;
+              }
+              requestAnimationFrame(step); 
+            }
+        
+            container.addEventListener('mouseenter', () => { isPaused = true; });
+            container.addEventListener('mouseleave', () => { isPaused = false; });
+        
+            requestAnimationFrame(step);
+          });
+        </script>
+        
+        <a href="#" class="link-secondary link-underline-opacity-0 fs-10 w-auto pt-1 text-nowrap">Connected <i class="fa fa-chevron-right"></i></a>
+        <button class="btn border-0 p-0 ps-1 text-secondary"><i class="fa-solid fa-sliders fs-9"></i></button>
+        <div class="vr mx-1 d-md-none d-sm-none d-lg-block d-none"></div>
+        <div class="position-relative d-md-none d-lg-block d-none">
+          <a href="#" class="link-secondary link-underline-opacity-0 text-nowrap fs-9 ">Coinit updates</a>
+          <i class="fa fa-circle position-absolute top-0 mt-1 end-0 fs-11 text-danger"></i>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bg-white p-4 px-lg-5">
+        <div class="ps-lg-3 pe-lg-3 ps-2 pe-2">
+          <div class="row justify-content-between px-lg-5">
+            
+            <!-- Download App Section -->
+            <div class="col-12 bg-primary bg-opacity-25 p-4 rounded-3 mb-4">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                  <h3>Download App</h3>
+                  <div class="text-secondary small">You can download with QR code or use Google Play and App Store</div>
+                </div>
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2 mb-2 mb-md-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Apple Store" style="height: 50px;">
+                  </a>
+                  <a href="#" class="mx-2">
+                    <img src="../image/logo-brand/metamask-icon.png" style="max-width: 110px; max-height: 110px;" class="img-fluid" alt="MetaMask">
+                  </a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Community Section -->
+            <div class="col-12 col-md-4 col-xl-2 mt-3">
+                <h5 class="fw-bold">Community</h5>
+                <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(10.33%, 1fr)); gap: 2rem;">
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                  <a href="#"><img src="../image/dex/solana.webp" alt="Community Icon" style="width: 30px; height: 30px;"></a>
+                </div>
+              </div>
+      
+            <!-- About Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">About</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">About</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Asset Security</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">User Agreement</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Privacy Policy</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Risk Disclosure</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Ventures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Why Coinit</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Sitemap</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Contact Us</a></li>
+              </ul>
+            </div>
+      
+            <!-- Products Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Products</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Buy Crypto</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Convert</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Spot</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Futures</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Demo Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Copy Trade</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Loans</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Fees</a></li>
+              </ul>
+            </div>
+      
+            <!-- Support Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Support</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Customer Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">VIP Benefits</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Submit an Inquiry</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Improvement Suggestions</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Report Abnormal Funds</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Judicial Assistance</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Verify</a></li>
+              </ul>
+            </div>
+      
+            <!-- Partnerships Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Partnerships</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Listing Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">P2P Merchant Application</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Institutional Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Affiliate Program</a></li>
+              </ul>
+            </div>
+      
+            <!-- Resources Section -->
+            <div class="col-6 col-md-2 mt-3">
+              <h5 class="fw-bold text-center">Resources</h5>
+              <ul class="list-unstyled text-center">
+                <li><a href="#" class="text-dark text-decoration-none">Help Center</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Earn</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Coinit Blog</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Crypto News</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">All Crypto Prices</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">How to Buy</a></li>
+              </ul>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+  </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d2bb21f4a1.js" crossorigin="anonymous"></script>
-    <script>
-
-
-
-        // close which part
-        function closeIsolatedModal(whatisid) {
-            console.log(whatisid)
-            document.getElementById(whatisid).style.display = 'none';
-        }
-
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     </body>
-    <script src="jscode.quickby.js"></script>
 </html>

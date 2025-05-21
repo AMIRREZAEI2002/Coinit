@@ -152,13 +152,13 @@
                         <li class="nav-item pt-2">
                             <label class="switch">
                                 <input type="checkbox">
-                                <div class="slider slider--0"><a class="link-light link-underline-opacity-0" href="#">Exchange</a></div>
+                                <div class="slider slider--0"><span class="link-light link-underline-opacity-0">Exchange</span></div>
                                 <div class="slider slider--1">
                                     <div></div>
                                     <div></div>
                                 </div>
                                 <div class="slider slider--2"></div>
-                                <div class="slider slider--3"><a class="link-light link-underline-opacity-0" href="#">DEX+</a></div>
+                                <div class="slider slider--3"><span class="link-light link-underline-opacity-0">DEX+</span></div>
                             </label>
                         </li>
                       <li class="nav-item dropdown ">
@@ -720,8 +720,17 @@
     </div>
     </header>
     <main>
-        <div class="container-fluid px-lg-5">
-            <div class="row justify-content-center align-content-center px-lg-5">
+        <div class="container-fluid px-3"style="max-width: 85%;">
+            <div class="row justify-content-center align-content-center">
+              <div class="d-flex justify-content-between align-items-center overflow-auto " style="white-space: nowrap; -webkit-overflow-scrolling: touch;">
+                <div class="d-flex flex-nowrap">
+                    <a href="http://127.0.0.1:5500/root_1.0.0/QuickBy/" class="fs-6 btn btn-outline-secondary border-bottom-0 text-black rounded-0 border-top-0 border-end-0 border-start-0 btn-sm">Quick Buy</a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/p2p/" class="fs-6 btn btn-outline-primary  rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">P2P</a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/Third-party/" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Third-party</a>
+                    <a href="http://127.0.0.1:5500/root_1.0.0/transfer/" class="fs-6 btn btn-outline-secondary border-bottom-0 rounded-0 border-top-0 border-end-0 border-start-0 text-dark btn-sm">Transfer</a>
+                </div>
+              </div>
+              <div class="position-static bg-black mb-4 bg-opacity-10" style="height: 1px;"></div>
                 <div class="col-12 p-4 pb-0">
                     <div class="d-flex justify-content-between align-items-center flex-wrap">
                         <h4 class="m-0 fw-semibold">Your P2P Advertisements</h6>
