@@ -226,12 +226,15 @@
                             <a class="nav-link dropdown-toggle fs-8" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Buy Crypto
                             </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Buy</a></li>
-                            <li><a class="dropdown-item" href="#">Sell</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Fast Buy/Sell</a></li>
-                            </ul>
+                            
+
+<ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="http://127.0.0.1:5500/root_1.0.0/QuickBy/index.html">Fast Buy/Sell</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="http://127.0.0.1:5500/root_1.0.0/p2p/index.html">P2P</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="http://127.0.0.1:5500/root_1.0.0/transfer/index.html">Transfer</a></li>
+  </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-8" href="#">Markets</a>
@@ -831,7 +834,7 @@
                                             <div class="custom-select-container d-flex justify-content-end align-items-center position-relative w-100">
                                             <button id="wallet_CurrencyToggle" type="button" class="btn p-1 w-auto border-0">
                                                 <input type="hidden" id="wallet_selectedCurrency" name="currency" value="USDT">
-                                                <i class="fas fa-times mr-1" onclick="clearnumbers('spend')"></i>
+                                            
                                                 <i class="fab fa-bitcoin fa-xl"></i>
                                                 <span class="fs-6">USDT</span>
                                                 <i class="fas fa-chevron-down fs-10"></i>
@@ -924,7 +927,7 @@
                                             <div class="custom-select-container d-flex justify-content-end align-items-center position-relative w-100">
                                             <button id="wallet_coinToggle" type="button" class="btn p-1 w-auto border-0">
                                                 <input type="hidden" id="wallet_selectedCoin" name="Coin" value="BTC">
-                                                <i class="fas fa-times mr-1" onclick="clearnumbers('spend')"></i>
+                                                
                                                 <i class="fab fa-bitcoin fa-xl"></i>
                                                 <span class="fs-6">BTC</span>
                                                 <i class="fas fa-chevron-down fs-10"></i>
@@ -1045,7 +1048,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-5 pt-5">
+                <div class="row mt-5 pt-5 d-none d-lg-block">
                     <div class="discen fs-3 mt-5 pt-5">How to buy Cryptocurrencies</div>
                     <div class="d-flex mt-4 justify-content-center align-items-start text-center flex-wrap text-light">
     
