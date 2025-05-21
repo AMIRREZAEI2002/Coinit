@@ -595,3 +595,26 @@ input:checked ~ .slider--3 {
     background-size: cover;
     background-position: center center;
 }
+
+
+.no-focus:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: #ced4da !important; /* رنگ پیش‌فرض مرز */
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,17 +3,18 @@
 const classMap = {
     "bg-white": "bg-night",
     "bg-light": "bg-night",
-    "bg-mybody": "bg-secondary-night",
+    "bg-secondary-night": "bg-mybody",
     "text-dark": "text-light",
     "body": "body-night",
     "text-muted": "text-muted-night",
     "text-secondary": "text-secondary-night",
     "btn-light": "btn-light-night",
     "modal_ave": "modal_ave-night",
-    "bg-secondary": "bg-secondary-night",
+    // "bg-secondary": "bg-secondary-night",
     "text-black": "text-light",
     "link-dark": "link-light",
-    
+    "bg-mybody": "bg-secondary-night",
+
 };
   
 // تغییر رنگ متن دکمه‌ها
