@@ -349,7 +349,7 @@ const DepositPage: React.FC = () => {
           >
             <Typography variant="h6" sx={{ mb: 2 }}>Tips</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              • Ensure you're sending the correct cryptocurrency to the matching network address. 
+              • Ensure you&apos;re sending the correct cryptocurrency to the matching network address. 
               Sending to the wrong network may result in permanent loss of funds.
             </Typography>
             <Typography variant="body2" color="text.secondary">
