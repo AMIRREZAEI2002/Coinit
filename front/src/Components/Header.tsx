@@ -14,6 +14,8 @@ import { ThemeModeContext } from '../app/providers';
 import ToggleSwitch from './ToggleSwitch';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ArrowDropDown } from '@mui/icons-material';
+import SearchHead from './SearchHead';
+import WalletHead from './WalletHead';
 
 const pages = [
   {
@@ -69,7 +71,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', color: darkMode ? '#fff' : '#000e' }}>
+    <AppBar position="sticky" sx={{backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', color: darkMode ? '#fff' : '#000e' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -145,29 +147,38 @@ function Header() {
           </Link>
 
           {/* Desktop Nav Buttons */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-            <ToggleSwitch />
-            {pages.map((page) =>
-              page.children ? (
-                <Button
-                  key={page.page}
-                  onClick={(e) => handleDropdownOpen(e, page.children!)}
-                  sx={{ my: 2, color: 'text.primary', display: 'flex' }}
-                >
-                  {page.page}
-                  <ArrowDropDown/>
-                </Button>
-              ) : (
-                <Link href={page.link!} style={{color:'inherit', textDecoration: 'none'}} passHref key={page.page}>
+          <Box sx={{  flexGrow: 1, display: { xs: 'none', md: 'flex' },justifyContent: 'space-between' ,alignItems: 'center', pr:2}}>
+            <Box sx={{ flexGrow: 1, display:'flex',alignItems: 'center'}}>
+              <ToggleSwitch />
+              {pages.map((page) =>
+                page.children ? (
                   <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'text.primary', display: 'block' }}
+                    key={page.page}
+                    onClick={(e) => handleDropdownOpen(e, page.children!)}
+                    sx={{ fontSize: 11, my: 2, color: 'text.primary', display: 'flex' }}
                   >
                     {page.page}
+                    <ArrowDropDown/>
                   </Button>
-                </Link>
-              )
-            )}
+                ) : (
+                  <Link href={page.link!} style={{color:'inherit', textDecoration: 'none'}} passHref key={page.page}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{fontSize: 11, my: 2, color: 'text.primary', display: 'block' }}
+                    >
+                      {page.page}
+                    </Button>
+                  </Link>
+                )
+              )}
+            </Box>
+            <SearchHead/>
+            <Link href="/Deposit" style={{color: 'inherit',textDecoration: 'none'}} passHref>
+              <Button variant="contained" sx={{borderRadius: 50,fontSize: 10}}>
+                Deposit
+              </Button>
+            </Link>
+            <WalletHead/>
           </Box>
 
           {/* User Menu + Dark Mode */}
@@ -212,7 +223,7 @@ function Header() {
         {dropdownItems.map((item) => (
           <Link href={item.link} style={{color:'text.primary', textDecoration:'none'}} key={item.link} passHref >
             <MenuItem onClick={handleDropdownClose}>
-              <Typography sx={{color:'text.primary'}}>{item.page}</Typography>
+              <Typography sx={{color:'text.primary',fontSize: 14}}>{item.page}</Typography>
             </MenuItem>
           </Link>
         ))}

@@ -703,7 +703,341 @@
         </div>
     </div>
     </header>
-    
+    <main>
+        <div class="container-fluid mb-3">
+            <div class="row justify-content-center align-content-center">
+                <div class="col-12 bg-secondary bg-opacity-10 p-4">
+                    <div class="row justify-content-center align-items-center p-0">
+                        <div class="col-lg-12 col-12">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="m-0 fs-6 fw-semibold me-5">Welcome <span id="user_name" class="text-danger text-nowrap fs-5">Mahdi Mousavi</span></p>
+                                <p class="m-0 fs-6 fw-semibold me-5">Today <span id="user_name" class="text-danger">Sunday, May 18, 2025 4:14PM</span></p>
+                                <p class="m-0 fs-6 fw-semibold me-5">your creadit <span id="user_name" class="text-danger">$412,000.33</span></p>
+                                <a href="#" class="link-dark fw-semibold  link-underline-opacity-0 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-user-circle pe-2"></i>
+                                    <span class="d-none d-md-none d-sm-none d-lg-block">view My  Profile</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 p-4">
+                    <h5 class="m-0">Crypto Market Insights and Analytics</h5>
+                    <span class="text-secondary fs-8 ps-1">Top Cryptocurrencies Price List by Market Capitalization.</span>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-1 p-4 d-lg-none d-md-block d-sm-block d-block">
+                          <div class="row justify-content-center align-items-center bg-secondary bg-opacity-10 rounded-3 h-100">
+                            <a style="background-color: #2563eb; width: 40%;" href="#" class="btn me-2 text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Quick access</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-key"></i></div>
+                                </div>
+                            </a>
+                            <a style="background-color: #1e40af; width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/Panel/profile/index.html" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>My Profile</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-user"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #2563eb; width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/" class="btn me-2 text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Return To Spot</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-spot"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #1e40af; width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/deposit/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Deposit</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-deposit"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #2563eb; width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/wallet/" class="btn me-2 text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Go To wallet</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-wallet"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #1e40af; width: 40%;" href="http://127.0.0.1:5500/root_1.0.0/header/future/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2 mb-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Future Trading</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-future"></i></div>
+                                </div>
+                            </a>
+                        </div>
+                        </div>
+                        <div class="col-lg-4 col-12 p-lg-4 pe-lg-2 p-3">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js">
+                            {
+                                "symbols": [
+                                    ["BITSTAMP:BTCUSD|1m"],
+                                    ["CRYPTOCAP:USDT|1m"]
+                                ],
+                                "chartOnly": false,
+                                "width": "100%",
+                                "height": 410,
+                                "locale": "en",
+                                "colorTheme": "light",
+                                "autosize": true,
+                                "showVolume": false,
+                                "showMA": false,
+                                "hideDateRanges": false,
+                                "hideMarketStatus": false,
+                                "hideSymbolLogo": false,
+                                "scalePosition": "right",
+                                "scaleMode": "Normal",
+                                "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                "fontSize": "10",
+                                "noTimeScale": false,
+                                "valuesTracking": "1",
+                                "changeMode": "price-and-percent",
+                                "chartType": "area",
+                                "maLineColor": "#2962FF",
+                                "maLineWidth": 1,
+                                "maLength": 9,
+                                "headerFontSize": "medium",
+                                "lineWidth": 2,
+                                "lineType": 0,
+                                "dateRanges": [
+                                    "1d|1",
+                                    "1m|30",
+                                    "3m|60",
+                                    "12m|1D",
+                                    "60m|1W",
+                                    "all|1M"
+                                ]
+                            }
+                            </script>        
+                        </div>
+                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 pe-lg-3 p-3">
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" async src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js">
+                                {
+                                    "interval": "30m",
+                                    "width": "100%",
+                                    "isTransparent": false,
+                                    "height": 410,
+                                    "symbol": "BITSTAMP:BTCUSD",
+                                    "showIntervalTabs": true,
+                                    "displayMode": "single",
+                                    "locale": "en",
+                                    "colorTheme": "light"
+                                }
+                                </script>
+                            </div>       
+                        </div>
+                        <div class="col-lg-4 col-12 p-lg-4 ps-lg-2 p-3 d-lg-block d-md-none d-sm-none d-none">
+                          <div class="row justify-content-center align-items-center bg-secondary bg-opacity-10 rounded-3 h-100">
+                            <a style="background-color: #2563eb; width: 90%;" href="#" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Quick access</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-key"></i></div>
+                                </div>
+                            </a>
+                            <a style="background-color: #1e40af; width: 90%;" href="http://127.0.0.1:5500/root_1.0.0/panel/profile/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>My Profile</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-user"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #2563eb; width: 90%;" href="http://127.0.0.1:5500/root_1.0.0/header/spot/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Return To Spot</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-spot"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #1e40af; width: 90%;" href="http://127.0.0.1:5500/root_1.0.0/deposit/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Deposit</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-deposit"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #2563eb; width: 90%;" href="http://127.0.0.1:5500/root_1.0.0/wallet/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Go To wallet</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-wallet"></i></div>
+                                </div>
+                            </a>
+                            
+                            <a style="background-color: #1e40af; width: 90%;" href="http://127.0.0.1:5500/root_1.0.0/header/future/" class="btn text-white fw-semibold fs-7 rounded-pill mt-2 mb-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Future Trading</span>
+                                    <div class="py-2 px-2 bg-white shadow rounded-pill"><i class="ic icon-future"></i></div>
+                                </div>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 p-4">
+                    <h5 class="m-0">Quick check</h5>
+                    <span class="text-secondary fs-8 ps-1">Check Top Gainers And Top Losers</span>
+                </div>
+                <div class="col-12 p-4">
+                    <div class="row justify-content-start align-items-center">
+                        <div class="col-lg-6 col-12 pe-lg-2">
+                            <div class="gainers-table-container bg-secondary bg-opacity-10 p-3 rounded-3">
+                                <h5>Top Gainers <i class="fa fa-chevron-right fs-6"></i></h5>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                        <th class="rounded-start-4">Name</th>
+                                        <th>Price</th>
+                                        <th>7D Price Performance</th>
+                                        <th class="rounded-end-4">Market CAP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td class="rounded-start-4">
+                                            <div class="crypto-info">
+                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                            <div>
+                                                <div class="name">Ansem's minutes</div>
+                                                <div class="category">Ansem Meme</div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td>$5.21</td>
+                                        <td>
+                                            <div class="progress-bar-container">
+                                            <div class="progress-bar" style="width: 81.3%;"></div>
+                                            <div class="progress-label">+81.3%</div>
+                                            </div>
+                                        </td>
+                                        <td class="rounded-end-4">$121.2M</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="rounded-start-4">
+                                            <div class="crypto-info">
+                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                            <div>
+                                                <div class="name">StartUp</div>
+                                                <div class="category">StartUp Meme</div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td>$35.01</td>
+                                        <td>
+                                            <div class="progress-bar-container">
+                                            <div class="progress-bar" style="width: 63.1%;"></div>
+                                            <div class="progress-label">+63.1%</div>
+                                            </div>
+                                        </td>
+                                        <td class="rounded-end-4">$105.01M</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="rounded-start-4">
+                                            <div class="crypto-info">
+                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                            <div>
+                                                <div class="name">Yapper</div>
+                                                <div class="category">Blockchain Service</div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td>$21.93</td>
+                                        <td>
+                                            <div class="progress-bar-container">
+                                            <div class="progress-bar" style="width: 73.9%;"></div>
+                                            <div class="progress-label">+73.9%</div>
+                                            </div>
+                                        </td>
+                                        <td class="rounded-end-4">$85.3M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>         
+                        </div>
+                        <div class="col-lg-6 col-12 p-lg-2">
+                            <div class="gainers-table-container  bg-secondary bg-opacity-10 rounded-3 p-3" >
+                                <h5>Top Losers <i class="fa fa-chevron-right fs-6"></i></h5>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                        <th class="rounded-start-4">Name</th>
+                                        <th>Price</th>
+                                        <th>7D Price Performance</th>
+                                        <th class="rounded-end-4">Market CAP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="rounded-start-4">
+                                                <div class="crypto-info">
+                                                <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                                <div>
+                                                    <div class="name">Ansem's minutes</div>
+                                                    <div class="category">Ansem Meme</div>
+                                                </div>
+                                                </div>
+                                            </td>
+                                            <td>$5.21</td>
+                                            <td>
+                                                <div class="progress-bar-container">
+                                                <div class="progress-bar-loser" style="width: 81.3%;"></div>
+                                                <div class="progress-label">+81.3%</div>
+                                                </div>
+                                            </td>
+                                            <td class="rounded-end-4">$121.2M</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="rounded-start-4">
+                                            <div class="crypto-info">
+                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                            <div>
+                                                <div class="name">StartUp</div>
+                                                <div class="category">StartUp Meme</div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td>$35.01</td>
+                                        <td>
+                                            <div class="progress-bar-container">
+                                            <div class="progress-bar-loser" style="width: 63.1%;"></div>
+                                            <div class="progress-label">+63.1%</div>
+                                            </div>
+                                        </td>
+                                        <td class="rounded-end-4">$105.01M</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="rounded-start-4">
+                                            <div class="crypto-info">
+                                            <img src="../image/logo-brand/google.png" style="width: 20px;height: 20px;" alt="icon">
+                                            <div>
+                                                <div class="name">Yapper</div>
+                                                <div class="category">Blockchain Service</div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td>$21.93</td>
+                                        <td>
+                                            <div class="progress-bar-container">
+                                            <div class="progress-bar-loser" style="width: 73.9%;"></div>
+                                            <div class="progress-label">+73.9%</div>
+                                            </div>
+                                        </td>
+                                        <td class="rounded-end-4">$85.3M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     
 <footer>
     <div class="container-fluid  p-0 px-1 fixed-bottom bg-white d-md-none d-sm-none d-lg-block d-none">
