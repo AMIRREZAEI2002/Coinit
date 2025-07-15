@@ -135,7 +135,6 @@ const Footer = () => {
 
   return (
     <Box component="footer" sx={{ bgcolor: 'background.paper', pb: isLargeScreen ? 7 : 0 }}>
-      {/* Fixed bottom status bar */}
       {isLargeScreen && (
         <Box sx={{ 
           position: 'fixed', 
@@ -155,9 +154,9 @@ const Footer = () => {
           }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Icon icon="material-symbols:signal-cellular-4-bar" color={theme.palette.primary.main} width={16} />
-              <Typography variant="caption" color="primary">Network Normal</Typography>
-              <Typography variant="caption" color="text.secondary">
-                Line 1 <Icon icon="material-symbols:keyboard-arrow-down" width={12} />
+              <Typography variant="caption" color="primary" sx={{ fontWeight: 'light' }}>Network Normal</Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'light',display:'flex' }}>
+                Line 1
               </Typography>
             </Box>
             
@@ -186,18 +185,18 @@ const Footer = () => {
               {/* Crypto items will be injected by JS */}
             </Box>
             
-            <Link href="#" color="text.secondary" underline="none" variant="caption">
+            <Link href="#" color="text.secondary" underline="none" variant="caption" sx={{ fontWeight: 'light' }}>
               Connected <Icon icon="material-symbols:keyboard-arrow-right" width={12} />
             </Link>
             
             <IconButton size="small">
-              <Icon icon="material-symbols:tune" width={16} />
+              <Icon icon="material-symbols:tune" width={12} />
             </IconButton>
             
             <Divider orientation="vertical" flexItem />
             
             <Box sx={{ position: 'relative' }}>
-              <Link href="#" color="text.secondary" underline="none" variant="caption">
+              <Link href="#" color="text.secondary" underline="none" variant="caption" sx={{ fontWeight: 'light' }}>
                 Coinit updates
               </Link>
               <Icon 
@@ -214,7 +213,6 @@ const Footer = () => {
           </Box>
         </Box>
       )}
-
       {/* Main footer content */}
       <Container sx={{ py:4 }}>
         <Box sx={{ px: { xs: 2, lg: 3 }, mb: 4 }}>

@@ -1,21 +1,24 @@
 'use client';
 import React from 'react';
-import { 
-  Box, 
-  Grid, 
-  Typography, 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead, 
+import {
+  Box,
+  Grid,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
   TableRow,
   Paper,
   styled,
   useTheme,
+  Theme,
 } from '@mui/material';
+import { topGainers, topLosers, type CryptoData } from '@/data/data';
 
-const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+// تعریف استایل‌ها
+const StyledTableContainer = styled(TableContainer)(({ theme }: { theme: Theme }) => ({
   borderRadius: '16px',
   padding: '0px',
   width: '100%',
@@ -29,11 +32,11 @@ const StyledTable = styled(Table)({
   borderSpacing: '0 12px',
 });
 
-const StyledTableHead = styled(TableHead)(({ theme }) => ({
+const StyledTableHead = styled(TableHead)(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#e0f4ff',
 }));
 
-const StyledTableHeaderCell = styled(TableCell)(({ theme }) => ({
+const StyledTableHeaderCell = styled(TableCell)(({ theme }: { theme: Theme }) => ({
   textAlign: 'left',
   padding: '12px',
   fontWeight: 600,
@@ -47,32 +50,32 @@ const StyledTableHeaderCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[1],
 }));
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({ theme }: { theme: Theme }) => ({
   padding: '8px 6px',
   verticalAlign: 'middle',
   fontSize: '14px',
   color: theme.palette.text.primary,
 }));
 
-const ProgressBarContainer = styled('div')(({ theme }) => ({
+const ProgressBarContainer = styled('div')(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eefdf0',
   borderRadius: '12px',
   height: '24px',
   position: 'relative',
 }));
 
-const GainProgressBar = styled('div')(({ theme }) => ({
+const GainProgressBar = styled('div')(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.success.main,
   height: '100%',
   borderRadius: '12px',
 }));
 
-const LossProgressBar = styled('div')(({ theme }) => ({
+const LossProgressBar = styled('div')(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.error.main,
   height: '100%',
   borderRadius: '12px',
@@ -100,69 +103,15 @@ const CryptoIcon = styled('img')({
   borderRadius: '50%',
 });
 
-const CryptoName = styled('div')(({ theme }) => ({
+const CryptoName = styled('div')(({ theme }: { theme: Theme }) => ({
   fontWeight: 600,
   color: theme.palette.text.primary,
 }));
 
-const CryptoCategory = styled('div')(({ theme }) => ({
+const CryptoCategory = styled('div')(({ theme }: { theme: Theme }) => ({
   fontSize: '12px',
   color: theme.palette.text.secondary,
 }));
-
-const topGainers = [
-  {
-    id: 1,
-    name: "Ansem's minutes",
-    category: "Ansem Meme",
-    price: "$5.21",
-    performance: 81.3,
-    marketCap: "$121.2M"
-  },
-  {
-    id: 2,
-    name: "StartUp",
-    category: "StartUp Meme",
-    price: "$35.01",
-    performance: 63.1,
-    marketCap: "$105.01M"
-  },
-  {
-    id: 3,
-    name: "Yapper",
-    category: "Blockchain Service",
-    price: "$21.93",
-    performance: 73.9,
-    marketCap: "$85.3M"
-  }
-];
-
-const topLosers = [
-  {
-    id: 1,
-    name: "Ansem's minutes",
-    category: "Ansem Meme",
-    price: "$5.21",
-    performance: 81.3,
-    marketCap: "$121.2M"
-  },
-  {
-    id: 2,
-    name: "StartUp",
-    category: "StartUp Meme",
-    price: "$35.01",
-    performance: 63.1,
-    marketCap: "$105.01M"
-  },
-  {
-    id: 3,
-    name: "Yapper",
-    category: "Blockchain Service",
-    price: "$21.93",
-    performance: 73.9,
-    marketCap: "$85.3M"
-  }
-];
 
 const GainerLoserLanding = () => {
   const theme = useTheme();
@@ -181,8 +130,8 @@ const GainerLoserLanding = () => {
 
       {/* Tables */}
       <Grid container spacing={2}>
-        <Grid size={{xs:12 , md:6}}>
-          <StyledTableContainer component={Paper}>
+        <Grid  size={{xs:12, md:6}}>
+          <StyledTableContainer as={Paper}>
             <Box sx={{ p: 3 }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
                 Top Gainers <span style={{ float: 'right' }}>&gt;</span>
@@ -193,11 +142,11 @@ const GainerLoserLanding = () => {
                     <StyledTableHeaderCell>Name</StyledTableHeaderCell>
                     <StyledTableHeaderCell>Price</StyledTableHeaderCell>
                     <StyledTableHeaderCell>7D Price Performance</StyledTableHeaderCell>
-                    <StyledTableHeaderCell>Market CAP</StyledTableHeaderCell>
+                    <StyledTableHeaderCell>Market Cap</StyledTableHeaderCell>
                   </TableRow>
                 </StyledTableHead>
                 <TableBody>
-                  {topGainers.map((crypto) => (
+                  {topGainers.map((crypto: CryptoData) => (
                     <StyledTableRow key={crypto.id}>
                       <StyledTableCell>
                         <CryptoInfo>
@@ -223,9 +172,8 @@ const GainerLoserLanding = () => {
             </Box>
           </StyledTableContainer>
         </Grid>
-
-        <Grid size={{xs:12 , md:6}}>
-          <StyledTableContainer component={Paper}>
+        <Grid size={{xs:12, md:6}}>
+          <StyledTableContainer as={Paper}>
             <Box sx={{ p: 3 }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
                 Top Losers <span style={{ float: 'right' }}>&gt;</span>
@@ -236,11 +184,11 @@ const GainerLoserLanding = () => {
                     <StyledTableHeaderCell>Name</StyledTableHeaderCell>
                     <StyledTableHeaderCell>Price</StyledTableHeaderCell>
                     <StyledTableHeaderCell>7D Price Performance</StyledTableHeaderCell>
-                    <StyledTableHeaderCell>Market CAP</StyledTableHeaderCell>
+                    <StyledTableHeaderCell>Market Cap</StyledTableHeaderCell>
                   </TableRow>
                 </StyledTableHead>
                 <TableBody>
-                  {topLosers.map((crypto) => (
+                  {topLosers.map((crypto: CryptoData) => (
                     <StyledTableRow key={crypto.id}>
                       <StyledTableCell>
                         <CryptoInfo>
@@ -254,8 +202,8 @@ const GainerLoserLanding = () => {
                       <StyledTableCell>{crypto.price}</StyledTableCell>
                       <StyledTableCell>
                         <ProgressBarContainer>
-                          <LossProgressBar style={{ width: `${crypto.performance}%` }} />
-                          <ProgressLabel>+{crypto.performance}%</ProgressLabel>
+                          <LossProgressBar style={{ width: `${Math.abs(crypto.performance)}%` }} />
+                          <ProgressLabel>{crypto.performance}%</ProgressLabel>
                         </ProgressBarContainer>
                       </StyledTableCell>
                       <StyledTableCell>{crypto.marketCap}</StyledTableCell>

@@ -74,7 +74,7 @@ const SearchHead = () => {
 
         <TextField
           variant="outlined"
-          placeholder="جستجوی رمز ارز"
+          placeholder="Coinit"
           size="small"
           fullWidth
           value={query}
