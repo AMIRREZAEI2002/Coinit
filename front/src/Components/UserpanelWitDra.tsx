@@ -115,7 +115,7 @@ const UserpanelWitDra = () => {
       {/* Filters */}
       <Paper sx={{ p: 3, mb: 3, borderRadius: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
+          <Grid size={{xs:12, md:3}}>
             <Typography variant="body2" fontWeight="medium" sx={{ mb: 1 }}>
               Crypto
             </Typography>
@@ -135,7 +135,7 @@ const UserpanelWitDra = () => {
             </Select>
           </Grid>
           
-          <Grid item xs={12} md={3}>
+          <Grid size={{xs:12, md:3}}>
             <Typography variant="body2" fontWeight="medium" sx={{ mb: 1 }}>
               Network
             </Typography>
@@ -155,7 +155,7 @@ const UserpanelWitDra = () => {
             </Select>
           </Grid>
           
-          <Grid item xs={12} md={3}>
+          <Grid size={{xs:12, md:3}}>
             <Typography variant="body2" fontWeight="medium" sx={{ mb: 1 }}>
               Label
             </Typography>
@@ -175,7 +175,7 @@ const UserpanelWitDra = () => {
             </Select>
           </Grid>
           
-          <Grid item xs={12} md={3} sx={{ 
+          <Grid size={{xs:12, md:3}} sx={{ 
             display: 'flex', 
             alignItems: 'flex-end',
             justifyContent: 'flex-end',
