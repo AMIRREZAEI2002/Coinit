@@ -92,7 +92,7 @@ const UserIdenpanelLI = () => {
           More benefits, enhanced security trading limits!
         </Typography>
         
-        <Typography variant="body1" fontWeight="medium" mt={3}>
+        <Typography variant="body1" fontWeight="medium" mt={1}>
           KYC Verification Requirements
         </Typography>
         

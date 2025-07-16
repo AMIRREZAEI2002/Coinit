@@ -96,7 +96,7 @@ const UserpanelBKTable = () => {
           onChange={handleTabChange}
           variant="fullWidth"
           sx={{ 
-            backgroundColor: theme.palette.grey[100],
+            backgroundColor: "Background.paper",
             borderBottom: `1px solid ${theme.palette.divider}`
           }}
         >
@@ -120,7 +120,7 @@ const UserpanelBKTable = () => {
           <TableContainer>
             <Table>
               <TableHead>
-                <TableRow sx={{ backgroundColor: theme.palette.grey[100] }}>
+                <TableRow sx={{backgroundColor: "Background.paper" }}>
                   <TableCell sx={{ fontWeight: 'bold' }}>30‑Day Volume (USD)</TableCell>
                   <TableCell sx={{ fontWeight: 'bold' }}>Maker Fee <small>(%)</small></TableCell>
                   <TableCell sx={{ fontWeight: 'bold' }}>Taker Fee <small>(%)</small></TableCell>

@@ -37,13 +37,13 @@ const NavlinkProfile = () => {
 
   const navItems = [
     { name: 'Profile', icon: 'mdi:account', path: '/panel/profile' },
-    { name: 'Security', icon: 'mdi:lock', path: '/panel/security' },
-    { name: 'Identification', icon: 'mdi:card-account-details', path: '/panel/identification' },
-    { name: 'Referral', icon: 'mdi:account-group', path: '/panel/referral' },
+    { name: 'Security', icon: 'mdi:lock', path: '/panel/Security' },
+    { name: 'Identification', icon: 'mdi:card-account-details', path: '/panel/Identification' },
+    { name: 'Referral', icon: 'mdi:account-group', path: '/panel/Referral' },
     { name: 'Trading Fees', icon: 'mdi:percent', path: '/panel/TradingFees' },
     { name: 'Withdrawal Addresses/Contacts', icon: 'mdi:wallet-outline', path: '/panel/WithdrawalAddresses' },
-    { name: 'Sub-Account Management', icon: 'mdi:account-multiple', path: '/panel/sub-account' },
-    { name: 'Settings', icon: 'mdi:cog', path: '/panel/settings' },
+    { name: 'Sub-Account Management', icon: 'mdi:account-multiple', path: '/panel/SubAccount' },
+    { name: 'Settings', icon: 'mdi:cog', path: '/panel/Settings' },
   ];
 
   const renderNavItems = () => (
@@ -98,7 +98,7 @@ const NavlinkProfile = () => {
             top: theme.spacing(8),
             left: theme.spacing(2),
             zIndex: theme.zIndex.appBar,
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: "background.paper",
             boxShadow: theme.shadows[3],
             width: 48,
             height: 48,
@@ -120,7 +120,7 @@ const NavlinkProfile = () => {
         onClose={toggleSidebar}
         sx={{
           '& .MuiDrawer-paper': {
-            width: 240,
+            width: "100%",
             boxSizing: 'border-box',
             backgroundColor: theme.palette.background.paper,
             borderRadius: '16px 0 0 0',

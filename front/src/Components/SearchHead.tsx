@@ -1,15 +1,11 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import {
   Box,
   InputAdornment,
   TextField,
   IconButton,
-  Paper,
-  List,
-  ListItem,
-  ListItemText
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
@@ -21,20 +17,22 @@ const SearchHead = () => {
   const [showResults, setShowResults] = useState(false);
   const [filteredTokens, setFilteredTokens] = useState<Token[]>([]);
 
-  const handleSearch = (value: string) => {
+  const handleSearch = useCallback((value: string) => {
     const result = cryptoOptions.filter(token =>
       token.symbol.toLowerCase().includes(value.toLowerCase()) ||
       token.name.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredTokens(result);
-  };
+  }, []);
 
-  const debouncedSearch = useMemo(() => debounce(handleSearch, 200), []);
+  const debouncedSearch = useMemo(() => debounce(handleSearch, 200), [handleSearch]);
 
   useEffect(() => {
     debouncedSearch(query);
-    return () => debouncedSearch.cancel();
-  }, [query]);
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [query, debouncedSearch]);
 
   return (
     <Box sx={{ px: 0.7, pt: 0.25, width: 200 }}>
@@ -104,26 +102,46 @@ const SearchHead = () => {
       </Box>
 
       {showResults && filteredTokens.length > 0 && (
-        <Paper sx={{ mt: 1, position: 'absolute', width: '100%', zIndex: 10 }}>
-          <List dense>
-            {filteredTokens.map((token) => (
-              <ListItem
-                key={token.symbol}
-                button
-                onMouseDown={() => {
-                  setQuery(token.symbol);
-                  setShowResults(false);
-                }}
-              >
-                <ListItemText
-                  primary={token.symbol}
-                  secondary={token.name}
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
+        <Box
+          sx={{
+            mt: 1,
+            position: 'absolute',
+            width: '100%',
+            zIndex: 10,
+            borderRadius: 2,
+            backdropFilter: 'blur(8px)',
+            bgcolor: 'background.paper',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+            overflow: 'hidden',
+            py: 1,
+          }}
+        >
+          {filteredTokens.map((token) => (
+            <Box
+              key={token.symbol}
+              onMouseDown={() => {
+                setQuery(token.symbol);
+                setShowResults(false);
+              }}
+              sx={{
+                px: 2,
+                py: 1,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  bgcolor: 'action.hover',
+                },
+              }}
+            >
+              <Box fontWeight={600}>{token.symbol}</Box>
+              <Box fontSize="0.75rem" color="text.secondary">
+                {token.name}
+              </Box>
+            </Box>
+          ))}
+        </Box>
       )}
+
     </Box>
   );
 };

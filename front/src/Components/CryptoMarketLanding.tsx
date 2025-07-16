@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
+import Image from 'next/image';
 
 interface Coin {
   id: string;
@@ -107,14 +108,14 @@ const CryptoMarketLanding = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            mb: 1.5,
-            p: 1,
+            mb: 2,
+            p: 0.4,
             bgcolor: 'background.paper',
             borderRadius: 1,
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <img src={c.image} alt={c.symbol} style={{ width: 34, height: 34 }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Image src={c.image} alt={c.symbol} style={{ width: 34, height: 34 }} />
             <Typography variant="body2" fontWeight={600}>
               {c.name} ({c.symbol.toUpperCase()})
             </Typography>
@@ -199,7 +200,7 @@ const CryptoMarketLanding = () => {
   );
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ pt:0 ,px: 2}}>
       <Box sx={{ p: 3, pb: 1 }}>
         <Typography variant="h5" component="h2" sx={{ mb: 1 }}>
           Crypto Market Insights and Analytics
@@ -218,7 +219,7 @@ const CryptoMarketLanding = () => {
         )}
 
         <Grid size={{xs: 12 ,md: 6, lg: 4}}>
-          <Box sx={{ p: 2 }}>
+          <Box sx={{ p: 1 }}>
             {loading && <CircularProgress />}
             {error && <Typography color="error">{error}</Typography>}
             {!loading && !error && renderCoinList(false)}
@@ -229,7 +230,7 @@ const CryptoMarketLanding = () => {
           <Box
             ref={widgetRef}
             sx={{
-              height: 400,
+              height: 430,
               width: '100%',
               borderRadius: 2,
               overflow: 'hidden',

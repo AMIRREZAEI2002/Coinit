@@ -12,7 +12,6 @@ import {
   TableRow,
   Paper,
   styled,
-  useTheme,
   Theme,
 } from '@mui/material';
 import { topGainers, topLosers, type CryptoData } from '@/data/data';
@@ -114,7 +113,6 @@ const CryptoCategory = styled('div')(({ theme }: { theme: Theme }) => ({
 }));
 
 const GainerLoserLanding = () => {
-  const theme = useTheme();
 
   return (
     <Box sx={{ p: 4 }}>
