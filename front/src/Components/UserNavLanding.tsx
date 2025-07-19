@@ -65,7 +65,7 @@ const UserNavLanding = () => {
           </Typography>
         </Box>
         
-        <Link href="#" underline="none" color="inherit">
+        <Link href="/panel/profile" underline="none" color="inherit">
           <Box sx={{ display: 'flex', alignItems: 'center', '&:hover': { color: 'primary.main' } }}>
             <IconButton size="small" sx={{ p: 0, mr: 1 }}>
               <UserIcon />

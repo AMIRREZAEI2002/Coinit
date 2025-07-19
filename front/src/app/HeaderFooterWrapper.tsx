@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function HeaderFooterWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const noLayoutPaths = ["/login", "/signup", "/wallet", "/trade"];
+  const noLayoutPaths = ["/Login", "/SignUp"];
 
   const noLayout = noLayoutPaths.some((path) => pathname.startsWith(path));
 

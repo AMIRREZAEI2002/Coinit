@@ -35,7 +35,7 @@ const SearchHead = () => {
   }, [query, debouncedSearch]);
 
   return (
-    <Box sx={{ px: 0.7, pt: 0.25, width: 200 }}>
+    <Box sx={{ px: 0.7, pt: 0.25, width: 120 }}>
       <Box
         component="form"
         onSubmit={(e) => e.preventDefault()}
@@ -51,7 +51,8 @@ const SearchHead = () => {
             position: 'absolute',
             zIndex: 3,
             left: 0,
-            p: '2px',
+            p: '3px',
+            pt:'4px',
             color: 'text.secondary',
           }}
         >

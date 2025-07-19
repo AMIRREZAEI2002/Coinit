@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
-import Image from 'next/image';
 
 interface Coin {
   id: string;
@@ -115,7 +114,7 @@ const CryptoMarketLanding = () => {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Image src={c.image} alt={c.symbol} style={{ width: 34, height: 34 }} />
+            <img src={c.image} alt={c.symbol} style={{ width: 34, height: 34 }} />
             <Typography variant="body2" fontWeight={600}>
               {c.name} ({c.symbol.toUpperCase()})
             </Typography>
@@ -201,15 +200,23 @@ const CryptoMarketLanding = () => {
 
   return (
     <Box sx={{ pt:0 ,px: 2}}>
-      <Box sx={{ p: 3, pb: 1 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 1 }}>
+     <Box sx={{ my: 2, textAlign: 'center' }}>
+        <Typography
+          variant='h6' 
+          component="h2"
+          sx={{
+            fontWeight: 'bold',
+            background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
           Crypto Market Insights and Analytics
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem', pl: 0.5 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem', mt: 0.5 }}>
           Top Cryptocurrencies Price List by Market Capitalization.
         </Typography>
       </Box>
-
       <Grid container spacing={2}>
 
         {!isLargeScreen && (

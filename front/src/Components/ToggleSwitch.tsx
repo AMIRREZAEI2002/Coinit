@@ -58,7 +58,7 @@ const Slider1 = styled(Slider)({
     height: '50%',
     left: 0,
   },
-  '& div:first-child': {
+  '& div:first-of-type': {
     top: 0,
     backgroundColor: '#f3f3f3',
   },

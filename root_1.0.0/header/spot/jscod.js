@@ -1,9 +1,4 @@
 
-// ********************************************************************************
-
-// ORDER BOOK JS CODES
-
-// create fake data - delet it when you connet to backend
 let bookorders = [];
 function generateRandomOrders(count = 100) {
   if(wichpage == "orderpage"){
@@ -560,60 +555,6 @@ function countitemsarray(){
 }
 
 setInterval(countitemsarray, 1000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function toggleSidebar() {
   const el = document.getElementById('coinlistdiv');

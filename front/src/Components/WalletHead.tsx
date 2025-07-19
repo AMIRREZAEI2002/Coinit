@@ -20,7 +20,7 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 
-const WalletDropdown = () => {
+const WalletHead = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
@@ -150,14 +150,14 @@ const WalletDropdown = () => {
         
         {/* Menu Items */}
         {[
-          { icon: <WalletIcon sx={{ fontSize: '0.9rem' }} />, text: 'OverView', href: 'Wallet/overview' },
-          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Spot', href: 'Wallet/spot' },
-          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'DEX +', href: 'Wallet/dex' },
-          { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Futures', href: 'Wallet/futures' },
-          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Fiat', href: 'Wallet/fiat' },
-          { icon: <SmileIcon sx={{ fontSize: '0.9rem' }} />, text: 'Copy Trade', href: 'Wallet/copy-trade' },
-          { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Funding History', href: 'Wallet/funding-history' },
-          { icon: <EyeOpenIcon sx={{ fontSize: '0.9rem' }} />, text: 'Event Rewards', href: 'Wallet/event-rewards' },
+          { icon: <WalletIcon sx={{ fontSize: '0.9rem' }} />, text: 'OverView', href: '/Wallet/Overview' },
+          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Spot', href: '/Wallet/Spot' },
+          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'DEX +', href: '/Wallet/Dex' },
+          { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Futures', href: '/Wallet/Futures' },
+          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Fiat', href: '/Wallet/Fiat' },
+          { icon: <SmileIcon sx={{ fontSize: '0.9rem' }} />, text: 'Copy Trade', href: '/Wallet/CopyTrading' },
+          { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Funding History', href: '/Wallet/FundingHistory' },
+          { icon: <EyeOpenIcon sx={{ fontSize: '0.9rem' }} />, text: 'Event Rewards', href: '/Wallet/EventRewards' },
         ].map((item, index) => (
         <Link key={index} href={item.href} style={{color:'inherit',textDecoration:'none'}}>
           <MenuItem sx={{p: 1, borderRadius: '4px',display:'flex'}}>
@@ -179,4 +179,4 @@ const WalletDropdown = () => {
   );
 };
 
-export default WalletDropdown;
+export default WalletHead;
