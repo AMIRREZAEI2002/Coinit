@@ -1,16 +1,6 @@
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  Box,
-  Grid,
-  Typography,
-  Button,
-  useTheme,
-  useMediaQuery,
-  CircularProgress,
-} from '@mui/material';
+import { Box, Grid, Typography, Button } from '@mui/material';
 import { Icon } from '@iconify/react';
-import axios from 'axios';
+import TradingViewWidget from './TradingViewWidget';
 
 interface Coin {
   id: string;
@@ -22,81 +12,31 @@ interface Coin {
   price_change_percentage_24h: number;
 }
 
-const useMarketData = (vsCurrency = 'usd', perPage = 6) => {
-  const [data, setData] = useState<Coin[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get<Coin[]>(
-          'https://api.coingecko.com/api/v3/coins/markets',
-          {
-            params: {
-              vs_currency: vsCurrency,
-              order: 'market_cap_desc',
-              per_page: perPage,
-              page: 1,
-              sparkline: false,
-            },
-          }
-        );
-        setData(res.data);
-        setError(null);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unknown error occurred');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetch();
-  }, [vsCurrency, perPage]);
-
-  return { data, loading, error };
-};
+async function getMarketData(vsCurrency = 'usd', perPage = 6): Promise<Coin[]> {
+  const res = await fetch(
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${perPage}&page=1&sparkline=false`,
+    { cache: 'no-store' } // برای آپدیت هر بار (بدون کش)
+  );
+  if (!res.ok) throw new Error('Failed to fetch');
+  return res.json();
+}
 
 const quickAccessButtons = [
-  { title: 'Quick access', bgColor: '#2563eb', icon: 'mdi:key', href: '#' },
+  { title: 'Quick access', bgColor: '#2563eb', icon: 'mdi:key', href: '/' },
   { title: 'My Profile', bgColor: '#1e40af', icon: 'mdi:account', href: '/panel/profile' },
-  { title: 'Return To Spot', bgColor: '#2563eb', icon: 'mdi:swap-horizontal', href: '/header/spot' },
-  { title: 'Deposit', bgColor: '#1e40af', icon: 'mdi:bank', href: '/deposit' },
-  { title: 'Go To wallet', bgColor: '#2563eb', icon: 'mdi:wallet-outline', href: '/wallet' },
-  { title: 'Future Trading', bgColor: '#1e40af', icon: 'mdi:trending-up', href: '/header/future' },
+  { title: 'Return To Spot', bgColor: '#2563eb', icon: 'mdi:swap-horizontal', href: '/Spot' },
+  { title: 'Deposit', bgColor: '#1e40af', icon: 'mdi:bank', href: '/Deposit' },
+  { title: 'Go To wallet', bgColor: '#2563eb', icon: 'mdi:wallet-outline', href: '/Wallet/Overview' },
+  { title: 'Future Trading', bgColor: '#1e40af', icon: 'mdi:trending-up', href: '/Future' },
 ];
 
-const CryptoMarketLanding = () => {
-  const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
-  const { data: coins, loading, error } = useMarketData('usd', 6);
-  const widgetRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!widgetRef.current) return;
-    widgetRef.current.innerHTML = '';
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      "autosize": true,
-      "symbol": "COINBASE:BTCUSD",
-      "interval": "60",
-      "timezone": "Etc/UTC",
-      "theme": "light",
-      "style": "1",
-      "locale": "en",
-      "toolbar_bg": "#f1f3f6",
-      "enable_publishing": false,
-      "allow_symbol_change": true,
-      "hide_legend": false
-    });
-    widgetRef.current.appendChild(script);
-  }, []);
+export default async function CryptoMarketLanding() {
+  let coins: Coin[] = [];
+  try {
+    coins = await getMarketData('usd', 6);
+  } catch (err) {
+    console.error(err);
+  }
 
   const renderCoinList = (showRank = false) => (
     <Box>
@@ -146,6 +86,7 @@ const CryptoMarketLanding = () => {
       sx={{
         bgcolor: 'rgba(0, 0, 0, 0.08)',
         borderRadius: 1,
+        width: "100%",
         p: 1,
         display: 'flex',
         flexDirection: fullWidth ? 'column' : 'row',
@@ -199,62 +140,49 @@ const CryptoMarketLanding = () => {
   );
 
   return (
-    <Box sx={{ pt:0 ,px: 2}}>
-     <Box sx={{ my: 2, textAlign: 'center' }}>
-        <Typography
-          variant='h6' 
+    <Box sx={{ pt: 0, px: 2 }}>
+      <Box sx={{ my: 2, textAlign: 'center' }}>
+      <Typography
+          variant='h6'
           component="h2"
           sx={{
             fontWeight: 'bold',
-            background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+            background: `linear-gradient(90deg, #26A17B, #1e40af)`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
         >
           Crypto Market Insights and Analytics
         </Typography>
+
         <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem', mt: 0.5 }}>
           Top Cryptocurrencies Price List by Market Capitalization.
         </Typography>
       </Box>
       <Grid container spacing={2}>
+        {/* Quick buttons - فقط با CSS برای سایز کوچک/بزرگ */}
+        <Grid size={{xs:12, md:4}} display={{ xs: 'flex', md: 'none' }}>
+          {renderQuickAccessButtons(false)}
+        </Grid>
 
-        {!isLargeScreen && (
-          <Grid size={{xs: 12}}>
-            {renderQuickAccessButtons(false)}
-          </Grid>
-        )}
-
-        <Grid size={{xs: 12 ,md: 6, lg: 4}}>
+        <Grid size={{xs:12, md:4}}>
           <Box sx={{ p: 1 }}>
-            {loading && <CircularProgress />}
-            {error && <Typography color="error">{error}</Typography>}
-            {!loading && !error && renderCoinList(false)}
+            {coins.length === 0 ? (
+              <Typography color="error">Failed to load data</Typography>
+            ) : (
+              renderCoinList(false)
+            )}
           </Box>
         </Grid>
 
-        <Grid size={{xs: 12 ,md: 6, lg: 4}}>
-          <Box
-            ref={widgetRef}
-            sx={{
-              height: 430,
-              width: '100%',
-              borderRadius: 2,
-              overflow: 'hidden',
-              boxShadow: theme.shadows[1],
-              bgcolor: 'background.paper',
-            }}
-          />
+        <Grid size={{xs:12, md:4}}>
+          <TradingViewWidget /> {/* این Client Component هست */}
         </Grid>
 
-        {isLargeScreen && (
-          <Grid size={{xs: 12 ,md: 6, lg: 4}}>
-            {renderQuickAccessButtons(true)}
-          </Grid>
-        )}
+        <Grid size={{xs:12, md:4}} display={{ xs: 'none', md: 'flex' }}>
+          {renderQuickAccessButtons(true)}
+        </Grid>
       </Grid>
     </Box>
   );
-};
-
-export default CryptoMarketLanding;
+}

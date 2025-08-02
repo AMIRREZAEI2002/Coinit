@@ -34,19 +34,19 @@ interface ButtonConfig {
 
 // تنظیمات دکمه‌ها
 const buttons: ButtonConfig[] = [
-  { label: 'Deposit', href: '/deposit', variant: 'contained', icon: 'mdi:chevron-down', paths: ['/Wallet/Overview', '/Wallet/Spot'] },
-  { label: 'Buy', href: '/buy', variant: 'contained', paths: ['/Wallet/Fiat'] },
-  { label: 'Sell', href: '/sell', variant: 'outlined', paths: ['/Wallet/Fiat'] },
-  { label: 'Transfer', href: '/transfer', variant: 'outlined', paths: ['/Wallet/Overview', '/Wallet/Fiat', '/Wallet/Spot'] },
-  { label: 'Spot Statement', href: '/spot-statement', variant: 'outlined', paths: ['/Wallet/Overview','/Wallet/Spot'] },
-  { label: 'Withdraw', href: '/Withdraw', variant: 'outlined', paths: ['/Wallet/Spot'] },
+  { label: 'Deposit', href: '/Deposit', variant: 'contained', icon: 'mdi:chevron-down', paths: ['/Wallet/Overview', '/Wallet/Spot'] },
+  { label: 'Buy', href: '/Spot', variant: 'contained', paths: ['/Wallet/Fiat'] },
+  { label: 'Sell', href: '/Spot', variant: 'outlined', paths: ['/Wallet/Fiat'] },
+  { label: 'Transfer', href: '/Working', variant: 'outlined', paths: ['/Wallet/Overview', '/Wallet/Fiat', '/Wallet/Spot'] },
+  { label: 'Spot Statement', href: '/Spot', variant: 'outlined', paths: ['/Wallet/Overview','/Wallet/Spot'] },
+  { label: 'Withdraw', href: '/panel/WithdrawalAddresses', variant: 'outlined', paths: ['/Wallet/Spot'] },
   { label: '...', href: '#', variant: 'outlined', disabled: true, paths: ['/Wallet/Overview','/Wallet/Spot'] },
-  { label: 'Futures Trading Fees', href: '/futures-fees', variant: 'contained', paths: ['/Wallet/Futures'] },
-  { label: 'Futures Statement', href: '/futures-statement', variant: 'outlined', paths: ['/Wallet/Futures'] },
-  { label: 'Receive', href: '/receive', variant: 'contained', icon: 'mdi:chevron-down', paths: ['/Wallet/DEX'] },
-  { label: 'Copy Trade', href: '/CopyTrade', variant: 'contained', paths: ['/Wallet/CopyTrading'] },
-  { label: 'Funding History', href: '/funding-history', variant: 'outlined', paths: ['/Wallet/Futures', '/Wallet/DEX', '/Wallet/CopyTrading'] },
-  { label: 'Send', href: '/send', variant: 'outlined', paths: ['/Wallet/DEX'] },
+  { label: 'Futures Trading Fees', href: '/panel/TradingFees', variant: 'contained', paths: ['/Wallet/Futures'] },
+  { label: 'Futures Statement', href: '/Working', variant: 'outlined', paths: ['/Wallet/Futures'] },
+  { label: 'Receive', href: '/Working', variant: 'contained', icon: 'mdi:chevron-down', paths: ['/Wallet/DEX'] },
+  { label: 'Copy Trade', href: '/Wallet/CopyTrading', variant: 'contained', paths: ['/Wallet/CopyTrading'] },
+  { label: 'Funding History', href: '/Wallet/FundingHistory', variant: 'outlined', paths: ['/Wallet/Futures', '/Wallet/DEX', '/Wallet/CopyTrading'] },
+  { label: 'Send', href: '/Working', variant: 'outlined', paths: ['/Wallet/DEX'] },
 ];
 
 // مسیرهایی که شبکه‌ها نمایش داده می‌شوند
@@ -165,13 +165,11 @@ const WalletHeader: React.FC = () => {
               fontSize: '0.75rem',
             }}
           >
-            <Link href="#" passHref>
+            <Link href="#" style={{textDecoration: 'none',color: 'inherit' }} passHref>
               <Typography
                 variant="body2"
-                component="a"
                 sx={{
                   alignContent: 'center',
-                  textDecoration: 'underline dotted',
                   color: 'text.secondary',
                   cursor: 'pointer',
                   mr: 1,

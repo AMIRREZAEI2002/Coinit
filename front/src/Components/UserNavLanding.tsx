@@ -1,32 +1,24 @@
-'use client';
-
-import React from 'react';
-import { 
-  Box, 
-  Typography, 
-  Link, 
-  IconButton,
-  useTheme,
-  useMediaQuery
-} from '@mui/material';
+import { Box, Typography, Link, IconButton } from '@mui/material';
 import { AccountCircle as UserIcon } from '@mui/icons-material';
 
-const UserNavLanding = () => {
-  const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
-  
+// این تابع در سرور اجرا می‌شه و تاریخ رو تولید می‌کنه
+function getServerDate() {
+  return new Date().toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+}
+
+export default function UserNavLanding() {
   const userData = {
     name: 'Mahyar Baher',
     credit: '$412,000.33',
-    date: new Date().toLocaleString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    })
+    date: getServerDate()
   };
 
   return (
@@ -66,20 +58,24 @@ const UserNavLanding = () => {
         </Box>
         
         <Link href="/panel/profile" underline="none" color="inherit">
-          <Box sx={{ display: 'flex', alignItems: 'center', '&:hover': { color: 'primary.main' } }}>
+          <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '&:hover': { color: 'primary.main' },
+            '@media (min-width:1200px)': {
+              '& .profile-text': { display: 'block' }
+            },
+            '& .profile-text': { display: 'none' }
+          }}>
             <IconButton size="small" sx={{ p: 0, mr: 1 }}>
               <UserIcon />
             </IconButton>
-            {isLargeScreen && (
-              <Typography variant="body1" fontWeight={600}>
-                View My Profile
-              </Typography>
-            )}
+            <Typography className="profile-text" variant="body1" fontWeight={600}>
+              View My Profile
+            </Typography>
           </Box>
         </Link>
       </Box>
     </Box>
   );
-};
-
-export default UserNavLanding;
+}

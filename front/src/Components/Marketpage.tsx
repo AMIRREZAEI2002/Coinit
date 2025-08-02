@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Grid,
   Container,
@@ -14,7 +14,7 @@ import {
   Skeleton,
   IconButton,
   Chip,
-  Badge
+  Badge,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 
@@ -32,12 +32,32 @@ interface MarketData {
 
 // Styled Components
 const SectionCard = styled(Paper)(({ theme }) => ({
-  background: `linear-gradient(45deg, ${theme.palette.background.paper} 30%, ${theme.palette.primary.light} 90%)`,
-  backgroundSize: '200% 200%',
-  borderRadius: 16,
-  padding: theme.spacing(3),
-  boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
-  marginTop: theme.spacing(3),
+  position: "relative",
+  background: `linear-gradient(45deg, ${theme.palette.background.paper} 30%, ${theme.palette.background.default} 70%)`,
+  borderRadius: 20,
+  padding: theme.spacing(4),
+  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.06)",
+  marginTop: theme.spacing(4),
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  backdropFilter: "blur(10px)",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    borderRadius: 20,
+    padding: "1px",
+    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+    WebkitMaskComposite: "xor",
+    maskComposite: "exclude",
+    pointerEvents: "none",
+  },
+
+  "&:hover": {
+    transform: "translateY(-4px)",
+    boxShadow: "0px 12px 36px rgba(0, 0, 0, 0.08)",
+  },
 }));
 
 const StyledInput = styled(TextField)(({ theme }) => ({
@@ -69,9 +89,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
   background: `linear-gradient(45deg, ${theme.palette.background.paper}, ${theme.palette.action.hover})`,
   border: `1px solid ${theme.palette.divider}`,
   color: theme.palette.text.primary,
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  transition: 'transform 0.8s ease, box-shadow 0.7s ease',
   '&:hover': {
-    transform: 'scale(1.05)',
+    transform: 'scale(1.03)',
     boxShadow: theme.shadows[2],
     borderColor: theme.palette.primary.main,
     background: theme.palette.primary.light,
@@ -106,6 +126,9 @@ const MarketPage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'gainers' | 'losers' | 'watchlist'>('all');
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const [page, setPage] = useState(1); // برای صفحه‌بندی
+  const [hasMore, setHasMore] = useState(true); // برای بررسی وجود داده‌های بیشتر
+  const observer = useRef<IntersectionObserver | null>(null); // برای Intersection Observer
 
   // Load watchlist from localStorage on initial render
   useEffect(() => {
@@ -120,22 +143,27 @@ const MarketPage = () => {
     localStorage.setItem('cryptoWatchlist', JSON.stringify(watchlist));
   }, [watchlist]);
 
-  // Fetch market data from API
-  const fetchMarketData = useCallback(async () => {
+  // Fetch market data from API with pagination
+  const fetchMarketData = useCallback(async (pageNum: number, reset = false) => {
     try {
       setLoading(true);
-      
-      // Using CoinGecko API as it's reliable and has no rate limits for this use case
-      const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h');
-      
+
+      // Using CoinGecko API with pagination (20 coins per page)
+      const response = await fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${pageNum}&sparkline=false&price_change_percentage=24h`
+      );
+
       if (!response.ok) {
         throw new Error('Failed to fetch market data');
       }
-      
+
       const data = await response.json();
-      setCoins(data);
-      setFilteredCoins(data);
+
+      // اگر reset=true باشد (مثلاً بعد از تغییر فیلتر یا سرچ)، لیست قبلی پاک می‌شه
+      setCoins(prev => (reset ? data : [...prev, ...data]));
+      setFilteredCoins(prev => (reset ? data : [...prev, ...data]));
       setLastUpdated(new Date().toLocaleTimeString());
+      setHasMore(data.length === 20); // اگر کمتر از 20 آیتم برگردونده شد، یعنی داده بیشتری نیست
     } catch (error) {
       console.error('Error fetching market data:', error);
     } finally {
@@ -143,20 +171,44 @@ const MarketPage = () => {
     }
   }, []);
 
-  // Initial data fetch
+  // Initial data fetch and refresh
   useEffect(() => {
-    fetchMarketData();
-    
-    // Refresh data every 60 seconds
-    const intervalId = setInterval(fetchMarketData, 60000);
+    fetchMarketData(1, true); // بارگذاری اولیه صفحه اول
+
+    // Refresh data every 60 seconds (فقط برای صفحه اول)
+    const intervalId = setInterval(() => fetchMarketData(1, true), 60000);
     return () => clearInterval(intervalId);
   }, [fetchMarketData]);
 
+  // Intersection Observer برای Infinite Scroll
+  const lastCoinRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (loading || !hasMore) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          setPage(prev => prev + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
+  // Fetch more data when page changes
+  useEffect(() => {
+    if (page > 1) {
+      fetchMarketData(page);
+    }
+  }, [page, fetchMarketData]);
+
   // Toggle watchlist
   const toggleWatchlist = (coinId: string) => {
-    setWatchlist(prev => 
-      prev.includes(coinId) 
-        ? prev.filter(id => id !== coinId) 
+    setWatchlist(prev =>
+      prev.includes(coinId)
+        ? prev.filter(id => id !== coinId)
         : [...prev, coinId]
     );
   };
@@ -164,16 +216,17 @@ const MarketPage = () => {
   // Apply filters and search
   useEffect(() => {
     let result = [...coins];
-    
+
     // Apply search
     if (search) {
       const searchLower = search.toLowerCase();
-      result = result.filter(coin => 
-        coin.name.toLowerCase().includes(searchLower) || 
-        coin.symbol.toLowerCase().includes(searchLower)
+      result = result.filter(
+        coin =>
+          coin.name.toLowerCase().includes(searchLower) ||
+          coin.symbol.toLowerCase().includes(searchLower)
       );
     }
-    
+
     // Apply filters
     if (filter === 'gainers') {
       result = result
@@ -186,7 +239,7 @@ const MarketPage = () => {
     } else if (filter === 'watchlist') {
       result = result.filter(coin => watchlist.includes(coin.id));
     }
-    
+
     setFilteredCoins(result);
   }, [search, filter, coins, watchlist]);
 
@@ -216,13 +269,13 @@ const MarketPage = () => {
         >
           Cryptocurrency Market
         </Typography>
-        
+
         <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 4 }}>
           {lastUpdated ? `Last updated: ${lastUpdated}` : 'Loading market data...'}
         </Typography>
 
         <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid size={{xs:12 , md:6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StyledInput
               label="Search by name or symbol"
               variant="outlined"
@@ -232,49 +285,65 @@ const MarketPage = () => {
               inputProps={{ 'aria-label': 'Search cryptocurrencies' }}
             />
           </Grid>
-          
-          <Grid size={{xs:12 , md:6}}>
+
+          <Grid size={{ xs: 12, md: 6 }}>
             <Grid container spacing={1} sx={{ flexWrap: 'wrap' }}>
-              <Grid >
+              <Grid>
                 <StyledButton
-                  onClick={() => setFilter('all')}
+                  onClick={() => {
+                    setFilter('all');
+                    setPage(1);
+                    fetchMarketData(1, true); // Reset data on filter change
+                  }}
                   className={filter === 'all' ? 'active' : ''}
                 >
                   All
                 </StyledButton>
               </Grid>
-              
-              <Grid >
+
+              <Grid>
                 <StyledButton
-                  onClick={() => setFilter('gainers')}
+                  onClick={() => {
+                    setFilter('gainers');
+                    setPage(1);
+                    fetchMarketData(1, true);
+                  }}
                   className={filter === 'gainers' ? 'active' : ''}
                 >
                   Top Gainers
                 </StyledButton>
               </Grid>
-              
-              <Grid >
+
+              <Grid>
                 <StyledButton
-                  onClick={() => setFilter('losers')}
+                  onClick={() => {
+                    setFilter('losers');
+                    setPage(1);
+                    fetchMarketData(1, true);
+                  }}
                   className={filter === 'losers' ? 'active' : ''}
                 >
                   Top Losers
                 </StyledButton>
               </Grid>
-              
-              <Grid >
+
+              <Grid>
                 <Badge badgeContent={watchlist.length} color="primary">
                   <StyledButton
-                    onClick={() => setFilter('watchlist')}
+                    onClick={() => {
+                      setFilter('watchlist');
+                      setPage(1);
+                      fetchMarketData(1, true);
+                    }}
                     className={filter === 'watchlist' ? 'active' : ''}
                   >
                     Watchlist
                   </StyledButton>
                 </Badge>
               </Grid>
-              
-              <Grid >
-                <StyledButton onClick={fetchMarketData}>
+
+              <Grid>
+                <StyledButton onClick={() => fetchMarketData(1, true)}>
                   <Icon icon="mdi:refresh" width={16} style={{ marginRight: theme.spacing(0.5) }} />
                   Refresh
                 </StyledButton>
@@ -283,118 +352,127 @@ const MarketPage = () => {
           </Grid>
         </Grid>
 
-        {loading ? (
-          <SectionCard>
+        <SectionCard>
+          {loading && filteredCoins.length === 0 ? (
             <Grid container spacing={2}>
               {Array.from({ length: 12 }).map((_, index) => (
-                <Grid size={{xs:12 , sm:6,md:4,lg:3}} key={index}>
+                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
                   <Skeleton variant="rectangular" height={220} sx={{ borderRadius: 3 }} />
                 </Grid>
               ))}
             </Grid>
-          </SectionCard>
-        ) : (
-          <SectionCard>
-            {filteredCoins.length > 0 ? (
-              <Grid container spacing={2}>
-                {filteredCoins.map((coin, index) => (
-                  <Grid size={{xs:12 , sm:6,md:4,lg:3}} key={coin.id}>
-                    <CryptoCard>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                        <Box sx={{ 
+          ) : (
+            <Grid container spacing={2}>
+              {filteredCoins.map((coin, index) => (
+                <Grid
+                  size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
+                  key={coin.id}
+                  ref={index === filteredCoins.length - 1 ? lastCoinRef : null} // Attach observer to last coin
+                >
+                  <CryptoCard>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                      <Box
+                        sx={{
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           width: 32,
                           height: 32,
                           borderRadius: '50%',
-                          bgcolor: theme.palette.action.hover
-                        }}>
-                          <Typography variant="caption" fontWeight={600}>
-                            #{index + 1}
-                          </Typography>
-                        </Box>
-                        
-                        <IconButton 
-                          onClick={() => toggleWatchlist(coin.id)}
-                          sx={{
-                            color: watchlist.includes(coin.id) 
-                              ? theme.palette.warning.main 
-                              : theme.palette.text.secondary
-                          }}
-                          aria-label={watchlist.includes(coin.id) ? "Remove from watchlist" : "Add to watchlist"}
-                        >
-                          <Icon 
-                            icon={watchlist.includes(coin.id) ? "mdi:star" : "mdi:star-outline"} 
-                            width={24} 
-                          />
-                        </IconButton>
-                      </Box>
-                      
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                        <img 
-                          src={coin.image} 
-                          alt={`${coin.name} logo`} 
-                          width={40} 
-                          height={40} 
-                          style={{ borderRadius: '50%' }}
-                        />
-                        <Box>
-                          <Typography variant="body1" fontWeight={600}>
-                            {coin.name}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            {coin.symbol.toUpperCase()}
-                          </Typography>
-                        </Box>
-                      </Box>
-                      
-                      <Box sx={{ mb: 1 }}>
-                        <Typography variant="body1" fontWeight={600} sx={{ fontSize: '1.25rem' }}>
-                          ${coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          bgcolor: theme.palette.action.hover,
+                        }}
+                      >
+                        <Typography variant="caption" fontWeight={600}>
+                          #{index + 1}
                         </Typography>
                       </Box>
-                      
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Chip
-                          label={`${coin.price_change_percentage_24h >= 0 ? '+' : ''}${coin.price_change_percentage_24h.toFixed(2)}%`}
-                          sx={{
-                            fontWeight: 600,
-                            backgroundColor: coin.price_change_percentage_24h >= 0
-                              ? theme.palette.success.light
-                              : theme.palette.error.light,
-                            color: coin.price_change_percentage_24h >= 0
-                              ? theme.palette.success.dark
-                              : theme.palette.error.dark,
-                          }}
-                          size="small"
+
+                      <IconButton
+                        onClick={() => toggleWatchlist(coin.id)}
+                        sx={{
+                          color: watchlist.includes(coin.id)
+                            ? theme.palette.warning.main
+                            : theme.palette.text.secondary,
+                        }}
+                        aria-label={watchlist.includes(coin.id) ? 'Remove from watchlist' : 'Add to watchlist'}
+                      >
+                        <Icon
+                          icon={watchlist.includes(coin.id) ? 'mdi:star' : 'mdi:star-outline'}
+                          width={24}
                         />
-                        
-                        <Box>
-                          <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
-                            Volume
-                          </Typography>
-                          <Typography variant="caption">
-                            {formatNumber(coin.total_volume)}
-                          </Typography>
-                        </Box>
+                      </IconButton>
+                    </Box>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
+                      <img
+                        src={coin.image}
+                        alt={`${coin.name} logo`}
+                        width={40}
+                        height={40}
+                        style={{ borderRadius: '50%' }}
+                      />
+                      <Box>
+                        <Typography variant="body1" fontWeight={600}>
+                          {coin.name}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {coin.symbol.toUpperCase()}
+                        </Typography>
                       </Box>
-                    </CryptoCard>
-                  </Grid>
-                ))}
-              </Grid>
-            ) : (
-              <Box sx={{ textAlign: 'center', py: 4 }}>
-                <Icon icon="mdi:bitcoin-off" width={48} color={theme.palette.text.secondary} />
-                <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
-                  {filter === 'watchlist' 
-                    ? 'Your watchlist is empty. Add coins to track them here.' 
-                    : 'No cryptocurrencies found matching your search'}
-                </Typography>
-              </Box>
-            )}
-          </SectionCard>
-        )}
+                    </Box>
+
+                    <Box sx={{ mb: 1 }}>
+                      <Typography variant="body1" fontWeight={600} sx={{ fontSize: '1.25rem' }}>
+                        ${coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Chip
+                        label={`${coin.price_change_percentage_24h >= 0 ? '+' : ''}${coin.price_change_percentage_24h.toFixed(2)}%`}
+                        sx={{
+                          fontWeight: 600,
+                          backgroundColor: coin.price_change_percentage_24h >= 0
+                            ? theme.palette.success.light
+                            : theme.palette.error.light,
+                          color: coin.price_change_percentage_24h >= 0
+                            ? theme.palette.success.dark
+                            : theme.palette.error.dark,
+                        }}
+                        size="small"
+                      />
+
+                      <Box>
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                          Volume
+                        </Typography>
+                        <Typography variant="caption">
+                          {formatNumber(coin.total_volume)}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CryptoCard>
+                </Grid>
+              ))}
+              {loading && filteredCoins.length > 0 && (
+                <Grid container spacing={2} sx={{ mt: 2 }}>
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={`skeleton-${index}`}>
+                      <Skeleton variant="rectangular" height={220} sx={{ borderRadius: 3 }} />
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
+            </Grid>
+          )}
+          {!hasMore && filteredCoins.length > 0 && (
+            <Box sx={{ textAlign: 'center', py: 4 }}>
+              <Typography variant="body1" color="text.secondary">
+                No more coins to load.
+              </Typography>
+            </Box>
+          )}
+        </SectionCard>
       </Container>
     </Box>
   );

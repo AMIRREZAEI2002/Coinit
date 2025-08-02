@@ -1,6 +1,7 @@
 import BuySellCrypto from '@/Components/BuySellCrypto'
 import { CryptoProvider } from '@/Components/CryptoContext'
-import SpotBuySellPriceCoin from '@/Components/SpotBuySellPriceCoin'
+import FutureOpenClose from '@/Components/FutureOpenClose'
+import FutureSessionAvailable from '@/Components/FutureSessionAvailable'
 import SpotCryptoChart from '@/Components/SpotCryptoChart'
 import SpotPriceCrypto from '@/Components/SpotPriceCrypto'
 import SpotTable from '@/Components/SpotTable'
@@ -14,7 +15,7 @@ export default function page() {
     <CryptoProvider>
       <Grid container spacing={1} p={1}>
         <Grid size={{xs:12,md:8,lg:9}}>
-            <Grid container spacing={1}>
+            <Grid container spacing={0.8}>
                 <Grid size={{xs: 12,md:12,lg:9}}>
                     <Grid container spacing={0.8}>
                         <Grid size={{xs:12}} sx={{position: 'relative', mt:1}}>
@@ -37,9 +38,17 @@ export default function page() {
         <Grid size={{xs:12,md:4,lg:3}}>
             <Grid container spacing={1}>
                 <Grid size={{xs:12}}>
-                    <SpotBuySellPriceCoin/>
+                <FutureSessionAvailable
+                    title="M-Day"
+                    description="Session Available: 2 with"
+                    href="/sessions-page"
+                    count={2}
+                    />
                 </Grid>
-                <Grid size={{xs:12}} sx={{mb:{xs:10,md:0}}}>
+                <Grid size={{xs:12}}>
+                    <FutureOpenClose/>
+                </Grid>
+                <Grid size={{xs:12}} pb={8}>
                     <SpotWallet/>
                 </Grid>
             </Grid>

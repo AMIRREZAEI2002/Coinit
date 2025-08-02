@@ -3,20 +3,20 @@
 import * as React from 'react';
 import {
   AppBar, Box, Toolbar, IconButton, Typography, Menu,
-  Container, Button, Tooltip, MenuItem,
+  Container, Button, Tooltip, MenuItem, Badge
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { ThemeModeContext } from '../app/providers';
-import ToggleSwitch from './ToggleSwitch';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ArrowDropDown } from '@mui/icons-material';
 import SearchHead from './SearchHead';
 import WalletHead from './WalletHead';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { motion } from 'framer-motion';
+import HeaderMobile from './HeaderMobile';
+import ToggleSwitch from './ToggleSwitch';
 
 const pages = [
   {
@@ -29,7 +29,7 @@ const pages = [
   },
   { page: 'Markets', link: '/Markets' },
   { page: 'Spot', link: '/Spot' },
-  { page: 'Future', link: '/future' },
+  { page: 'Future', link: '/Future' },
   { page: 'Reward Hub', link: '/Wallet/EventRewards' },
   {
     page: 'More',
@@ -43,30 +43,25 @@ const pages = [
 
 const settings = [
   { name: 'Profile', icon: 'mdi:account', path: '/panel/profile' },
-    { name: 'Security', icon: 'mdi:lock', path: '/panel/Security' },
-    { name: 'Identification', icon: 'mdi:card-account-details', path: '/panel/Identification' },
-    { name: 'Referral', icon: 'mdi:account-group', path: '/panel/Referral' },
-    { name: 'Trading Fees', icon: 'mdi:percent', path: '/panel/TradingFees' },
-    { name: 'Withdrawal Address', icon: 'mdi:wallet-outline', path: '/panel/WithdrawalAddresses' },
-    { name: 'SubAccount', icon: 'mdi:user-plus', path: '/panel/SubAccount' },
-    { name: 'Settings', icon: 'mdi:cog', path: '/panel/Settings' },
-    { name: 'Switch Account', icon: 'mdi:switch', path: '/SwitchAccount' },
-    { name: 'Log Out', icon: 'mdi:log-out', path: '/LogOut' },
-
+  { name: 'Security', icon: 'mdi:lock', path: '/panel/Security' },
+  { name: 'Identification', icon: 'mdi:card-account-details', path: '/panel/Identification' },
+  { name: 'Referral', icon: 'mdi:account-group', path: '/panel/Referral' },
+  { name: 'Trading Fees', icon: 'mdi:percent', path: '/panel/TradingFees' },
+  { name: 'Withdrawal Address', icon: 'mdi:wallet-outline', path: '/panel/WithdrawalAddresses' },
+  { name: 'SubAccount', icon: 'mdi:user-plus', path: '/panel/SubAccount' },
+  { name: 'Settings', icon: 'mdi:cog', path: '/panel/Settings' },
+  { name: 'Switch Account', icon: 'mdi:switch', path: '/SwitchAccount' },
+  { name: 'Log Out', icon: 'mdi:log-out', path: '/LogOut' },
 ];
 
 function Header() {
   const { darkMode, toggleDarkMode } = useContext(ThemeModeContext);
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [anchorElDropdown, setAnchorElDropdown] = useState<null | HTMLElement>(null);
   const [dropdownItems, setDropdownItems] = useState<{ page: string, link: string }[]>([]);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => setAnchorElNav(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
 
@@ -83,13 +78,35 @@ function Header() {
     setDropdownItems([]);
   };
 
-  return (
-    <AppBar position="sticky" sx={{backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', color: darkMode ? '#fff' : '#000e' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+    setMobileOpen(open);
+    setExpandedMenu(null);
+  };
 
+  const toggleSubMenu = (page: string) => {
+    setExpandedMenu(expandedMenu === page ? null : page);
+  };
+
+  return (
+    <AppBar 
+      position="sticky" 
+      sx={{
+        backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', 
+        color: darkMode ? '#fff' : '#000e',
+        boxShadow: darkMode ? '0 2px 10px rgba(0,0,0,0.5)' : '0 2px 10px rgba(0,0,0,0.05)'
+      }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters sx={{ minHeight: '64px !important' }}>
           {/* Logo - Desktop */}
-          <Link href="/" style={{color: 'inherit', textDecoration: 'none',}} passHref>
+          <Link href="/" style={{color: 'inherit', textDecoration: 'none'}} passHref>
             <Typography
               variant="h6"
               noWrap
@@ -103,64 +120,24 @@ function Header() {
             </Typography>
           </Link>
 
-          {/* Mobile Menu Icon */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' } }}>
-            <IconButton size="large" color="inherit" onClick={handleOpenNavMenu}>
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorElNav}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) =>
-                 page.children ? (
-                  <Button
-                    key={page.page}
-                    onClick={(e) => handleDropdownOpen(e, page.children!)}
-                    sx={{ my: 2, color: 'text.primary', display: 'flex', alignItems: 'center', gap: '4px' }}
-                  >
-                    {page.page}
-                    <KeyboardArrowDownIcon fontSize="small" />
-                  </Button>
-                ) : (
-                  <Link href={page.link!} key={page.page} passHref>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page.page}</Typography>
-                    </MenuItem>
-                  </Link>
-                )
-              )}
-              <ToggleSwitch />
-            </Menu>
-          </Box>
-
-          {/* Logo - Mobile */}
-          
-          <Link href="/" style={{color: 'inherit', textDecoration: 'none'}} passHref>   
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-                fontFamily: 'monospace',
-              }}
-            >
-              Coinit
-            </Typography>  
-          </Link>
+          {/* Mobile Header */}
+          <HeaderMobile
+            darkMode={darkMode}
+            mobileOpen={mobileOpen}
+            toggleDrawer={toggleDrawer}
+            toggleSubMenu={toggleSubMenu}
+            expandedMenu={expandedMenu}
+            pages={pages}
+          />
 
           {/* Desktop Nav Buttons */}
-          <Box sx={{  flexGrow: 1, display: { xs: 'none', lg: 'flex' },justifyContent: 'space-between' ,alignItems: 'center', pr:2}}>
+          <Box sx={{  
+            flexGrow: 1, 
+            display: { xs: 'none', lg: 'flex' },
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            pr: 2
+          }}>
             <Box sx={{ flexGrow: 1, display:'flex',alignItems: 'center'}}>
               <ToggleSwitch />
               {pages.map((page) =>
@@ -176,7 +153,7 @@ function Header() {
                 ) : (
                   <Link href={page.link!} style={{color:'inherit', textDecoration: 'none'}} passHref key={page.page}>
                     <Button
-                      onClick={handleCloseNavMenu}
+                      onClick={handleDropdownClose}
                       sx={{fontSize: 11, my: 2, color: 'text.primary', display: 'block' }}
                     >
                       {page.page}
@@ -203,7 +180,23 @@ function Header() {
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Icon icon="mdi:user" color="text.primary" fontSize={25} />
+                <Badge 
+                  color="primary" 
+                  variant="dot" 
+                  overlap="circular"
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Icon 
+                      icon="mdi:user" 
+                      color={darkMode ? '#fff' : '#000'} 
+                      fontSize={28} 
+                    />
+                  </motion.div>
+                </Badge>
               </IconButton>
             </Tooltip>
 
@@ -218,12 +211,24 @@ function Header() {
                   background: 'Background.paper',
                   borderRadius: '16px',
                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-                  minWidth: '120px',
-                  overflow: 'scroll',
+                  minWidth: '250px',
+                  overflow: 'visible',
                   animation: 'fadeIn 0.8s ease-out',
                   '@keyframes fadeIn': {
                     from: { opacity: 0, transform: 'translateY(20px)' },
                     to: { opacity: 1, transform: 'translateY(0)' }
+                  },
+                  '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
                   }
                 }
               }}
@@ -232,12 +237,12 @@ function Header() {
             >
               <MenuItem>
                 <Typography sx={{px:1}} fontWeight={700}>
-                  user.email Mahyar.baher@gmail.com
+                  Mahyar.baher@gmail.com
                 </Typography>
               </MenuItem>
               <MenuItem>
                 <Typography sx={{px:1}} fontWeight={500}>
-                  UID: user.ID
+                  UID: 12345678
                 </Typography>
               </MenuItem>
               <MenuItem sx={{transition: 'all 0.3s ease',background: 'linear-gradient(90deg,rgba(2, 0, 36, 0.62) 0%, rgba(9, 9, 121, 0.75) 35%, rgba(0, 212, 255, 0.75) 100%)',borderRadius: 6 ,mx: 2, py: 1, px:1,'&:hover': {transform: 'translateY(-1px)'}}}>
@@ -289,8 +294,12 @@ function Header() {
               ))}
             </Menu>
 
-            {/* دارک مود */}
-            <IconButton sx={{ ml: 1}} onClick={toggleDarkMode} color="inherit">
+            {/* Dark Mode Toggle */}
+            <IconButton 
+              sx={{ ml: 1 }} 
+              onClick={toggleDarkMode} 
+              color="inherit"
+            >
               {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
           </Box>

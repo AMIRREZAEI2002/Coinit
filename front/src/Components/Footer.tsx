@@ -4,7 +4,6 @@ import {
 } from '@mui/material';
 import FooterSliderPrice from './FooterSliderPrice';
 import FooterLinkAndApp from './FooterLinkAndApp';
-
 const Footer = () => {
 
   return (

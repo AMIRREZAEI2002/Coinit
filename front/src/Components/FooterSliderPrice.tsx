@@ -7,13 +7,13 @@ import axios from 'axios';
 
 // نگاشت نام رمزارزها به آیکون‌ها
 const cryptoIcons: Record<string, string> = {
-  bitcoin: 'cryptocurrency:btc',
-  ethereum: 'cryptocurrency:eth',
-  solana: 'cryptocurrency:sol',
-  ripple: 'cryptocurrency:xrp',
-  cardano: 'cryptocurrency:ada',
-  dogecoin: 'cryptocurrency:doge',
-  binancecoin: 'cryptocurrency:bnb',
+  bitcoin: 'cryptocurrency-color:btc',
+  ethereum: 'cryptocurrency-color:eth',
+  solana: 'cryptocurrency-color:sol',
+  ripple: 'cryptocurrency-color:xrp',
+  cardano: 'cryptocurrency-color:ada',
+  dogecoin: 'cryptocurrency-color:doge',
+  binancecoin: 'cryptocurrency-color:bnb',
 };
 
 interface CryptoData {

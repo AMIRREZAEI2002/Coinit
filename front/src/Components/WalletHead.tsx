@@ -152,7 +152,7 @@ const WalletHead = () => {
         {[
           { icon: <WalletIcon sx={{ fontSize: '0.9rem' }} />, text: 'OverView', href: '/Wallet/Overview' },
           { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Spot', href: '/Wallet/Spot' },
-          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'DEX +', href: '/Wallet/Dex' },
+          { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'DEX +', href: '/Wallet/DEX' },
           { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Futures', href: '/Wallet/Futures' },
           { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Fiat', href: '/Wallet/Fiat' },
           { icon: <SmileIcon sx={{ fontSize: '0.9rem' }} />, text: 'Copy Trade', href: '/Wallet/CopyTrading' },

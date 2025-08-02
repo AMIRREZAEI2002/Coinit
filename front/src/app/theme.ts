@@ -1,4 +1,17 @@
 import { createTheme } from '@mui/material/styles';
+import '@mui/material/styles';
+declare module '@mui/material/styles' {
+  interface Palette {
+    customColors: {
+      feeseFirst: string;
+    };
+  }
+  interface PaletteOptions {
+    customColors?: {
+      feeseFirst?: string;
+    };
+  }
+}
 
 export const lightTheme = createTheme({
   palette: {
@@ -18,6 +31,9 @@ export const lightTheme = createTheme({
     text: {
       primary: '#222222',  // رنگ متن اصلی
       secondary: '#555555',// رنگ متن فرعی
+    },
+    customColors: {
+      feeseFirst: '#3333331a',
     },
   },
   typography: {
@@ -45,6 +61,9 @@ export const darkTheme = createTheme({
     text: {
       primary: '#ffffff',  // متن روشن برای پس‌زمینه تاریک
       secondary: '#bbbbbb',
+    },
+    customColors: {
+      feeseFirst: '#333333',
     },
   },
   typography: {
