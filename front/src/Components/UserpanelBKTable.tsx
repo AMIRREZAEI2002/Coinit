@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { 
-  Box, Typography, Tabs, Tab, Table, TableBody, TableCell, 
-  TableContainer, TableHead, TableRow, Paper, Link, 
-  useTheme, TablePagination
+  Box, Typography, Tabs, Tab, Paper, Link, 
+  useTheme, Card, CardContent, Stack, Table, TableBody, TableCell, 
+  TableContainer, TableHead, TableRow, TablePagination, useMediaQuery
 } from '@mui/material';
 import { Info as InfoIcon } from '@mui/icons-material';
 
 const UserpanelBKTable = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [activeTab, setActiveTab] = useState(0);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(isMobile ? 3 : 5);
   
-  // Fee data for exchanges
   const exchangeData = [
     {
       name: 'Binance',
-      source: 'https://www.binance.com/en/fee/schedule',
+      source: '#',
       fees: [
         { volume: 'Up to 50,000', maker: '0.10%', taker: '0.15%', remarks: 'Base rate; 25% discount with BNB → 0.075% maker, 0.1125% taker' },
         { volume: '50,000 – 100,000', maker: '0.09%', taker: '0.14%', remarks: '50k tier; BNB discount applies' },
@@ -28,7 +28,7 @@ const UserpanelBKTable = () => {
     },
     {
       name: 'Coinbase',
-      source: 'https://help.coinbase.com/en/coinbase/trading-and-funding/advanced-trade/advanced-trade-fees',
+      source: '#',
       fees: [
         { volume: 'Up to 1,000', maker: '0.60%', taker: '1.20%', remarks: 'Entry level; no token discounts' },
         { volume: '1,000 – 10,000', maker: '0.50%', taker: '1.00%', remarks: 'Tier 1 volume' },
@@ -40,7 +40,7 @@ const UserpanelBKTable = () => {
     },
     {
       name: 'Kraken',
-      source: 'https://www.kraken.com/features/fee-schedule',
+      source: '#',
       fees: [
         { volume: 'Up to 50,000', maker: '0.16%', taker: '0.26%', remarks: 'Base tier; convert small balances @ 3% fee' },
         { volume: '50,000 – 100,000', maker: '0.14%', taker: '0.24%', remarks: 'Tier 1' },
@@ -66,7 +66,6 @@ const UserpanelBKTable = () => {
     setPage(0);
   };
 
-  // Get current exchange data
   const currentExchange = exchangeData[activeTab];
   const currentFees = currentExchange.fees.slice(
     page * rowsPerPage,
@@ -75,12 +74,10 @@ const UserpanelBKTable = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      {/* Header */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h4" fontWeight="bold">Trading Fees</Typography>
       </Box>
       
-      {/* Introduction */}
       <Paper sx={{ p: 3, mb: 3, borderRadius: 2 }}>
         <Typography variant="body1" color="text.secondary">
           Below is a comparative view of maker and taker fees across Binance, Coinbase, and Kraken. 
@@ -89,7 +86,6 @@ const UserpanelBKTable = () => {
         </Typography>
       </Paper>
       
-      {/* Exchange Tabs */}
       <Paper sx={{ borderRadius: 2, overflow: 'hidden', mb: 3 }}>
         <Tabs 
           value={activeTab} 
@@ -115,34 +111,55 @@ const UserpanelBKTable = () => {
           ))}
         </Tabs>
         
-        {/* Fee Table */}
         <Box sx={{ p: 2 }}>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow sx={{backgroundColor: "Background.paper" }}>
-                  <TableCell sx={{ fontWeight: 'bold' }}>30‑Day Volume (USD)</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Maker Fee <small>(%)</small></TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Taker Fee <small>(%)</small></TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Remarks</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {currentFees.map((fee, index) => (
-                  <TableRow key={index} hover>
-                    <TableCell>{fee.volume}</TableCell>
-                    <TableCell>{fee.maker}</TableCell>
-                    <TableCell>{fee.taker}</TableCell>
-                    <TableCell>{fee.remarks}</TableCell>
+          {isMobile ? (
+            <Stack spacing={2}>
+              {currentFees.map((fee, index) => (
+                <Card key={index} sx={{ borderRadius: 3, boxShadow: 2, p: 2 }}>
+                  <CardContent sx={{ p: 0 }}>
+                    <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 1 }}>
+                      30‑Day Volume: {fee.volume}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Maker Fee: <strong>{fee.maker}</strong>
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Taker Fee: <strong>{fee.taker}</strong>
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      {fee.remarks}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </Stack>
+          ) : (
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow sx={{backgroundColor: theme.palette.background.paper }}>
+                    <TableCell sx={{ fontWeight: 'bold' }}>30‑Day Volume (USD)</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>Maker Fee <small>(%)</small></TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>Taker Fee <small>(%)</small></TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>Remarks</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <TableBody>
+                  {currentFees.map((fee, index) => (
+                    <TableRow key={index} hover>
+                      <TableCell>{fee.volume}</TableCell>
+                      <TableCell>{fee.maker}</TableCell>
+                      <TableCell>{fee.taker}</TableCell>
+                      <TableCell>{fee.remarks}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
           
-          {/* Pagination */}
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[3, 5, 10]}
             component="div"
             count={currentExchange.fees.length}
             rowsPerPage={rowsPerPage}
@@ -155,7 +172,6 @@ const UserpanelBKTable = () => {
             }}
           />
           
-          {/* Source */}
           <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
             Source: <Link href={currentExchange.source} target="_blank" rel="noopener">
               {currentExchange.name} Fee Schedule
@@ -164,7 +180,6 @@ const UserpanelBKTable = () => {
         </Box>
       </Paper>
       
-      {/* Disclaimer */}
       <Paper sx={{ p: 3, borderRadius: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
           <InfoIcon color="primary" sx={{ mr: 1 }} />

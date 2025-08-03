@@ -37,10 +37,21 @@ const CryptoCard = styled(motion(Box))(({ theme }) => ({
 }));
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.5, ease: "easeOut" as any },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.3)",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.3, ease: "easeInOut" as any },
+  },
 };
-
 // تابع کمک‌کننده برای آیکون با fallback
 const getIconName = (symbol: string) => {
   const formatted = symbol.toLowerCase();

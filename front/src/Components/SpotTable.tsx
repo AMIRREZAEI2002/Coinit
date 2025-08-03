@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import {
   Box, Button, Typography, useTheme, FormControlLabel, Checkbox, IconButton,
   Tooltip, Modal, TextField, MenuItem, Select, InputLabel, FormControl,
@@ -196,21 +196,6 @@ const SectionCard = styled(Paper)(({ theme }) => ({
   overflow: 'hidden',
 }));
 
-const StyledSelect = styled(Select)(({ theme }) => ({
-  borderRadius: 12,
-  backgroundColor: theme.palette.action.hover,
-  fontSize: '0.85rem',
-  height: 36,
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'transparent',
-  },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.primary.main,
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.palette.primary.main,
-  },
-}));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: 'none',
@@ -257,6 +242,7 @@ const FieldValue = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TabButton = styled(Button)(({ theme, selected }: { theme: any; selected: boolean }) => ({
   fontSize: '0.75rem',
   borderRadius: 12,
@@ -271,8 +257,20 @@ const TabButton = styled(Button)(({ theme, selected }: { theme: any; selected: b
 
 // انیمیشن‌ها
 const cardVariants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.5, ease: "easeOut" as any },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.3)",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.3, ease: "easeInOut" as any },
+  },
 };
 
 const SpotTable: React.FC = () => {
@@ -287,6 +285,7 @@ const SpotTable: React.FC = () => {
     'capital-flow': generateFakeDataForTab('capital-flow'),
     'wallet': generateFakeDataForTab('wallet'),
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [sortConfig, setSortConfig] = useState<{ key: keyof TableRowData; direction: 'asc' | 'desc' } | null>(null);
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
   const [openMenu, setOpenMenu] = useState<null | HTMLElement>(null);
@@ -322,21 +321,6 @@ const SpotTable: React.FC = () => {
   }, [tableData, activeTab, hideOtherPairs, defaultTradingPair]);
 
   // هندلرها
-  const handleSort = useCallback((key: keyof TableRowData) => {
-    setSortConfig((prev) => {
-      const direction = prev?.key === key && prev.direction === 'asc' ? 'desc' : 'asc';
-      const sortedData = [...filteredTableData].sort((a, b) => {
-        if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-        if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-        return 0;
-      });
-      setTableData((prev) => ({
-        ...prev,
-        [activeTab]: sortedData,
-      }));
-      return { key, direction };
-    });
-  }, [filteredTableData, activeTab]);
 
   const handleEdit = useCallback((row: TableRowData) => {
     setEditRow(row);
@@ -377,7 +361,7 @@ const SpotTable: React.FC = () => {
       setTableData((prev) => ({
         ...prev,
         [activeTab]: prev[activeTab].map((row) =>
-          row.status === 'Open' ? { ...row, status: 'Canceled' as 'Canceled' } : row
+          row.status === 'Open' ? { ...row, status: 'Canceled' as const } : row
         ),
       }));
     }
@@ -396,6 +380,7 @@ const SpotTable: React.FC = () => {
     setOpenMenu(null);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const convertToCSV = (data: any[]) => {
     if (!data.length) return '';
     const keys = Object.keys(data[0]);
@@ -445,7 +430,7 @@ const SpotTable: React.FC = () => {
             const parsedData = parseCSV(text);
             setTableData((prev) => ({
               ...prev,
-              [activeTab]: parsedData as TableRowData[],
+              [activeTab]: parsedData as unknown as TableRowData[],
             }));
           };
           input.click();
@@ -598,8 +583,7 @@ const SpotTable: React.FC = () => {
                 '&:hover': {
                   transform: { xs: 'none', sm: 'translateY(-1px)' },
                 },
-              }}
-            >
+              }} theme={undefined}            >
               {tab.label} ({tabCounts[tab.id]})
             </TabButton>
           ))}

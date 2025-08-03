@@ -40,6 +40,7 @@ const LinkedAccountCard = styled(Paper)(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(1.5, 2),
   borderRadius: 4,
+  width: "100%",
   border: `1px solid ${theme.palette.divider}`,
   backgroundColor: theme.palette.background.default,
   marginBottom: theme.spacing(1),
@@ -151,19 +152,21 @@ const UserSecpanelSV = () => {
                 {['Google', 'Facebook', 'Apple', 'Twitter'].map((platform) => (
                   <Grid size={{xs:6, md:3}} key={platform}>
                     <LinkedAccountCard>
-                      <Box display="flex" justifyContent="space-between" alignItems="center">
-                        <Icon 
-                          icon={
-                            platform === 'Google' ? 'mdi:google' :
-                            platform === 'Facebook' ? 'mdi:facebook' :
-                            platform === 'Apple' ? 'mdi:apple' : 'mdi:twitter'
-                          } 
-                          fontSize={18}
-                          style={{ marginRight: theme.spacing(1) }}
-                        />
-                        <Typography fontWeight="bold">{platform}</Typography>
+                      <Box width="100%" display="flex" justifyContent="space-between" flexDirection={{xs:'column',md:'row'}} alignItems="center">
+                        <Box  display="flex" justifyContent="space-between" alignItems='center'>
+                          <Icon 
+                            icon={
+                              platform === 'Google' ? 'mdi:google' :
+                              platform === 'Facebook' ? 'mdi:facebook' :
+                              platform === 'Apple' ? 'mdi:apple' : 'mdi:twitter'
+                            } 
+                            fontSize={18}
+                            style={{ marginRight: theme.spacing(1) }}
+                          />
+                          <Typography fontWeight="bold">{platform}</Typography>
+                        </Box>
+                        <Typography color="error">Unlink</Typography>
                       </Box>
-                      <Typography color="error">Unlink</Typography>
                     </LinkedAccountCard>
                   </Grid>
                 ))}

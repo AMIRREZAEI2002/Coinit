@@ -9,6 +9,7 @@ import {
   List,
   ListItem,
   styled,
+  useTheme,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
@@ -187,6 +188,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({ title, links }) => (
 );
 
 const FooterLinkAndApp: React.FC = () => {
+  const theme = useTheme();
   return (
     <Box component="footer" sx={{ bgcolor: 'background.default', py: 4 }}>
       <Container sx={{ px: { xs: 2, lg: 3 } }}>
@@ -224,7 +226,7 @@ const FooterLinkAndApp: React.FC = () => {
                 gap: 2,
               }}
             >
-              <StyledButton href="https://play.google.com/store/apps/details?id=com.binance.dev">
+              <StyledButton href="#">
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Google Play"
@@ -233,7 +235,7 @@ const FooterLinkAndApp: React.FC = () => {
                 />
               </StyledButton>
 
-              <StyledButton href="https://apps.apple.com/app/binance/id1436799971">
+              <StyledButton href="#">
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
                   alt="Apple Store"
@@ -242,10 +244,10 @@ const FooterLinkAndApp: React.FC = () => {
                 />
               </StyledButton>
 
-              <StyledButton href="https://www.binance.com/en/download">
+              <StyledButton href="#">
                 <StyledIconButton>
                   <Icon
-                    color={(theme) => theme.palette.secondary.main}
+                    color={theme.palette.secondary.main}
                     icon="mdi:qrcode-scan"
                     width={40}
                     height={40}
@@ -272,7 +274,7 @@ const FooterLinkAndApp: React.FC = () => {
                 justifyContent: 'center',
               }}
             >
-              {communityIcons.map((item, i) => (
+              {communityIcons.map((item) => (
                 <StyledIconButton
                   key={item.icon}
                 >

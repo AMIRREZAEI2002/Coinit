@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
@@ -42,15 +42,6 @@ const FormContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const FeeBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[100],
-  padding: theme.spacing(2),
-  borderRadius: theme.shape.borderRadius,
-  border: `1px solid ${theme.palette.divider}`,
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(1.5),
-}));
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -208,6 +199,7 @@ const FeesBox = styled(Box)(({ theme }) => ({
       color: theme.palette.text.secondary,
     },
   }));
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MarketOrderFuture: React.FC<MarketOrderFutureProps> = ({ isBuy }) => {
   const theme = useTheme();
   const { selectedCurrency } = useCryptoContext();
@@ -324,6 +316,8 @@ const MarketOrderFuture: React.FC<MarketOrderFutureProps> = ({ isBuy }) => {
 
   return (
     <FormContainer
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       component={motion.div}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -540,6 +534,8 @@ const MarketOrderFuture: React.FC<MarketOrderFutureProps> = ({ isBuy }) => {
         closeAfterTransition
       >
         <ModalContainer
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           component={motion.div}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

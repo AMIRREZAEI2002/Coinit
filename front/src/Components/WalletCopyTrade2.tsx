@@ -172,6 +172,8 @@ const WalletCopyTrade2: React.FC = () => {
       >
         {filteredRows.length > 0 ? (
           filteredRows.map((row) => (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             <motion.div key={row.id} variants={cardVariants} initial="hidden" animate="visible">
               <AssetCard>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>

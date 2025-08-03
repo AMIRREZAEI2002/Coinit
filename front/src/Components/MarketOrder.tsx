@@ -168,7 +168,7 @@ const MarketOrder: React.FC<MarketOrderProps> = ({ isBuy }) => {
   const [amount, setAmount] = useState('');
   const [sliderValue, setSliderValue] = useState(0);
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [showFees, setShowFees] = useState(false);
+  const [, setShowFees] = useState(false);
 
   // Calculate market price based on buy/sell
   const marketPrice = isBuy 
@@ -198,7 +198,7 @@ const MarketOrder: React.FC<MarketOrderProps> = ({ isBuy }) => {
         setAmount('');
       }
     }
-  }, [total, marketPrice, isBuy]);
+  }, [total, marketPrice, isBuy, focusedField]);
 
   // Update Total based on Slider
   useEffect(() => {

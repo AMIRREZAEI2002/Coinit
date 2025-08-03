@@ -72,7 +72,7 @@ const DepositPage: React.FC = () => {
           </Accordion>
           
           {/* Buy Crypto Box */}
-          <Link href="/QuickBuySell" style={{color:'inherit',textDecoration: 'none'}} passHref>
+          <Link href="/BQPT/QuickBuySell" style={{color:'inherit',textDecoration: 'none'}} passHref>
             <Box 
             sx={{ 
               display: 'flex', 

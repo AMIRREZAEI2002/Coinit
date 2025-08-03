@@ -17,10 +17,22 @@ const history = [
 
 // Animation variants for cards
 const cardVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
-  hover: { scale: 1.05, boxShadow: '0px 8px 20px rgba(0,0,0,0.15)', transition: { duration: 0.3 } },
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.5, ease: "easeOut" as any },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.3)",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    transition: { duration: 0.3, ease: "easeInOut" as any },
+  },
 };
+
 
 // Styled Components
 const StyledCard = styled(Card)(({ theme }) => ({

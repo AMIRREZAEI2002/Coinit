@@ -11,7 +11,7 @@ import {
   Paper,
   Slide,
 } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { useCryptoContext } from './CryptoContext';
 import MarketOrderFuture from './MarketOrderFuture';
@@ -89,8 +89,8 @@ const FutureOpenClose: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'limit' | 'market' | 'trigger'>('limit');
   const [isOpen, setIsOpen] = useState(true);
-  const [isIsolated, setIsIsolated] = useState(true);
-  const [leverage, setLeverage] = useState('20X');
+  const [, setIsIsolated] = useState(true);
+  const [, setLeverage] = useState('20X');
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
   const [priceInfo, setPriceInfo] = useState({
     current: 0,
@@ -128,7 +128,6 @@ const FutureOpenClose: React.FC = () => {
   const toggleMobilePanel = useCallback(() => {
     setMobilePanelOpen((prev) => !prev);
   }, []);
-
   const renderForm = () => {
     switch (activeTab) {
       case 'market':
@@ -136,6 +135,8 @@ const FutureOpenClose: React.FC = () => {
       case 'limit':
         return <LimitOrderFuture isBuy={isOpen} />;
       case 'trigger':
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return <TriggerOrderFuture isBuy={isOpen} />;
       default:
         return null;

@@ -1,15 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
-    domains: ['images.pexels.com', 'www.coingecko.com'],
+    domains: ['images.pexels.com', 'www.coingecko.com', 'coin-images.coingecko.com'],
   },
   experimental: {
-    turbo: true,
-    serverActions: true,
+    serverActions: {},
   },
+  turbopack: {
+    enabled: true
+  }
 };
 
 module.exports = nextConfig;

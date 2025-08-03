@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <TermsAndPrivacy darkMode={false} />; 
+  return <TermsAndPrivacy/>;
 }

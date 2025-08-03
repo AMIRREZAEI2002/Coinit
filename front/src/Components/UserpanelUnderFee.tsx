@@ -171,8 +171,8 @@ const UserpanelUnderFee = () => {
             View Fee Schedule
           </Button>
           <Button 
-            variant="outlined" 
-            color="primary"
+            variant="outlined"
+            color='inherit' 
             sx={{ 
               borderRadius: '50px', 
               textTransform: 'none',

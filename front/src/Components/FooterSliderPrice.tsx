@@ -100,6 +100,7 @@ const FooterSliderPrice: React.FC = () => {
     <Box
       sx={{
         position: 'fixed',
+        display: {xs:'none',md:'flex'},
         bottom: 0,
         left: 0,
         right: 0,

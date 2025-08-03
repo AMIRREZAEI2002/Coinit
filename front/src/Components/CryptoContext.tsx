@@ -3,6 +3,11 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface CryptoData {
+  balance: number;
+  bidPrice: number;
+  askPrice: number;
+  bboQuotes: { option: string; price: number }[];
+  availableBalance?: number;
   name: string;
   symbol: string;
   icon: string;
@@ -21,7 +26,7 @@ interface CryptoData {
 
 interface CryptoContextType {
   selectedCurrency: CryptoData;
-  setSelectedCurrency: (currency: CryptoData) => void;
+  setSelectedCurrency: React.Dispatch<React.SetStateAction<CryptoData>>;
 }
 
 const CryptoContext = createContext<CryptoContextType | undefined>(undefined);
@@ -40,8 +45,12 @@ interface CryptoProviderProps {
 
 export const CryptoProvider: React.FC<CryptoProviderProps> = ({ children }) => {
   const [selectedCurrency, setSelectedCurrency] = useState<CryptoData>({
+    balance: 10000,
+    bidPrice: 65000,
+    askPrice: 65100,
+    bboQuotes: [],
     name: 'Bitcoin',
-    symbol: 'bitcoin', // lowercase برای سازگاری
+    symbol: 'bitcoin',
     icon: 'cryptocurrency-color:btc',
     currentPrice: 65000.1234,
     change: 2.34,
@@ -54,7 +63,9 @@ export const CryptoProvider: React.FC<CryptoProviderProps> = ({ children }) => {
     volume: '12.5K',
     turnover: '$800M',
     marketCap: 1280000000000,
-  });
+    availableBalance: 1000,  // مقدار نمونه اضافه شد
+  });  
+  
 
   return (
     <CryptoContext.Provider value={{ selectedCurrency, setSelectedCurrency }}>

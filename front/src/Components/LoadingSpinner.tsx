@@ -2,7 +2,9 @@
 
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-
+type LoadingSpinner = {
+  mode?: string; 
+};
 const LoadingSpinner = ({ children }: { children?: React.ReactNode }) => {
   const theme = useTheme();
   const mode = theme.palette.mode;

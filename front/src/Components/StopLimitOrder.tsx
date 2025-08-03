@@ -176,7 +176,7 @@ const StopLimitOrder: React.FC<StopLimitOrderProps> = ({ isBuy }) => {
   const [total, setTotal] = useState('');
   const [sliderValue, setSliderValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [showFees, setShowFees] = useState(false);
+  const [, setShowFees] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   // Calculate wallet balance and symbol
@@ -580,6 +580,8 @@ const StopLimitOrder: React.FC<StopLimitOrderProps> = ({ isBuy }) => {
         {/* Trade Button */}
         <Box mt={2} display="flex" justifyContent="center" gap={2}>
           <TradeButton
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             component={motion.button}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

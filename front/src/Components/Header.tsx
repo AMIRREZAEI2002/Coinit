@@ -13,18 +13,19 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ArrowDropDown } from '@mui/icons-material';
 import SearchHead from './SearchHead';
 import WalletHead from './WalletHead';
+import HeaderNotif from './HeaderNotif';
+import HeaderMobile from './HeaderMobile';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { motion } from 'framer-motion';
-import HeaderMobile from './HeaderMobile';
 import ToggleSwitch from './ToggleSwitch';
 
 const pages = [
   {
     page: 'BuyCrypto',
     children: [
-      { page: 'Quick Buy and Sell', link: '/quick-buy-sell' },
-      { page: 'P2P', link: '/p2p' },
-      { page: 'Transfer', link: '/transfer' }
+      { page: 'Quick Buy and Sell', link: '/BQPT/QuickBuySell' },
+      { page: 'P2P', link: '/BQPT/P2P' },
+      { page: 'Transfer', link: '/BQPT/Transfer' }
     ],
   },
   { page: 'Markets', link: '/Markets' },
@@ -100,7 +101,7 @@ function Header() {
       sx={{
         backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', 
         color: darkMode ? '#fff' : '#000e',
-        boxShadow: darkMode ? '0 2px 10px rgba(0,0,0,0.5)' : '0 2px 10px rgba(0,0,0,0.05)'
+        boxShadow: darkMode ? '0 2px 10px rgba(0,0,0,0.5)' : '0 2px 10px rgba(0,0,0,0.05)',
       }}
     >
       <Container maxWidth="xl">
@@ -176,8 +177,9 @@ function Header() {
             </Link>
           </Box>
 
-          {/* User Menu + Dark Mode */}
-          <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
+          {/* User Menu + Notifications + Dark Mode */}
+          <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center',ml:'auto' }}>
+            <HeaderNotif />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Badge 

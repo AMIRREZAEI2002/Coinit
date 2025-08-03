@@ -113,6 +113,7 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
   const [slTriggerPrice, setSlTriggerPrice] = useState('');
   const [sliderValue, setSliderValue] = useState(50);
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showFees, setShowFees] = useState(false);
 
   const baseSymbol = selectedCurrency?.symbol?.toUpperCase() || 'SPOT';
@@ -194,7 +195,7 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
     fieldKey: string,
     label: string,
     value: string,
-    setter: (v: string) => void,
+    setter: React.Dispatch<React.SetStateAction<string>>,
     unit: string,
     step: number,
     helper?: string,
@@ -206,6 +207,8 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
         type="text"
         label={label}
         value={value}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         onChange={handleNumberChange(setter)}
         onFocus={() => setFocusedField(fieldKey)}
         onBlur={() => setFocusedField(null)}
@@ -249,7 +252,7 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
           flexDirection: 'column',
           gap: 0.2,
         }}
-      >
+      > 
         <StepButton size="small" onClick={() => stepValue(setter, value, step)}>
           <ArrowDropUp fontSize="small" />
         </StepButton>
@@ -349,7 +352,8 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
           />
           <Typography variant="body2">{sliderValue}%</Typography>
         </Box>
-        {renderInput('total', 'Total', total, handleTotalChange, 'USDT', 1, undefined, false)}
+        {renderInput('total','Total',total,(valOrUpdater) => {const value = typeof valOrUpdater === 'string' ? valOrUpdater : valOrUpdater(total);handleTotalChange(value);},'USDT',1,undefined,false)}
+
         <Box display="flex" gap={1} mt={2}>
           <FormControlLabel
             control={

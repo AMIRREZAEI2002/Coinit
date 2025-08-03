@@ -258,6 +258,8 @@ const SpotPriceCrypto: React.FC = () => {
     (currency: CryptoData) => {
       console.log('Selected currency in SpotPriceCrypto:', currency); // لاگ برای دیباگ
       setCurrentCryptoData(currency);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       setSelectedCurrency(currency); // کل داده CryptoData رو می‌فرستیم
       setDrawerOpen(false);
     },

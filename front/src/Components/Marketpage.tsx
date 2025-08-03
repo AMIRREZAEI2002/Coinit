@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import {
   Grid,
   Container,
@@ -15,8 +15,11 @@ import {
   IconButton,
   Chip,
   Badge,
+  Alert,
+  useMediaQuery,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
+import Image from 'next/image';
 
 // Type definitions
 interface MarketData {
@@ -35,29 +38,11 @@ const SectionCard = styled(Paper)(({ theme }) => ({
   position: "relative",
   background: `linear-gradient(45deg, ${theme.palette.background.paper} 30%, ${theme.palette.background.default} 70%)`,
   borderRadius: 20,
-  padding: theme.spacing(4),
-  boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.06)",
+  padding: theme.spacing(2),
   marginTop: theme.spacing(4),
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  backdropFilter: "blur(10px)",
-
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    inset: 0,
-    borderRadius: 20,
-    padding: "1px",
-    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-    WebkitMaskComposite: "xor",
-    maskComposite: "exclude",
-    pointerEvents: "none",
-  },
-
-  "&:hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0px 12px 36px rgba(0, 0, 0, 0.08)",
-  },
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  }
 }));
 
 const StyledInput = styled(TextField)(({ theme }) => ({
@@ -81,44 +66,40 @@ const StyledInput = styled(TextField)(({ theme }) => ({
 const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: 'none',
   borderRadius: 20,
-  padding: theme.spacing(1, 2),
-  fontSize: '0.85rem',
+  padding: theme.spacing(0.5, 1.5),
+  fontSize: '0.8rem',
   fontWeight: 500,
-  height: 40,
+  height: 36,
   boxShadow: 'none',
   background: `linear-gradient(45deg, ${theme.palette.background.paper}, ${theme.palette.action.hover})`,
   border: `1px solid ${theme.palette.divider}`,
   color: theme.palette.text.primary,
-  transition: 'transform 0.8s ease, box-shadow 0.7s ease',
-  '&:hover': {
-    transform: 'scale(1.03)',
-    boxShadow: theme.shadows[2],
-    borderColor: theme.palette.primary.main,
-    background: theme.palette.primary.light,
-  },
   '&.active': {
     background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
     color: theme.palette.primary.contrastText,
     borderColor: theme.palette.primary.main,
-    transform: 'scale(1.05)',
   },
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(1, 2),
+    fontSize: '0.85rem',
+    height: 40,
+  }
 }));
 
 const CryptoCard = styled(Paper)(({ theme }) => ({
   background: `linear-gradient(145deg, ${theme.palette.background.paper}, ${theme.palette.action.hover})`,
   borderRadius: 12,
-  padding: theme.spacing(2),
-  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
-  marginBottom: theme.spacing(2),
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.1)',
-  },
+  padding: theme.spacing(1.5),
+  margin: theme.spacing(.1),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  }
 }));
 
 const MarketPage = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [search, setSearch] = useState('');
   const [coins, setCoins] = useState<MarketData[]>([]);
   const [filteredCoins, setFilteredCoins] = useState<MarketData[]>([]);
@@ -126,83 +107,78 @@ const MarketPage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'gainers' | 'losers' | 'watchlist'>('all');
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [page, setPage] = useState(1); // برای صفحه‌بندی
-  const [hasMore, setHasMore] = useState(true); // برای بررسی وجود داده‌های بیشتر
-  const observer = useRef<IntersectionObserver | null>(null); // برای Intersection Observer
+  const [error, setError] = useState<string | null>(null);
+  const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
 
-  // Load watchlist from localStorage on initial render
+  // Load watchlist from localStorage
   useEffect(() => {
     const storedWatchlist = localStorage.getItem('cryptoWatchlist');
     if (storedWatchlist) {
-      setWatchlist(JSON.parse(storedWatchlist));
+      try {
+        setWatchlist(JSON.parse(storedWatchlist));
+      } catch (e) {
+        console.error('Failed to parse watchlist', e);
+      }
     }
   }, []);
 
-  // Save watchlist to localStorage whenever it changes
+  // Save watchlist to localStorage
   useEffect(() => {
-    localStorage.setItem('cryptoWatchlist', JSON.stringify(watchlist));
+    try {
+      localStorage.setItem('cryptoWatchlist', JSON.stringify(watchlist));
+    } catch (e) {
+      console.error('Failed to save watchlist', e);
+    }
   }, [watchlist]);
 
-  // Fetch market data from API with pagination
-  const fetchMarketData = useCallback(async (pageNum: number, reset = false) => {
+  // Fetch market data from API
+  const fetchMarketData = useCallback(async () => {
     try {
       setLoading(true);
-
-      // Using CoinGecko API with pagination (20 coins per page)
+      setError(null);
+      
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${pageNum}&sparkline=false&price_change_percentage=24h`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`
       );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch market data');
+        throw new Error('Failed to fetch market data. Please try again later.');
       }
 
       const data = await response.json();
-
-      // اگر reset=true باشد (مثلاً بعد از تغییر فیلتر یا سرچ)، لیست قبلی پاک می‌شه
-      setCoins(prev => (reset ? data : [...prev, ...data]));
-      setFilteredCoins(prev => (reset ? data : [...prev, ...data]));
+      setCoins(data);
       setLastUpdated(new Date().toLocaleTimeString());
-      setHasMore(data.length === 20); // اگر کمتر از 20 آیتم برگردونده شد، یعنی داده بیشتری نیست
-    } catch (error) {
-      console.error('Error fetching market data:', error);
+    } catch (err) {
+      console.error('Error fetching market data:', err);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Initial data fetch and refresh
+  // Initial data fetch and setup refresh
   useEffect(() => {
-    fetchMarketData(1, true); // بارگذاری اولیه صفحه اول
-
-    // Refresh data every 60 seconds (فقط برای صفحه اول)
-    const intervalId = setInterval(() => fetchMarketData(1, true), 60000);
-    return () => clearInterval(intervalId);
+    fetchMarketData();
+    
+    // Setup refresh interval
+    const interval = setInterval(fetchMarketData, 60000);
+    setRefreshInterval(interval);
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [fetchMarketData]);
 
-  // Intersection Observer برای Infinite Scroll
-  const lastCoinRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading || !hasMore) return;
-      if (observer.current) observer.current.disconnect();
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          setPage(prev => prev + 1);
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore]
-  );
-
-  // Fetch more data when page changes
-  useEffect(() => {
-    if (page > 1) {
-      fetchMarketData(page);
+  // Toggle auto-refresh
+  const toggleAutoRefresh = () => {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
+      setRefreshInterval(null);
+    } else {
+      const interval = setInterval(fetchMarketData, 60000);
+      setRefreshInterval(interval);
     }
-  }, [page, fetchMarketData]);
+  };
 
   // Toggle watchlist
   const toggleWatchlist = (coinId: string) => {
@@ -228,16 +204,20 @@ const MarketPage = () => {
     }
 
     // Apply filters
-    if (filter === 'gainers') {
-      result = result
-        .filter(coin => coin.price_change_percentage_24h > 0)
-        .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h);
-    } else if (filter === 'losers') {
-      result = result
-        .filter(coin => coin.price_change_percentage_24h < 0)
-        .sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h);
-    } else if (filter === 'watchlist') {
-      result = result.filter(coin => watchlist.includes(coin.id));
+    switch (filter) {
+      case 'gainers':
+        result = result
+          .filter(coin => coin.price_change_percentage_24h > 0)
+          .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h);
+        break;
+      case 'losers':
+        result = result
+          .filter(coin => coin.price_change_percentage_24h < 0)
+          .sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h);
+        break;
+      case 'watchlist':
+        result = result.filter(coin => watchlist.includes(coin.id));
+        break;
     }
 
     setFilteredCoins(result);
@@ -252,10 +232,10 @@ const MarketPage = () => {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 4 }}>
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 2 }}>
       <Container maxWidth="lg">
         <Typography
-          variant="h4"
+          variant={isMobile ? "h5" : "h4"}
           component="h1"
           gutterBottom
           sx={{
@@ -265,17 +245,29 @@ const MarketPage = () => {
             background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            px: 1
           }}
         >
           Cryptocurrency Market
         </Typography>
 
-        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 4 }}>
-          {lastUpdated ? `Last updated: ${lastUpdated}` : 'Loading market data...'}
-        </Typography>
+        <Box sx={{ textAlign: 'center', mb: 3, px: 1 }}>
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {error}
+            </Alert>
+          )}
+          <Typography variant="body2" color="text.secondary">
+            {loading && coins.length > 0 
+              ? 'Refreshing data...' 
+              : lastUpdated 
+                ? `Last updated: ${lastUpdated}` 
+                : 'Loading market data...'}
+          </Typography>
+        </Box>
 
-        <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
+        <Grid container spacing={1} sx={{ mb: 3, px: 1 }}>
+          <Grid size={{xs:12,md:6}}>
             <StyledInput
               label="Search by name or symbol"
               variant="outlined"
@@ -283,92 +275,77 @@ const MarketPage = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               inputProps={{ 'aria-label': 'Search cryptocurrencies' }}
+              size="small"
             />
           </Grid>
 
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Grid container spacing={1} sx={{ flexWrap: 'wrap' }}>
-              <Grid>
+          <Grid size={{xs:12,md:6}}>
+            <Box sx={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: 1,
+              justifyContent: isMobile ? 'center' : 'flex-start'
+            }}>
+              <StyledButton
+                onClick={() => setFilter('all')}
+                className={filter === 'all' ? 'active' : ''}
+              >
+                All
+              </StyledButton>
+
+              <StyledButton
+                onClick={() => setFilter('gainers')}
+                className={filter === 'gainers' ? 'active' : ''}
+              >
+                Gainers
+              </StyledButton>
+
+              <StyledButton
+                onClick={() => setFilter('losers')}
+                className={filter === 'losers' ? 'active' : ''}
+              >
+                Losers
+              </StyledButton>
+
+              <Badge badgeContent={watchlist.length} color="primary">
                 <StyledButton
-                  onClick={() => {
-                    setFilter('all');
-                    setPage(1);
-                    fetchMarketData(1, true); // Reset data on filter change
-                  }}
-                  className={filter === 'all' ? 'active' : ''}
+                  onClick={() => setFilter('watchlist')}
+                  className={filter === 'watchlist' ? 'active' : ''}
                 >
-                  All
+                  Watchlist
                 </StyledButton>
-              </Grid>
+              </Badge>
 
-              <Grid>
-                <StyledButton
-                  onClick={() => {
-                    setFilter('gainers');
-                    setPage(1);
-                    fetchMarketData(1, true);
-                  }}
-                  className={filter === 'gainers' ? 'active' : ''}
-                >
-                  Top Gainers
-                </StyledButton>
-              </Grid>
-
-              <Grid>
-                <StyledButton
-                  onClick={() => {
-                    setFilter('losers');
-                    setPage(1);
-                    fetchMarketData(1, true);
-                  }}
-                  className={filter === 'losers' ? 'active' : ''}
-                >
-                  Top Losers
-                </StyledButton>
-              </Grid>
-
-              <Grid>
-                <Badge badgeContent={watchlist.length} color="primary">
-                  <StyledButton
-                    onClick={() => {
-                      setFilter('watchlist');
-                      setPage(1);
-                      fetchMarketData(1, true);
-                    }}
-                    className={filter === 'watchlist' ? 'active' : ''}
-                  >
-                    Watchlist
-                  </StyledButton>
-                </Badge>
-              </Grid>
-
-              <Grid>
-                <StyledButton onClick={() => fetchMarketData(1, true)}>
-                  <Icon icon="mdi:refresh" width={16} style={{ marginRight: theme.spacing(0.5) }} />
-                  Refresh
-                </StyledButton>
-              </Grid>
-            </Grid>
+              <StyledButton onClick={fetchMarketData}>
+                <Icon icon="mdi:refresh" width={16} />
+              </StyledButton>
+              
+              <StyledButton 
+                onClick={toggleAutoRefresh}
+                color={refreshInterval ? 'success' : 'error'}
+              >
+                <Icon 
+                  icon={refreshInterval ? "mdi:autorenew" : "mdi:autorenew-off"} 
+                  width={16} 
+                />
+              </StyledButton>
+            </Box>
           </Grid>
         </Grid>
 
         <SectionCard>
           {loading && filteredCoins.length === 0 ? (
             <Grid container spacing={2}>
-              {Array.from({ length: 12 }).map((_, index) => (
-                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
-                  <Skeleton variant="rectangular" height={220} sx={{ borderRadius: 3 }} />
+              {Array.from({ length: isMobile ? 4 : 8 }).map((_, index) => (
+                <Grid size={{xs:12,sm:6,md:4 ,lg:3}} key={index}>
+                  <Skeleton variant="rectangular" height={isMobile ? 160 : 220} sx={{ borderRadius: 2 }} />
                 </Grid>
               ))}
             </Grid>
           ) : (
             <Grid container spacing={2}>
-              {filteredCoins.map((coin, index) => (
-                <Grid
-                  size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
-                  key={coin.id}
-                  ref={index === filteredCoins.length - 1 ? lastCoinRef : null} // Attach observer to last coin
-                >
+              {filteredCoins.map((coin) => (
+                <Grid size={{xs:12,sm:6,md:4 ,lg:3}} key={coin.id}>
                   <CryptoCard>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
                       <Box
@@ -383,7 +360,7 @@ const MarketPage = () => {
                         }}
                       >
                         <Typography variant="caption" fontWeight={600}>
-                          #{index + 1}
+                          {coin.symbol}
                         </Typography>
                       </Box>
 
@@ -395,24 +372,26 @@ const MarketPage = () => {
                             : theme.palette.text.secondary,
                         }}
                         aria-label={watchlist.includes(coin.id) ? 'Remove from watchlist' : 'Add to watchlist'}
+                        size="small"
                       >
                         <Icon
                           icon={watchlist.includes(coin.id) ? 'mdi:star' : 'mdi:star-outline'}
-                          width={24}
+                          width={20}
                         />
                       </IconButton>
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                      <img
+                      <Image
                         src={coin.image}
                         alt={`${coin.name} logo`}
                         width={40}
                         height={40}
                         style={{ borderRadius: '50%' }}
+                        onError={(e) => (e.currentTarget.src = '/crypto-fallback.png')}
                       />
-                      <Box>
-                        <Typography variant="body1" fontWeight={600}>
+                      <Box sx={{ overflow: 'hidden' }}>
+                        <Typography variant="body1" fontWeight={600} sx={{ fontSize: isMobile ? '1rem' : '1.1rem' }}>
                           {coin.name}
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
@@ -422,8 +401,11 @@ const MarketPage = () => {
                     </Box>
 
                     <Box sx={{ mb: 1 }}>
-                      <Typography variant="body1" fontWeight={600} sx={{ fontSize: '1.25rem' }}>
-                        ${coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      <Typography variant="body1" fontWeight={600} sx={{ fontSize: isMobile ? '1.1rem' : '1.25rem' }}>
+                        ${coin.current_price.toLocaleString(undefined, { 
+                          minimumFractionDigits: 2, 
+                          maximumFractionDigits: coin.current_price < 1 ? 6 : 2 
+                        })}
                       </Typography>
                     </Box>
 
@@ -432,6 +414,7 @@ const MarketPage = () => {
                         label={`${coin.price_change_percentage_24h >= 0 ? '+' : ''}${coin.price_change_percentage_24h.toFixed(2)}%`}
                         sx={{
                           fontWeight: 600,
+                          fontSize: isMobile ? '0.7rem' : '0.8rem',
                           backgroundColor: coin.price_change_percentage_24h >= 0
                             ? theme.palette.success.light
                             : theme.palette.error.light,
@@ -439,14 +422,14 @@ const MarketPage = () => {
                             ? theme.palette.success.dark
                             : theme.palette.error.dark,
                         }}
-                        size="small"
+                        size={isMobile ? "small" : "medium"}
                       />
 
                       <Box>
-                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontSize: isMobile ? '0.65rem' : '0.75rem' }}>
                           Volume
                         </Typography>
-                        <Typography variant="caption">
+                        <Typography variant="caption" sx={{ fontSize: isMobile ? '0.7rem' : '0.8rem' }}>
                           {formatNumber(coin.total_volume)}
                         </Typography>
                       </Box>
@@ -454,21 +437,13 @@ const MarketPage = () => {
                   </CryptoCard>
                 </Grid>
               ))}
-              {loading && filteredCoins.length > 0 && (
-                <Grid container spacing={2} sx={{ mt: 2 }}>
-                  {Array.from({ length: 4 }).map((_, index) => (
-                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={`skeleton-${index}`}>
-                      <Skeleton variant="rectangular" height={220} sx={{ borderRadius: 3 }} />
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
             </Grid>
           )}
-          {!hasMore && filteredCoins.length > 0 && (
+          
+          {!loading && filteredCoins.length === 0 && (
             <Box sx={{ textAlign: 'center', py: 4 }}>
               <Typography variant="body1" color="text.secondary">
-                No more coins to load.
+                No matching cryptocurrencies found
               </Typography>
             </Box>
           )}
