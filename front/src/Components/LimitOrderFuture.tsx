@@ -212,15 +212,21 @@ const ModalContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(2),
   [theme.breakpoints.up('xs')]: {
-    left: '12%',
-    maxWidth: 340,
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%) !important',
+    maxWidth: 320,
   },
   [theme.breakpoints.up('sm')]: {
-    left: '25%',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%) !important',
     maxWidth: 440,
   },
   [theme.breakpoints.up('md')]: {
-    left: "33vw",
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%) !important',
     maxWidth: 540,
   },
 }));

@@ -16,7 +16,7 @@ const UserpanelUnderFee = () => {
   return (
     <Box sx={{ 
       mt: 4, 
-      p: 3,
+      p: {xs:1,md:3},
       backgroundColor: theme.palette.mode === 'dark' 
         ? theme.palette.background.paper 
         : theme.palette.grey[100],
@@ -28,7 +28,7 @@ const UserpanelUnderFee = () => {
       </Typography>
       
       {/* Maker Order Section */}
-      <Paper sx={{ p: 3, mb: 4, borderRadius: 2 }}>
+      <Paper sx={{ p: 1, mb: 4, borderRadius: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <InfoIcon color="primary" sx={{ mr: 1.5, fontSize: 32 }} />
           <Typography variant="h5" fontWeight="bold">Maker Order</Typography>
@@ -49,7 +49,7 @@ const UserpanelUnderFee = () => {
       </Paper>
       
       {/* Taker Order Section */}
-      <Paper sx={{ p: 3, mb: 4, borderRadius: 2 }}>
+      <Paper sx={{ p: 1, mb: 4, borderRadius: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <InfoIcon color="primary" sx={{ mr: 1.5, fontSize: 32 }} />
           <Typography variant="h5" fontWeight="bold">Taker Order</Typography>
@@ -146,8 +146,8 @@ const UserpanelUnderFee = () => {
       <Divider sx={{ my: 4 }} />
       
       <Box sx={{ 
-        backgroundColor: theme.palette.primary.light, 
-        p: 3, 
+        backgroundColor: theme.palette.primary.dark, 
+        p: 2, 
         borderRadius: 2,
         textAlign: 'center',
         mt: 4
@@ -158,7 +158,7 @@ const UserpanelUnderFee = () => {
         <Typography variant="body1" sx={{ mt: 1 }}>
           Visit our comprehensive fee schedule or contact support for assistance
         </Typography>
-        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center', gap: 2 }}>
+        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center',flexDirection:{xs:'column',md:'row'}, gap: 2 }}>
           <Button 
             variant="contained" 
             color="primary"

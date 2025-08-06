@@ -118,7 +118,7 @@ const EventRewardsPage = () => {
                       alt={event.name}
                       sx={{ objectFit: 'cover' }}
                     />
-                    <CardContent sx={{ p: 2 }}>
+                    <CardContent sx={{ p:{xs:0,md:2}}}>
                       <Typography variant="h6" sx={{ fontWeight: 600, color: theme.palette.text.primary }}>
                         {event.name}
                       </Typography>

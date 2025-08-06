@@ -119,7 +119,7 @@ const categories: Category[] = [
 const SectionCard = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: 16,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
   marginTop: theme.spacing(3),
   overflow: 'hidden',
@@ -375,7 +375,7 @@ const WalletSpot3: React.FC = () => {
       <Box
         sx={{
           mt: 1,
-          p: 2,
+          p: {xs:1, md:2},
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',

@@ -44,7 +44,7 @@ const UserpanelTValue = () => {
         {/* Header row */}
         <Grid size={{ xs: 6 }}>
           <Box display="flex" alignItems="center">
-            <Typography variant="h6" fontWeight="bold">
+            <Typography variant='body2' fontWeight="bold">
               Total Value
             </Typography>
             <IconButton 
@@ -61,7 +61,7 @@ const UserpanelTValue = () => {
         </Grid>
         <Grid size={{ xs: 6 }} textAlign="right">
           <Typography 
-            variant="body2" 
+            fontSize={{xs:12,md:15}}
             color="primary"
             sx={{ 
               cursor: 'pointer',
@@ -75,7 +75,7 @@ const UserpanelTValue = () => {
         {/* Value row */}
         <Grid size={{ xs: 12 }} mt={1}>
           <Box display="flex" alignItems="center">
-            <Typography variant="h4" fontWeight="bold">
+            <Typography variant="h6" fontWeight="bold">
               {isVisible ? '6.73' : '****'}
             </Typography>
             <FormControl variant="standard" sx={{ ml: 1 }}>
@@ -84,7 +84,7 @@ const UserpanelTValue = () => {
                 onChange={handleChange}
                 disableUnderline
                 sx={{
-                  fontSize: '1.5rem',
+                  fontSize:{xs:12,md:15},
                   fontWeight: 'bold',
                   '& .MuiSelect-select': { 
                     padding: 0,
@@ -106,7 +106,7 @@ const UserpanelTValue = () => {
         {/* Conversion row */}
         <Grid size={{ xs: 12 }} mt={0.5}>
           <Box display="flex" alignItems="center">
-            <Typography variant="body2" color="text.secondary">
+            <Typography fontSize={{xs:12,md:15}} color="text.secondary">
               ≈ {isVisible ? '6.73' : '****'}
             </Typography>
             <FormControl variant="standard" sx={{ ml: 0.5 }}>
@@ -115,7 +115,7 @@ const UserpanelTValue = () => {
                 onChange={handleChange}
                 disableUnderline
                 sx={{
-                  fontSize: '0.875rem',
+                  fontSize:{xs:11,md:15},
                   color: 'text.secondary',
                   '& .MuiSelect-select': { 
                     padding: 0,
@@ -147,7 +147,7 @@ const UserpanelTValue = () => {
                 textTransform: 'none',
                 fontWeight: 'bold',
                 boxShadow: 'none',
-                maxWidth: 150,
+                maxWidth: {xs:"100%",md:150},
               }}
             >
               Deposit

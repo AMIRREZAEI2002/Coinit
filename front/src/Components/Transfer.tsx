@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
+import React, { useState, useCallback } from 'react';
 import {
   Box,
   Button,
@@ -12,9 +15,6 @@ import {
   TextField,
   Typography,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Snackbar,
   IconButton,
   Tooltip,
@@ -23,12 +23,12 @@ import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
 
-// TypeScript interfaces
+// ✅ TypeScript interfaces
 interface Wallet {
   id: string;
   address: string;
   label: string;
-  currency: string;
+  currency: string[]; // ✅ تغییر به آرایه
   balance: number;
 }
 
@@ -40,7 +40,7 @@ interface FormData {
   note: string;
 }
 
-// Styled components
+// ✅ Styled components
 const StyledCard = styled(Card)(({ theme }) => ({
   borderRadius: '12px',
   boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
@@ -125,7 +125,6 @@ const AmountButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-
 const Transfer: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     fromWallet: '',
@@ -137,13 +136,12 @@ const Transfer: React.FC = () => {
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [isDarkMode] = useState(false);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // ✅ Wallets با currency آرایه
   const wallets: Wallet[] = [
-    { id: 'wallet1', address: '0xAbC123...9FEd', label: 'ETH Wallet', currency: 'ETH', balance: 2.5 },
-    { id: 'wallet2', address: '0xDeF456...4Bcd', label: 'BTC Wallet', currency: 'BTC', balance: 0.1 },
-    { id: 'wallet3', address: '0xGhI789...2Xyz', label: 'USDT Wallet', currency: 'USDT', balance: 1000 },
+    { id: 'wallet1', address: '0xAbC123...9FEd', label: 'Multi Wallet', currency: ['BTC','ETH'], balance: 2.5 },
+    { id: 'wallet2', address: '0xDeF456...4Bcd', label: 'BTC Wallet', currency: ['BTC'], balance: 0.1 },
+    { id: 'wallet3', address: '0xGhI789...2Xyz', label: 'USDT Wallet', currency: ['USDT'], balance: 1000 },
   ];
 
   const validateForm = useCallback(() => {
@@ -156,14 +154,14 @@ const Transfer: React.FC = () => {
     if (!formData.toAddress) {
       newErrors.toAddress = 'Please enter a recipient address.';
     } else if (formData.currency === 'ETH' && !/^(0x)?[0-9a-fA-F]{40}$/.test(formData.toAddress)) {
-      newErrors.toAddress = 'Please enter a valid Ethereum address (40 hex characters).';
+      newErrors.toAddress = 'Please enter a valid Ethereum address.';
     } else if (formData.currency === 'BTC' && !/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(formData.toAddress)) {
       newErrors.toAddress = 'Please enter a valid Bitcoin address.';
     }
     if (!formData.amount || parseFloat(formData.amount) <= 0) {
       newErrors.amount = 'Please enter a valid amount.';
     } else if (selectedWallet && parseFloat(formData.amount) > selectedWallet.balance) {
-      newErrors.amount = `Amount exceeds wallet balance (${selectedWallet.balance} ${selectedWallet.currency}).`;
+      newErrors.amount = `Amount exceeds wallet balance (${selectedWallet.balance}).`;
     }
     if (!formData.currency) {
       newErrors.currency = 'Please select a currency.';
@@ -212,7 +210,6 @@ const Transfer: React.FC = () => {
       if (validateForm()) {
         setSnackbarMessage('Transaction sent for review!');
         setShowSnackbar(true);
-        console.log('Form submitted:', formData);
         setFormData({ fromWallet: '', toAddress: '', amount: '', currency: '', note: '' });
       }
     },
@@ -228,305 +225,129 @@ const Transfer: React.FC = () => {
     setShowSnackbar(false);
   }, []);
 
-  useEffect(() => {
-    const selectedWallet = wallets.find((w) => w.id === formData.fromWallet);
-    if (selectedWallet && formData.currency !== selectedWallet.currency) {
-      setFormData((prev) => ({ ...prev, currency: selectedWallet.currency }));
-      setErrors((prev) => ({ ...prev, currency: undefined }));
-    }
-  }, [formData.fromWallet, wallets]);
-
   return (
-      <Box sx={{ py: 6, px: { xs: 3, lg: 0 }, bgcolor: 'theme.platte.background.default', minHeight: '100vh' }}>
-        <Grid container justifyContent="center">
-          <Grid size={{xs:12,lg:9}} >
-            {/* Transfer Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <StyledCard>
-                <CardHeader
-                  title={
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <Typography variant="h5" fontWeight="bold" color="primary">
-                        1. Transfer Form
-                      </Typography>
-                    </Box>
-                  }
-                  subheader={
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                      Send cryptocurrency securely from one of your wallets. All fields are required except “Note.”
+    <Box sx={{ py: { xs: 4, md: 6 }, px: { xs: 0, sm: 3, lg: 0 }, bgcolor: 'background.default', minHeight: '100vh' }}>
+      <Grid container justifyContent="center">
+        <Grid size={{ xs: 12, md: 9 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <StyledCard>
+              <CardHeader
+                title={
+                  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, gap: { xs: 1, sm: 0 } }}>
+                    <Typography variant="h5" fontWeight="bold" color="primary">
+                      1. Transfer Form
                     </Typography>
-                  }
-                  sx={{ borderBottom: 'none', bgcolor: 'transparent', py: 3, px: 4 }}
-                />
-                <CardContent sx={{ py: 5, px: 4 }}>
-                  <Box component="form" id="cryptoTransferForm" onSubmit={handleSubmit} noValidate>
-                    {/* From Wallet */}
-                    <StyledFormControl fullWidth sx={{ mb: 4 }}>
-                      <InputLabel id="fromWallet-label">From Wallet</InputLabel>
-                      <Select
-                        labelId="fromWallet-label"
-                        id="fromWallet"
-                        name="fromWallet"
-                        value={formData.fromWallet}
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
-                        onChange={handleChange}
-                        label="From Wallet"
-                        error={!!errors.fromWallet}
-                        required
-                      >
-                        <MenuItem value="" disabled>
-                          Select a wallet
-                        </MenuItem>
-                        {wallets.map((wallet) => (
-                          <MenuItem key={wallet.id} value={wallet.id}>
-                            {wallet.address} ({wallet.label}) - Balance: {wallet.balance} {wallet.currency}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      <IconWrapper2>
-                        <Tooltip title="Source wallet for the transaction">
-                          <Icon icon="mdi:wallet" width={24} />
-                        </Tooltip>
-                      </IconWrapper2>
-                      {errors.fromWallet && (
-                        <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>
-                          {errors.fromWallet}
-                        </Typography>
-                      )}
-                      {formData.fromWallet && (
-                        <Typography variant="caption" color="text.secondary" sx={{ pl: 2, mt: 1 }}>
-                          Balance: {wallets.find((w) => w.id === formData.fromWallet)?.balance} {formData.currency}
-                        </Typography>
-                      )}
-                    </StyledFormControl>
-
-                    {/* To Address */}
-                    <StyledFormControl fullWidth sx={{ mb: 4 }}>
-                      <StyledTextField
-                        id="toAddress"
-                        name="toAddress"
-                        label="To Address"
-                        value={formData.toAddress}
-                        onChange={handleChange}
-                        placeholder="Enter recipient’s wallet address"
-                        error={!!errors.toAddress}
-                        required
-                        fullWidth
-                      />
-                      <IconWrapper>
-                        <Tooltip title="Scan QR code or enter address">
-                          <Icon icon="mdi:qrcode-scan" width={24} />
-                        </Tooltip>
-                      </IconWrapper>
-                      {errors.toAddress && (
-                        <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>
-                          {errors.toAddress}
-                        </Typography>
-                      )}
-                    </StyledFormControl>
-
-                    {/* Amount and Currency */}
-                    <Box sx={{ mb: 4 }}>
-                      <Typography variant="subtitle1" fontWeight="medium" sx={{ mb: 1 }}>
-                        Amount
-                      </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center',flexDirection:{xs:'column',lg:'row'}, gap: 2 }}>
-                        <StyledTextField
-                          id="amount"
-                          name="amount"
-                          type="text"
-                          value={formData.amount}
-                          onChange={handleChange}
-                          placeholder="0.00"
-                          error={!!errors.amount}
-                          required
-                          sx={{ flex: 1,width: '100%' }}
-                          InputProps={{
-                            inputMode: 'decimal',
-                            endAdornment: (
-                              <Box sx={{ display: 'flex', gap: 1 }}>
-                                <AmountButton onClick={handleIncrement}>
-                                  <Icon icon="mdi:plus" width={20} />
-                                </AmountButton>
-                                <AmountButton onClick={handleDecrement}>
-                                  <Icon icon="mdi:minus" width={20} />
-                                </AmountButton>
-                              </Box>
-                            ),
-                          }}
-                        />
-                        <IconWrapper sx={{ left: 16 }}>
-                          <Tooltip title="Amount of cryptocurrency to transfer">
-                            <Icon icon="mdi:currency-exchange" width={24} />
-                          </Tooltip>
-                        </IconWrapper>
-                        <FormControl sx={{ minWidth: {xs:"100%",lg:120} }} error={!!errors.currency}>
-                          <InputLabel id="currency-label">Currency</InputLabel>
-                          <Select
-                            labelId="currency-label"
-                            id="currency"
-                            name="currency"
-                            value={formData.currency}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            onChange={handleChange}
-                            label="Currency"
-                            required
-                            disabled
-                          >
-                            <MenuItem value="" disabled>
-                              Currency
-                            </MenuItem>
-                            {wallets
-                              .filter((w) => w.id === formData.fromWallet)
-                              .map((w) => (
-                                <MenuItem key={w.currency} value={w.currency}>
-                                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <Icon icon={`cryptocurrency:${w.currency.toLowerCase()}`} width={20} />
-                                    {w.currency}
-                                  </Box>
-                                </MenuItem>
-                              ))}
-                          </Select>
-                        </FormControl>
-                        <Button variant="outlined" onClick={handleMaxAmount} sx={{width:{xs:"100%",lg:'fit-content'}}} disabled={!formData.fromWallet}>
-                          Max
-                        </Button>
-                      </Box>
-                      {errors.amount && (
-                        <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>
-                          {errors.amount}
-                        </Typography>
-                      )}
-                    </Box>
-
-                    {/* Note */}
-                    <StyledFormControl fullWidth sx={{ mb: 5 }}>
-                      <StyledTextField
-                        id="note"
-                        name="note"
-                        label="Note (Optional)"
-                        value={formData.note}
-                        onChange={handleChange}
-                        multiline
-                        rows={3}
-                        placeholder="Add a memo or reference"
-                      />
-                      <IconWrapper>
-                        <Tooltip title="Optional note for the transaction">
-                          <Icon icon="mdi:chat-outline" width={24} />
-                        </Tooltip>
-                      </IconWrapper>
-                    </StyledFormControl>
-
-                    {/* Buttons */}
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-                      <Button variant="outlined" onClick={handleReset}>
-                        Clear
-                      </Button>
-                      <GradientButton type="submit" startIcon={<Icon icon="mdi:send" />}>
-                        Review & Send
-                      </GradientButton>
-                    </Box>
                   </Box>
-                </CardContent>
-              </StyledCard>
-            </motion.div>
+                }
+                subheader={<Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>Send cryptocurrency securely from one of your wallets.</Typography>}
+                sx={{ borderBottom: 'none', bgcolor: 'transparent', py: 3, px: { xs: 2, md: 4 } }}
+              />
+              <CardContent sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, md: 4 } }}>
+                <Box component="form" id="cryptoTransferForm" onSubmit={handleSubmit} noValidate>
+                  {/* From Wallet */}
+                  <StyledFormControl fullWidth sx={{ mb: 4 }}>
+                    <InputLabel id="fromWallet-label">From Wallet</InputLabel>
+                    <Select
+                      labelId="fromWallet-label"
+                      id="fromWallet"
+                      name="fromWallet"
+                      value={formData.fromWallet}
+                      onChange={handleChange as any}
+                      label="From Wallet"
+                      error={!!errors.fromWallet}
+                      required
+                    >
+                      <MenuItem value="" disabled>Select a wallet</MenuItem>
+                      {wallets.map((wallet) => (
+                        <MenuItem key={wallet.id} value={wallet.id}>
+                          {wallet.address} ({wallet.label}) - Balance: {wallet.balance} [{wallet.currency.join(', ')}]
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <IconWrapper2>
+                      <Tooltip title="Source wallet for the transaction">
+                        <Icon icon="mdi:wallet" width={24} />
+                      </Tooltip>
+                    </IconWrapper2>
+                    {errors.fromWallet && <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>{errors.fromWallet}</Typography>}
+                  </StyledFormControl>
 
-            {/* Guidance & Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <StyledCard>
-                <CardContent sx={{ py: 5, px: 4 }}>
-                  <Typography variant="h5" fontWeight="bold" color="primary" sx={{ mb: 3 }}>
-                    2. Guidance & Information
-                  </Typography>
-                  <List sx={{ pl: 2 }}>
-                    <ListItem disablePadding sx={{ mb: 2 }}>
-                      <ListItemText
-                        primary="Ensure the “To Address” matches exactly the recipient’s public key. Ethereum addresses must be 40 hexadecimal characters with an optional “0x” prefix."
-                        primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
-                      />
-                    </ListItem>
-                    <ListItem disablePadding sx={{ mb: 2 }}>
-                      <ListItemText
-                        primary="Gas fees or network transaction fees apply automatically based on blockchain congestion. Check live network fees (e.g., via EthGasStation) before confirming the transaction."
-                        primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
-                      />
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemText
-                        primary="Once a transaction is broadcast to the blockchain, it cannot be reversed. Double-check all details before sending to avoid irreversible mistakes."
-                        primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
-                      />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </StyledCard>
-            </motion.div>
+                  {/* To Address */}
+                  <StyledFormControl fullWidth sx={{ mb: 4 }}>
+                    <StyledTextField id="toAddress" name="toAddress" label="To Address" value={formData.toAddress} onChange={handleChange as any} placeholder="Enter recipient’s wallet address" error={!!errors.toAddress} required fullWidth />
+                    <IconWrapper>
+                      <Tooltip title="Scan QR code or enter address">
+                        <Icon icon="mdi:qrcode-scan" width={24} />
+                      </Tooltip>
+                    </IconWrapper>
+                    {errors.toAddress && <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>{errors.toAddress}</Typography>}
+                  </StyledFormControl>
 
-            {/* Support & Contact */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <StyledCard>
-                <CardContent sx={{ py: 5, px: 4 }}>
-                  <Typography variant="h5" fontWeight="bold" color="primary" sx={{ mb: 3 }}>
-                    3. Support & Contact
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                    If you experience any issues with your transfer, contact our 24/7 Support Team.
-                  </Typography>
-                  <List sx={{ pl: 2 }}>
-                    <ListItem disablePadding sx={{ mb: 2 }}>
-                      <ListItemText
-                        primary={
-                          <span>
-                            Email:{' '}
-                            <a href="mailto:support@coinit.com" style={{ textDecoration: 'none', color: isDarkMode ? '#60a5fa' : '#3b82f6' }}>
-                              support@coinit.com
-                            </a>
-                          </span>
-                        }
-                        primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
+                  {/* Amount & Currency */}
+                  <Box sx={{ mb: 4 }}>
+                    <Typography variant="subtitle1" fontWeight="medium" sx={{ mb: 1 }}>Amount</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'stretch', md: 'center' }, gap: { xs: 2, md: 2 } }}>
+                      <StyledTextField
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        value={formData.amount}
+                        onChange={handleChange as any}
+                        placeholder="0.00"
+                        error={!!errors.amount}
+                        required
+                        sx={{ flex: 1, width: '100%' }}
+                        InputProps={{
+                          inputMode: 'decimal',
+                          endAdornment: (
+                            <Box sx={{ display: 'flex', gap: 1 }}>
+                              <AmountButton onClick={handleIncrement}><Icon icon="mdi:plus" width={20} /></AmountButton>
+                              <AmountButton onClick={handleDecrement}><Icon icon="mdi:minus" width={20} /></AmountButton>
+                            </Box>
+                          ),
+                        }}
                       />
-                    </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemText
-                        primary="Phone: +00000000000"
-                        primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }}
-                      />
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </StyledCard>
-            </motion.div>
-          </Grid>
+                      <FormControl sx={{ minWidth: { xs: '100%', md: 120 } }} error={!!errors.currency}>
+                        <InputLabel id="currency-label">Currency</InputLabel>
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                        <Select labelId="currency-label" id="currency" name="currency" value={formData.currency} onChange={handleChange as any}>
+                          <MenuItem value="" disabled>Select Currency</MenuItem>
+                          {wallets.filter((w) => w.id === formData.fromWallet)
+                            .flatMap((w) => w.currency)
+                            .map((cur) => (
+                              <MenuItem key={cur} value={cur}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                  <Icon icon={`cryptocurrency:${cur.toLowerCase()}`} width={20} />
+                                  {cur}
+                                </Box>
+                              </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                      <Button variant="outlined" onClick={handleMaxAmount} sx={{ width: { xs: '100%', md: 'auto' }, mt: { xs: 1, md: 0 } }} disabled={!formData.fromWallet}>Max</Button>
+                    </Box>
+                    {errors.amount && <Typography variant="caption" color="error" sx={{ pl: 2, mt: 1 }}>{errors.amount}</Typography>}
+                  </Box>
+
+                  {/* Note */}
+                  <StyledFormControl fullWidth sx={{ mb: 5 }}>
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    <StyledTextField id="note" name="note" label="Note (Optional)" value={formData.note} onChange={handleChange as any} multiline rows={3} placeholder="Add a memo or reference" />
+                  </StyledFormControl>
+
+                  {/* Buttons */}
+                  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'flex-end', gap: { xs: 2, sm: 2 }, mt: 3 }}>
+                    <Button variant="outlined" onClick={handleReset}>Clear</Button>
+                    <GradientButton type="submit" startIcon={<Icon icon="mdi:send" />}>Review & Send</GradientButton>
+                  </Box>
+                </Box>
+              </CardContent>
+            </StyledCard>
+          </motion.div>
         </Grid>
-
-        {/* Snackbar for confirmation */}
-        <Snackbar
-          open={showSnackbar}
-          autoHideDuration={3000}
-          onClose={handleSnackbarClose}
-          message={snackbarMessage}
-          action={
-            <IconButton size="small" color="inherit" onClick={handleSnackbarClose}>
-              <Icon icon="mdi:close" />
-            </IconButton>
-          }
-        />
-      </Box>
+      </Grid>
+      <Snackbar open={showSnackbar} autoHideDuration={3000} onClose={handleSnackbarClose} message={snackbarMessage} action={<IconButton size="small" color="inherit" onClick={handleSnackbarClose}><Icon icon="mdi:close" /></IconButton>} />
+    </Box>
   );
 };
 

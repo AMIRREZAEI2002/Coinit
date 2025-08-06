@@ -6,22 +6,6 @@ import { Icon } from '@iconify/react';
 import { useCryptoContext } from './CryptoContext';
 import { motion } from 'framer-motion';
 
-interface CryptoData {
-  name: string;
-  symbol: string;
-  icon: string;
-  currentPrice: number;
-  change: number;
-  indexPrice: number;
-  fairPrice: number;
-  fundingRate: string;
-  timer: string;
-  high24h: number;
-  low24h: number;
-  volume: string;
-  turnover: string;
-  marketCap?: number;
-}
 
 interface Order {
   price: number;

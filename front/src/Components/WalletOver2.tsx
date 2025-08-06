@@ -43,6 +43,7 @@ const WalletOver2: React.FC = () => {
   const [chartOptions, setChartOptions] = useState<ApexOptions | null>(null);
   const [series, setSeries] = useState<{ name: string; data: number[] }[]>([]);
 
+  // ✅ Generate mock data
   const generateMockData = (days: number, initialValue: number = 3000): number[] => {
     const data: number[] = [];
     let lastValue = initialValue;
@@ -53,17 +54,19 @@ const WalletOver2: React.FC = () => {
     return data;
   };
 
-  const generateDateLabels = (days: number, shortFormat: boolean = false): string[] => {
+  // ✅ Safari-safe date generation (Avoid Intl.DateTimeFormat for older Safari)
+  const generateDateLabels = (days: number): string[] => {
     const labels: string[] = [];
     const date = new Date();
-    const options: Intl.DateTimeFormatOptions = shortFormat
-      ? { month: 'short', day: 'numeric' }
-      : { month: 'short', day: 'numeric', year: '2-digit' };
 
     for (let i = days - 1; i >= 0; i--) {
       const d = new Date(date);
       d.setDate(d.getDate() - i);
-      labels.push(d.toLocaleDateString('en-US', options));
+
+      // ✅ Manual formatting (avoid Safari Intl issues)
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const label = `${monthNames[d.getMonth()]} ${d.getDate()}`;
+      labels.push(label);
     }
 
     return labels;
@@ -71,7 +74,6 @@ const WalletOver2: React.FC = () => {
 
   useEffect(() => {
     const days = period === '7d' ? 7 : 30;
-    const shortFormat = period === '7d';
 
     const options: ApexOptions = {
       chart: {
@@ -94,9 +96,7 @@ const WalletOver2: React.FC = () => {
         fontFamily: 'inherit',
         foreColor: theme.palette.text.secondary,
       },
-      dataLabels: {
-        enabled: false,
-      },
+      dataLabels: { enabled: false },
       stroke: {
         curve: 'smooth',
         width: 2,
@@ -112,7 +112,7 @@ const WalletOver2: React.FC = () => {
         },
       },
       xaxis: {
-        categories: generateDateLabels(days, shortFormat),
+        categories: generateDateLabels(days),
         labels: {
           rotate: -45,
           style: { fontSize: '10px' },
@@ -136,9 +136,7 @@ const WalletOver2: React.FC = () => {
           formatter: (value: number) => `$${value.toFixed(2)}`,
         },
         theme: theme.palette.mode,
-        x: {
-          show: true,
-        },
+        x: { show: true },
       },
       markers: {
         size: 3,
@@ -168,13 +166,13 @@ const WalletOver2: React.FC = () => {
         boxShadow: 1,
       }}
     >
-      <Grid container sx={{ px: 3 }}>
-        <Grid size={{xs:12 ,md: 8}}>
+      <Grid container sx={{ px: { xs: 1, md: 3 } }}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Typography variant="body1" fontWeight="bold" textAlign="left">
             Equity Trend
           </Typography>
         </Grid>
-        <Grid size={{xs:12 ,md: 4}}
+        <Grid size={{ xs: 12, md: 4 }}
           sx={{
             display: 'flex',
             justifyContent: { xs: 'flex-start', md: 'flex-end' },
@@ -186,17 +184,17 @@ const WalletOver2: React.FC = () => {
             active={period === '30d' ? 1 : 0}
             onClick={() => setPeriod('30d')}
           >
-            last 30 days
+            Last 30 Days
           </PeriodButton>
           <PeriodButton
             variant={period === '7d' ? 'contained' : 'outlined'}
             active={period === '7d' ? 1 : 0}
             onClick={() => setPeriod('7d')}
           >
-            last 7 days
+            Last 7 Days
           </PeriodButton>
         </Grid>
-        <Grid size={{xs:12}} sx={{ mt: 3 }}>
+        <Grid size={{ xs: 12 }} sx={{ mt: 3 }}>
           {chartOptions && series && (
             <Chart options={chartOptions} series={series} type="area" height={300} />
           )}

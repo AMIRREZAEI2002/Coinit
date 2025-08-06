@@ -17,7 +17,7 @@ const UserpanelInfo = () => {
   const [showEmail, setShowEmail] = useState(false);
   const [showUID, setShowUID] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
-  const [name, setName] = useState("Samoor");
+  const [name, setName] = useState("Next fan");
   const email = "main@gmail.com";
   const uid = "46754632";
 
@@ -42,7 +42,7 @@ const UserpanelInfo = () => {
 
         <Grid size={{ xs: 12, md: 11 }}>
           <Grid container alignItems="center" spacing={1}>
-            <Grid size="auto">
+            <Grid size={{xs:10,sm:9,lg:10}}>
               {isEditingName ? (
                 <TextField
                   size="small"
@@ -53,27 +53,28 @@ const UserpanelInfo = () => {
                   autoFocus
                 />
               ) : (
-                <Typography variant="h5" fontWeight="bold">{name}</Typography>
+                <Typography variant="h6" fontWeight="bold">{name}</Typography>
               )}
             </Grid>
-            <Grid size="auto">
+            {/* <Grid size={{xs:2,sm:2,lg:1}}>
               <IconButton size="small" onClick={() => setIsEditingName(true)} sx={{ ml: 1 }}>
                 <Icon icon="mdi:pencil" style={{ fontSize: '1.2rem' }} />
               </IconButton>
-            </Grid>
-            <Grid size="auto">
+            </Grid> */}
+            <Grid size={{xs:12,sm:3,lg:2}}>
               <Button
+              fullWidth
                 variant="contained"
                 size="small"
                 color="warning"
                 sx={{
-                  ml: 1,
+                  ml: {xs:0,md:1},
                   px: 1.5,
                   py: 0.5,
                   borderRadius: 1,
                   textTransform: 'none',
                   fontWeight: 'normal',
-                  backgroundColor: '#fff8e1',
+                  backgroundColor: 'orange',
                   color: theme.palette.getContrastText('#fff8e1'),
                   '&:hover': {
                     backgroundColor: '#ffecb3',

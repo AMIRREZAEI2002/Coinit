@@ -37,7 +37,7 @@ const buttons: ButtonConfig[] = [
   { label: 'Deposit', href: '/Deposit', variant: 'contained', icon: 'mdi:chevron-down', paths: ['/Wallet/Overview', '/Wallet/Spot'] },
   { label: 'Buy', href: '/Spot', variant: 'contained', paths: ['/Wallet/Fiat'] },
   { label: 'Sell', href: '/Spot', variant: 'outlined', paths: ['/Wallet/Fiat'] },
-  { label: 'Transfer', href: '/Working', variant: 'outlined', paths: ['/Wallet/Overview', '/Wallet/Fiat', '/Wallet/Spot'] },
+  { label: 'Transfer', href: '/BQPT/Transfer', variant: 'outlined', paths: ['/Wallet/Overview', '/Wallet/Fiat', '/Wallet/Spot'] },
   { label: 'Spot Statement', href: '/Spot', variant: 'outlined', paths: ['/Wallet/Overview','/Wallet/Spot'] },
   { label: 'Withdraw', href: '/panel/WithdrawalAddresses', variant: 'outlined', paths: ['/Wallet/Spot'] },
   { label: '...', href: '#', variant: 'outlined', disabled: true, paths: ['/Wallet/Overview','/Wallet/Spot'] },
@@ -100,6 +100,7 @@ const WalletHeader: React.FC = () => {
       sx={{
         backgroundColor: 'background.paper',
         borderRadius: 3,
+        mt:{xs:5,md:0},
         p: 3,
         boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
       }}

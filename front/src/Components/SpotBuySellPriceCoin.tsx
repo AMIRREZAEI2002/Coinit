@@ -9,7 +9,6 @@ import {
   useMediaQuery,
   Tooltip,
   Paper,
-  Divider,
   Slide,
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -55,6 +54,13 @@ const FormBox = styled(Box)(({ theme }) => ({
   '& .scroll-thin': {
     scrollbarWidth: 'thin',
     scrollbarColor: `${theme.palette.grey[400]} ${theme.palette.grey[200]}`,
+    '&::-webkit-scrollbar': {
+      width: '4px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: theme.palette.grey[400],
+      borderRadius: '2px',
+    },
   },
 }));
 
@@ -72,6 +78,7 @@ const MobileBottomBar = styled(Paper)(({ theme }) => ({
   boxShadow: theme.shadows[10],
   background: theme.palette.background.paper,
   borderTop: `1px solid ${theme.palette.divider}`,
+  paddingBottom: 'calc(env(safe-area-inset-bottom) + 8px)',
 }));
 
 const SlideUpPanel = styled(Paper)(({ theme }) => ({
@@ -80,11 +87,26 @@ const SlideUpPanel = styled(Paper)(({ theme }) => ({
   left: 0,
   right: 0,
   height: '85vh',
+  maxHeight: '85vh',
   zIndex: 1100,
   overflowY: 'auto',
   borderRadius: '16px 16px 0 0',
-  padding: theme.spacing(2),
+  padding: theme.spacing(0),
   boxShadow: theme.shadows[16],
+  WebkitOverflowScrolling: 'touch',
+  paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)',
+  touchAction: 'pan-y',
+  overscrollBehavior: 'contain',
+  '&:before': {
+    content: '""',
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    backgroundColor: theme.palette.divider,
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const SpotBuySellPriceCoin: React.FC = () => {
@@ -121,6 +143,26 @@ const SpotBuySellPriceCoin: React.FC = () => {
     }
   }, [selectedCurrency]);
 
+  // Close mobile panel when switching to desktop view
+  useEffect(() => {
+    if (!isMobile && mobilePanelOpen) {
+      setMobilePanelOpen(false);
+    }
+  }, [isMobile, mobilePanelOpen]);
+
+  // Prevent body scroll when mobile panel is open
+  useEffect(() => {
+    if (isMobile && mobilePanelOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobile, mobilePanelOpen]);
+
   const handleTabChange = useCallback((tab: 'limit' | 'market' | 'stop-limit') => {
     setActiveTab(tab);
   }, []);
@@ -154,7 +196,7 @@ const SpotBuySellPriceCoin: React.FC = () => {
           {selectedCurrency?.symbol || '---'} / USDT
         </Typography>
         <Box display="flex" alignItems="center" gap={1}>
-          <Typography variant="h6" fontWeight="bold">
+          <Typography variant="body2" fontWeight="bold">
             ${priceInfo.current.toFixed(2)}
           </Typography>
           <Typography 
@@ -179,9 +221,9 @@ const SpotBuySellPriceCoin: React.FC = () => {
         color={isBuy ? 'success' : 'error'}
         onClick={toggleMobilePanel}
         endIcon={mobilePanelOpen ? <ArrowDownIcon /> : <ArrowUpIcon />}
-        sx={{ borderRadius: 50, px: 2 }}
+        sx={{ borderRadius: 50, px: 2 ,fontSize:{xs:10,md:15}}}
       >
-        {isBuy ? 'Buy' : 'Sell'} {selectedCurrency?.symbol || ''}
+        {isBuy ? 'Buy' : 'Sell'}{selectedCurrency?.symbol || ''}
       </Button>
     </MobileBottomBar>
   );
@@ -189,13 +231,19 @@ const SpotBuySellPriceCoin: React.FC = () => {
   // Mobile slide-up panel
   const renderMobilePanel = () => (
     <SlideUpPanel>
-      <Box display="flex" justifyContent="flex-end" mb={1}>
-        <IconButton onClick={toggleMobilePanel}>
-          <ArrowDownIcon />
-        </IconButton>
+      <Box display="flex" sx={{cursor: 'pointer'}} onClick={toggleMobilePanel}  justifyContent="center" position="sticky" top={-20} bgcolor="background.paper" width="100%" zIndex={999} pt={2} pb={2} >
+        <Box 
+          sx={{ 
+            width: 100, 
+            height: 5, 
+            bgcolor: 'divider', 
+            borderRadius: 2,
+            touchAction: 'none'
+          }} 
+        />
       </Box>
       
-      <Box display="flex" justifyContent="center" mb={2}>
+      <Box display="flex" justifyContent="center" mb={2} px={2} pt={2}>
         <Box
           display="flex"
           bgcolor={theme.palette.background.default}
@@ -248,7 +296,7 @@ const SpotBuySellPriceCoin: React.FC = () => {
       </Box>
 
       {/* Tabs for order types */}
-      <Box display="flex" justifyContent="space-between" alignItems="flex-end" mb={1}>
+      <Box display="flex" justifyContent="space-between" alignItems="flex-end" mb={1} px={2}>
         <Box display="flex" borderBottom={`1px solid ${theme.palette.primary.main}`} sx={{justifyContent: 'space-between',width: '100%'}}>
           <Button
             onClick={() => handleTabChange('limit')}
@@ -305,7 +353,7 @@ const SpotBuySellPriceCoin: React.FC = () => {
           </Tooltip>
         </Box>
       </Box>
-      <Box display="flex" justifyContent="space-between" alignItems="flex-end" mb={2}>
+      <Box display="flex" justifyContent="space-between" alignItems="flex-end" mb={2} px={2}>
         <Box display='flex' justifyContent='space-between' width="100%">
           <Typography variant="caption" color="text.secondary">
             Available:
@@ -321,7 +369,7 @@ const SpotBuySellPriceCoin: React.FC = () => {
       </Box>
       
       {/* Dynamic order form */}
-      <Box sx={{ flexGrow: 1 }} className="scroll-thin">
+      <Box sx={{ flexGrow: 1 }} className="scroll-thin" px={2}>
         <AnimatePresence mode="wait">{renderForm()}</AnimatePresence>
       </Box>
     </SlideUpPanel>
@@ -502,7 +550,7 @@ const SpotBuySellPriceCoin: React.FC = () => {
       {/* Mobile components */}
       {isMobile && (
         <>
-          <Box display={{xs:'none',md:'flex'}} sx={{ flexGrow: 1, mb: 8 }}>
+          <Box display={{xs:'none',md:'none'}} sx={{ flexGrow: 1, mb: 8 }}>
             <Typography variant="body1" textAlign="center" mt={4} color="text.secondary">
               Open trading panel to buy or sell
             </Typography>

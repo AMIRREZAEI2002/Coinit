@@ -127,7 +127,7 @@ const rows: TransactionRow[] = [
 const SectionCard = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: 16,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
   marginTop: theme.spacing(3),
 }));
@@ -277,7 +277,7 @@ const WalletFundingSectionDeposit: React.FC = () => {
 
   return (
     <SectionCard>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         {/* Date Range Picker */}
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', gap: 2 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

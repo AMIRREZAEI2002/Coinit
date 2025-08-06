@@ -48,7 +48,7 @@ export default function BQPTLayout({ children }: { children: React.ReactNode }) 
               transition: 'all 0.3s ease',
             }}
           >
-            <Link href={`/BQPT/${tabItem.key}`} style={{ textDecoration: 'none' }}>
+            <Link href={`/BQPT/${tabItem.key}`} prefetch={true} style={{ textDecoration: 'none' }}>
               <Typography
                 className="tab-label"
                 variant="body1"

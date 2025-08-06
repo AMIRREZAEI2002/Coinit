@@ -1,13 +1,19 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import { Box, CircularProgress, IconButton, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  IconButton,
+  ToggleButton,
+  ToggleButtonGroup,
+  useTheme,
+} from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useCryptoContext } from './CryptoContext';
 
-// چون ApexCharts نیاز به window داره
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false, loading: () => <CircularProgress /> });
 
 interface CryptoData {
   name: string;
@@ -26,210 +32,306 @@ interface CryptoData {
   marketCap?: number;
 }
 
-// تولید داده فیک برای 7 روز
-const generateFakeData = (currency: CryptoData): [number, number][] => {
+// ✅ داده ساختگی برای قیمت
+const generateFakeData = (currency: CryptoData, days: number, step = 1): [number, number][] => {
   const now = Date.now();
   const msPerDay = 24 * 60 * 60 * 1000;
-  const days = 7;
   const basePrice = currency.currentPrice;
-  const volatility = currency.symbol.toLowerCase() === 'bitcoin' ? 2000 : currency.symbol.toLowerCase() === 'ethereum' ? 100 : 0.05;
+  const volatility =
+    currency.symbol.toLowerCase() === 'bitcoin'
+      ? 2000
+      : currency.symbol.toLowerCase() === 'ethereum'
+      ? 100
+      : 0.05;
   const data: [number, number][] = [];
-
-  for (let i = days * 24; i >= 0; i--) {
-    const timestamp = now - i * msPerDay / 24;
+  for (let i = days * 24; i >= 0; i -= step) {
+    const timestamp = now - (i * msPerDay) / 24;
     const variation = Math.sin(i / 10) * volatility + Math.random() * volatility * 0.2;
     const price = i === 0 ? basePrice : basePrice + variation;
     data.push([timestamp, Math.round(price * 100) / 100]);
   }
-
   return data;
 };
 
-// محاسبه سطوح فیبوناچی
-const calculateFibonacciLevels = (data: [number, number][]): number[] => {
-  if (!data.length) return [];
-  const prices = data.map(([, price]) => price);
-  const maxPrice = Math.max(...prices);
-  const minPrice = Math.min(...prices);
-  const diff = maxPrice - minPrice;
-  return [
-    maxPrice,
-    maxPrice - 0.236 * diff,
-    maxPrice - 0.382 * diff,
-    maxPrice - 0.5 * diff,
-    maxPrice - 0.618 * diff,
-    minPrice,
-  ];
-};
+// ✅ کندل‌ها
+const generateCandleData = (data: [number, number][]) =>
+  data.map(([time, price]) => {
+    const open = price + (Math.random() - 0.5) * 50;
+    const close = price + (Math.random() - 0.5) * 50;
+    const high = Math.max(open, close) + Math.random() * 50;
+    const low = Math.min(open, close) - Math.random() * 50;
+    return { x: new Date(time), y: [open, high, low, close] };
+  });
+
+// ✅ Moving Average
+const movingAverage = (data: [number, number][], period = 10) =>
+  data.map((_, idx) => {
+    if (idx < period) return [data[idx][0], null];
+    const avg =
+      data.slice(idx - period, idx).reduce((acc, [, price]) => acc + price, 0) / period;
+    return [data[idx][0], Math.round(avg * 100) / 100];
+  });
 
 const SpotCryptoChart: React.FC = () => {
   const theme = useTheme();
   const { selectedCurrency } = useCryptoContext();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [seriesData, setSeriesData] = useState<[number, number][]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
+  const [priceData, setPriceData] = useState<[number, number][]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [candleData, setCandleData] = useState<any[]>([]);
+  const [chartType, setChartType] = useState<'line' | 'area' | 'candlestick'>('line');
+  const [timeframe, setTimeframe] = useState<'1D' | '1W' | '1M' | '1Y'>('1W');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showPrice, setShowPrice] = useState(true);
+  const [showMA10, setShowMA10] = useState(false);
+  const [showMA50, setShowMA50] = useState(false);
+  const [chartKey, setChartKey] = useState(0);
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
-  // تولید داده فیک
-  useEffect(() => {
-    console.log('Selected Currency in SpotCryptoChart:', selectedCurrency);
-    setLoading(true);
-    const data = generateFakeData(selectedCurrency);
-    console.log('Generated fake data:', data);
-    setSeriesData(data);
-    setCategories(data.map(([timestamp]) => new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })));
-    setLoading(false);
-  }, [selectedCurrency]);
+  const daysMap = { '1D': 1, '1W': 7, '1M': 30, '1Y': 365 };
+  const stepMap = { '1D': 1, '1W': 2, '1M': 6, '1Y': 24 }; // کمتر شدن نقاط برای موبایل قدیمی
 
-  // مدیریت رویداد تغییر حالت فول‌اسکرین
+  useEffect(() => {
+    setLoading(true);
+    const newData = generateFakeData(selectedCurrency, daysMap[timeframe], stepMap[timeframe]);
+    setPriceData(newData);
+    setCandleData(generateCandleData(newData));
+    setLoading(false);
+  }, [selectedCurrency, timeframe]);
+
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-      console.log('Fullscreen state:', !!document.fullscreenElement);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const isFull = !!(document.fullscreenElement || (document as any).webkitFullscreenElement);
+      setIsFullscreen(isFull);
+      setChartKey((prev) => prev + 1);
     };
-
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  // تابع برای تغییر حالت فول‌اسکرین
   const toggleFullscreen = () => {
     if (!chartContainerRef.current) return;
-
-    if (!isFullscreen) {
-      chartContainerRef.current.requestFullscreen().catch((err) => {
-        console.error('Failed to enter fullscreen:', err);
-      });
-    } else {
-      document.exitFullscreen().catch((err) => {
-        console.error('Failed to exit fullscreen:', err);
-      });
-    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const el = chartContainerRef.current as any;
+    if (!isFullscreen) el.requestFullscreen?.();
+    else document.exitFullscreen?.();
   };
 
-  // محاسبه سطوح فیبوناچی
-  const fibLevels = calculateFibonacciLevels(seriesData);
+  const minTimestamp = priceData[0]?.[0] || Date.now();
+  const maxTimestamp = priceData[priceData.length - 1]?.[0] || Date.now();
 
-  const options: ApexCharts.ApexOptions = {
-    chart: {
-      type: 'line',
-      toolbar: { show: true, tools: { zoom: true, pan: true } },
-      zoom: { enabled: true, type: 'x', autoScaleYaxis: true },
-      background: 'transparent',
-    },
-    theme: {
-      mode: theme.palette.mode === 'dark' ? 'dark' : 'light',
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 3,
-    },
-    colors: [theme.palette.primary.main],
-    grid: {
-      borderColor: theme.palette.divider,
-    },
-    xaxis: {
-      categories,
-      type: 'datetime',
-      labels: {
-        style: {
-          colors: theme.palette.text.secondary,
-        },
-        datetimeUTC: false,
-        format: 'dd MMM HH:mm',
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          colors: theme.palette.text.secondary,
-        },
-        formatter: (value: number) => `$${value.toFixed(2)}`,
-      },
-    },
-    tooltip: {
-      theme: theme.palette.mode,
-      x: {
-        format: 'dd MMM yyyy HH:mm',
-      },
-      y: {
-        formatter: (value: number) => `$${value.toFixed(2)}`,
-      },
-    },
-    annotations: {
-      yaxis: fibLevels.map((level, index) => ({
-        y: level,
-        borderColor: theme.palette.mode === 'dark' ? '#ffeb3b' : '#fbc02d',
-        label: {
-          borderColor: theme.palette.mode === 'dark' ? '#ffeb3b' : '#fbc02d',
-          style: {
-            color: theme.palette.text.primary,
-            background: theme.palette.background.paper,
+  const series = useMemo<ApexAxisChartSeries>(
+    () =>
+      chartType === 'candlestick'
+        ? [{ name: 'Price', data: candleData }]
+        : [
+            ...(showPrice ? [{ name: selectedCurrency.name, data: priceData }] : []),
+            ...(showMA10 ? [{ name: 'MA(10)', data: movingAverage(priceData, 10) }] : []),
+            ...(showMA50 ? [{ name: 'MA(50)', data: movingAverage(priceData, 50) }] : []),
+          ],
+    [chartType, priceData, candleData, selectedCurrency.name, showPrice, showMA10, showMA50]
+  );
+
+  const options: ApexCharts.ApexOptions = useMemo(
+    () => ({
+      chart: {
+        type: chartType,
+        animations: { enabled: false }, // برای گوشی‌های ضعیف
+        toolbar: {
+          show: true,
+          tools: {
+            download: false, // غیرفعال کردن دانلود در موبایل برای سادگی
+            selection: true,
+            zoom: true,
+            zoomin: true,
+            zoomout: true,
+            pan: true,
+            reset: true,
           },
-          text: `${[0, 23.6, 38.2, 50, 61.8, 100][index]}%`,
+          autoSelected: 'zoom',
         },
-      })),
-    },
-  };
-
-  const series = [
-    {
-      name: selectedCurrency.name,
-      data: seriesData,
-    },
-  ];
+        zoom: {
+          enabled: true,
+          type: 'x',
+          autoScaleYaxis: true,
+          // حداقل و حداکثر زوم
+          minimumZoom: 0.5,
+          maximumZoom: 2,
+        },
+        background: 'transparent',
+        events: {
+          zoomed: (chartContext, { xaxis }) => {
+            // ✅ محدودیت زوم اوت
+            if (xaxis.min < minTimestamp || xaxis.max > maxTimestamp) {
+              chartContext.zoomX(minTimestamp, maxTimestamp);
+            }
+          },
+        },
+        // بهینه‌سازی برای موبایل
+        pinchZoom: true, // فعال کردن زوم با دو انگشت
+        selection: {
+          enabled: true,
+          fill: {
+            color: theme.palette.primary.light,
+            opacity: 0.2,
+          },
+        },
+        touch: {
+          enabled: true, // فعال کردن پشتیبانی از تاچ
+          pinchZoom: true,
+          swipe: true,
+          swipeTolerance: 50,
+        },
+      },
+      theme: { mode: theme.palette.mode },
+      stroke: { curve: 'smooth', width: chartType === 'candlestick' ? 1 : [3, 2, 2] },
+      colors: [theme.palette.primary.main, '#FF9800', '#4CAF50'],
+      xaxis: {
+        type: 'datetime',
+        min: minTimestamp,
+        max: maxTimestamp,
+        labels: {
+          style: { colors: theme.palette.text.secondary },
+          // بهینه‌سازی لیبل‌ها برای موبایل
+          rotate: -45,
+          rotateAlways: false,
+          hideOverlappingLabels: true,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: { colors: theme.palette.text.secondary },
+          formatter: (v) => (typeof v === 'number' ? `$${v.toFixed(2)}` : ''),
+          // کاهش تعداد لیبل‌ها در موبایل
+          maxTicks: 5,
+        },
+      },
+      tooltip: {
+        shared: chartType !== 'candlestick',
+        theme: theme.palette.mode,
+        x: { format: 'dd MMM yyyy HH:mm' },
+        // بهینه‌سازی تولتیپ برای موبایل
+        followCursor: true,
+        intersect: false,
+      },
+      // پاسخگویی بهتر برای موبایل
+      responsive: [
+        {
+          breakpoint: 600, // برای صفحه‌نمایش‌های کوچک‌تر از 600px
+          options: {
+            chart: {
+              height: 300, // کاهش ارتفاع چارت در موبایل
+            },
+            xaxis: {
+              labels: {
+                style: {
+                  fontSize: '10px', // کاهش اندازه فونت
+                },
+              },
+            },
+            yaxis: {
+              labels: {
+                style: {
+                  fontSize: '10px',
+                },
+              },
+            },
+            toolbar: {
+              offsetY: 10, // تنظیم موقعیت toolbar
+            },
+          },
+        },
+      ],
+    }),
+    [chartType, theme, minTimestamp, maxTimestamp]
+  );
 
   return (
-    <Box
-      ref={chartContainerRef}
-      sx={{
-        width: '100%',
-        height: isFullscreen ? '100vh' : 500,
-        p: 1,
-        bgcolor: theme.palette.background.paper,
-        borderRadius: isFullscreen ? 0 : 2,
-        boxShadow: isFullscreen ? 'none' : theme.shadows[2],
-        transition: 'all 0.3s ease',
-        position: 'relative',
-        '&:hover': {
-          boxShadow: isFullscreen ? 'none' : theme.shadows[4],
-        },
-      }}
-    >
-      <IconButton
-        onClick={toggleFullscreen}
+    <Box>
+      {/* کنترل‌ها */}
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1, flexDirection: 'row' }}>
+        <ToggleButtonGroup value={timeframe} exclusive onChange={(e, val) => val && setTimeframe(val)} size="small">
+          {['1D', '1W', '1M', '1Y'].map((tf) => (
+            <ToggleButton key={tf} value={tf}>
+              {tf}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+        <Box sx={{ display: 'flex', gap: 1, flexDirection: { xs: 'column', sm: 'row' } }}>
+          <ToggleButtonGroup
+            value={chartType}
+            exclusive
+            onChange={(e, val) => {
+              if (val) {
+                setChartType(val);
+                setChartKey((prev) => prev + 1);
+              }
+            }}
+            size="small"
+          >
+            <ToggleButton value="line">Line</ToggleButton>
+            <ToggleButton value="area">Area</ToggleButton>
+            <ToggleButton value="candlestick">Candle</ToggleButton>
+          </ToggleButtonGroup>
+          {chartType !== 'candlestick' && (
+            <ToggleButtonGroup size="small">
+              <ToggleButton
+                value="price"
+                selected={showPrice}
+                onChange={() => setShowPrice(!showPrice)}
+              >
+                Price
+              </ToggleButton>
+              <ToggleButton
+                value="ma10"
+                selected={showMA10}
+                onChange={() => setShowMA10(!showMA10)}
+              >
+                MA10
+              </ToggleButton>
+              <ToggleButton
+                value="ma50"
+                selected={showMA50}
+                onChange={() => setShowMA50(!showMA50)}
+              >
+                MA50
+              </ToggleButton>
+            </ToggleButtonGroup>
+          )}
+        </Box>
+      </Box>
+
+      {/* چارت */}
+      <Box
+        ref={chartContainerRef}
         sx={{
-          position: 'absolute',
-          top: 0,
-          left: 8,
-          zIndex: 10,
-          '&:hover': {
-            backgroundColor: theme.palette.action.selected,
-          },
+          width: '100%',
+          height: isFullscreen ? '100vh' : { xs: 300, md: 500 }, // ارتفاع کمتر برای موبایل
+          bgcolor: theme.palette.background.paper,
+          borderRadius: isFullscreen ? 0 : 2,
+          position: 'relative',
         }}
-        aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
       >
-        <Icon
-          icon={isFullscreen ? 'mdi:fullscreen-exit' : 'mdi:fullscreen'}
-          width={24}
-          height={24}
-          style={{ color: theme.palette.text.secondary }}
-        />
-      </IconButton>
-      {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <CircularProgress />
-        </Box>
-      ) : seriesData.length === 0 ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-          <Typography color="error" align="center">
-            No data available for {selectedCurrency.name}
-          </Typography>
-        </Box>
-      ) : (
-        <Chart options={options} series={series} type="line" height="100%" width="100%" />
-      )}
+        <IconButton onClick={toggleFullscreen} sx={{ position: 'absolute', top: 8, left: 8, zIndex: 10 }}>
+          <Icon icon={isFullscreen ? 'mdi:fullscreen-exit' : 'mdi:fullscreen'} width={24} height={24} />
+        </IconButton>
+
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Chart
+            key={chartKey}
+            options={options}
+            series={series}
+            type={chartType}
+            style={{height:isFullscreen ? window.innerHeight : { xs: 300, md: 500 }}}
+            width="100%"
+          />
+        )}
+      </Box>
     </Box>
   );
 };

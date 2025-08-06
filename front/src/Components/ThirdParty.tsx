@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '@iconify/react';
 import { 
   Grid, 
   Box, 
@@ -15,9 +16,11 @@ import {
   ListItemText
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Icon } from '@iconify/react';
-import Image from 'next/image';
-
+const paymentCompony = [
+  { icon: 'logos:paypal'},
+  { icon: 'cib:cc-visa'},
+  { icon: 'arcticons:skrill'},
+];
 const ThirdParty = () => {
   // Animation variants
   const fadeIn = {
@@ -34,7 +37,7 @@ const ThirdParty = () => {
   };
 
   return (
-    <Box sx={{ px: { xs: 2, md: 4 }, py: 8 }}>
+    <Box sx={{ px: { xs: 0, md: 4 }, py: 8 }}>
       {/* Main Section */}
       <Grid container spacing={6} sx={{ mb: 8 }}>
         {/* Left Column */}
@@ -138,21 +141,11 @@ const ThirdParty = () => {
                     label="Low Fees" 
                     size="small" 
                     color="primary" 
-                    sx={{ position: 'absolute', top: 16, right: 16 }} 
+                    sx={{ position: 'absolute', top: 5, right: 5 }} 
                   />
                   <CardContent>
                     <Box display="flex" alignItems="center" mb={2}>
-                        <Image
-                            src="/images/a.webp"
-                            alt="Crypto illustration"
-                            width={50} 
-                            height={50}
-                            style={{
-                                padding: '3px',
-                                borderRadius: '12px',
-                                objectFit: 'cover',
-                            }}
-                        />
+                    <Icon icon="solar:round-transfer-vertical-broken" width={20} height={20} />
                       <Box mx={1}>
                         <Typography variant="h6" fontWeight={600}>
                           Bank Transfers
@@ -192,17 +185,7 @@ const ThirdParty = () => {
                 <Card sx={{ borderRadius: 2 }}>
                   <CardContent>
                     <Box display="flex" alignItems="center" mb={2}>
-                    <Image
-                        src="/images/a.webp"
-                        alt="Crypto illustration"
-                        width={50} 
-                        height={50}
-                        style={{
-                            padding: '3px',
-                            borderRadius: '12px',
-                            objectFit: 'cover',
-                        }}
-                    />
+                    <Icon icon="mdi:wallet" width="24" height="24" />
                       <Box mx={1}>
                         <Typography variant="h6" fontWeight={600}>
                           Digital Wallets
@@ -214,20 +197,12 @@ const ThirdParty = () => {
                     </Box>
                     <Divider sx={{ my: 2 }} />
                     <Box display="flex" justifyContent="space-between" alignItems="center">
-                      <Box display="flex" justifyContent='space-between' width="50%">
-                        {[1, 2, 3].map((_, i) => (
-                            <Image
-                                key={i}
-                                src="/images/a.webp" // مسیر عکس در پوشه public
-                                alt="Crypto illustration"
-                                width={50} // عرض تصویر
-                                height={50} // ارتفاع تصویر
-                                style={{
-                                    borderRadius: '12px',
-                                    objectFit: 'cover',
-                                }}
-                            />
-                        ))}
+                      <Box display="flex" justifyContent='space-start' width="50%">
+                      {paymentCompony.map((item) => (
+                        <Box key={item.icon}>
+                          <Icon icon={item.icon} width="24" height="24" style={{marginRight:20}} />
+                        </Box>
+                      ))}
                       </Box>
                       <Button 
                         variant="outlined" 
@@ -310,17 +285,9 @@ const ThirdParty = () => {
                 </ListItem>
               </List>
             </Grid>
-            <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Image
-                    src="/images/a.webp" // مسیر عکس در پوشه public
-                    alt="Crypto illustration"
-                    width={300} // عرض تصویر
-                    height={200} // ارتفاع تصویر
-                    style={{
-                        borderRadius: '12px',
-                        objectFit: 'cover',
-                    }}
-                />
+            <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+                <Icon icon='line-md:security' width={200} height={200}/>
+                <Typography position='absolute' top="49%" left="50%" sx={{transform:"translate(-61% , -50%)", fontSize: 35, fontWeight:900, fontFamily:"Lavishly Yours !important"}}>Coinit</Typography>
             </Grid>
           </Grid>
         </Card>

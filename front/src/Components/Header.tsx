@@ -8,8 +8,8 @@ import {
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { ThemeModeContext } from '../app/providers';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+// import Brightness4Icon from '@mui/icons-material/Brightness4';
+// import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ArrowDropDown } from '@mui/icons-material';
 import SearchHead from './SearchHead';
 import WalletHead from './WalletHead';
@@ -18,6 +18,7 @@ import HeaderMobile from './HeaderMobile';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { motion } from 'framer-motion';
 import ToggleSwitch from './ToggleSwitch';
+import Image from 'next/image';
 
 const pages = [
   {
@@ -31,7 +32,7 @@ const pages = [
   { page: 'Markets', link: '/Markets' },
   { page: 'Spot', link: '/Spot' },
   { page: 'Future', link: '/Future' },
-  { page: 'Reward Hub', link: '/Wallet/EventRewards' },
+  { page: 'Reward Hub', link: '/EventRewards' },
   {
     page: 'More',
     children: [
@@ -51,7 +52,7 @@ const settings = [
   { name: 'Withdrawal Address', icon: 'mdi:wallet-outline', path: '/panel/WithdrawalAddresses' },
   { name: 'SubAccount', icon: 'mdi:user-plus', path: '/panel/SubAccount' },
   { name: 'Settings', icon: 'mdi:cog', path: '/panel/Settings' },
-  { name: 'Switch Account', icon: 'mdi:switch', path: '/SwitchAccount' },
+  // { name: 'Switch Account', icon: 'mdi:switch', path: '/SwitchAccount' },
   { name: 'Log Out', icon: 'mdi:log-out', path: '/LogOut' },
 ];
 
@@ -100,26 +101,16 @@ function Header() {
       position="sticky" 
       sx={{
         backgroundColor: darkMode ? '#121212' : 'rgba(248, 249, 250,1)', 
-        color: darkMode ? '#fff' : '#000e',
+        color: darkMode ? '#000e' : '#000e',
         boxShadow: darkMode ? '0 2px 10px rgba(0,0,0,0.5)' : '0 2px 10px rgba(0,0,0,0.05)',
       }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ minHeight: '64px !important' }}>
           {/* Logo - Desktop */}
-          <Link href="/" style={{color: 'inherit', textDecoration: 'none'}} passHref>
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 1,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 200,
-              }}
-            >
-              Coinit
-            </Typography>
-          </Link>
+          <Box display={{xs:'none', md:'flex'}}><Link href="/" style={{color: 'inherit', textDecoration: 'none', padding:1,display:'flex', alignContent:'center'}} passHref>
+            <Image src="/Images/logo.webp" alt='Coinit' width={80} height={32} />
+          </Link></Box>
 
           {/* Mobile Header */}
           <HeaderMobile
@@ -137,7 +128,7 @@ function Header() {
             display: { xs: 'none', lg: 'flex' },
             justifyContent: 'space-between',
             alignItems: 'center',
-            pr: 2
+            pr: 0
           }}>
             <Box sx={{ flexGrow: 1, display:'flex',alignItems: 'center'}}>
               <ToggleSwitch />
@@ -170,16 +161,10 @@ function Header() {
               </Button>
             </Link>
             <WalletHead/>
-            <Link href="/Order" style={{color: 'inherit',textDecoration: 'none'}} passHref>
-              <Button variant="text" sx={{borderRadius: 50,fontSize: 10, color: 'text.primary'}}>
-                Order
-              </Button>
-            </Link>
           </Box>
 
           {/* User Menu + Notifications + Dark Mode */}
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center',ml:'auto' }}>
-            <HeaderNotif />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Badge 
@@ -201,7 +186,7 @@ function Header() {
                 </Badge>
               </IconButton>
             </Tooltip>
-
+            <HeaderNotif />
             <Menu
               anchorEl={anchorElUser}
               open={Boolean(anchorElUser)}
@@ -214,7 +199,7 @@ function Header() {
                   borderRadius: '16px',
                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
                   minWidth: '250px',
-                  overflow: 'visible',
+                  overflow: 'scroll',
                   animation: 'fadeIn 0.8s ease-out',
                   '@keyframes fadeIn': {
                     from: { opacity: 0, transform: 'translateY(20px)' },
@@ -247,26 +232,28 @@ function Header() {
                   UID: 12345678
                 </Typography>
               </MenuItem>
-              <MenuItem sx={{transition: 'all 0.3s ease',background: 'linear-gradient(90deg,rgba(2, 0, 36, 0.62) 0%, rgba(9, 9, 121, 0.75) 35%, rgba(0, 212, 255, 0.75) 100%)',borderRadius: 6 ,mx: 2, py: 1, px:1,'&:hover': {transform: 'translateY(-1px)'}}}>
-                <Link href="Trade" passHref style={{display: 'flex', color : 'white',textDecoration: 'none', alignItems: 'center' , fontSize: 13, justifyContent: 'flex-start'}}>
+              <MenuItem sx={{transition: 'all 0.3s ease',background: 'linear-gradient(90deg,rgba(2, 0, 36, 0.62) 0%, rgba(9, 9, 121, 0.75) 35%, rgba(0, 212, 255, 0.75) 100%)',borderRadius: 6 ,mx: 2, py:{xs:0, md :1}, px:1,'&:hover': {transform: 'translateY(-1px)'}}}>
+                <Link href="/Spot" passHref style={{display: 'flex', color : 'white',textDecoration: 'none', alignItems: 'center' , fontSize: 13, justifyContent: 'flex-start'}}>
                   <Icon icon="mdi:coins" color="text.primary" fontSize={15} />
                   Trade to Earn Up to 80,000$
                   <Icon icon="mdi:chevron-right" color="text.primary" fontSize={21} />
                 </Link>
               </MenuItem>
               {settings.map((setting) => (
-                <MenuItem 
-                  key={setting.name} 
-                  onClick={handleCloseUserMenu}
-                  sx={{
-                    py: 1,
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      backgroundColor: '#f8f9fa',
-                      transform: 'translateY(-1px)'
-                    }
-                  }}
-                >
+                <MenuItem
+                    key={setting.name}
+                    onClick={handleCloseUserMenu}
+                    sx={{
+                      py: 1,
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        backgroundColor: '#f8f9fa',
+                        color: darkMode ? '#000' : '#000',
+                        transform: 'translateY(-1px)',
+                      },
+                    }}
+                  >
+              
                   <Link 
                     href={setting.path} 
                     passHref 
@@ -298,11 +285,11 @@ function Header() {
 
             {/* Dark Mode Toggle */}
             <IconButton 
-              sx={{ ml: 1 }} 
+              sx={{ ml: 0 }} 
               onClick={toggleDarkMode} 
               color="inherit"
             >
-              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+              {darkMode ? <Icon icon="line-md:light-dark" width="24" height="24" color='white' /> : <Icon icon="line-md:light-dark" width="24" height="24" />}
             </IconButton>
           </Box>
         </Toolbar>

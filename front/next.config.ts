@@ -11,7 +11,9 @@ const nextConfig = {
     serverActions: {},
   },
   turbopack: {
-    enabled: true
+    appDir: true,
+    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx'],
+    future: { webpackBuild:  true }
   }
 };
 

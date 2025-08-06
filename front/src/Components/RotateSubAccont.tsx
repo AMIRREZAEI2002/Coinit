@@ -56,6 +56,7 @@ const TabNavigation = ({ activeTab, setActiveTab }: TabNavigationProps) => {
             borderBottom: activeTab === tab.value ? '2px solid' : 'none',
             borderColor: 'primary.main',
             fontWeight: 'normal',
+            fontSize: {xs:12,md:15},
             color: activeTab === tab.value ? 'primary.main' : 'text.primary',
             '&:hover': {
               borderBottom: '2px solid',
@@ -75,7 +76,7 @@ const RotateSubAccount = () => {
   const [activeTab, setActiveTab] = useState('address');
 
   return (
-    <Box sx={{ p: { xs: 2, md: 3 } }}>
+    <Box sx={{ p: { xs: 0, md: 3 } }}>
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {activeTab === 'address' && <AddressManagement />}

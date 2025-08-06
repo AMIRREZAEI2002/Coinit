@@ -26,7 +26,7 @@ const UserpanelRef = () => {
       sx={{
         backgroundColor: 'background.default',
         borderRadius: 3,
-        p: 2,
+        p: {xs:1,md:2},
         height: '100%',
         boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
         border: `1px solid ${theme.palette.divider}`,
@@ -38,8 +38,8 @@ const UserpanelRef = () => {
             key={index} 
             disableGutters
             sx={{
-              mb: 2,
-              p: 2,
+              my: 1,
+              p: 1,
               backgroundColor: 'background.paper',
               borderRadius: 1,
               border: `1px solid ${theme.palette.divider}`,

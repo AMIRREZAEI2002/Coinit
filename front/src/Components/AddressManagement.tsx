@@ -50,6 +50,7 @@ interface FuturesAccount {
 
 const AddressManagement = () => {
   const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm')); 
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -218,7 +219,7 @@ const AddressManagement = () => {
           >
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography variant="h6" fontWeight={600} noWrap sx={{ maxWidth: '70%' }}>
+                <Typography fontSize={{xs:12,md:15}} fontWeight={600} noWrap sx={{ maxWidth: '70%' }}>
                   {account.subAccount}
                 </Typography>
                 <Chip 
@@ -473,13 +474,13 @@ const AddressManagement = () => {
   };
 
   return (
-    <Box sx={{ p: 1 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+    <Box sx={{ p: 0 }}>
+      <Box sx={{ display: 'flex', justifyContent: {xs:"flex-start",md:'space-between'}, flexDirection:{xs:'column',sm: 'row'}, alignItems: 'center', mb: 3 }}>
         <Box>
-          <Typography variant="h5" fontWeight={600} gutterBottom>
+          <Typography variant="h6" fontWeight={600} gutterBottom>
             Futures Account Management
           </Typography>
-          <Typography variant="body1" color="textSecondary">
+          <Typography variant="caption" color="textSecondary">
             Manage your sub-accounts for futures trading
           </Typography>
         </Box>
@@ -487,7 +488,7 @@ const AddressManagement = () => {
           variant="contained" 
           startIcon={<AddIcon />}
           onClick={() => handleOpen(null)}
-          sx={{ height: 'fit-content' }}
+          sx={{ height: 'fit-content',fontSize:{xs:10,md:15}, textWrap:'nowrap' }}
         >
           Add Account
         </Button>
@@ -496,124 +497,169 @@ const AddressManagement = () => {
       {isLargeScreen ? renderDesktopTable() : renderMobileCards()}
 
       {/* Add/Edit Modal */}
-      <Dialog open={modalOpen} onClose={handleClose} maxWidth="sm" fullWidth>
-        <DialogTitle sx={{ fontWeight: 600, borderBottom: `1px solid ${theme.palette.divider}`, pb: 2 }}>
-          {currentAccount ? 'Edit Account' : 'Create New Account'}
-        </DialogTitle>
-        <DialogContent sx={{ pt: 2, display: 'grid', gap: 1 }}>
+      <Dialog 
+      open={modalOpen} 
+      onClose={handleClose} 
+      maxWidth="lg" 
+      fullWidth
+      fullScreen={fullScreen}// ✅ برای موبایل فول‌اسکرین
+    >
+      <DialogTitle 
+        sx={{ 
+          fontWeight: 600, 
+          borderBottom: `1px solid ${theme.palette.divider}`, 
+          pb: 2,
+          fontSize: { xs: '1rem', md: '1.25rem' } // ✅ فونت ریسپانسیو
+        }}
+      >
+        {currentAccount ? 'Edit Account' : 'Create New Account'}
+      </DialogTitle>
+
+      <DialogContent 
+        sx={{ 
+          pt: 2, 
+          display: 'grid', 
+          gap: 1,
+          px: { xs: 1, md: 3 } // ✅ برای موبایل فضای کمتر
+        }}
+      >
+        <TextField
+          name="subAccount"
+          label="Sub-Account Name"
+          value={formData.subAccount}
+          onChange={handleChange}
+          fullWidth
+          margin="dense"
+          size="small"
+        />
+
+        <TextField
+          name="date"
+          label="Creation Date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          fullWidth
+          margin="dense"
+          size="small"
+          InputLabelProps={{ shrink: true }}
+        />
+
+        {/* ✅ جعبه اول با Flex برای موبایل ستونی */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' }, // ✅ برای موبایل عمودی
+            gap: 1 
+          }}
+        >
           <TextField
-            name="subAccount"
-            label="Sub-Account Name"
-            value={formData.subAccount}
+            name="status"
+            label="Status"
+            value={formData.status}
             onChange={handleChange}
             fullWidth
             margin="dense"
+            select
             size="small"
-          />
-          
+          >
+            <MenuItem value="Active">Active</MenuItem>
+            <MenuItem value="Inactive">Inactive</MenuItem>
+          </TextField>
+
           <TextField
-            name="date"
-            label="Creation Date"
-            type="date"
-            value={formData.date}
+            name="futures"
+            label="Futures"
+            value={formData.futures}
             onChange={handleChange}
             fullWidth
             margin="dense"
+            select
             size="small"
-            InputLabelProps={{ shrink: true }}
-          />
-          
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <TextField
-              name="status"
-              label="Status"
-              value={formData.status}
-              onChange={handleChange}
-              fullWidth
-              margin="dense"
-              select
-              size="small"
-            >
-              <MenuItem value="Active">Active</MenuItem>
-              <MenuItem value="Inactive">Inactive</MenuItem>
-            </TextField>
-            
-            <TextField
-              name="futures"
-              label="Futures"
-              value={formData.futures}
-              onChange={handleChange}
-              fullWidth
-              margin="dense"
-              select
-              size="small"
-            >
-              <MenuItem value="Enabled">Enabled</MenuItem>
-              <MenuItem value="Disabled">Disabled</MenuItem>
-            </TextField>
-          </Box>
-          
-          <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-            <TextField
-              name="emailVerification"
-              label="Email Verified"
-              value={formData.emailVerification}
-              onChange={handleChange}
-              fullWidth
-              margin="dense"
-              select
-              size="small"
-            >
-              <MenuItem value="true">Verified</MenuItem>
-              <MenuItem value="false">Not Verified</MenuItem>
-            </TextField>
-            
-            <TextField
-              name="mobileVerification"
-              label="Mobile Verified"
-              value={formData.mobileVerification}
-              onChange={handleChange}
-              fullWidth
-              margin="dense"
-              select
-              size="small"
-            >
-              <MenuItem value="true">Verified</MenuItem>
-              <MenuItem value="false">Not Verified</MenuItem>
-            </TextField>
-            
-            <TextField
-              name="authenticatorCode"
-              label="2FA Enabled"
-              value={formData.authenticatorCode}
-              onChange={handleChange}
-              fullWidth
-              margin="dense"
-              select
-              size="small"
-            >
-              <MenuItem value="true">Enabled</MenuItem>
-              <MenuItem value="false">Disabled</MenuItem>
-            </TextField>
-          </Box>
-        </DialogContent>
-        <DialogActions sx={{ p: 2, borderTop: `1px solid ${theme.palette.divider}` }}>
-          <Button 
-            onClick={handleClose} 
-            variant="outlined"
-            sx={{ minWidth: 100 }}
           >
-            Cancel
-          </Button>
-          <Button 
-            onClick={handleSubmit} 
-            variant="contained"
-            sx={{ minWidth: 100 }}
+            <MenuItem value="Enabled">Enabled</MenuItem>
+            <MenuItem value="Disabled">Disabled</MenuItem>
+          </TextField>
+        </Box>
+
+        {/* ✅ جعبه دوم برای موبایل ستونی */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', md: 'row' }, // ✅ موبایل عمودی
+            gap: 1, 
+            mt: 1 
+          }}
+        >
+          <TextField
+            name="emailVerification"
+            label="Email Verified"
+            value={formData.emailVerification}
+            onChange={handleChange}
+            fullWidth
+            margin="dense"
+            select
+            size="small"
           >
-            {currentAccount ? 'Update' : 'Create'}
-          </Button>
-        </DialogActions>
-      </Dialog>
+            <MenuItem value="true">Verified</MenuItem>
+            <MenuItem value="false">Not Verified</MenuItem>
+          </TextField>
+
+          <TextField
+            name="mobileVerification"
+            label="Mobile Verified"
+            value={formData.mobileVerification}
+            onChange={handleChange}
+            fullWidth
+            margin="dense"
+            select
+            size="small"
+          >
+            <MenuItem value="true">Verified</MenuItem>
+            <MenuItem value="false">Not Verified</MenuItem>
+          </TextField>
+
+          <TextField
+            name="authenticatorCode"
+            label="2FA Enabled"
+            value={formData.authenticatorCode}
+            onChange={handleChange}
+            fullWidth
+            margin="dense"
+            select
+            size="small"
+          >
+            <MenuItem value="true">Enabled</MenuItem>
+            <MenuItem value="false">Disabled</MenuItem>
+          </TextField>
+        </Box>
+      </DialogContent>
+
+      <DialogActions 
+        sx={{ 
+          p: 2, 
+          borderTop: `1px solid ${theme.palette.divider}`,
+          flexDirection: { xs: 'column', sm: 'row' }, // ✅ موبایل زیر هم
+          gap: { xs: 1, sm: 0 } 
+        }}
+      >
+        <Button 
+          onClick={handleClose} 
+          variant="outlined"
+          sx={{ minWidth: { xs: '100%', sm: 100 } }} // ✅ تمام عرض برای موبایل
+        >
+          Cancel
+        </Button>
+        <Button 
+          onClick={handleSubmit} 
+          variant="contained"
+          sx={{ minWidth: { xs: '100%', sm: 100 } }}
+        >
+          {currentAccount ? 'Update' : 'Create'}
+        </Button>
+      </DialogActions>
+    </Dialog>
+
     </Box>
   );
 };

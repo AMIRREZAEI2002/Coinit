@@ -135,7 +135,7 @@ const rows: TransactionRow[] = [
 const SectionCard = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: 16,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
   marginTop: theme.spacing(3),
 }));

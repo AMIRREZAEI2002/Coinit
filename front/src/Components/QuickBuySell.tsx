@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Grid, 
   Box, 
@@ -13,7 +13,11 @@ import {
   Tooltip,
   Card,
   CardContent,
-  CircularProgress
+  CircularProgress,
+  Container,
+  useTheme,
+  useMediaQuery,
+  Alert
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
@@ -38,14 +42,18 @@ interface PaymentMethod {
 
 const currencies: Currency[] = [
   { name: 'USDT', symbol: 'USDT', icon: 'mdi:currency-usd', price: 1 },
+  { name: 'US Dollar', symbol: 'USD', icon: 'mdi:currency-usd', price: 1 },
+  { name: 'Euro', symbol: 'EUR', icon: 'mdi:currency-eur', price: 0.92 },
 ];
 
 const coins: Currency[] = [
-  { name: 'Bitcoin', symbol: 'BTC', icon: 'cryptocurrency-color:btc', price: 40000 },
-  { name: 'Ethereum', symbol: 'ETH', icon: 'cryptocurrency-color:eth', price: 3000 },
-  { name: 'Litecoin', symbol: 'LTC', icon: 'cryptocurrency-color:ltc', price: 150 },
-  { name: 'Ripple', symbol: 'XRP', icon: 'cryptocurrency-color:xrp', price: 0.5 },
-  { name: 'Dogecoin', symbol: 'DOGE', icon: 'cryptocurrency-color:doge', price: 0.1 },
+  { name: 'Bitcoin', symbol: 'BTC', icon: 'cryptocurrency:btc', price: 40000 },
+  { name: 'Ethereum', symbol: 'ETH', icon: 'cryptocurrency:eth', price: 3000 },
+  { name: 'Litecoin', symbol: 'LTC', icon: 'cryptocurrency:ltc', price: 150 },
+  { name: 'Ripple', symbol: 'XRP', icon: 'cryptocurrency:xrp', price: 0.5 },
+  { name: 'Dogecoin', symbol: 'DOGE', icon: 'cryptocurrency:doge', price: 0.1 },
+  { name: 'Solana', symbol: 'SOL', icon: 'cryptocurrency:sol', price: 120 },
+  { name: 'Cardano', symbol: 'ADA', icon: 'cryptocurrency:ada', price: 0.45 },
 ];
 
 const paymentMethods: PaymentMethod[] = [
@@ -73,6 +81,14 @@ const paymentMethods: PaymentMethod[] = [
     fee: '1.2% transaction fee',
     processingTime: 'Instant' 
   },
+  { 
+    id: '4', 
+    name: 'Apple Pay', 
+    icon: 'mdi:apple',
+    description: 'Pay with your Apple device',
+    fee: '0.8% transaction fee',
+    processingTime: 'Instant' 
+  },
 ];
 
 // Function to extract fee percentage from string
@@ -85,6 +101,10 @@ const getFeeDecimal = (feeString: string): number => {
 };
 
 const QuickBuySell = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const cardRef = useRef<HTMLDivElement>(null);
+  
   const [mode, setMode] = useState<'buy'|'sell'>('buy');
   const [spendAmount, setSpendAmount] = useState<string>('');
   const [receiveAmount, setReceiveAmount] = useState<string>('');
@@ -95,6 +115,9 @@ const QuickBuySell = () => {
   const [currencySearch, setCurrencySearch] = useState<string>('');
   const [coinSearch, setCoinSearch] = useState<string>('');
   const [isRefreshingPrice, setIsRefreshingPrice] = useState<boolean>(false);
+  const [transactionAlert, setTransactionAlert] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [transactionDetails, setTransactionDetails] = useState<any>(null);
   
   const [currencyAnchorEl, setCurrencyAnchorEl] = useState<null | HTMLElement>(null);
   const [coinAnchorEl, setCoinAnchorEl] = useState<null | HTMLElement>(null);
@@ -108,7 +131,7 @@ const QuickBuySell = () => {
   const spendLabel = mode === 'buy' ? "Spend" : "Sell";
   const receiveLabel = mode === 'buy' ? "Receive" : "Get";
   const spendPlaceholder = mode === 'buy' ? "Enter amount" : "Enter crypto amount";
-  const receivePlaceholder = mode === 'buy' ? "Enter crypto amount" : "Enter amount";
+  const receivePlaceholder = mode === 'buy' ? "Enter crypto amount" : "Enter amount"
 
   // Filter currencies and coins based on search
   const filteredCurrencies = currencies.filter(c => 
@@ -165,21 +188,34 @@ const QuickBuySell = () => {
 
   // Handle amount changes with validation
   const handleSpendChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // Only allow numbers and decimal
-    if (/^\d*\.?\d*$/.test(value) || value === '') {
-      setSpendAmount(value);
-      calculateConversion('spend', value);
+    let value = e.target.value;
+    if (!/^\d*\.?\d*$/.test(value) && value !== '') return;
+    if (value === '') {
+      setSpendAmount('');
+      calculateConversion('spend', '');
+      return;
     }
+    const numericValue = parseFloat(value);
+    if (numericValue < 0) {
+      value = '0';
+    }
+    setSpendAmount(value);
+    calculateConversion('spend', value);
   };
-
   const handleReceiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // Only allow numbers and decimal
-    if (/^\d*\.?\d*$/.test(value) || value === '') {
-      setReceiveAmount(value);
-      calculateConversion('receive', value);
+    let value = e.target.value;
+    if (!/^\d*\.?\d*$/.test(value) && value !== '') return;
+    if (value === '') {
+      setSpendAmount('');
+      calculateConversion('spend', '');
+      return;
     }
+    const numericValue = parseFloat(value);
+    if (numericValue < 0) {
+      value = '0';
+    }
+    setSpendAmount(value);
+    calculateConversion('spend', value);
   };
 
   // Toggle between buy/sell
@@ -187,6 +223,20 @@ const QuickBuySell = () => {
     setMode(newMode);
     setSpendAmount('');
     setReceiveAmount('');
+    
+    // Animate card on mode change
+    if (cardRef.current) {
+      cardRef.current.animate(
+        [
+          { transform: 'scale(0.95)', opacity: 0.8 },
+          { transform: 'scale(1)', opacity: 1 }
+        ],
+        {
+          duration: 300,
+          easing: 'ease-out'
+        }
+      );
+    }
   };
 
   // Currency selection handlers
@@ -209,7 +259,7 @@ const QuickBuySell = () => {
 
   // Increment/decrement handlers
   const incrementSpend = () => {
-    const newValue = (parseFloat(spendAmount || '0') + 1).toString();
+    const newValue = (parseFloat(spendAmount || '0') + (mode === 'buy' ? 0.1 : 0.1)).toString();
     setSpendAmount(newValue);
     calculateConversion('spend', newValue);
   };
@@ -217,14 +267,14 @@ const QuickBuySell = () => {
   const decrementSpend = () => {
     const current = parseFloat(spendAmount || '0');
     if (current > 0) {
-      const newValue = (current - 1).toString();
+      const newValue = (current - (mode === 'buy' ? 0.1 : 0.1)).toString();
       setSpendAmount(newValue);
       calculateConversion('spend', newValue);
     }
   };
 
   const incrementReceive = () => {
-    const newValue = (parseFloat(receiveAmount || '0') + 1).toString();
+    const newValue = (parseFloat(receiveAmount || '0') + (mode === 'buy' ? 0.01 : 10)).toString();
     setReceiveAmount(newValue);
     calculateConversion('receive', newValue);
   };
@@ -232,7 +282,7 @@ const QuickBuySell = () => {
   const decrementReceive = () => {
     const current = parseFloat(receiveAmount || '0');
     if (current > 0) {
-      const newValue = (current - 1).toString();
+      const newValue = (current - (mode === 'buy' ? 0.01 : 10)).toString();
       setReceiveAmount(newValue);
       calculateConversion('receive', newValue);
     }
@@ -267,249 +317,842 @@ const QuickBuySell = () => {
     return `1 ${selectedCoin.symbol} = ${selectedCoin.price.toFixed(2)} ${selectedCurrency.symbol}`;
   };
 
+  // Get reverse rate
+  const getReverseRate = () => {
+    const reverseRate = 1 / selectedCoin.price;
+    return `1 ${selectedCurrency.symbol} = ${reverseRate.toFixed(8)} ${selectedCoin.symbol}`;
+  };
+
+  // Handle transaction
+  const handleTransaction = () => {
+    // Calculate our profit (0.5% of the transaction)
+    const transactionAmount = parseFloat(mode === 'buy' ? spendAmount : receiveAmount);
+    const ourProfit = transactionAmount * 0.005;
+    
+    // Create transaction details
+    const details = {
+      type: mode,
+      from: mode === 'buy' ? selectedCurrency.symbol : selectedCoin.symbol,
+      fromAmount: mode === 'buy' ? spendAmount : spendAmount,
+      to: mode === 'buy' ? selectedCoin.symbol : selectedCurrency.symbol,
+      toAmount: mode === 'buy' ? receiveAmount : receiveAmount,
+      paymentMethod: selectedPayment.name,
+      fee: selectedPayment.fee,
+      ourProfit: ourProfit.toFixed(2),
+      gasFee: "0.0005 ETH", // This would be calculated in a real app
+      transactionHash: "0x" + Math.random().toString(36).substring(2, 66), // Simulated hash
+      timestamp: new Date().toISOString(),
+      status: "Pending Signature", // Simulated status
+      comment: "Please sign the transaction in your wallet to complete the process"
+    };
+    
+    setTransactionDetails(details);
+    setTransactionAlert(true);
+    
+    // Hide alert after 5 seconds
+    setTimeout(() => {
+      setTransactionAlert(false);
+    }, 5000);
+  };
+
   return (
-    <Grid container spacing={4} sx={{ py: 4, px: { xs: 2, md: 6 }, bgcolor: 'background.default' }}>
-      {/* Left Column - Description */}
-      <Grid size={{xs:12,md:6}}>
+    <Container maxWidth="lg" sx={{ p: 0, WebkitFontSmoothing: 'antialiased' }}>
+      {transactionAlert && transactionDetails && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          exit={{ opacity: 0 }}
+          style={{ position: 'fixed', top: 20, left: 0, right: 0, zIndex: 9999, padding: '0 16px' }}
         >
-          <Typography variant="h3" fontWeight={700} gutterBottom>
-            Buy & Sell Crypto Instantly
-          </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
-            Trade cryptocurrencies in seconds with our secure platform and competitive rates.
-          </Typography>
-          
-          <Box sx={{ display: 'flex', mt: 3, gap: 1 }}>
-            {coins.slice(0, 5).map((coin) => (
+          <Alert 
+            severity="info" 
+            onClose={() => setTransactionAlert(false)}
+            sx={{ 
+              boxShadow: 3,
+              borderRadius: 2,
+              maxWidth: 600,
+              margin: '0 auto',
+              backgroundColor: theme.palette.background.paper
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Transaction Details
+            </Typography>
+            <Box component="pre" sx={{ 
+              backgroundColor: theme.palette.background.default,
+              p: 2,
+              borderRadius: 1,
+              overflowX: 'auto',
+              fontSize: {xs:11,md:15},
+              mt: 1
+            }}>
+              {JSON.stringify(transactionDetails, null, 2)}
+            </Box>
+            <Typography variant="body2" sx={{ mt: 1, color: theme.palette.text.secondary }}>
+              {transactionDetails.comment}
+            </Typography>
+          </Alert>
+        </motion.div>
+      )}
+
+      <Grid container spacing={4} sx={{ mb: 6 }}>
+        {/* Left Column - Description */}
+        <Grid size={{xs:12,md:6}}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography
+              variant="h3"
+              fontWeight={700}
+              gutterBottom
+              sx={{
+                fontSize: { xs: 20, md: 30 },
+                background: 'linear-gradient(90deg, #4b6cb7 0%, #182848 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                lineHeight: 1.2
+              }}
+            >
+              Buy & Sell Crypto Instantly
+            </Typography>
+            <Typography variant="body1" color="text.secondary" paragraph sx={{ mb: 2, fontSize: { xs: '0.8rem', sm: '1rem' } }}>
+              Trade cryptocurrencies in seconds with our secure platform and competitive rates.
+              Start trading with as little as $10.
+            </Typography>
+
+            <Box sx={{ display: 'flex', mt: 3, gap: 1, flexWrap: 'wrap' }}>
+              {coins.slice(0, 6).map((coin) => (
                 <motion.div
-                key={coin.symbol}
-                whileHover={{ scale: 1.1 }}
-                style={{
+                  key={coin.symbol}
+                  whileHover={{ scale: 1.1 }}
+                  style={{
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    backgroundColor: '#f3f4f6',
+                    backgroundColor: theme.palette.background.paper,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
                     cursor: 'pointer'
-                }}
+                  }}
                 >
-                <Icon icon={coin.icon} style={{ fontSize: 20, color: '#111827' }} />
+                  <Icon icon={coin.icon} style={{ fontSize: 20 }} />
                 </motion.div>
-            ))}
+              ))}
             </Box>
-        </motion.div>
+
+            <Box sx={{ mt: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Icon icon="mdi:shield-check" style={{ color: theme.palette.success.main, fontSize: 24, marginRight: 8 }} />
+                <Typography variant="body2" color="text.secondary">Secure Transactions</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Icon icon="mdi:lightning-bolt" style={{ color: theme.palette.warning.main, fontSize: 24, marginRight: 8 }} />
+                <Typography variant="body2" color="text.secondary">Instant Processing</Typography>
+              </Box>
+            </Box>
+          </motion.div>
+        </Grid>
+
+        {/* Right Column - Buy/Sell Form */}
+        <Grid size={{xs:12,md:6}}>
+            <Card 
+              ref={cardRef}
+              sx={{ 
+                borderRadius: 3, 
+                boxShadow: '0 10px 30px rgba(0,0,0,0.05)', 
+                height: '100%',
+                background: theme.palette.background.paper,
+                border: `1px solid ${theme.palette.divider}`
+              }}
+            >
+              <CardContent sx={{ p: { xs: 1, sm: 3 } }}>
+                {/* Buy/Sell Toggle */}
+                <motion.div layout style={{ marginBottom: 24 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      bgcolor: theme.palette.background.default,
+                      borderRadius: '50px',
+                      p: 0.1,
+                      boxShadow: 1
+                    }}
+                  >
+                    <Button
+                      fullWidth
+                      onClick={() => handleModeChange('buy')}
+                      sx={{
+                        bgcolor: mode === 'buy' ? 'success.main' : 'transparent',
+                        color: mode === 'buy' ? 'common.white' : 'text.primary',
+                        borderRadius: '50px',
+                        py: 1,
+                        fontWeight: 700,
+                        fontSize: isMobile ? 12 : 15,
+                        '&:hover': {
+                          bgcolor: mode === 'buy' ? 'success.dark' : 'action.hover',
+                        },
+                      }}
+                    >
+                      Buy
+                    </Button>
+                    <Button
+                      fullWidth
+                      onClick={() => handleModeChange('sell')}
+                      sx={{
+                        bgcolor: mode === 'sell' ? 'error.main' : 'transparent',
+                        color: mode === 'sell' ? 'common.white' : 'text.primary',
+                        borderRadius: '50px',
+                        py: 1,
+                        fontWeight: 700,
+                        fontSize: isMobile ? 11 : 15,
+                        '&:hover': {
+                          bgcolor: mode === 'sell' ? 'error.dark' : 'action.hover',
+                        },
+                      }}
+                    >
+                      Sell
+                    </Button>
+                  </Box>
+                </motion.div>
+
+                {/* Current Rate Display */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    mb: 2,
+                    p: 1,
+                    bgcolor: theme.palette.action.hover,
+                    borderRadius: 2,
+                    border: `1px solid ${theme.palette.divider}`
+                  }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between', 
+                      alignItems: 'center',
+                      mb: 1
+                    }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Icon icon="mdi:trending-up" style={{ marginRight: 8, color: theme.palette.success.main }} />
+                        <Box>
+                          <Typography variant="body2" sx={{ fontWeight: 500, fontSize:{xs:12,md:15} }}>
+                            {getCurrentRate()}
+                          </Typography>
+                          <Typography sx={{fontSize:{xs:11,md:15}}} color="text.secondary">
+                            {getReverseRate()}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={refreshCurrentPrice}
+                        disabled={isRefreshingPrice}
+                        startIcon={isRefreshingPrice ?
+                          <CircularProgress size={12} /> :
+                          <Icon icon="mdi:refresh" />}
+                        sx={{ 
+                          minWidth: 'auto',
+                          fontSize: 12,
+                          py: 0.5
+                        }}
+                      >
+                        {isMobile ? '' : 'Refresh'}
+                      </Button>
+                    </Box>
+                    
+                    <Box sx={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between',
+                      mt: 1,
+                      pt: 1,
+                      borderTop: `1px dashed ${theme.palette.divider}`,
+                      fontSize: 12
+                    }}>
+                      <Typography sx={{fontSize:{xs:12,md:15}}}>Platform Fee</Typography>
+                      <Typography sx={{ fontWeight: 500 ,fontSize:{xs:12,md:15}}}>
+                        0.5% + Gas Fee
+                      </Typography>
+                    </Box>
+                  </Box>
+                </motion.div>
+
+                {/* Spend Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                >
+                  <Card sx={{ 
+                    mb: 1,
+                    py: '0px !important',
+                    borderRadius: 2,
+                    border: 'none', 
+                    boxShadow: 'none', 
+                    background: 'transparent'
+                  }}>
+                    <CardContent sx={{ px: '5px !important' }}>
+                      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+                        {spendLabel}
+                      </Typography>
+                      
+                      {/* Mobile layout for currency selector */}
+                      {isMobile ? (
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0,p:0 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center' ,p:0}}>
+                            <Button
+                              onClick={(e) => mode === 'buy' ? setCurrencyAnchorEl(e.currentTarget) : setCoinAnchorEl(e.currentTarget)}
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                p: 1,
+                                borderRadius: '12px 12px 0 0',
+                                minWidth: 'auto',
+                                bgcolor: theme.palette.background.default,
+                                border: `1px solid ${theme.palette.divider}`,
+                                height: 48,
+                                width: '100%',
+                                justifyContent: 'flex-start'
+                              }}
+                            >
+                              <Icon 
+                                icon={mode === 'buy' ? selectedCurrency.icon : selectedCoin.icon} 
+                                fontSize={18} 
+                              />
+                              <Typography sx={{ mx: 1, fontWeight: 600, fontSize: 12 }}>
+                                {mode === 'buy' ? selectedCurrency.symbol : selectedCoin.symbol}
+                              </Typography>
+                              <Box sx={{ flexGrow: 1 }} />
+                              <Icon icon="mdi:chevron-down" fontSize={16} />
+                            </Button>
+                          </Box>
+                          
+                          <TextField
+                            type="text"
+                            value={spendAmount}
+                            onChange={handleSpendChange}
+                            placeholder={spendPlaceholder}
+                            variant="outlined"
+                            fullWidth
+                            InputProps={{
+                              sx: { 
+                                fontSize: { xs: 13, sm: 15 }, 
+                                fontWeight: 600,
+                                height: 50,
+                                '& input': { py: 1 },
+                                borderRadius: '0 0 12px 12px',
+                                borderTopLeftRadius: 0,
+                                borderTopRightRadius: 0
+                              },
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Typography color="text.secondary" sx={{ fontWeight: 500, fontSize:{xs:12,md:15} }}>
+                                    {mode === 'buy' ? selectedCurrency.symbol : selectedCoin.symbol}
+                                  </Typography>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton 
+                                    onClick={decrementSpend} 
+                                    disabled={!spendAmount || parseFloat(spendAmount) <= 0}
+                                    size="small"
+                                    sx={{ 
+                                      bgcolor: theme.palette.action.hover, 
+                                      borderRadius: 1, 
+                                      mr: 0.5 
+                                    }}
+                                  >
+                                    <Icon icon="mdi:minus" fontSize={16} />
+                                  </IconButton>
+                                  <IconButton 
+                                    onClick={incrementSpend} 
+                                    disabled={!spendAmount}
+                                    size="small"
+                                    sx={{ bgcolor: theme.palette.action.hover, borderRadius: 1 }}
+                                  >
+                                    <Icon icon="mdi:plus" fontSize={16} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Box>
+                      ) : (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                          <TextField
+                            type="text"
+                            value={spendAmount}
+                            onChange={handleSpendChange}
+                            placeholder={spendPlaceholder}
+                            variant="outlined"
+                            fullWidth
+                            InputProps={{
+                              sx: { 
+                                fontSize: { xs: 12, sm: 15 }, 
+                                fontWeight: 600,
+                                height: 50,
+                                '& input': { py: 1 }
+                              },
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Typography color="text.secondary" sx={{ fontWeight: 500 }}>
+                                    {mode === 'buy' ? selectedCurrency.symbol : selectedCoin.symbol}
+                                  </Typography>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton 
+                                    onClick={decrementSpend} 
+                                    disabled={!spendAmount || parseFloat(spendAmount) <= 0}
+                                    size="small"
+                                    sx={{ 
+                                      bgcolor: theme.palette.action.hover, 
+                                      borderRadius: 1, 
+                                      mr: 0.5 
+                                    }}
+                                  >
+                                    <Icon icon="mdi:minus" fontSize={16} />
+                                  </IconButton>
+                                  <IconButton 
+                                    onClick={incrementSpend} 
+                                    disabled={!spendAmount}
+                                    size="small"
+                                    sx={{ bgcolor: theme.palette.action.hover, borderRadius: 1 }}
+                                  >
+                                    <Icon icon="mdi:plus" fontSize={16} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                          <Button
+                            onClick={(e) => mode === 'buy' ? setCurrencyAnchorEl(e.currentTarget) : setCoinAnchorEl(e.currentTarget)}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              p: 1,
+                              borderRadius: 2,
+                              minWidth: 'auto',
+                              bgcolor: theme.palette.background.default,
+                              border: `1px solid ${theme.palette.divider}`,
+                              height: 50
+                            }}
+                          >
+                            <Icon 
+                              icon={mode === 'buy' ? selectedCurrency.icon : selectedCoin.icon} 
+                              fontSize={24} 
+                            />
+                            <Typography sx={{ mx: 1, fontWeight: 600, fontSize: 12 }}>
+                              {mode === 'buy' ? selectedCurrency.symbol : selectedCoin.symbol}
+                            </Typography>
+                            <Icon icon="mdi:chevron-down" fontSize={16} />
+                          </Button>
+                        </Box>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+
+                {/* Arrow divider */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  style={{ display: 'flex', justifyContent: 'center', margin: '0px 0' }}
+                >
+                  <Box sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    bgcolor: theme.palette.background.default,
+                    border: `1px solid ${theme.palette.divider}`
+                  }}>
+                    <Icon 
+                      icon={mode === 'buy' ? "mdi:arrow-down" : "mdi:arrow-down"} 
+                      fontSize={24} 
+                      style={{ 
+                        color: mode === 'buy' ? theme.palette.success.main : theme.palette.error.main 
+                      }} 
+                    />
+                  </Box>
+                </motion.div>
+
+                {/* Receive Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
+                >
+                  <Card sx={{ 
+                    mb: 3, 
+                    borderRadius: 2,
+                    border: 'none', 
+                    boxShadow: 'none', 
+                    background: 'transparent'
+                  }}>
+                    <CardContent sx={{ p: '5px !important' }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ mr: 1 }}>
+                          {receiveLabel}
+                        </Typography>
+                        <Tooltip title="Amount you'll receive after fees" arrow>
+                          <Icon 
+                            icon="mdi:information-outline" 
+                            style={{ fontSize: 16, color: theme.palette.text.secondary }} 
+                          />
+                        </Tooltip>
+                      </Box>
+                      
+                      {/* Mobile layout for currency selector */}
+                      {isMobile ? (
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Button
+                              onClick={(e) => mode === 'buy' ? setCoinAnchorEl(e.currentTarget) : setCurrencyAnchorEl(e.currentTarget)}
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                p: 1,
+                                borderRadius: '12px 12px 0 0',
+                                minWidth: 'auto',
+                                bgcolor: theme.palette.background.default,
+                                border: `1px solid ${theme.palette.divider}`,
+                                height: 48,
+                                width: '100%',
+                                justifyContent: 'flex-start'
+                              }}
+                            >
+                              <Icon 
+                                icon={mode === 'buy' ? selectedCoin.icon : selectedCurrency.icon} 
+                                fontSize={20} 
+                              />
+                              <Typography sx={{ mx: 1, fontWeight: 600, fontSize:{xs:12,md:15} }}>
+                                {mode === 'buy' ? selectedCoin.symbol : selectedCurrency.symbol}
+                              </Typography>
+                              <Box sx={{ flexGrow: 1 }} />
+                              <Icon icon="mdi:chevron-down" fontSize={16} />
+                            </Button>
+                          </Box>
+                          
+                          <TextField
+                            type="text"
+                            value={receiveAmount}
+                            onChange={handleReceiveChange}
+                            placeholder={receivePlaceholder}
+                            variant="outlined"
+                            fullWidth
+                            InputProps={{
+                              sx: { 
+                                fontSize:{xs:12,md:15}, 
+                                fontWeight: 600,
+                                height: 50,
+                                '& input': { py: 1 },
+                                borderRadius: '0 0 12px 12px',
+                                borderTopLeftRadius: 0,
+                                borderTopRightRadius: 0
+                              },
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Typography color="text.secondary" sx={{ fontWeight: 500, fontSize:{xs:12,md:15} }}>
+                                    {mode === 'buy' ? selectedCoin.symbol : selectedCurrency.symbol}
+                                  </Typography>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton 
+                                    onClick={decrementReceive} 
+                                    disabled={!receiveAmount || parseFloat(receiveAmount) <= 0}
+                                    size="small"
+                                    sx={{ 
+                                      bgcolor: theme.palette.action.hover, 
+                                      borderRadius: 1, 
+                                      mr: 0.5 
+                                    }}
+                                  >
+                                    <Icon icon="mdi:minus" fontSize={16} />
+                                  </IconButton>
+                                  <IconButton 
+                                    onClick={incrementReceive} 
+                                    disabled={!receiveAmount}
+                                    size="small"
+                                    sx={{ bgcolor: theme.palette.action.hover, borderRadius: 1 }}
+                                  >
+                                    <Icon icon="mdi:plus" fontSize={16} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Box>
+                      ) : (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                          <TextField
+                            type="text"
+                            value={receiveAmount}
+                            onChange={handleReceiveChange}
+                            placeholder={receivePlaceholder}
+                            variant="outlined"
+                            fullWidth
+                            InputProps={{
+                              sx: { 
+                                fontSize:{xs:12,md:15}, 
+                                fontWeight: 600,
+                                height: 50,
+                                '& input': { py: 1 }
+                              },
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Typography color="text.secondary" sx={{ fontWeight: 500 }}>
+                                    {mode === 'buy' ? selectedCoin.symbol : selectedCurrency.symbol}
+                                  </Typography>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton 
+                                    onClick={decrementReceive} 
+                                    disabled={!receiveAmount || parseFloat(receiveAmount) <= 0}
+                                    size="small"
+                                    sx={{ 
+                                      bgcolor: theme.palette.action.hover, 
+                                      borderRadius: 1, 
+                                      mr: 0.5 
+                                    }}
+                                  >
+                                    <Icon icon="mdi:minus" fontSize={16} />
+                                  </IconButton>
+                                  <IconButton 
+                                    onClick={incrementReceive} 
+                                    disabled={!receiveAmount}
+                                    size="small"
+                                    sx={{ bgcolor: theme.palette.action.hover, borderRadius: 1 }}
+                                  >
+                                    <Icon icon="mdi:plus" fontSize={16} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                          <Button
+                            onClick={(e) => mode === 'buy' ? setCoinAnchorEl(e.currentTarget) : setCurrencyAnchorEl(e.currentTarget)}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              p: 1.2,
+                              borderRadius: 2,
+                              minWidth: 'auto',
+                              bgcolor: theme.palette.background.default,
+                              border: `1px solid ${theme.palette.divider}`,
+                              height: 50
+                            }}
+                          >
+                            <Icon 
+                              icon={mode === 'buy' ? selectedCoin.icon : selectedCurrency.icon} 
+                              fontSize={24} 
+                            />
+                            <Typography sx={{ mx: 1, fontWeight: 600, fontSize:{xs:12,md:15} }}>
+                              {mode === 'buy' ? selectedCoin.symbol : selectedCurrency.symbol}
+                            </Typography>
+                            <Icon icon="mdi:chevron-down" fontSize={16} />
+                          </Button>
+                        </Box>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+
+                {/* Payment Method */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  style={{ marginBottom: 24 }}
+                >
+                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+                    Payment Method
+                  </Typography>
+                  <Card sx={{ 
+                    borderRadius: 2, 
+                    position: 'relative',
+                    border: `1px solid ${theme.palette.divider}`,
+                    background: theme.palette.background.paper
+                  }}>
+                    <Chip
+                      label="Best price"
+                      color="primary"
+                      size="small"
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        borderTopLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                        fontWeight: 600,
+                        fontSize: '0.7rem'
+                      }} 
+                    />
+                    <CardContent sx={{ p: '5px !important' }}>
+                      <Button
+                        fullWidth
+                        onClick={(e) => setPaymentAnchorEl(e.currentTarget)}
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          p: 1,
+                          borderRadius: 1,
+                          bgcolor: 'transparent'
+                        }}
+                      >
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Icon 
+                            icon={selectedPayment.icon} 
+                            fontSize={isMobile ? 22 : 24} 
+                            style={{ 
+                              color: theme.palette.primary.main,
+                              marginRight: 12 
+                            }} 
+                          />
+                          <Box sx={{ textAlign: 'left' }}>
+                            <Typography 
+                              sx={{ 
+                                fontWeight: 600, 
+                                fontSize:{xs:12,md:13}
+                              }}
+                            >
+                              {selectedPayment.name}
+                            </Typography>
+                            <Typography 
+                              variant="caption" 
+                              color="text.secondary"
+                              sx={{ fontSize:{xs:11,md:12} }}
+                            >
+                              {selectedPayment.fee}
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Icon 
+                          icon="mdi:chevron-down" 
+                          fontSize={17} 
+                          style={{ color: theme.palette.text.secondary }} 
+                        />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+
+                {/* Action Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    onClick={handleTransaction}
+                    sx={{
+                      borderRadius: '50px',
+                      py: 0.5,
+                      fontSize:{xs:12,md:15},
+                      fontWeight: 700,
+                      bgcolor: mode === 'buy' ? 'success.main' : 'error.main',
+                      '&:hover': {
+                        bgcolor: mode === 'buy' ? 'success.dark' : 'error.dark',
+                      },
+                      boxShadow: `0 4px 10px ${mode === 'buy' 
+                        ? 'rgba(46, 204, 113, 0.3)' 
+                        : 'rgba(231, 76, 60, 0.3)'}`
+                    }}
+                  >
+                    {mode === 'buy' 
+                      ? `Buy ${selectedCoin.symbol}` 
+                      : `Sell ${selectedCoin.symbol}`}
+                  </Button>
+                </motion.div>
+
+                {/* Fee Summary */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.7 }}
+                  style={{ marginTop: 16 }}
+                >
+                  <Box sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between',
+                    fontSize: 12,
+                    color: theme.palette.text.secondary,
+                    mt: 2,
+                    pt: 2,
+                    borderTop: `1px solid ${theme.palette.divider}`
+                  }}>
+                    <Typography variant="caption">Processing fee</Typography>
+                    <Typography variant="caption" sx={{ fontWeight: 500 }}>
+                      {selectedPayment.fee}
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </CardContent>
+            </Card>
+        </Grid>
       </Grid>
 
-      {/* Right Column - Buy/Sell Form */}
-      <Grid size={{xs:12,md:6}}>
-        {/* Buy/Sell Toggle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              bgcolor: 'background.paper', 
-              borderRadius: '50px', 
-              p: 0.5, 
-              mb: 3,
-              boxShadow: 1
-            }}
-          >
-            <Button
-              fullWidth
-              onClick={() => handleModeChange('buy')}
-              sx={{
-                bgcolor: mode === 'buy' ? 'success.main' : 'transparent',
-                color: mode === 'buy' ? 'common.white' : 'text.primary',
-                borderRadius: '50px',
-                py: 1,
-                fontWeight: 600,
-                '&:hover': {
-                  bgcolor: mode === 'buy' ? 'success.dark' : 'action.hover',
-                },
-              }}
-            >
-              Buy
-            </Button>
-            <Button
-              fullWidth
-              onClick={() => handleModeChange('sell')}
-              sx={{
-                bgcolor: mode === 'sell' ? 'error.main' : 'transparent',
-                color: mode === 'sell' ? 'common.white' : 'text.primary',
-                borderRadius: '50px',
-                py: 1,
-                fontWeight: 600,
-                '&:hover': {
-                  bgcolor: mode === 'sell' ? 'error.dark' : 'action.hover',
-                },
-              }}
-            >
-              Sell
-            </Button>
-          </Box>
-        </motion.div>
-
-        {/* Current Rate Display */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <Box sx={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
-            mb: 2,
-            p: 1,
-            bgcolor: 'action.hover',
-            borderRadius: 1
-          }}>
-            <Typography variant="body2">
-              {getCurrentRate()}
-            </Typography>
-            <Button 
-              variant="outlined" 
-              size="small"
-              onClick={refreshCurrentPrice}
-              disabled={isRefreshingPrice}
-              startIcon={
-                isRefreshingPrice ? 
-                <CircularProgress size={16} /> : 
-                <Icon icon="mdi:refresh" />
-              }
-            >
-              Refresh
-            </Button>
-          </Box>
-        </motion.div>
-
-        {/* Spend Section */}
-        <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+      {/* Currency Selection Menu */}
+      <Menu
+        anchorEl={currencyAnchorEl}
+        open={currencyOpen}
+        onClose={() => setCurrencyAnchorEl(null)}
+        sx={{
+          '& .MuiPaper-root': {
+            width: { xs: '90vw', sm: 300 },
+            maxHeight: 300,
+            borderRadius: 2,
+            boxShadow: 3,
+            mt: 1
+          }
+        }}
       >
-        <Card sx={{ mb: 2, borderRadius: 2 }}>
-          <CardContent>
-            <Typography variant="caption" color="text.secondary">
-              {spendLabel}
-            </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 2 }}>
-              <TextField
-                type="text"
-                value={spendAmount}
-                onChange={handleSpendChange}
-                placeholder={spendPlaceholder}
-                variant="standard"
-                fullWidth
-                InputProps={{
-                  disableUnderline: true,
-                  sx: { fontSize: '1.75rem', fontWeight: 700 },
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={incrementSpend} disabled={!spendAmount}>
-                        <Icon icon="mdi:plus" />
-                      </IconButton>
-                      <IconButton 
-                        onClick={decrementSpend} 
-                        disabled={!spendAmount || parseFloat(spendAmount) <= 0}
-                      >
-                        <Icon icon="mdi:minus" />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {/* تغییر مهم: در حالت فروش دکمه انتخاب کوین در اینجا قرار می‌گیرد */}
-              {mode === 'buy' ? (
-                <Button
-                  onClick={(e) => setCurrencyAnchorEl(e.currentTarget)}
-                  sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    p: 1.5, 
-                    borderRadius: 1,
-                    minWidth: 'auto'
-                  }}
-                >
-                  <Icon icon={selectedCurrency.icon} fontSize={24} />
-                  <Typography sx={{ mx: 1, fontWeight: 500 }}>
-                    {selectedCurrency.symbol}
-                  </Typography>
-                  <Icon icon="mdi:chevron-down" fontSize={16} />
-                </Button>
-              ) : (
-                <Button
-                  onClick={(e) => setCoinAnchorEl(e.currentTarget)}
-                  sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    p: 1.5, 
-                    borderRadius: 1,
-                    minWidth: 'auto'
-                  }}
-                >
-                  <Icon icon={selectedCoin.icon} fontSize={24} />
-                  <Typography sx={{ mx: 1, fontWeight: 500 }}>
-                    {selectedCoin.symbol}
-                  </Typography>
-                  <Icon icon="mdi:chevron-down" fontSize={16} />
-                </Button>
-              )}
-            </Box>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-
-        {/* Currency Selection Menu */}
-        <Menu
-          anchorEl={currencyAnchorEl}
-          open={currencyOpen}
-          onClose={() => setCurrencyAnchorEl(null)}
-          sx={{ 
-            '& .MuiPaper-root': { 
-              width: 300,
-              maxHeight: 300,
-              borderRadius: 2,
-              boxShadow: 3
-            } 
-          }}
-        >
-          <Box sx={{ p: 1, borderBottom: 1, borderColor: 'divider' }}>
-            <TextField
-              fullWidth
-              placeholder="Search currency"
-              value={currencySearch}
-              onChange={(e) => setCurrencySearch(e.target.value)}
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon icon="mdi:magnify" />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
+        <Box sx={{ p: 1.5, borderBottom: `1px solid ${theme.palette.divider}` }}>
+          <TextField
+            fullWidth
+            placeholder="Search currency"
+            value={currencySearch}
+            onChange={(e) => setCurrencySearch(e.target.value)}
+            size="small"
+            autoFocus
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Icon icon="mdi:magnify" />
+                </InputAdornment>
+              ),
+            }} 
+          />
+        </Box>
+        <Box sx={{ maxHeight: 250, overflow: 'auto' }}>
           {filteredCurrencies.map((currency) => (
-            <MenuItem 
-              key={currency.symbol} 
+            <MenuItem
+              key={currency.symbol}
               onClick={() => handleCurrencySelect(currency)}
               sx={{ py: 1.5 }}
             >
-              <Icon icon={currency.icon} fontSize={20} style={{ marginRight: 12 }} />
+              <Icon icon={currency.icon} fontSize={24} style={{ marginRight: 12, color: theme.palette.primary.main }} />
               <Box>
                 <Typography>{currency.name}</Typography>
                 <Typography variant="caption" color="text.secondary">
@@ -518,261 +1161,146 @@ const QuickBuySell = () => {
               </Box>
             </MenuItem>
           ))}
-        </Menu>
+        </Box>
+      </Menu>
 
-        {/* Receive Section */}
-        <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+      {/* Coin Selection Menu */}
+      <Menu
+        anchorEl={coinAnchorEl}
+        open={coinOpen}
+        onClose={() => setCoinAnchorEl(null)}
+        sx={{
+          '& .MuiPaper-root': {
+            width: { xs: '90vw', sm: 300 },
+            maxHeight: 300,
+            borderRadius: 2,
+            boxShadow: 3,
+            mt: 1
+          }
+        }}
       >
-        <Card sx={{ mb: 2, borderRadius: 2 }}>
-          <CardContent>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography variant="caption" color="text.secondary">
-                {receiveLabel}
-              </Typography>
-              <Tooltip title="Amount you'll receive after fees" arrow>
-                <Icon icon="mdi:information-outline" style={{ marginLeft: 6 }} />
-              </Tooltip>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 2 }}>
-              <TextField
-                type="text"
-                value={receiveAmount}
-                onChange={handleReceiveChange}
-                placeholder={receivePlaceholder}
-                variant="standard"
-                fullWidth
-                InputProps={{
-                  disableUnderline: true,
-                  sx: { fontSize: '1.75rem', fontWeight: 700 },
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={incrementReceive} disabled={!receiveAmount}>
-                        <Icon icon="mdi:plus" />
-                      </IconButton>
-                      <IconButton 
-                        onClick={decrementReceive} 
-                        disabled={!receiveAmount || parseFloat(receiveAmount) <= 0}
-                      >
-                        <Icon icon="mdi:minus" />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {/* تغییر مهم: در حالت فروش دکمه انتخاب ارز در اینجا قرار می‌گیرد */}
-              {mode === 'buy' ? (
-                <Button
-                  onClick={(e) => setCoinAnchorEl(e.currentTarget)}
-                  sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    p: 1.5, 
-                    borderRadius: 1,
-                    minWidth: 'auto'
-                  }}
-                >
-                  <Icon icon={selectedCoin.icon} fontSize={24} />
-                  <Typography sx={{ mx: 1, fontWeight: 500 }}>
-                    {selectedCoin.symbol}
-                  </Typography>
-                  <Icon icon="mdi:chevron-down" fontSize={16} />
-                </Button>
-              ) : (
-                <Button
-                  onClick={(e) => setCurrencyAnchorEl(e.currentTarget)}
-                  sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    p: 1.5, 
-                    borderRadius: 1,
-                    minWidth: 'auto'
-                  }}
-                >
-                  <Icon icon={selectedCurrency.icon} fontSize={24} />
-                  <Typography sx={{ mx: 1, fontWeight: 500 }}>
-                    {selectedCurrency.symbol}
-                  </Typography>
-                  <Icon icon="mdi:chevron-down" fontSize={16} />
-                </Button>
-              )}
-            </Box>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-
-        {/* Coin Selection Menu */}
-        <Menu
-          anchorEl={coinAnchorEl}
-          open={coinOpen}
-          onClose={() => setCoinAnchorEl(null)}
-          sx={{ 
-            '& .MuiPaper-root': { 
-              borderRadius: 2,
-              boxShadow: 3
-            } 
-          }}
-        >
-          <Box sx={{ p: 0, borderBottom: 1, borderColor: 'divider' }}>
-            <TextField
-              fullWidth
-              placeholder="Search coin"
-              value={coinSearch}
-              onChange={(e) => setCoinSearch(e.target.value)}
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Icon icon="mdi:magnify" />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
+        <Box sx={{ p: 1.5, borderBottom: `1px solid ${theme.palette.divider}` }}>
+          <TextField
+            fullWidth
+            placeholder="Search coin"
+            value={coinSearch}
+            onChange={(e) => setCoinSearch(e.target.value)}
+            size="small"
+            autoFocus
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Icon icon="mdi:magnify" />
+                </InputAdornment>
+              ),
+            }} 
+          />
+        </Box>
+        <Box sx={{ maxHeight: 250, overflow: 'auto' }}>
           {filteredCoins.map((coin) => (
-            <MenuItem 
-              key={coin.symbol} 
+            <MenuItem
+              key={coin.symbol}
               onClick={() => handleCoinSelect(coin)}
               sx={{ py: 1.5 }}
             >
-              <Icon icon={coin.icon} fontSize={20} style={{ marginRight: 12 }} />
-              <Box>
+              <Icon icon={coin.icon} fontSize={24} style={{ marginRight: 12 }} />
+              <Box sx={{ flexGrow: 1 }}>
                 <Typography>{coin.name}</Typography>
                 <Typography variant="caption" color="text.secondary">
                   {coin.symbol}
                 </Typography>
-                <Typography variant="caption" color="text.secondary" display="block">
+                <Typography variant="caption" color="text.secondary" display="block" sx={{ fontWeight: 500 }}>
                   ${coin.price.toLocaleString()}
                 </Typography>
               </Box>
-            </MenuItem>
-          ))}
-        </Menu>
-
-        {/* Payment Method */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Typography variant="caption" color="text.secondary" sx={{ mb: 1 }}>
-            Payment Method
-          </Typography>
-          <Card sx={{ mb: 2, borderRadius: 2, position: 'relative', p:0 }}>
-            <Chip 
-              label="Best price" 
-              color="primary" 
-              size="small" 
-              sx={{ 
-                position: 'absolute', 
-                top: 0, 
-                right: 0,
-                borderTopLeftRadius: 0,
-                borderBottomRightRadius: 0
-              }} 
-            />
-            <CardContent sx={{p:'0px !important'}}>
-              <Button
-                fullWidth
-                onClick={(e) => setPaymentAnchorEl(e.currentTarget)}
-                sx={{
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  p: 1
+              <Typography 
+                variant="caption" 
+                sx={{ 
+                  bgcolor: coin.price > 1000 ? theme.palette.success.light : theme.palette.warning.light,
+                  color: coin.price > 1000 ? theme.palette.success.dark : theme.palette.warning.dark,
+                  px: 1,
+                  borderRadius: 1,
+                  fontWeight: 600
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Icon icon={selectedPayment.icon} fontSize={24} style={{ marginRight: 12 }} />
-                  <Box>
-                    <Typography>{selectedPayment.name}</Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {selectedPayment.fee}
-                    </Typography>
-                  </Box>
-                </Box>
-                <Icon icon="mdi:chevron-down" fontSize={16} />
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* Payment Method Menu */}
-        <Menu
-          anchorEl={paymentAnchorEl}
-          open={paymentOpen}
-          onClose={() => setPaymentAnchorEl(null)}
-          sx={{ 
-            '& .MuiPaper-root': { 
-                width: 400,
-              borderRadius: 2,
-              boxShadow: 3
-            } 
-          }}
-        >
-          {paymentMethods.map((method) => (
-            <MenuItem 
-              key={method.id} 
-              onClick={() => handlePaymentSelect(method)}
-              sx={{ py: 2 }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                <Icon icon={method.icon} fontSize={28} style={{ marginRight: 16 }} />
-                <Box sx={{ flexGrow: 1 }}>
-                  <Typography fontWeight={600}>{method.name}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {method.description}
-                  </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between',flexDirection:{xs:'column', md:'row'}, mt: 1 }}>
-                    <Typography variant="caption">
-                      Fee: {method.fee}
-                    </Typography>
-                    <Typography variant="caption">
-                      Processing: {method.processingTime}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
+                {coin.price > 1000 ? 'High Cap' : 'Mid Cap'}
+              </Typography>
             </MenuItem>
           ))}
-        </Menu>
+        </Box>
+      </Menu>
 
-        {/* Action Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            sx={{
-              borderRadius: '50px',
-              py: 1,
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              bgcolor: mode === 'buy' ? 'success.main' : 'error.main',
-              '&:hover': {
-                bgcolor: mode === 'buy' ? 'success.dark' : 'error.dark',
-              },
-            }}
+      {/* Payment Method Menu */}
+      <Menu
+        anchorEl={paymentAnchorEl}
+        open={paymentOpen}
+        onClose={() => setPaymentAnchorEl(null)}
+        sx={{
+          '& .MuiPaper-root': {
+            width: { xs: '90vw', sm: 400 },
+            borderRadius: 2,
+            boxShadow: 3,
+            mt: 1
+          }
+        }}
+      >
+        {paymentMethods.map((method) => (
+          <MenuItem
+            key={method.id}
+            onClick={() => handlePaymentSelect(method)}
+            sx={{ py: 1.5, borderBottom: `1px solid ${theme.palette.divider}` }}
           >
-            {mode === 'buy' ? `Buy ${selectedCoin.symbol}` : `Sell ${selectedCoin.symbol}`}
-          </Button>
-        </motion.div>
+            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <Icon 
+                icon={method.icon} 
+                fontSize={28} 
+                style={{ 
+                  marginRight: 16,
+                  color: theme.palette.primary.main
+                }} 
+              />
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography fontWeight={600}>{method.name}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {method.description}
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1, gap: 1 }}>
+                  <Chip 
+                    label={method.fee} 
+                    size="small" 
+                    sx={{ 
+                      bgcolor: theme.palette.background.default,
+                      fontSize: '0.7rem'
+                    }} 
+                  />
+                  <Chip 
+                    label={method.processingTime} 
+                    size="small" 
+                    sx={{ 
+                      bgcolor: method.processingTime === 'Instant' 
+                        ? theme.palette.success.light 
+                        : theme.palette.warning.light,
+                      color: method.processingTime === 'Instant' 
+                        ? theme.palette.success.dark 
+                        : theme.palette.warning.dark,
+                      fontSize: '0.7rem'
+                    }} 
+                  />
+                </Box>
+              </Box>
+            </Box>
+          </MenuItem>
+        ))}
+      </Menu>
+      <Grid container spacing={1}>
+        <Grid size={{xs:12 , md: 12}}>
+          <QuickBuySellHowToBuy/>
+        </Grid>
+        <Grid size={{xs:12 , md: 12}}>
+          <QuickBuySellDifferentMethods/>
+        </Grid>
       </Grid>
-      <Grid size={{xs:12}}>
-        <QuickBuySellHowToBuy/>
-      </Grid>
-      <Grid size={{xs:12}}>
-        <QuickBuySellDifferentMethods/>
-      </Grid>
-    </Grid>
+    </Container>
   );
 };
 

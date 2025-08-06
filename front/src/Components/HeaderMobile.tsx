@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {
-  Box, IconButton, Typography, Drawer, List,
+  Box, IconButton, Drawer, List,
   ListItemButton, ListItemText, Divider,
   Button, useTheme
 } from '@mui/material';
@@ -13,6 +13,10 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Collapse } from '@mui/material';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import WalletHead from './WalletHead';
+
 
 interface HeaderMobileProps {
   darkMode: boolean;
@@ -29,12 +33,17 @@ interface HeaderMobileProps {
 
 function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expandedMenu, pages }: HeaderMobileProps) {
   const theme = useTheme();
+  const pathname = usePathname();
   const primaryColor = darkMode ? theme.palette.primary.light : theme.palette.primary.main;
   const secondaryColor = darkMode ? theme.palette.secondary.light : theme.palette.secondary.main;
   const textPrimary = darkMode ? '#fff' : '#1a1a1a';
   const textSecondary = darkMode ? '#b0b0b0' : '#555';
   const background = darkMode ? '#121826' : '#f8fafc';
-
+  React.useEffect(() => {
+    if (mobileOpen) {
+      toggleDrawer(false)({} as React.MouseEvent); 
+    }
+  }, [pathname]); 
   const drawerContent = () => (
     <Box
       sx={{
@@ -49,15 +58,10 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
       }}
       role="presentation"
     >
-      <Box sx={{ px: 3, pb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Box sx={{ pr: 1, pb: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <WalletHead/>
         <Link href="/" style={{ color: textPrimary, textDecoration: 'none' }}>
-          <Typography variant="h6" fontWeight={700} sx={{ 
-            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
-            Coinit
-          </Typography>
+          <Image src="/Images/logo.webp" alt='Coinit' width={80} height={32} />
         </Link>
         <IconButton onClick={toggleDrawer(false)} sx={{ color: textPrimary }}>
           <Icon icon="mdi:close" fontSize={24} />
@@ -152,7 +156,7 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
       </List>
       
       <Box sx={{ px: 2, display: 'flex', gap: 1, mb: 2 }}>
-        <Link href="/Deposit" style={{textDecoration:'none',color:'inherit'}} passHref>
+        <Link href="/Deposit" prefetch={true} style={{textDecoration:'none',color:'inherit',width:'100%'}} passHref>
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
             <Button 
               variant="contained" 
@@ -171,25 +175,6 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
             </Button>
           </motion.div>
         </Link>
-        <Link href="/Order" passHref>
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            <Button 
-              variant="outlined" 
-              fullWidth
-              sx={{
-                borderRadius: 50,
-                fontWeight: 600,
-                py: 1,
-                borderColor: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
-                color: textPrimary,
-                textTransform: 'none',
-                letterSpacing: '0.5px'
-              }}
-            >
-              Orders
-            </Button>
-          </motion.div>
-        </Link>
       </Box>
       
       <Box sx={{ px: 2, mb: 2 }}>
@@ -204,7 +189,8 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
               fontWeight: 600,
               color: '#fff',
               textTransform: 'none',
-              letterSpacing: '0.5px'
+              letterSpacing: '0.5px',
+              fontSize:{xs:12,md:15}
             }}
           >
             <Icon icon="mdi:coins" fontSize={20} style={{ marginRight: 8 }} />
@@ -218,7 +204,7 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
   return (
     <>
       {/* Mobile Menu Button */}
-      <Box sx={{ display: { xs: 'flex', lg: 'none' }, mr: 1 }}>
+      <Box sx={{ display: { xs: 'flex', lg: 'none' },justifyContent: 'space-between', alignItems:'center' , mr: 1 }}>
         <IconButton
           size="large"
           color="inherit"
@@ -231,24 +217,9 @@ function HeaderMobile({ darkMode, mobileOpen, toggleDrawer, toggleSubMenu, expan
       </Box>
 
       {/* Logo - Mobile */}
-      <Link href="/" style={{ color: textPrimary, textDecoration: 'none' }} passHref>
-        <Typography
-          variant="h6"
-          noWrap
-          sx={{
-            fontWeight: 700,
-            letterSpacing: '.05rem',
-            flexGrow: { xs: 1, lg: 0 },
-            textAlign: { xs: 'left', lg: 'center' },
-            display: { xs: 'flex', md: 'none' },
-            background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}
-        >
-          Coinit
-        </Typography>
-      </Link>
+      <Box display={{xs:'flex',md: 'none'}} pt={0.5}><Link href="/" style={{ color: textPrimary, textDecoration: 'none' }} passHref>
+        <Image src="/Images/logo.webp" alt='Coinit' width={80} height={32} />
+      </Link></Box>
 
       {/* Mobile Drawer */}
       <Drawer

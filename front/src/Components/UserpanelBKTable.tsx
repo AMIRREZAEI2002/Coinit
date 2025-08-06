@@ -73,12 +73,12 @@ const UserpanelBKTable = () => {
   );
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: {xs:1,md:3} }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4" fontWeight="bold">Trading Fees</Typography>
+        <Typography variant="h5" fontWeight="bold">Trading Fees</Typography>
       </Box>
       
-      <Paper sx={{ p: 3, mb: 3, borderRadius: 2 }}>
+      <Paper sx={{ p: 1, mb: 3, borderRadius: 2 }}>
         <Typography variant="body1" color="text.secondary">
           Below is a comparative view of maker and taker fees across Binance, Coinbase, and Kraken. 
           Fees are based on 30‑day rolling trading volume in USD. Discounts such as BNB usage (Binance) 

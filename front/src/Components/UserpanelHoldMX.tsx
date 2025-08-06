@@ -14,12 +14,12 @@ const UserpanelHoldMX = () => {
   const [switch2, setSwitch2] = useState(false);
 
   return (
-    <Grid container spacing={2} justifyContent="center" sx={{ p: 3}}>
+    <Grid container spacing={2} justifyContent="center" sx={{ p:{xs:1,md:3}}}>
         <Grid size={{xs:12}} sx={{ textAlign: 'center', mb: 1 }}>
-            <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography variant="h5" fontWeight="bold" sx={{ mb: 1 }}>
             Hold Coinit, Save Up to 50% on Fees
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body2" color="text.secondary">
             Hold at least 500 Coinit in Spot account for 24 consecutive hours to qualify
             </Typography>
         </Grid>

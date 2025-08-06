@@ -73,7 +73,7 @@ export default function FAQ() {
         <Typography variant="body1" sx={{ color: 'text.secondary', mb: 1 }}>
           Still have questions?
         </Typography>
-        <Link href='/Support' style={{ textDecoration: 'none' }}>
+        <Link href='/Support' prefetch={true} style={{ textDecoration: 'none' }}>
           <Box
             sx={{
               display: 'inline-block',

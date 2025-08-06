@@ -38,10 +38,10 @@ const SectionCard = styled(Paper)(({ theme }) => ({
   position: "relative",
   background: `linear-gradient(45deg, ${theme.palette.background.paper} 30%, ${theme.palette.background.default} 70%)`,
   borderRadius: 20,
-  padding: theme.spacing(2),
+  padding: theme.spacing(0),
   marginTop: theme.spacing(4),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
   }
 }));
 

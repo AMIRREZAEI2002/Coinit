@@ -85,6 +85,7 @@ const UserpanelHoldTable = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getActionButtonLink = (pair: TradingPair) => {
     switch(activeTab) {
       case 'spot': return `/Spot`;
@@ -100,9 +101,9 @@ const UserpanelHoldTable = () => {
       <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
         <Grid size={{xs:12, md:6}} sx={{ mb: { xs: 2, md: 0 } }}>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button sx={{p:0.5}} variant={activeTab === 'spot' ? 'contained' : 'outlined'} onClick={() => handleTabChange('spot')}>Spot</Button>
-            <Button sx={{p:0.5}} variant={activeTab === 'future' ? 'contained' : 'outlined'} onClick={() => handleTabChange('future')}>Future</Button>
-            <Button sx={{p:0.5}} variant={activeTab === 'deposit' ? 'contained' : 'outlined'} onClick={() => handleTabChange('deposit')}>Deposit/Withdrawal</Button>
+            <Button sx={{p:0.5,fontSize:{xs:11,md:15}}} variant={activeTab === 'spot' ? 'contained' : 'outlined'} onClick={() => handleTabChange('spot')}>Spot</Button>
+            <Button sx={{p:0.5,fontSize:{xs:11,md:15}}} variant={activeTab === 'future' ? 'contained' : 'outlined'} onClick={() => handleTabChange('future')}>Future</Button>
+            <Button sx={{p:0.5,fontSize:{xs:11,md:15}}} variant={activeTab === 'deposit' ? 'contained' : 'outlined'} onClick={() => handleTabChange('deposit')}>Deposit/Withdrawal</Button>
           </Box>
         </Grid>
         <Grid size={{xs:12, md : 6}}>
@@ -177,7 +178,7 @@ const UserpanelHoldTable = () => {
       ) : (
         <Stack spacing={2}>
           {paginatedPairs.map((pair) => (
-            <Box key={pair.id} sx={{ p: 2, borderRadius: 2, backgroundColor: theme.palette.background.paper, boxShadow: 1 }}>
+            <Box key={pair.id} sx={{ p: 1, borderRadius: 2, backgroundColor: theme.palette.background.paper, boxShadow: 1 }}>
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Icon icon={`cryptocurrency:${pair.name.split('/')[0].toLowerCase()}`} width={24} height={24} style={{ marginRight: 8 }} />

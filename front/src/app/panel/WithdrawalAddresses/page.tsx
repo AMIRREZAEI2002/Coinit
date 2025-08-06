@@ -16,15 +16,15 @@ const Page = () => {
         <NavlinkProfile />
       </Grid>
 
-      <Grid size={{xs:12,md:10}} sx={{ p: 3 }}>
+      <Grid size={{xs:12,md:10}} sx={{pt:{xs:2,md:3},px:{xs:1,md:3}}}>
         <Grid container spacing={2}>
           <Grid size={{xs: 12, md: 12}}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <SettingsIcon sx={{ mr: 1 }} />
-              <Typography variant="h5" fontWeight="bold">Withdrawal Addresses/Contacts</Typography>
+            <Box sx={{ display: 'flex', alignItems: {xs:'flex-start',sm:'center'},flexDirection:{xs:'column',sm:'row'}, mb: 2 }}>
+              <SettingsIcon sx={{ mr: 1,display:{xs:'none',sm:'block'} }} />
+              <Typography variant="h6" fontWeight="bold">Withdrawal Addresses/Contacts</Typography>
             </Box>
 
-            <Box sx={{ bgcolor: "Background.paper", p: 2, borderRadius: 1, mb: 3 }}>
+            <Box sx={{ bgcolor: "Background.paper", p: {xs:0,sm:4}, borderRadius: 1, mb: 3 }}>
               <Typography variant="body2" color="text.secondary">Withdrawal whitelist has been disabled</Typography>
               <Typography variant="body2" color="text.secondary">You can manage your withdrawal addresses below</Typography>
               <Link href="settings" style={{ marginTop: 1, display: 'inline-block', textDecorationLine: 'none', color: 'inherit' }}>

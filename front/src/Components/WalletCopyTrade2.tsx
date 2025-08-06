@@ -52,7 +52,7 @@ const cardVariants = {
 const SectionCard = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: 16,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
   marginTop: theme.spacing(3),
   overflow: 'hidden',
@@ -237,7 +237,7 @@ const WalletCopyTrade2: React.FC = () => {
                 </Box>
 
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                  <Link href={`/copy-trade/${row.id}`} passHref>
+                  <Link href="#" passHref>
                     <Button
                       component={motion.button}
                       whileHover={{ scale: 1.03 }}

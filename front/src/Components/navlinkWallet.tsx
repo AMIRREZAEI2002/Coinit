@@ -12,7 +12,7 @@ import {
   useMediaQuery,
   useTheme,
   Typography,
-  Divider
+  Avatar,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -36,17 +36,17 @@ const NavlinkWallet = () => {
   };
 
   const navItems = [
-    { name: 'Overview', icon: 'mdi:account', path: '/Wallet/Overview' },
-    { name: 'Spot', icon: 'mdi:lock', path: '/Wallet/Spot' },
-    { name: 'DEX +', icon: 'mdi:card-account-details', path: '/Wallet/DEX' },
-    { name: 'Futures', icon: 'mdi:account-group', path: '/Wallet/Futures' },
-    { name: 'Fiat', icon: 'mdi:percent', path: '/Wallet/Fiat' },
-    { name: 'Copy Trading', icon: 'mdi:wallet-outline', path: '/Wallet/CopyTrading' },
-    { name: 'Funding History', icon: 'mdi:account-multiple', path: '/Wallet/FundingHistory' },
+    { name: 'Overview', icon: 'mdi:view-dashboard', path: '/Wallet/Overview' },
+    { name: 'Spot', icon: 'mdi:currency-usd', path: '/Wallet/Spot' },
+    { name: 'DEX +', icon: 'mdi:swap-horizontal', path: '/Wallet/DEX' },
+    { name: 'Futures', icon: 'mdi:trending-up', path: '/Wallet/Futures' },
+    { name: 'Fiat', icon: 'mdi:bank-transfer', path: '/Wallet/Fiat' },
+    { name: 'Copy Trading', icon: 'mdi:account-group', path: '/Wallet/CopyTrading' },
+    { name: 'Funding History', icon: 'mdi:history', path: '/Wallet/FundingHistory' },
   ];
 
   const renderNavItems = () => (
-    <List sx={{backgroundColor: 'transparent'}}>
+    <List sx={{ backgroundColor: 'transparent', pt: 1 }}>
       {navItems.map((item) => {
         const isActive = pathname.startsWith(item.path);
         return (
@@ -54,15 +54,18 @@ const NavlinkWallet = () => {
             key={item.name}
             disablePadding
             sx={{
-              backgroundColor: isActive ? theme.palette.action.selected : 'inherit',
-              borderLeft: isActive ? `3px solid ${theme.palette.primary.main}` : 'none',
-              color: isActive ? `${theme.palette.primary.main}` : 'none',
+              backgroundColor: isActive ? theme.palette.primary.dark : 'inherit',
+              borderLeft: isActive ? `4px solid ${theme.palette.primary.main}` : 'none',
+              borderRadius: '0 12px 12px 0',
+              mb: 0.5,
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
             }}
           >
             <ListItemButton
               onClick={() => handleLinkClick(item.path)}
               sx={{
-                py: 1.5,
+                py: 1,
                 px: 2,
                 '&:hover': {
                   backgroundColor: theme.palette.action.hover,
@@ -70,13 +73,21 @@ const NavlinkWallet = () => {
               }}
             >
               <ListItemIcon sx={{ minWidth: 40 }}>
-                <Icon icon={item.icon} width={24} height={24} style={{color: isActive ? `${theme.palette.primary.main}` : 'none'}} />
+                <Icon 
+                  icon={item.icon} 
+                  width={24} 
+                  height={24} 
+                  style={{
+                    color: isActive ? theme.palette.text.primary : theme.palette.text.primary
+                  }} 
+                />
               </ListItemIcon>
               <ListItemText
                 primary={item.name}
                 primaryTypographyProps={{
-                  fontWeight: isActive ? 600 : 400,
-                  fontSize: '0.9rem'
+                  fontWeight: isActive ? 700 : 500,
+                  fontSize: '0.95rem',
+                  color: isActive ? theme.palette.text.primary : theme.palette.text.primary
                 }}
               />
             </ListItemButton>
@@ -88,62 +99,138 @@ const NavlinkWallet = () => {
 
   return (
     <>
-      {/* Mobile menu button */}
+      {/* Mobile menu button - Improved design */}
       {isMobile && (
         <IconButton
           onClick={toggleSidebar}
           sx={{
             position: 'fixed',
-            top: theme.spacing(8),
+            top: theme.spacing(9),
             left: theme.spacing(2),
-            zIndex: theme.zIndex.appBar,
-            backgroundColor: "background.paper",
-            boxShadow: theme.shadows[3],
+            zIndex: theme.zIndex.appBar + 1,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[6],
             width: 48,
             height: 48,
+            borderRadius: '50%',
+            border: `1px solid ${theme.palette.divider}`,
+            '&:hover': {
+              backgroundColor: theme.palette.action.hover,
+            }
           }}
         >
-          <Icon icon="mdi:menu" width={24} height={24} />
+          <Icon 
+            icon={isSidebarOpen ? "mdi:close" : "mdi:menu"} 
+            width={24} 
+            height={24} 
+            style={{ color: theme.palette.primary.main }} 
+          />
         </IconButton>
       )}
 
-      {/* Desktop sidebar */}
-      {!isMobile && (
-          renderNavItems()
-      )}
+      {/* Desktop sidebar - unchanged */}
+      {!isMobile && renderNavItems()}
 
-      {/* Mobile sidebar */}
+      {/* Mobile sidebar - completely redesigned */}
       <Drawer
         anchor="left"
         open={isSidebarOpen}
         onClose={toggleSidebar}
         sx={{
           '& .MuiDrawer-paper': {
-            width: "100%",
+            width: '85%',
+            maxWidth: 320,
             boxSizing: 'border-box',
             backgroundColor: theme.palette.background.paper,
-            borderRadius: '16px 0 0 0',
-            boxShadow: theme.shadows[10],
+            boxShadow: theme.shadows[16],
+            borderRight: `1px solid ${theme.palette.divider}`,
           },
         }}
       >
+        {/* Header with user info */}
         <Box sx={{
           display: 'flex',
-          alignItems: 'center',
-          p: 2,
-          backgroundColor: theme.palette.primary.main,
+          flexDirection: 'column',
+          p: 3,
+          backgroundColor: theme.palette.primary.dark,
           color: theme.palette.primary.contrastText,
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: -50,
+            right: -50,
+            width: 150,
+            height: 150,
+            borderRadius: '50%',
+            backgroundColor: theme.palette.primary.light,
+            opacity: 0.2,
+          }
         }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', flexGrow: 1 }}>
-            Menu
-          </Typography>
-          <IconButton onClick={toggleSidebar} sx={{ color: 'inherit' }}>
-            <Icon icon="mdi:close" width={24} height={24} />
-          </IconButton>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, zIndex: 1 }}>
+            <Avatar 
+              sx={{ 
+                width: 56, 
+                height: 56, 
+                mr: 2,
+                backgroundColor: theme.palette.primary.light,
+              }}
+            >
+              <Icon icon="mdi:wallet" width={28} />
+            </Avatar>
+            <Box>
+              <Typography variant="h6" fontWeight={700}>My Wallet</Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9 }}>$12,845.32</Typography>
+            </Box>
+          </Box>
+          
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between',
+            backgroundColor: 'rgba(255,255,255,0.1)',
+            borderRadius: 2,
+            p: 1,
+            my: 1,
+            zIndex: 1
+          }}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography fontSize={12}>Portfolio</Typography>
+              <Typography fontSize={12} fontWeight={600}>+3.2%</Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography fontSize={12}>Assets</Typography>
+              <Typography fontSize={12} fontWeight={600}>8</Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography fontSize={12}>Active</Typography>
+              <Typography fontSize={12} fontWeight={600}>3</Typography>
+            </Box>
+          </Box>
         </Box>
-        <Divider />
-        {renderNavItems()}
+        
+        {/* Navigation items */}
+        <Box sx={{ overflowY: 'auto', height: '100%', p: 0 }}>
+          {renderNavItems()}
+        </Box>
       </Drawer>
+      
+      {/* Semi-transparent overlay for mobile drawer */}
+      {isMobile && isSidebarOpen && (
+        <Box 
+          onClick={toggleSidebar}
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            zIndex: theme.zIndex.drawer,
+            backdropFilter: 'blur(4px)',
+          }}
+        />
+      )}
     </>
   );
 };

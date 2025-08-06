@@ -14,23 +14,44 @@ import {
 import { Icon } from '@iconify/react';
 
 const CircleActive = styled('div')(({ theme }) => ({
-  width: '35px',
-  height: '35px',
+  width: '28px',
+  height: '28px',
   backgroundColor: theme.palette.primary.main,
   borderRadius: '50%',
+  [theme.breakpoints.up('sm')]: {
+    width: '35px',
+    height: '35px',
+  }
 }));
+
+const CircleInactive = styled('div')(({ theme }) => ({
+  width: '28px',
+  height: '28px',
+  backgroundColor: theme.palette.grey[500],
+  borderRadius: '50%',
+  [theme.breakpoints.up('sm')]: {
+    width: '35px',
+    height: '35px',
+  }
+}));
+
 const TokenDropdown = styled('div')({
   position: 'relative',
   width: '100%',
 });
+
 const TokenSelected = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: theme.palette.grey[100],
+  backgroundColor: theme.palette.background.paper,
   borderRadius: '8px',
-  padding: '10px 16px',
+  padding: '8px 12px',
   cursor: 'pointer',
+  [theme.breakpoints.up('sm')]: {
+    padding: '10px 16px',
+  }
 }));
+
 const TokenOptions = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '100%',
@@ -42,16 +63,23 @@ const TokenOptions = styled('div')(({ theme }) => ({
   marginTop: '4px',
   zIndex: 100,
   boxShadow: theme.shadows[3],
+  maxHeight: '250px',
+  overflowY: 'auto',
 }));
+
 const TokenOption = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  padding: '10px 16px',
+  padding: '8px 12px',
   cursor: 'pointer',
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
+  },
+  [theme.breakpoints.up('sm')]: {
+    padding: '10px 16px',
   }
 }));
+
 const TokenItem = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -59,20 +87,52 @@ const TokenItem = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: '4px',
-  width: '1000px',
-  height: '50px',
+  minWidth: '70px',
+  height: '60px',
   cursor: 'pointer',
   transition: 'all 0.2s',
+  flexShrink: 0,
   '&:hover': {
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.primary.light,
+  },
+  [theme.breakpoints.up('sm')]: {
+    minWidth: '80px',
+    height: '70px',
   }
 }));
-const CircleInactive = styled('div')(({ theme }) => ({
-  width: '35px',
-  height: '35px',
-  backgroundColor: theme.palette.grey[500],
-  borderRadius: '50%',
+
+const ScrollContainer = styled('div')({
+  display: 'flex',
+  overflowX: 'auto',
+  paddingBottom: '8px',
+  gap: '8px',
+  '&::-webkit-scrollbar': {
+    height: '4px',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: '#888',
+    borderRadius: '2px',
+  }
+});
+
+const SectionContainer = styled(Box)(({ theme }) => ({
+  padding: '8px 0 8px 16px',
+  marginLeft: '16px',
+  borderLeft: `2px solid ${theme.palette.primary.main}`,
+  [theme.breakpoints.up('sm')]: {
+    padding: '16px 0 16px 24px',
+    marginLeft: '24px',
+  }
+}));
+
+const SectionTitle = styled(Typography)(({ theme })=>({
+  fontSize: '1rem',
+  fontWeight: 600,
+  [theme.breakpoints.up('sm')]: {
+    minWidth: '80px',
+    height: '70px',
+  }
 }));
 
 const SelectDeposite = () => {
@@ -98,29 +158,27 @@ const SelectDeposite = () => {
   };
 
   return (
-    <>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+    <Box sx={{ px: 1.5, maxWidth: '100vw', overflow: 'hidden' }}>
+      {/* Crypto Selection */}
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
         <CircleActive />
-        <Typography variant="h6" fontWeight="bold" sx={{ ml: 2 }}>
+        <SectionTitle sx={{ ml: 1.5 }}>
           Select Crypto
-        </Typography>
+        </SectionTitle>
       </Box>
 
-      <Box sx={{
-        py: 3,
-        pl: 3,
-        ml: 2,
-        mt: 2,
-        borderLeft: `2px solid ${theme.palette.primary.main}`,
-        mb: 0
-      }}>
+      <SectionContainer>
         <TokenDropdown>
-          <TokenSelected sx={{ bgcolor: 'background.paper' }} onClick={() => setCryptoDropdownOpen(!cryptoDropdownOpen)}>
-            <Icon icon={`cryptocurrency-color:${selectedCrypto.symbol.toLowerCase()}`} width={30} height={30} />
-            <Typography variant="body1" fontWeight="bold" sx={{ mx: 1 }}>
+          <TokenSelected onClick={() => setCryptoDropdownOpen(!cryptoDropdownOpen)}>
+            <Icon 
+              icon={`cryptocurrency-color:${selectedCrypto.symbol.toLowerCase()}`} 
+              width={24} 
+              height={24} 
+            />
+            <Typography variant="body1" fontWeight="bold" sx={{ mx: 1, fontSize: '0.875rem' }}>
               {selectedCrypto.symbol}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1, fontSize: '0.75rem' }}>
               {selectedCrypto.name}
             </Typography>
             <ExpandMoreIcon fontSize="small" />
@@ -136,11 +194,15 @@ const SelectDeposite = () => {
                     setCryptoDropdownOpen(false);
                   }}
                 >
-                  <Icon icon={`cryptocurrency-color:${token.symbol.toLowerCase()}`} width={30} height={30} />
-                  <Typography variant="body1" fontWeight="bold" sx={{ mx: 1 }}>
+                  <Icon 
+                    icon={`cryptocurrency-color:${token.symbol.toLowerCase()}`} 
+                    width={24} 
+                    height={24} 
+                  />
+                  <Typography variant="body1" fontWeight="bold" sx={{ mx: 1, fontSize: '0.875rem' }}>
                     {token.symbol}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
                     {token.name}
                   </Typography>
                 </TokenOption>
@@ -148,55 +210,51 @@ const SelectDeposite = () => {
             </TokenOptions>
           )}
         </TokenDropdown>
-      </Box>
+      </SectionContainer>
 
-      <Box sx={{
-        display: 'flex',
-        py: 2,
-        pl: 3,
-        ml: 2,
-        mb: 2,
-        borderLeft: `2px solid ${theme.palette.primary.main}`,
-        mt: 0,
-        }}>
-        {quickTokens.map((token, index) => (
+      <SectionContainer sx={{ py: 1.5 }}>
+        <ScrollContainer>
+          {quickTokens.map((token, index) => (
             <TokenItem
-            key={index}
-            sx={{ ml: index > 0 ? 2 : 0 }}
-            onClick={() => {
+              key={index}
+              onClick={() => {
                 setSelectedCrypto(token);
-                setCryptoDropdownOpen(false); // بستن لیست دراپ‌دان در صورت باز بودن
-            }}
+                setCryptoDropdownOpen(false);
+              }}
             >
-            <Icon icon={`cryptocurrency-color:${token.symbol.toLowerCase()}`} width={30} height={30} />
-            <Typography variant="caption" sx={{ mt: 0.5 }}>{token.symbol}</Typography>
+              <Icon 
+                icon={`cryptocurrency-color:${token.symbol.toLowerCase()}`} 
+                width={24} 
+                height={24} 
+              />
+              <Typography variant="caption" sx={{ mt: 0.5, fontSize: '0.7rem' }}>
+                {token.symbol}
+              </Typography>
             </TokenItem>
-        ))}
-        </Box>
+          ))}
+        </ScrollContainer>
+      </SectionContainer>
 
-
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, mt: 4 }}>
+      {/* Network Selection */}
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5, mt: 3 }}>
         <CircleActive />
-        <Typography variant="h6" fontWeight="bold" sx={{ ml: 2 }}>
+        <SectionTitle sx={{ ml: 1.5 }}>
           Select Network
-        </Typography>
+        </SectionTitle>
       </Box>
 
-      <Box sx={{
-        py: 3,
-        pl: 3,
-        ml: 2,
-        mt: 2,
-        borderLeft: `1px solid ${theme.palette.grey[500]}`,
-        mb: 0
-      }}>
+      <SectionContainer sx={{ borderColor: theme.palette.grey[500] }}>
         <TokenDropdown>
-          <TokenSelected sx={{ bgcolor: 'background.paper' }} onClick={() => setNetworkDropdownOpen(!networkDropdownOpen)}>
-            <Icon icon={getNetworkIcon(selectedNetwork.name)} width={30} height={30} />
-            <Typography variant="body1" fontWeight="bold" sx={{ mx: 1 }}>
+          <TokenSelected onClick={() => setNetworkDropdownOpen(!networkDropdownOpen)}>
+            <Icon 
+              icon={getNetworkIcon(selectedNetwork.name)} 
+              width={24} 
+              height={24} 
+            />
+            <Typography variant="body1" fontWeight="bold" sx={{ mx: 1, fontSize: '0.875rem' }}>
               {selectedNetwork.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1, fontSize: '0.75rem' }}>
               {selectedNetwork.type}
             </Typography>
             <ExpandMoreIcon fontSize="small" />
@@ -212,11 +270,15 @@ const SelectDeposite = () => {
                     setNetworkDropdownOpen(false);
                   }}
                 >
-                  <Icon icon={getNetworkIcon(network.name)} width={30} height={30} />
-                  <Typography variant="body1" fontWeight="bold" sx={{ mx: 1 }}>
+                  <Icon 
+                    icon={getNetworkIcon(network.name)} 
+                    width={24} 
+                    height={24} 
+                  />
+                  <Typography variant="body1" fontWeight="bold" sx={{ mx: 1, fontSize: '0.875rem' }}>
                     {network.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
                     {network.type}
                   </Typography>
                 </TokenOption>
@@ -224,41 +286,42 @@ const SelectDeposite = () => {
             </TokenOptions>
           )}
         </TokenDropdown>
-      </Box>
+      </SectionContainer>
 
-      <Box sx={{
-        display: 'flex',
-        py: 2,
-        pl: 3,
-        ml: 2,
-        mb: 2,
-        borderLeft: `1px solid ${theme.palette.grey[500]}`,
-        mt: 0,
-        }}>
-        {networkOptions.map((network, index) => (
+      <SectionContainer sx={{ 
+        borderColor: theme.palette.grey[500],
+        py: 1.5 
+      }}>
+        <ScrollContainer>
+          {networkOptions.map((network, index) => (
             <TokenItem
-            key={index}
-            sx={{ ml: index > 0 ? 2 : 0 }}
-            onClick={() => {
+              key={index}
+              onClick={() => {
                 setSelectedNetwork(network);
                 setNetworkDropdownOpen(false);
-            }}
+              }}
             >
-            <Icon icon={getNetworkIcon(network.name)} width={30} height={30} />
-            <Typography variant="caption" sx={{ mt: 0.5 }}>{network.name}</Typography>
+              <Icon 
+                icon={getNetworkIcon(network.name)} 
+                width={24} 
+                height={24} 
+              />
+              <Typography variant="caption" sx={{ mt: 0.5, fontSize: '0.7rem' }}>
+                {network.name}
+              </Typography>
             </TokenItem>
-        ))}
-        </Box>
+          ))}
+        </ScrollContainer>
+      </SectionContainer>
 
-
-
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, mt: 4 }}>
+      {/* Inactive Section */}
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5, mt: 3 }}>
         <CircleInactive />
-        <Typography variant="h6" fontWeight="bold" color="text.secondary" sx={{ ml: 2 }}>
+        <SectionTitle color="text.secondary" sx={{ ml: 1.5 }}>
           Select Network
-        </Typography>
+        </SectionTitle>
       </Box>
-    </>
+    </Box>
   );
 };
 

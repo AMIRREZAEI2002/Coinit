@@ -5,7 +5,6 @@ import NavlinkProfile from '@/Components/navlinkProfile';
 import {Grid, Typography } from '@mui/material';
 import Settings1 from '@/Components/Settings1';
 import Settings2 from '@/Components/Settings2';
-import I18nProvider from "@/app/I18nProvider";
 
 const Page = () => {
   return (
@@ -14,7 +13,7 @@ const Page = () => {
         <NavlinkProfile />
       </Grid>
 
-      <Grid size={{xs:12,md:10}} sx={{ p: 3 }}>
+      <Grid size={{xs:12,md:10}} sx={{ pt:{xs:2,md:3},px:{xs:1,md:3} }}>
         <Grid container spacing={2}>
           <Grid size={{xs: 12, md: 12}}>
             <Typography variant="h5">
@@ -25,9 +24,7 @@ const Page = () => {
             <Settings1/>
           </Grid>
           <Grid size={{xs: 12, md: 12}}>
-            <I18nProvider>
-                <Settings2 />
-            </I18nProvider>
+              <Settings2 />
           </Grid>
         </Grid>
       </Grid>

@@ -102,7 +102,7 @@ const categories: Category[] = [{ id: 'all', label: 'All' }];
 const SectionCard = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: 16,
-  padding: theme.spacing(3),
+  padding: theme.spacing(2),
   boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.05)',
   marginTop: theme.spacing(3),
   overflow: 'hidden',
@@ -286,7 +286,7 @@ const WalletFiat2: React.FC = () => {
       {/* Assets Cards */}
       <Box
         sx={{
-          p: 3,
+          p:{xs:1,md:3},
           mt: 3,
           display: 'grid',
           gridTemplateColumns: {
@@ -378,7 +378,7 @@ const WalletFiat2: React.FC = () => {
 
               {/* Action Buttons */}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, gap: 1 }}>
-                <Link href="/trade" passHref>
+                <Link href="/Spot" passHref>
                   <Button
                     variant="contained"
                     color="primary"
@@ -399,7 +399,7 @@ const WalletFiat2: React.FC = () => {
                     Trade
                   </Button>
                 </Link>
-                <Link href="/transfer" passHref>
+                <Link href="/BQPT/Transfer" passHref>
                   <Button
                     variant="outlined"
                     color="primary"

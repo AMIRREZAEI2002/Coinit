@@ -22,12 +22,13 @@ export default function UserNavLanding() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'rgba(0, 0, 0, 0.08)', p: 3, width: '100%' }}>
+    <Box sx={{ bgcolor: 'rgba(0, 0, 0, 0.08)', p: {xs:1,md:3}, width: '100%' }}>
       <Box sx={{ 
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center',
         flexWrap: 'wrap',
+        flexDirection: {xs:'column',md:'row'},
         gap: { xs: 1, sm: 3, md: 5 }
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -39,7 +40,7 @@ export default function UserNavLanding() {
           </Typography>
         </Box>
         
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center',flexDirection:{xs:'column',md:'row'} }}>
           <Typography variant="body1" fontWeight={600} sx={{ mr: 1 }}>
             Today
           </Typography>

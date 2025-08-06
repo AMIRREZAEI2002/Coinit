@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Box,
   Button,
@@ -7,8 +9,11 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
-  Divider
+  Divider,
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
+import { Icon } from '@iconify/react';
 import {
   Visibility as EyeIcon,
   ChevronRight as ChevronRightIcon,
@@ -19,11 +24,15 @@ import {
   RemoveRedEye as EyeOpenIcon
 } from '@mui/icons-material';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const WalletHead = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
+  const pathname = usePathname();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClick = () => {
     setAnchorEl(buttonRef.current);
@@ -33,26 +42,29 @@ const WalletHead = () => {
     setAnchorEl(null);
   };
 
+  // بستن منو هنگام تغییر مسیر
+  useEffect(() => {
+    setAnchorEl(null);
+  }, [pathname]);
+
   return (
     <Box>
       <Button
         ref={buttonRef}
         onClick={handleClick}
-        className="nav-link dropdown-toggle fs-8"
         sx={{
           color: 'text.primary',
           textTransform: 'none',
-          fontSize: '0.8rem',
+          fontSize: {xs:12,md:15},
           fontWeight: 400,
-          px: 1,
           '&:hover': {
-            backgroundColor: 'transparent'
-          }
+            backgroundColor: 'transparent',
+          },
         }}
       >
-        Wallet
+        {isMobile ? <Icon icon="mdi:wallet" width={20} height={20} /> : 'Wallet'}
       </Button>
-      
+
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -125,7 +137,7 @@ const WalletHead = () => {
               textTransform: 'none'
             }}
           >
-            dropdown
+            Deposit
           </Button>
           <Button 
             variant="outlined" 
@@ -157,22 +169,25 @@ const WalletHead = () => {
           { icon: <CoinsIcon sx={{ fontSize: '0.9rem' }} />, text: 'Fiat', href: '/Wallet/Fiat' },
           { icon: <SmileIcon sx={{ fontSize: '0.9rem' }} />, text: 'Copy Trade', href: '/Wallet/CopyTrading' },
           { icon: <FileInvoiceIcon sx={{ fontSize: '0.9rem' }} />, text: 'Funding History', href: '/Wallet/FundingHistory' },
-          { icon: <EyeOpenIcon sx={{ fontSize: '0.9rem' }} />, text: 'Event Rewards', href: '/Wallet/EventRewards' },
+          { icon: <EyeOpenIcon sx={{ fontSize: '0.9rem' }} />, text: 'Event Rewards', href: '/EventRewards' },
         ].map((item, index) => (
-        <Link key={index} href={item.href} style={{color:'inherit',textDecoration:'none'}}>
-          <MenuItem sx={{p: 1, borderRadius: '4px',display:'flex'}}>
-            <ListItemIcon sx={{ minWidth: '30px', color: 'text.secondary' }}>
+          <Link key={index} href={item.href} style={{color:'inherit',textDecoration:'none'}}>
+            <MenuItem 
+              sx={{p: 1, borderRadius: '4px',display:'flex'}}
+              onClick={handleClose}
+            >
+              <ListItemIcon sx={{ minWidth: '30px', color: 'text.secondary' }}>
                 {item.icon}
-            </ListItemIcon>
-            <ListItemText 
-            primary={item.text} 
-            primaryTypographyProps={{ 
-                fontSize: '0.9rem',
-                color: 'text.secondary'
-            }} 
-            />
-          </MenuItem>
-        </Link>
+              </ListItemIcon>
+              <ListItemText 
+                primary={item.text} 
+                primaryTypographyProps={{ 
+                  fontSize: '0.9rem',
+                  color: 'text.secondary'
+                }} 
+              />
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     </Box>

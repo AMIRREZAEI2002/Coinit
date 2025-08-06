@@ -13,11 +13,11 @@ import {
   MenuItem,
   Paper,
   Divider,
+  useTheme,
 } from "@mui/material";
 import { Icon } from "@iconify/react";
-import { ThemeModeContext } from "@/app/providers"; // Import the context
+import { ThemeModeContext } from "@/app/providers";
 
-// Define the settings interface
 interface Settings {
   theme: "light" | "dark";
   riseFall: string[];
@@ -31,7 +31,6 @@ interface Settings {
   currency: string;
 }
 
-// Default settings
 const defaultSettings: Settings = {
   theme: "light",
   riseFall: [],
@@ -45,48 +44,51 @@ const defaultSettings: Settings = {
   currency: "USD",
 };
 
-const Settings1 = () => {
+const Settings1: React.FC = () => {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
   const { darkMode, toggleDarkMode } = useContext(ThemeModeContext);
+  const theme = useTheme();
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("settings");
+    if (saved) {
+      setSettings(JSON.parse(saved));
+    }
+  }, []);
 
   // Save settings to local storage on change
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
 
-  // Handle theme change
- 
-const handleThemeChange = (theme: "light" | "dark") => {
-    const newDarkMode = theme === "dark";
+  const handleThemeChange = (themeMode: "light" | "dark") => {
+    const newDarkMode = themeMode === "dark";
     if (darkMode !== newDarkMode) {
-      toggleDarkMode(); // تغییر تم
+      toggleDarkMode();
     }
-  
     setSettings((prev) => ({
       ...prev,
-      theme,
+      theme: themeMode,
     }));
   };
 
-  // Reusable Section component with icon
-  const Section = ({
-    title,
-    icon,
-    children,
-  }: {
+  const Section: React.FC<{
     title: string;
     icon: string;
     children: React.ReactNode;
-  }) => (
+  }> = ({ title, icon, children }) => (
     <Box mb={3}>
       <Grid container spacing={2} alignItems="center">
-        <Grid size={{xs:12, md:6}}>
+        <Grid size={{xs:12,md:4}}>
           <Box display="flex" alignItems="center">
             <Icon icon={icon} width={24} height={24} style={{ marginRight: 8 }} />
-            <Typography fontWeight={600}>{title}</Typography>
+            <Typography variant="subtitle1" fontWeight={600}>
+              {title}
+            </Typography>
           </Box>
         </Grid>
-        <Grid size={{xs:12, md:6}}>
+        <Grid size={{xs:12,md:8}}>
           <Box display="flex" flexWrap="wrap" gap={2}>
             {children}
           </Box>
@@ -100,12 +102,13 @@ const handleThemeChange = (theme: "light" | "dark") => {
     <Paper
       elevation={3}
       sx={{
-        p: 4,
+        p: { xs: 2, md: 4 },
         borderRadius: 3,
-        bgcolor: darkMode ? "#333" : "#fff",
-        color: darkMode ? "#fff" : "#000",
+        bgcolor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
       }}
     >
+      {/* ✅ Theme Switch */}
       <Section title="Theme" icon="mdi:theme-light-dark">
         <RadioGroup
           row
@@ -117,51 +120,28 @@ const handleThemeChange = (theme: "light" | "dark") => {
         </RadioGroup>
       </Section>
 
+      {/* ✅ Rise/Fall */}
       <Section title="Toggle Rise/Fall" icon="mdi:arrow-up-down">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={settings.riseFall.includes("green")}
-              onChange={() => {
-                const newRiseFall = settings.riseFall.includes("green")
-                  ? settings.riseFall.filter((v) => v !== "green")
-                  : [...settings.riseFall, "green"];
-                setSettings({ ...settings, riseFall: newRiseFall });
-              }}
-            />
-          }
-          label="Green - Up"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={settings.riseFall.includes("red")}
-              onChange={() => {
-                const newRiseFall = settings.riseFall.includes("red")
-                  ? settings.riseFall.filter((v) => v !== "red")
-                  : [...settings.riseFall, "red"];
-                setSettings({ ...settings, riseFall: newRiseFall });
-              }}
-            />
-          }
-          label="Red - Up"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={settings.riseFall.includes("blue")}
-              onChange={() => {
-                const newRiseFall = settings.riseFall.includes("blue")
-                  ? settings.riseFall.filter((v) => v !== "blue")
-                  : [...settings.riseFall, "blue"];
-                setSettings({ ...settings, riseFall: newRiseFall });
-              }}
-            />
-          }
-          label="Blue - Down"
-        />
+        {["green", "red", "blue"].map((color) => (
+          <FormControlLabel
+            key={color}
+            control={
+              <Checkbox
+                checked={settings.riseFall.includes(color)}
+                onChange={() => {
+                  const newRiseFall = settings.riseFall.includes(color)
+                    ? settings.riseFall.filter((v) => v !== color)
+                    : [...settings.riseFall, color];
+                  setSettings({ ...settings, riseFall: newRiseFall });
+                }}
+              />
+            }
+            label={`${color.charAt(0).toUpperCase() + color.slice(1)}`}
+          />
+        ))}
       </Section>
 
+      {/* ✅ Trading Interface */}
       <Section title="Trading Interface" icon="mdi:view-dashboard">
         <RadioGroup
           row
@@ -179,6 +159,7 @@ const handleThemeChange = (theme: "light" | "dark") => {
         </RadioGroup>
       </Section>
 
+      {/* ✅ Order Book */}
       <Section title="Order Book Display" icon="mdi:book-open-variant">
         <RadioGroup
           row
@@ -199,37 +180,28 @@ const handleThemeChange = (theme: "light" | "dark") => {
         </RadioGroup>
       </Section>
 
+      {/* ✅ Additional Display */}
       <Section title="Additional Display Options" icon="mdi:chart-line">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={settings.priceDisplay.includes("price")}
-              onChange={() => {
-                const newPriceDisplay = settings.priceDisplay.includes("price")
-                  ? settings.priceDisplay.filter((v) => v !== "price")
-                  : [...settings.priceDisplay, "price"];
-                setSettings({ ...settings, priceDisplay: newPriceDisplay });
-              }}
-            />
-          }
-          label="Price Change"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={settings.priceDisplay.includes("volume")}
-              onChange={() => {
-                const newPriceDisplay = settings.priceDisplay.includes("volume")
-                  ? settings.priceDisplay.filter((v) => v !== "volume")
-                  : [...settings.priceDisplay, "volume"];
-                setSettings({ ...settings, priceDisplay: newPriceDisplay });
-              }}
-            />
-          }
-          label="Volume"
-        />
+        {["price", "volume"].map((item) => (
+          <FormControlLabel
+            key={item}
+            control={
+              <Checkbox
+                checked={settings.priceDisplay.includes(item)}
+                onChange={() => {
+                  const newPriceDisplay = settings.priceDisplay.includes(item)
+                    ? settings.priceDisplay.filter((v) => v !== item)
+                    : [...settings.priceDisplay, item];
+                  setSettings({ ...settings, priceDisplay: newPriceDisplay });
+                }}
+              />
+            }
+            label={item === "price" ? "Price Change" : "Volume"}
+          />
+        ))}
       </Section>
 
+      {/* ✅ Candlestick Opening */}
       <Section title="Candlestick Opening Price" icon="mdi:candle">
         <RadioGroup
           row
@@ -246,6 +218,7 @@ const handleThemeChange = (theme: "light" | "dark") => {
         </RadioGroup>
       </Section>
 
+      {/* ✅ Value Display */}
       <Section title="Value Display Format" icon="mdi:format-list-numbered">
         <RadioGroup
           row
@@ -260,18 +233,19 @@ const handleThemeChange = (theme: "light" | "dark") => {
           <FormControlLabel
             value="standard"
             control={<Radio />}
-            label="Standard - Example: 1,20000012"
+            label="Standard - 1,20000012"
           />
           <FormControlLabel
             value="compact"
             control={<Radio />}
-            label="Compact - Example: 1.2M"
+            label="Compact - 1.2M"
           />
         </RadioGroup>
       </Section>
 
+      {/* ✅ Price Change Start Time */}
       <Section title="Price Change Start Time" icon="mdi:clock">
-        <Box display="flex" alignItems="center" gap={2}>
+        <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
           <RadioGroup
             row
             value={settings.priceChangeTime}
@@ -298,6 +272,7 @@ const handleThemeChange = (theme: "light" | "dark") => {
         </Box>
       </Section>
 
+      {/* ✅ Currency */}
       <Section title="Currency Display" icon="mdi:currency-usd">
         <Select
           value={settings.currency}

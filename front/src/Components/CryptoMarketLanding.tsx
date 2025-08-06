@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { Icon } from '@iconify/react';
 import TradingViewWidget from './TradingViewWidget';
+import Image from 'next/image';
 
 interface Coin {
   id: string;
@@ -22,12 +23,12 @@ async function getMarketData(vsCurrency = 'usd', perPage = 6): Promise<Coin[]> {
 }
 
 const quickAccessButtons = [
-  { title: 'Quick access', bgColor: '#2563eb', icon: 'mdi:key', href: '/' },
+  { title: 'Home', bgColor: '#49d84e', icon: 'mdi:home', href: '/' },
   { title: 'My Profile', bgColor: '#1e40af', icon: 'mdi:account', href: '/panel/profile' },
-  { title: 'Return To Spot', bgColor: '#2563eb', icon: 'mdi:swap-horizontal', href: '/Spot' },
+  { title: 'Spot', bgColor: '#2563eb', icon: 'mdi:swap-horizontal', href: '/Spot' },
   { title: 'Deposit', bgColor: '#1e40af', icon: 'mdi:bank', href: '/Deposit' },
-  { title: 'Go To wallet', bgColor: '#2563eb', icon: 'mdi:wallet-outline', href: '/Wallet/Overview' },
-  { title: 'Future Trading', bgColor: '#1e40af', icon: 'mdi:trending-up', href: '/Future' },
+  { title: 'wallet', bgColor: '#2563eb', icon: 'mdi:wallet-outline', href: '/Wallet/Overview' },
+  { title: 'Future', bgColor: '#1e40af', icon: 'mdi:trending-up', href: '/Future' },
 ];
 
 export default async function CryptoMarketLanding() {
@@ -54,7 +55,7 @@ export default async function CryptoMarketLanding() {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <img src={c.image} alt={c.symbol} style={{ width: 34, height: 34 }} />
+            <Image src={c.image} alt={c.symbol} width={24} height={24} />
             <Typography variant="body2" fontWeight={600}>
               {c.name} ({c.symbol.toUpperCase()})
             </Typography>
@@ -109,6 +110,8 @@ export default async function CryptoMarketLanding() {
             fontSize: '0.875rem',
             borderRadius: '20px',
             textTransform: 'none',
+            display: 'flex',
+            flex: 'row',
             '&:hover': { bgcolor: `${button.bgColor}CC` },
           }}
         >
@@ -117,21 +120,24 @@ export default async function CryptoMarketLanding() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              width: '90%',
+              width: '100%',
+              p: 0.4,
+              fontSize: {xs:12, md: 18},
             }}
           >
-            <span>{button.title}</span>
+            <span style={{ fontSize: 'inherit' }}>{button.title}</span>
             <Box
               sx={{
                 bgcolor: 'white',
                 borderRadius: '20px',
+                fontSize: {xs:15, md : 25},
                 ml: 1,
                 display: 'flex',
                 alignItems: 'center',
-                p: '8px'
+                p: '2px'
               }}
             >
-              <Icon icon={button.icon} color="black" fontSize={25} />
+              <Icon icon={button.icon} color="black" style={{ fontSize: 'inherit' }}/>
             </Box>
           </Box>
         </Button>

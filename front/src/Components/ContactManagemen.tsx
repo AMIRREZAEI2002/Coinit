@@ -1,430 +1,384 @@
-import React, { useState } from 'react';
-import { 
-  Box, 
-  Typography, 
-  Button, 
-  useTheme,
-  TextField,
-  Grid,
-  Avatar,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  IconButton,
-  Divider,
+"use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Menu,
-  MenuItem,
-  FormControlLabel,
-  Switch,
-  FormGroup
-} from '@mui/material';
-import { 
-  Add as AddIcon,
-  Search as SearchIcon,
-  MoreVert as MoreIcon,
-  Person as PersonIcon,
-  CheckCircle as VerifiedIcon,
-  Close as CloseIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-  Notifications as NotifyIcon
-} from '@mui/icons-material';
+  TextField,
+  IconButton,
+  useTheme,
+  useMediaQuery,
+  Stack,
+} from "@mui/material";
+import { Icon } from "@iconify/react";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Contact {
   id: number;
   name: string;
   email: string;
   walletAddress: string;
-  verified: boolean;
   notes?: string;
+  verified: boolean;
 }
 
+const fakeContacts: Contact[] = [
+  {
+    id: 1,
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    walletAddress: "0x1234abcd5678efgh9012ijkl3456mnop7890qrst",
+    notes: "Main Ethereum wallet",
+    verified: true,
+  },
+  {
+    id: 2,
+    name: "Bob Smith",
+    email: "bob.smith@example.com",
+    walletAddress: "0xabcd1234efgh5678ijkl9012mnop3456qrst7890",
+    notes: "",
+    verified: false,
+  },
+  {
+    id: 3,
+    name: "Charlie Davis",
+    email: "charlie.davis@example.com",
+    walletAddress: "0x5678efgh1234abcd9012mnop3456ijkl7890qrst",
+    notes: "Important contact",
+    verified: true,
+  },
+];
+
 const ContactManagement = () => {
-  const theme = useTheme();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [currentContact, setCurrentContact] = useState<Contact | null>(null);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [currentActionId, setCurrentActionId] = useState<number | null>(null);
-  const [notificationSubscribed, setNotificationSubscribed] = useState(false);
-  const [notificationEmail, setNotificationEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
 
-  // Initial contacts data
-  const initialContacts: Contact[] = [
-    { id: 1, name: 'Mahyar Baher', email: 'mahyar.baher@gmail.com', walletAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e', verified: true },
-    { id: 2, name: 'Amir Rezaii', email: 'amirrezaii2002@gmail.com', walletAddress: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', verified: true },
-    { id: 3, name: 'Seyed Mehdie Mosavian', email: 'robert@example.com', walletAddress: 'rP4PY2VeZfr9W1hjab4wC4i8UK97QeZbzW', verified: true },
-    { id: 4, name: 'Emily Davis', email: 'emily@example.com', walletAddress: 'TQ5N7VY1XrBkLSUdY1sVg2s3Gk3PZgq5oJ', verified: false },
-    { id: 5, name: 'Michael Wilson', email: 'michael@example.com', walletAddress: 'A13ASDASDGASDASDASDASDASDASDASDASD', verified: false },
-  ];
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [contacts, setContacts] = useState<Contact[]>(initialContacts);
+  // Load from localStorage or use fake data if empty
+  useEffect(() => {
+    const saved = localStorage.getItem("contacts");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed.length === 0) setContacts(fakeContacts);
+      else setContacts(parsed);
+    } else {
+      setContacts(fakeContacts);
+    }
+  }, []);
 
-  // Filter contacts based on search term
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.walletAddress.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Save to localStorage
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
-  // Handle menu open
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, id: number) => {
-    setAnchorEl(event.currentTarget);
-    setCurrentActionId(id);
-  };
-
-  // Handle menu close
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setCurrentActionId(null);
-  };
-
-  // Handle dialog open
-  const handleDialogOpen = (contact: Contact | null) => {
-    setCurrentContact(contact);
+  const handleDialogOpen = (contact?: Contact) => {
+    setCurrentContact(contact || null);
     setOpenDialog(true);
   };
 
-  // Handle dialog close
   const handleDialogClose = () => {
-    setOpenDialog(false);
     setCurrentContact(null);
+    setOpenDialog(false);
   };
 
-  // Handle delete contact
-  const handleDeleteContact = (id: number) => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-    handleMenuClose();
+  const handleInputChange = (field: keyof Contact, value: string | boolean) => {
+    setCurrentContact((prev) => (prev ? { ...prev, [field]: value } : prev));
   };
 
-  // Handle toggle verification
-  const handleToggleVerification = (id: number) => {
-    setContacts(contacts.map(contact => 
-      contact.id === id ? { ...contact, verified: !contact.verified } : contact
-    ));
-  };
-
-  // Handle save contact
   const handleSaveContact = () => {
     if (currentContact) {
-      if (currentContact.id) {
-        // Update existing contact
-        setContacts(contacts.map(contact => 
-          contact.id === currentContact.id ? currentContact : contact
-        ));
+      if (currentContact.id && contacts.some((c) => c.id === currentContact.id)) {
+        setContacts((prev) =>
+          prev.map((c) => (c.id === currentContact.id ? currentContact : c))
+        );
       } else {
-        // Add new contact
-        const newContact = {
-          ...currentContact,
-          id: Math.max(0, ...contacts.map(c => c.id)) + 1
-        };
-        setContacts([...contacts, newContact]);
+        setContacts((prev) => [
+          ...prev,
+          { ...currentContact, id: Date.now() },
+        ]);
       }
     }
     handleDialogClose();
   };
 
-  // Handle input change
-  const handleInputChange = (field: keyof Contact, value: string | boolean) => {
-    if (currentContact) {
-      setCurrentContact({
-        ...currentContact,
-        [field]: value
-      });
-    }
-  };
-
-  // Handle notification signup
-  const handleNotificationSignup = () => {
-    if (!notificationEmail || !/\S+@\S+\.\S+/.test(notificationEmail)) {
-      setEmailError('Please enter a valid email address');
-      return;
-    }
-    
-    setNotificationSubscribed(true);
-    setEmailError('');
-    // In a real app, you would send this to your backend
+  const handleDeleteContact = (id: number) => {
+    setContacts((prev) => prev.filter((c) => c.id !== id));
   };
 
   return (
-    <Box sx={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      height: '100%',
-      p: 3
-    }}>
-      {/* Header */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        mb: 3
-      }}>
-        <Typography variant="h5" fontWeight="bold">
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection:{xs:'column',md:'row'},
+          mb: 3,
+        }}
+      >
+        <Typography variant="h5" fontWeight={700}>
           Contact Management
         </Typography>
-        <Button 
-          variant="contained" 
-          startIcon={<AddIcon />}
-          sx={{ borderRadius: '50px' }}
-          onClick={() => handleDialogOpen({
-            id: 0,
-            name: '',
-            email: '',
-            walletAddress: '',
-            verified: false
-          })}
+        <Button
+          variant="contained"
+          startIcon={<Icon icon="mdi:plus" />}
+          sx={{fontSize:{xs:12,md:15}}}
+          onClick={() =>
+            handleDialogOpen({
+              id: 0,
+              name: "",
+              email: "",
+              walletAddress: "",
+              notes: "",
+              verified: false,
+            })
+          }
         >
           Add Contact
         </Button>
       </Box>
-      
-      {/* Search Bar */}
-      <TextField
-        fullWidth
-        placeholder="Search contacts..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <SearchIcon sx={{ color: theme.palette.action.active, mr: 1 }} />
-          ),
-          sx: {
-            borderRadius: '50px',
-            mb: 3
-          }
-        }}
-        variant="outlined"
-      />
-      
-      {/* Contact List */}
-      <List sx={{ 
-        flexGrow: 1, 
-        overflow: 'auto',
-        border: `1px solid ${theme.palette.divider}`,
-        borderRadius: 2,
-        p: 1,
-        mb: 3
-      }}>
-        {filteredContacts.map((contact) => (
-          <React.Fragment key={contact.id}>
-            <ListItem 
-              secondaryAction={
-                <>
-                  <IconButton 
-                    edge="end"
-                    onClick={(e) => handleMenuOpen(e, contact.id)}
-                  >
-                    <MoreIcon />
-                  </IconButton>
-                  <Menu
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl) && currentActionId === contact.id}
-                    onClose={handleMenuClose}
-                  >
-                    <MenuItem onClick={() => {
-                      handleDialogOpen(contact);
-                      handleMenuClose();
-                    }}>
-                      <EditIcon sx={{ mr: 1 }} /> Edit
-                    </MenuItem>
-                    <MenuItem onClick={() => handleDeleteContact(contact.id)}>
-                      <DeleteIcon sx={{ mr: 1, color: theme.palette.error.main }} /> 
-                      <Typography color="error">Delete</Typography>
-                    </MenuItem>
-                  </Menu>
-                </>
-              }
-            >
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box fontWeight="medium">{contact.name}</Box>
-                    {contact.verified && (
-                      <VerifiedIcon 
-                        fontSize="small" 
-                        color="success" 
-                        sx={{ ml: 1 }} 
-                      />
-                    )}
-                  </Box>
-                }
-                secondary={
-                  <>
-                    <Typography variant="body2">{contact.email}</Typography>
-                    <Typography variant="caption" sx={{ 
-                      display: 'block',
-                      maxWidth: '200px',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}>
-                      {contact.walletAddress}
-                    </Typography>
-                  </>
-                }
-              />
-              <FormControlLabel
-                control={
-                  <Switch 
-                    checked={contact.verified} 
-                    onChange={() => handleToggleVerification(contact.id)}
-                    color="success"
-                  />
-                }
-                label=""
-                labelPlacement="start"
-                sx={{ ml: 2 }}
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </React.Fragment>
-        ))}
-        
-        {filteredContacts.length === 0 && (
-          <Box sx={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            minHeight: 200,
-            textAlign: 'center',
-            p: 3
-          }}>
-            <PersonIcon sx={{ fontSize: 48, color: theme.palette.text.disabled, mb: 2 }} />
-            <Typography variant="h6" sx={{ mb: 1 }}>
-              No contacts found
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-              Try adjusting your search or add a new contact
-            </Typography>
-          </Box>
-        )}
-      </List>
-      
-      {/* Feature Notification */}
-      <Box sx={{ 
-        backgroundColor: "Background.paper", 
-        borderRadius: 2,
-        p: 3,
-        textAlign: 'center'
-      }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-          <NotifyIcon color="primary" sx={{ mr: 1 }} />
-          <Typography variant="h6">Stay Updated!</Typography>
-        </Box>
-        
-        <Typography variant="body1" sx={{ mb: 2 }}>
-          Get notified when new contact management features are released
-        </Typography>
-        
-        {!notificationSubscribed ? (
-          <Box sx={{ display: 'flex',justifyContent: 'space-between',alignItems: 'center', flexDirection:{xs: 'column',md: 'row'} , gap: 1 }}>
-            <TextField
-              placeholder="Your email address"
-              value={notificationEmail}
-              onChange={(e) => {
-                setNotificationEmail(e.target.value);
-                if (emailError) setEmailError('');
-              }}
-              error={!!emailError}
-              helperText={emailError}
-              sx={{ flexGrow: 1, width:{xs:'100%'} }}
-            />
-            <Button 
-              variant="contained" 
-              onClick={handleNotificationSignup}
-              sx={{width: {xs:"100%",md: 'fit-content'} ,borderRadius: '50px', color:'inherit', p:3, py: 1, textWrap:'nowrap'}}
-            >
-              Notify Me
-            </Button>
-          </Box>
-        ) : (
-          <Typography color="success.main" sx={{ fontWeight: 'medium' }}>
-            You&apos;re subscribed to notifications!
-          </Typography>
-        )}
-      </Box>
 
-      {/* Add/Edit Contact Dialog */}
-      <Dialog open={openDialog} onClose={handleDialogClose} fullWidth maxWidth="sm">
-        <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {currentContact?.id ? 'Edit Contact' : 'Add New Contact'}
+      {contacts.length === 0 ? (
+        <Typography variant="body1" color="text.secondary" align="center" sx={{ mt: 4 }}>
+          No contacts available. Please add new contacts.
+        </Typography>
+      ) : isMobile ? (
+        <Stack spacing={2}>
+          {contacts.map((contact) => (
+            <Paper key={contact.id} sx={{ p: 1, borderRadius: 2 }}>
+              <Typography  variant="subtitle1" fontWeight={600}>
+                {contact.name}
+              </Typography>
+              <Typography  variant="body2" color="text.secondary">
+                {contact.email}
+              </Typography>
+              <Typography
+                component="div"
+                variant="caption"
+                sx={{
+                  mt: 1,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "block",
+                  maxWidth: "200px",
+                }}
+              >
+                Wallet: {contact.walletAddress}
+              </Typography>
+              {contact.notes && (
+                <Typography  variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                  Notes: {contact.notes}
+                </Typography>
+              )}
+              <Typography
+                variant="body2"
+                sx={{
+                  color: contact.verified ? "success.main" : "error.main",
+                  mt: 1,
+                }}
+              >
+                {contact.verified ? "Verified" : "Not Verified"}
+              </Typography>
+
+
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: 1,
+                  mt: 1,
+                }}
+              >
+                <IconButton
+                  color="primary"
+                  onClick={() => handleDialogOpen(contact)}
+                >
+                  <Icon icon="mdi:pencil" />
+                </IconButton>
+                <IconButton
+                  color="error"
+                  onClick={() => handleDeleteContact(contact.id)}
+                >
+                  <Icon icon="mdi:delete" />
+                </IconButton>
+              </Box>
+            </Paper>
+          ))}
+        </Stack>
+      ) : (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Wallet Address</TableCell>
+                <TableCell>Verified</TableCell>
+                <TableCell align="right">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {contacts.map((contact) => (
+                <TableRow key={contact.id}>
+                  <TableCell>{contact.name}</TableCell>
+                  <TableCell>{contact.email}</TableCell>
+                  <TableCell>{contact.walletAddress}</TableCell>
+                  <TableCell>
+                    <Typography
+                      sx={{
+                        color: contact.verified ? "success.main" : "error.main",
+                      }}
+                    >
+                      {contact.verified ? "Yes" : "No"}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      color="primary"
+                      onClick={() => handleDialogOpen(contact)}
+                    >
+                      <Icon icon="mdi:pencil" />
+                    </IconButton>
+                    <IconButton
+                      color="error"
+                      onClick={() => handleDeleteContact(contact.id)}
+                    >
+                      <Icon icon="mdi:delete" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+
+      {/* Dialog */}
+      <Dialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        fullWidth
+        maxWidth="sm"
+        fullScreen={isMobile}
+        sx={{
+          "& .MuiPaper-root": {
+            borderRadius: isMobile ? 0 : "16px",
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          }}
+        >
+          <Typography variant="inherit" fontWeight={700}>
+            {currentContact?.id && currentContact.id !== 0
+              ? "Edit Contact"
+              : "New Contact"}
+          </Typography>
           <IconButton onClick={handleDialogClose}>
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid size={{xs:12}}>
-              <TextField
-                fullWidth
-                label="Name"
-                value={currentContact?.name || ''}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                sx={{ mb: 2 }}
-              />
-            </Grid>
-            <Grid size={{xs:12}}>
-              <TextField
-                fullWidth
-                label="Email"
-                value={currentContact?.email || ''}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                sx={{ mb: 2 }}
-              />
-            </Grid>
-            <Grid size={{xs:12}}>
-              <TextField
-                fullWidth
-                label="Wallet Address"
-                value={currentContact?.walletAddress || ''}
-                onChange={(e) => handleInputChange('walletAddress', e.target.value)}
-                sx={{ mb: 2 }}
-              />
-            </Grid>
-            <Grid size={{xs:12}}>
-              <TextField
-                fullWidth
-                label="Notes (Optional)"
-                value={currentContact?.notes || ''}
-                onChange={(e) => handleInputChange('notes', e.target.value)}
-                multiline
-                rows={3}
-              />
-            </Grid>
-            <Grid size={{xs:12}}>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Switch 
-                      checked={currentContact?.verified || false} 
-                      onChange={(e) => handleInputChange('verified', e.target.checked)}
-                      color="success"
-                    />
-                  }
-                  label="Verified Contact"
-                />
-              </FormGroup>
-            </Grid>
-          </Grid>
+        <DialogContent sx={{ py: 3 }}>
+          <Stack spacing={2}>
+            <TextField
+              fullWidth
+              label="Name"
+              value={currentContact?.name || ""}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              size="small"
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              value={currentContact?.email || ""}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              size="small"
+            />
+            <TextField
+              fullWidth
+              label="Wallet Address"
+              value={currentContact?.walletAddress || ""}
+              onChange={(e) =>
+                handleInputChange("walletAddress", e.target.value)
+              }
+              size="small"
+            />
+            <TextField
+              fullWidth
+              label="Notes (Optional)"
+              value={currentContact?.notes || ""}
+              onChange={(e) => handleInputChange("notes", e.target.value)}
+              multiline
+              rows={3}
+              size="small"
+            />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                bgcolor: theme.palette.action.hover,
+                borderRadius: "12px",
+                p: 2,
+              }}
+            >
+              <Typography variant="body2" fontWeight={500}>
+                Verified Contact
+              </Typography>
+              <Button
+                variant={currentContact?.verified ? "contained" : "outlined"}
+                color="success"
+                onClick={() =>
+                  handleInputChange("verified", !currentContact?.verified)
+                }
+              >
+                {currentContact?.verified ? "Yes" : "No"}
+              </Button>
+            </Box>
+          </Stack>
         </DialogContent>
-        <DialogActions sx={{ p: 3, pt: 0 }}>
+        <DialogActions sx={{ p: 2 }}>
+          {currentContact?.id && currentContact.id !== 0 && (
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => {
+                handleDeleteContact(currentContact.id);
+                handleDialogClose();
+              }}
+              sx={{ mr: "auto" }}
+            >
+              Delete
+            </Button>
+          )}
           <Button variant="outlined" onClick={handleDialogClose}>
             Cancel
           </Button>
           <Button variant="contained" onClick={handleSaveContact}>
-            {currentContact?.id ? 'Save Changes' : 'Add Contact'}
+            {currentContact?.id && currentContact.id !== 0
+              ? "Save"
+              : "Add Contact"}
           </Button>
         </DialogActions>
       </Dialog>

@@ -246,8 +246,8 @@ const LimitOrder: React.FC<LimitOrderProps> = ({ isBuy }) => {
         sx={{
           position: 'absolute',
           right: 8,
-          top: '50%',
-          transform: 'translateY(-50%)',
+          top: '60%',
+          transform: 'translateY(-50%) !important',
           display: 'flex',
           flexDirection: 'column',
           gap: 0.2,

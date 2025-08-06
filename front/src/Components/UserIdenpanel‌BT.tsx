@@ -26,6 +26,7 @@ const BenefitsCard = styled(Paper)(({ theme }) => ({
 
 const HeaderCell = styled(TableCell)(({ theme }) => ({
   fontWeight: 'bold',
+  position:'relative',
   textAlign: 'center',
   padding: theme.spacing(1),
 }));
@@ -45,7 +46,7 @@ const FeatureCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const RecommendedChip = styled(Chip)(({ theme }) => ({
-  fontSize: '0.75rem',
+  fontSize: 10,
   fontWeight: 'bold',
   backgroundColor: theme.palette.warning.light,
   color: theme.palette.warning.dark,
