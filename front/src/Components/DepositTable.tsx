@@ -38,7 +38,7 @@ const DepositTable = () => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<SortField>('time');
   const [searchText, setSearchText] = useState('');
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [expandedCard, setExpandedCard] = useState<string  | null>(null);
 
   const handleSort = (field: SortField) => {
     const isAsc = orderBy === field && order === 'asc';
@@ -83,7 +83,7 @@ const DepositTable = () => {
 
   const hasFilters = filters.crypto || filters.network || filters.status || searchText;
 
-  const toggleCardExpand = (id: number) => {
+  const toggleCardExpand = (id: string) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 

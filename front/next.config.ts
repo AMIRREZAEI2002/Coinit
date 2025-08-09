@@ -1,20 +1,30 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // خطاهای ESLint در build نادیده گرفته شود
   },
   images: {
-    domains: ['images.pexels.com', 'www.coingecko.com', 'coin-images.coingecko.com'],
-  },
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.pexels.com' },
+      { protocol: 'https', hostname: 'www.coingecko.com' },
+      { protocol: 'https', hostname: 'coin-images.coingecko.com' },
+    ],
+  },  
   experimental: {
     serverActions: {},
   },
   turbopack: {
-    appDir: true,
-    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx'],
-    future: { webpackBuild:  true }
+    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx']
   }
 };
 
-module.exports = nextConfig;
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true, 
+  disable: process.env.NODE_ENV === 'development',
+});
+
+module.exports = withPWA(nextConfig);
