@@ -8,6 +8,7 @@ import {
   IconButton,
   ToggleButton,
   ToggleButtonGroup,
+  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
@@ -82,11 +83,13 @@ const SpotCryptoChart: React.FC = () => {
   const [chartType, setChartType] = useState<'line' | 'area' | 'candlestick'>('line');
   const [timeframe, setTimeframe] = useState<'1D' | '1W' | '1M' | '1Y'>('1W');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [showPrice, setShowPrice] = useState(true);
   const [showMA10, setShowMA10] = useState(false);
   const [showMA50, setShowMA50] = useState(false);
   const [chartKey, setChartKey] = useState(0);
   const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartHeight = isFullscreen ? window.innerHeight : isMdUp ? 420 : 200;
 
   const daysMap = { '1D': 1, '1W': 7, '1M': 30, '1Y': 365 };
   const stepMap = { '1D': 1, '1W': 2, '1M': 6, '1Y': 24 }; // کمتر شدن نقاط برای موبایل قدیمی
@@ -146,23 +149,26 @@ const SpotCryptoChart: React.FC = () => {
             zoom: true,
             zoomin: true,
             zoomout: true,
-            pan: true,
+            pan: true,      // فعال کردن پن در تولبار
             reset: true,
           },
-          autoSelected: 'zoom',
+          autoSelected: 'pan',  // پیشفرض پن باشه (برای فعال بودن پن در موبایل)
         },
         zoom: {
           enabled: true,
           type: 'x',
           autoScaleYaxis: true,
-          // حداقل و حداکثر زوم
           minimumZoom: 0.5,
           maximumZoom: 2,
+        },
+        pan: {
+          enabled: true,
+          type: 'x',
         },
         background: 'transparent',
         events: {
           zoomed: (chartContext, { xaxis }) => {
-            // ✅ محدودیت زوم اوت
+            // محدودیت زوم اوت
             if (xaxis.min < minTimestamp || xaxis.max > maxTimestamp) {
               chartContext.zoomX(minTimestamp, maxTimestamp);
             }
@@ -193,7 +199,6 @@ const SpotCryptoChart: React.FC = () => {
         max: maxTimestamp,
         labels: {
           style: { colors: theme.palette.text.secondary },
-          // بهینه‌سازی لیبل‌ها برای موبایل
           rotate: -45,
           rotateAlways: false,
           hideOverlappingLabels: true,
@@ -203,7 +208,6 @@ const SpotCryptoChart: React.FC = () => {
         labels: {
           style: { colors: theme.palette.text.secondary },
           formatter: (v) => (typeof v === 'number' ? `$${v.toFixed(2)}` : ''),
-          // کاهش تعداد لیبل‌ها در موبایل
           maxTicks: 5,
         },
       },
@@ -211,22 +215,20 @@ const SpotCryptoChart: React.FC = () => {
         shared: chartType !== 'candlestick',
         theme: theme.palette.mode,
         x: { format: 'dd MMM yyyy HH:mm' },
-        // بهینه‌سازی تولتیپ برای موبایل
         followCursor: true,
         intersect: false,
       },
-      // پاسخگویی بهتر برای موبایل
       responsive: [
         {
-          breakpoint: 600, // برای صفحه‌نمایش‌های کوچک‌تر از 600px
+          breakpoint: 600,
           options: {
             chart: {
-              height: 300, // کاهش ارتفاع چارت در موبایل
+              height: 300,
             },
             xaxis: {
               labels: {
                 style: {
-                  fontSize: '10px', // کاهش اندازه فونت
+                  fontSize: '10px',
                 },
               },
             },
@@ -238,7 +240,7 @@ const SpotCryptoChart: React.FC = () => {
               },
             },
             toolbar: {
-              offsetY: 10, // تنظیم موقعیت toolbar
+              offsetY: 10,
             },
           },
         },
@@ -246,6 +248,8 @@ const SpotCryptoChart: React.FC = () => {
     }),
     [chartType, theme, minTimestamp, maxTimestamp]
   );
+  
+  
 
   return (
     <Box>
@@ -307,10 +311,11 @@ const SpotCryptoChart: React.FC = () => {
         ref={chartContainerRef}
         sx={{
           width: '100%',
-          height: isFullscreen ? '100vh' : { xs: 300, md: 500 }, // ارتفاع کمتر برای موبایل
+          height: isFullscreen ? '100vh' : { xs: "100%", md: "100%" }, // ارتفاع کمتر برای موبایل
           bgcolor: theme.palette.background.paper,
           borderRadius: isFullscreen ? 0 : 2,
           position: 'relative',
+          pt:2,
         }}
       >
         <IconButton onClick={toggleFullscreen} sx={{ position: 'absolute', top: 8, left: 8, zIndex: 10 }}>
@@ -327,8 +332,8 @@ const SpotCryptoChart: React.FC = () => {
             options={options}
             series={series}
             type={chartType}
-            style={{height:isFullscreen ? window.innerHeight : { xs: 300, md: 500 }}}
             width="100%"
+            height={chartHeight}
           />
         )}
       </Box>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -11,19 +12,19 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.coingecko.com' },
       { protocol: 'https', hostname: 'coin-images.coingecko.com' },
     ],
-  },  
+  },
   experimental: {
     serverActions: {},
   },
   turbopack: {
-    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx']
-  }
+    resolveExtensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
 };
 
 const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
-  skipWaiting: true, 
+  skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
 });
 
