@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { Icon } from '@iconify/react';
 import TradingViewWidget from './TradingViewWidget';
@@ -16,7 +17,6 @@ interface Coin {
 async function getMarketData(vsCurrency = 'usd', perPage = 6): Promise<Coin[]> {
   const res = await fetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${perPage}&page=1&sparkline=false`,
-    { cache: 'no-store' } // برای آپدیت هر بار (بدون کش)
   );
   if (!res.ok) throw new Error('Failed to fetch');
   return res.json();

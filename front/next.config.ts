@@ -3,9 +3,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true, // خطاهای ESLint در build نادیده گرفته شود
-  },
+  eslint: { ignoreDuringBuilds: true },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.pexels.com' },
