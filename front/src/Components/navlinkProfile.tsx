@@ -12,7 +12,7 @@ import {
   useMediaQuery,
   useTheme,
   Typography,
-  Avatar
+  Avatar,
 } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -39,7 +39,7 @@ const NavlinkProfile = () => {
     { name: 'Profile', icon: 'mdi:account', path: '/panel/profile' },
     { name: 'Security', icon: 'mdi:lock', path: '/panel/Security' },
     { name: 'Identification', icon: 'mdi:card-account-details', path: '/panel/Identification' },
-    { name: 'Referral', icon: 'mdi:account-group', path: '/panel/Referral' },
+    { name: 'Referral', icon: 'mdi:account-group', path: '/panel/Referral' }, 
     { name: 'Trading Fees', icon: 'mdi:percent', path: '/panel/TradingFees' },
     { name: 'Withdrawal Addresses', icon: 'mdi:wallet-outline', path: '/panel/WithdrawalAddresses' },
     { name: 'Sub-Accounts', icon: 'mdi:account-multiple', path: '/panel/SubAccount' },
@@ -55,7 +55,7 @@ const NavlinkProfile = () => {
             key={item.name}
             disablePadding
             sx={{
-              backgroundColor: isActive ? theme.palette.primary.light : 'inherit',
+              backgroundColor: isActive ? theme.palette.primary.dark : 'inherit',
               borderLeft: isActive ? `4px solid ${theme.palette.primary.main}` : 'none',
               borderRadius: '0 12px 12px 0',
               mb: 0.5,
@@ -66,7 +66,8 @@ const NavlinkProfile = () => {
             <ListItemButton
               onClick={() => handleLinkClick(item.path)}
               sx={{
-                p: 0.5,
+                py: 1,
+                px: 2,
                 '&:hover': {
                   backgroundColor: theme.palette.action.hover,
                 }
@@ -78,7 +79,7 @@ const NavlinkProfile = () => {
                   width={24} 
                   height={24} 
                   style={{
-                    color: isActive ? theme.palette.primary.dark : theme.palette.text.secondary
+                    color: isActive ? theme.palette.text.primary : theme.palette.text.primary
                   }} 
                 />
               </ListItemIcon>
@@ -87,7 +88,7 @@ const NavlinkProfile = () => {
                 primaryTypographyProps={{
                   fontWeight: isActive ? 700 : 500,
                   fontSize: '0.95rem',
-                  color: isActive ? theme.palette.primary.dark : theme.palette.text.primary
+                  color: isActive ? theme.palette.text.primary : theme.palette.text.primary
                 }}
               />
             </ListItemButton>
